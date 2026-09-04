@@ -1,0 +1,277 @@
+"'Facility Request - Admin - Manage Request' As screen":
+
+    Container8_1 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Container10_1 As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(0, 18, 107, 1)
+            FillPortions: =0
+            Height: =100
+            LayoutMinHeight: =Parent.Height
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =1
+
+            "'ManageRequest-BackArrow_3' As icon.ArrowLeft":
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =40
+                Icon: =Icon.ArrowLeft
+                OnSelect: =If(_VisitedManageRequestCategory, Navigate('Facility Request - Admin - View Requests', ScreenTransition.UnCoverRight), Back(ScreenTransition.UnCoverRight));
+                Width: =40
+                X: =30
+                Y: =Parent.Height / 2 - 20
+                ZIndex: =1
+
+            ManageRequestLabel_3 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =70
+                Size: =26
+                Text: ="Manage Request"
+                Width: =309
+                X: =(Parent.Width - Self.Width)/2 
+                Y: =(Parent.Height - Self.Height)/2 
+                ZIndex: =2
+
+            "'ManageRequest-GroupingsButton_1' As icon.LevelsLayersItems":
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =40
+                Icon: =Icon.LevelsLayersItems
+                OnSelect: =Navigate('Facility Request - Admin - Manage Request Category', ScreenTransition.Cover)
+                Width: =40
+                X: =Parent.Width - Self.Width - 25
+                Y: =Parent.Height / 2 - 20
+                ZIndex: =3
+
+        Container46 As groupContainer.manualLayoutContainer:
+            Height: =225
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =2
+
+            "'ManageRequest-CloseReqestButton' As button":
+                Fill: =RGBA(184, 0, 0, 1)
+                Height: =70
+                OnSelect: |
+                    =ClearCollect(
+                        FacilityRequestReference,
+                        ForAll(
+                            'Facility Request_1',
+                            If(
+                                ThisRecord.Category.Value = _SelectedRequest.Category.Value,
+                                {
+                                    ID: ThisRecord.ID,
+                                    //'Status': {Value: "Closed"},
+                                    Status0: {Value: "Closed"}
+                                }
+                            )
+                        )
+                    );
+                    If(
+                        IsBlank(_SelectedRequest.Category.Value),
+                        Patch(
+                            'Facility Request_1',
+                            LookUp(
+                                'Facility Request_1',
+                                ID = _SelectedRequest.ID
+                            ),
+                            {'Status (Status0)': {Value: "Closed"}}
+                        ),
+                        ForAll(FacilityRequestReference, Patch(
+                            'Facility Request_1',
+                            ThisRecord)
+                        )
+                    );
+                    Navigate(
+                        'Facility Request - Admin - View Requests',
+                        ScreenTransition.UnCoverRight
+                    );
+                Size: =24
+                Text: ="Close Request"
+                Visible: =If(_SelectedRequest.'Status (Status0)'.Value = "Opened" Or _SelectedRequest.'Status (Status0)'.Value = "In Progress", true, false)
+                Width: =280
+                X: =Parent.Width / 2 + 10
+                Y: =Parent.Height - 100
+                ZIndex: =1
+
+            "'ManageRequest-ReopenButton' As button":
+                Height: =70
+                OnSelect: |-
+                    =Patch('Facility Request_1', LookUp('Facility Request_1', ID = _SelectedRequest.ID), {'Status (Status0)': {Value:"In Progress"}});
+                    Navigate('Facility Request - Admin - View Requests', ScreenTransition.UnCoverRight);
+                Size: =24
+                Text: ="Reopen Request"
+                Visible: =If(_SelectedRequest.'Status (Status0)'.Value = "Closed", true, false)
+                Width: =280
+                X: =Parent.Width / 2 - 290
+                Y: =Parent.Height - 100
+                ZIndex: =2
+
+            "'ManageRequest-ApproveButton' As button":
+                Height: =70
+                OnSelect: |-
+                    =Patch('Facility Request_1', LookUp('Facility Request_1', ID = _SelectedRequest.ID), {'Status (Status0)': {Value:"In Progress"}});
+                    Navigate('Facility Request - Admin - View Requests', ScreenTransition.UnCoverRight);
+                Size: =24
+                Text: ="Approve"
+                Visible: =If(_SelectedRequest.'Status (Status0)'.Value = "Opened", true, false)
+                Width: =280
+                X: =Parent.Width / 2 - 290
+                Y: =Parent.Height - 100
+                ZIndex: =3
+
+            "'ManageRequest-DescriptionHTML_2' As htmlViewer":
+                Fill: =RGBA(241, 244, 249, 1)
+                Height: =Parent.Height / 4
+                HtmlText: =_SelectedRequest.Description
+                PaddingBottom: =15
+                PaddingLeft: =15
+                PaddingRight: =15
+                PaddingTop: =15
+                Size: =21
+                Width: =Parent.Width - 50
+                X: =25
+                Y: =610
+                ZIndex: =4
+
+            "'ManageRequest-DescriptionLabel' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Description"
+                Width: =220
+                X: =30
+                Y: =540
+                ZIndex: =5
+
+            "'ManageRequest-StatusLabel_2' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Status"
+                Width: =164
+                X: =30
+                Y: =455
+                ZIndex: =6
+
+            "'ManageRequest-StatusText' As label":
+                Fill: =RGBA(241, 244, 249, 1)
+                Height: =70
+                PaddingLeft: =15
+                Size: =21
+                Text: =_SelectedRequest.'Status (Status0)'.Value
+                Width: =Parent.Width - 240
+                X: =210
+                Y: =455
+                ZIndex: =7
+
+            "'ManageRequest-PriorityLabel' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Priority"
+                Width: =164
+                X: =30
+                Y: =370
+                ZIndex: =8
+
+            "'ManageRequest-PriorityText' As label":
+                Fill: =RGBA(241, 244, 249, 1)
+                Height: =70
+                PaddingLeft: =15
+                Size: =21
+                Text: =_SelectedRequest.Priority.Value
+                Width: =Parent.Width - 240
+                X: =210
+                Y: =370
+                ZIndex: =9
+
+            "'ManageRequest-DateCreatedLabel' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =80
+                Size: =20
+                Text: ="Date Created"
+                Width: =164
+                X: =30
+                Y: =285
+                ZIndex: =10
+
+            "'ManageRequest-DateCreatedText' As label":
+                Fill: =RGBA(241, 244, 249, 1)
+                Height: =70
+                PaddingLeft: =15
+                Size: =21
+                Text: =_SelectedRequest.Date
+                Width: =Parent.Width - 240
+                X: =210
+                Y: =285
+                ZIndex: =11
+
+            "'ManageRequest-EmailLabel' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Email"
+                Width: =140
+                X: =30
+                Y: =200
+                ZIndex: =12
+
+            "'ManageRequest-EmailText' As label":
+                Fill: =RGBA(241, 244, 249, 1)
+                Height: =70
+                PaddingLeft: =15
+                Size: =21
+                Text: =_SelectedRequest.'Requester Email'
+                Width: =Parent.Width - 240
+                X: =210
+                Y: =200
+                ZIndex: =13
+
+            "'ManageRequest-RequestorLabel' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Requestor"
+                Width: =200
+                X: =30
+                Y: =115
+                ZIndex: =14
+
+            "'ManageRequest-RequestorText' As label":
+                Fill: =RGBA(241, 244, 249, 1)
+                Height: =70
+                PaddingLeft: =15
+                Size: =21
+                Text: =_SelectedRequest.'Requester Name'
+                Width: =Parent.Width - 240
+                X: =210
+                Y: =115
+                ZIndex: =15
+
+            "'ManageRequest-TitleLabel' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Title"
+                Width: =105
+                X: =30
+                Y: =30
+                ZIndex: =16
+
+            "'ManageRequest-TitleText' As label":
+                Fill: =RGBA(241, 244, 249, 1)
+                Height: =70
+                PaddingLeft: =15
+                Size: =21
+                Text: =_SelectedRequest.'Request Title'
+                Width: =Parent.Width - 240
+                X: =208
+                Y: =30
+                ZIndex: =17
+

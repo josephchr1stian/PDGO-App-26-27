@@ -1,0 +1,86 @@
+"'Training Tracker - RSVP Success' As screen":
+
+    Container1_5 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Container3_10 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(0, 16, 96, 1)
+            Height: =225
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =1
+
+            HomeTitle_5 As label:
+                Align: =Align.Center
+                AlignInContainer: =AlignInContainer.Center
+                Color: =fxTheme.Header.TextColor
+                Font: =Font.Lato
+                Height: =74
+                LayoutMinHeight: =70
+                LayoutMinWidth: =560
+                Size: =26
+                Text: ="RSVP Success!"
+                Width: =Parent.Width
+                X: =83
+                Y: =127
+                ZIndex: =1
+
+        Container4_4 As groupContainer.verticalAutoLayoutContainer:
+            FillPortions: =7
+            Height: =225
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =2
+
+            Container9_2 As groupContainer.manualLayoutContainer:
+                Height: =Parent.Height
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                Width: =Parent.Width
+                ZIndex: =1
+
+                iconCircle2 As circle.Circle:
+                    X: =Parent.Width/2 - Self.Width/2
+                    Y: =(Parent.Height/2 - Self.Height/2) * .7
+                    ZIndex: =1
+
+                iconCheck2 As icon.Check:
+                    Height: =iconCircle2.Height
+                    Icon: =Icon.Check
+                    PaddingBottom: =Self.PaddingTop
+                    PaddingLeft: =Self.PaddingTop
+                    PaddingRight: =Self.PaddingTop
+                    PaddingTop: =18
+                    Width: =iconCircle2.Width
+                    X: =(Parent.Width- Self.Width)/2 
+                    Y: =(Parent.Height/2 - Self.Height/2) * .7
+                    ZIndex: =2
+
+                LblSuccessMsg2 As label:
+                    Align: =Align.Center
+                    AutoHeight: =true
+                    Height: =iconCircle2.Height
+                    Size: =21
+                    Text: ="You've been successfully RSVP'd to " & _currentSelectedTraining.Training
+                    Width: =Parent.Width * 0.75
+                    X: =Parent.Width/2 - Self.Width/2
+                    Y: =iconCheck2.Y + iconCheck2.Height + 100
+                    ZIndex: =3
+
+    "'Back Button_18' As icon.ArrowLeft":
+        Color: =fxTheme.Header.TextColor
+        Height: =fxTheme.Header.IconSize
+        Icon: =Icon.ArrowLeft
+        OnSelect: =Navigate('Training Tracker - View Training Details', ScreenTransition.Cover)
+        Width: =fxTheme.Header.IconSize
+        X: =30
+        Y: =Container3_10.Height / 2 - 21
+        ZIndex: =2
+

@@ -1,0 +1,105 @@
+"'Profile - Supervisor' As screen":
+
+    "'Background Color_4' As rectangle":
+        BorderStyle: =BorderStyle.None
+        Fill: =fxTheme.Header.BGColor
+        Height: =296
+        Width: =Parent.Width
+        ZIndex: =1
+
+    "'Back Button_5' As icon.ArrowLeft":
+        Color: =fxTheme.Header.TextColor
+        Height: =fxTheme.Header.IconSize
+        Icon: =Icon.ArrowLeft
+        OnSelect: =Navigate(Profile, ScreenTransition.Cover)
+        Width: =fxTheme.Header.IconSize
+        X: =23
+        Y: =34
+        ZIndex: =2
+
+    "'User Name_1' As label":
+        Align: =Align.Center
+        Color: =fxTheme.Header.TextColor
+        Font: =Font.Lato
+        Height: =51
+        Size: =26
+        Text: |
+            =LookUp(Users, 'Full Name' = _mySupervisor, 'Full Name')
+        Width: =Parent.Width - 2*Self.X
+        X: =30
+        Y: =201
+        ZIndex: =4
+
+    "'User Profile Picture_1' As image":
+        Height: =145
+        ImagePosition: =ImagePosition.Fill
+        RadiusBottomLeft: ='User Profile Picture_1'.Height
+        RadiusBottomRight: ='User Profile Picture_1'.Height
+        RadiusTopLeft: ='User Profile Picture_1'.Height
+        RadiusTopRight: ='User Profile Picture_1'.Height
+        Width: =145
+        X: =(Parent.Width - Self.Width)/2
+        Y: =56
+        ZIndex: =5
+
+    "'About Container_1' As groupContainer.manualLayoutContainer":
+        DropShadow: =DropShadow.None
+        Height: =716
+        Width: =Min(Parent.Width, 1500)
+        X: =(Parent.Width - Self.Width)/2
+        Y: =296
+        ZIndex: =6
+
+        "'About Me Label_1' As label":
+            Font: =Font.'Lato Black'
+            Height: =44
+            Size: =21
+            Text: ="About Me"
+            Width: =148
+            X: =36
+            Y: =66
+            ZIndex: =1
+
+        "'About Me Description_1' As label":
+            Height: =188
+            Overflow: =Overflow.Scroll
+            Size: =18
+            Text: =LookUp(Users, 'Full Name' = _mySupervisor, 'About Me')
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.Width - 2*Self.X
+            X: =36
+            Y: =110
+            ZIndex: =2
+
+        Label6_1 As label:
+            Height: =70
+            Size: =21
+            Text: =LookUp(Users, 'Full Name' = _mySupervisor, 'Phone Number')
+            Width: =448
+            X: =133
+            Y: =331
+            ZIndex: =3
+
+        Label7_1 As label:
+            Height: =70
+            Size: =21
+            Text: =LookUp(Users, 'Full Name' = _mySupervisor, 'Email Address')
+            Width: =449
+            X: =133
+            Y: =434
+            ZIndex: =4
+
+        Icon8_1 As icon.Phone:
+            Height: =50
+            Icon: =Icon.Phone
+            Width: =50
+            X: =56
+            Y: =341
+            ZIndex: =5
+
+        Icon9_1 As icon.Mail:
+            Icon: =Icon.Mail
+            X: =49
+            Y: =440
+            ZIndex: =6
+

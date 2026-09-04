@@ -1,0 +1,151 @@
+"'Home Screen' As screen":
+    OnVisible: |+
+        = Set(IsSidebarNotOpen, If('Home Screen'.Width < 600, 100, 20));
+           
+        Set(
+            UserData,
+            LookUp(
+                Users,
+                'Email Address' = User().Email
+            )
+        );
+        
+
+    Container2 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        Y: |
+            =0
+        ZIndex: =12
+
+        Container16 As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(0, 18, 107, 1)
+            FillPortions: =0
+            Height: =225
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =2
+
+            Label4_1 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Font: =Font.'Lato Black'
+                FontWeight: =FontWeight.Bold
+                Height: =111
+                Size: =96
+                Text: ="PDGo"
+                Width: =Parent.Width
+                Y: =(Parent.Height - Self.Height) / 2
+                ZIndex: =1
+
+            Icon3 As icon.Person:
+                Color: =RGBA(255, 255, 255, 1)
+                Icon: =Icon.Person
+                OnSelect: =Navigate(Profile, ScreenTransition.Cover);
+                X: =20
+                Y: =20
+                ZIndex: =2
+
+            Icon5 As icon.Settings:
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =50
+                Icon: =Icon.Settings
+                OnSelect: =Navigate('Profile - Settings', ScreenTransition.Cover)
+                Width: =50
+                X: =Parent.Width - Self.Width - 20
+                Y: =20
+                ZIndex: =3
+
+        Container17 As groupContainer.manualLayoutContainer:
+            Height: =225
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =3
+
+            Icon6 As icon.ToolsWrench:
+                Height: =128
+                Icon: =Icon.ToolsWrench
+                Width: =128
+                X: =(Parent.Width - Self.Width) / 2 - 125
+                Y: =137
+                ZIndex: =2
+
+            Label1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Facility Requests"
+                Width: =204
+                X: =(Parent.Width - Self.Width) / 2 - 125
+                Y: =274
+                ZIndex: =3
+
+            Icon6_1 As icon.ToolsWrench:
+                Height: =128
+                Icon: =Icon.Airplane
+                OnSelect: =Navigate('Time Off Request - Main Screen', ScreenTransition.Cover)
+                Rotation: =-45
+                Width: =128
+                X: =(Parent.Width - Self.Width) / 2 + 125
+                Y: =137
+                ZIndex: =4
+
+            Label1_1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                OnSelect: =Navigate('Time Off Request - Main Screen', ScreenTransition.Cover)
+                Size: =21
+                Text: ="Time Off Requests"
+                Width: =204
+                X: =(Parent.Width - Self.Width) / 2 + 125
+                Y: =274
+                ZIndex: =5
+
+            Icon6_2 As icon.ToolsWrench:
+                Height: =128
+                Icon: =Icon.ListWatchlistRemind
+                OnSelect: =Navigate('Training Tracker - Home', ScreenTransition.Cover)
+                Width: =128
+                X: =(Parent.Width - Self.Width) / 2 - 125
+                Y: =447
+                ZIndex: =6
+
+            Label1_2 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                OnSelect: =Navigate('Training Tracker - Home', ScreenTransition.Cover)
+                Size: =21
+                Text: ="Training Tracker"
+                Width: =204
+                X: =(Parent.Width - Self.Width) / 2 - 125
+                Y: =584
+                ZIndex: =7
+
+            "'HomeScreen Admin Icon' As icon.ToolsWrench":
+                Height: =128
+                Icon: =Icon.Tools
+                OnSelect: =Navigate('Admin - Tools', ScreenTransition.Cover)
+                Visible: =CountRows(UserRecord.Capabilities) > 0
+                Width: =128
+                X: =381
+                Y: =447
+                ZIndex: =8
+
+            "'HomeScreen Admin Label' As label":
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                OnSelect: =Navigate('Admin - Tools', ScreenTransition.Cover)
+                Size: =21
+                Text: ="Admin Tools"
+                Visible: =CountRows(UserRecord.Capabilities) > 0
+                Width: =204
+                X: =343
+                Y: =584
+                ZIndex: =9
+

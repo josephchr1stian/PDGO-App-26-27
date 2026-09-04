@@ -1,0 +1,161 @@
+"'Facility Request - Admin - Manage Request Category' As screen":
+
+    Container11_1 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Container16_1 As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(0, 18, 107, 1)
+            FillPortions: =0
+            Height: =100
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =1
+
+            "'ManageRequestCategory-BackArrow_5' As icon.ArrowLeft":
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =40
+                Icon: =Icon.ArrowLeft
+                OnSelect: =Navigate('Facility Request - Admin - Manage Request', ScreenTransition.UnCoverRight)
+                Width: =40
+                X: =30
+                Y: =Parent.Height / 2 - 20
+                ZIndex: =1
+
+            "'ManageRequestCategory-Label_5' As label":
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =70
+                Size: =26
+                Text: ="Manage Request Category"
+                Width: =450
+                X: =(Parent.Width - Self.Width)/2
+                Y: =(Parent.Height - Self.Height)/2
+                ZIndex: =2
+
+        Container22_1 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.None
+            Height: =600
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =2
+
+            "'ManageRequestCategory-CreateNewCategoryButton' As button":
+                Height: =95
+                OnSelect: |-
+                    =Set(_CreateNewGroupErrorCheck, false);
+                    Navigate('Facility Request - Admin - Create New Group', ScreenTransition.Cover)
+                Size: =24
+                Text: ="Create & Assign New Category"
+                Visible: =If(_SelectedRequest.'Status (Status0)'.Value = "Opened" || _SelectedRequest.'Status (Status0)'.Value = "In Progress", true, false)
+                Width: =555
+                X: =(Parent.Width - Self.Width) / 2
+                Y: =Parent.Height - 360
+                ZIndex: =1
+
+            "'ManageRequestCategory-CreateNewCategoryButton_1' As button":
+                Height: =95
+                OnSelect: =Navigate('Facility Request - Admin - Manage Categories', ScreenTransition.Cover)
+                Size: =24
+                Text: ="Manage All Categories"
+                Visible: =If(_SelectedRequest.'Status (Status0)'.Value = "Opened" || _SelectedRequest.'Status (Status0)'.Value = "In Progress", true, false)
+                Width: =555
+                X: =(Parent.Width - Self.Width) / 2
+                Y: =Parent.Height - 240
+                ZIndex: =2
+
+            "'ManageRequestCategory-CreateNewCategoryButton_2' As button":
+                Height: =95
+                OnSelect: |-
+                    =Refresh('Facility Request Categories');
+                    Refresh('Facility Request_1');
+                    Navigate('Facility Request - Admin - Assign Group', ScreenTransition.Cover)
+                Size: =24
+                Text: |-
+                    ="Assign Category
+                    "
+                Visible: =If(_SelectedRequest.'Status (Status0)'.Value = "Opened" || _SelectedRequest.'Status (Status0)'.Value = "In Progress", true, false)
+                Width: =555
+                X: =(Parent.Width - Self.Width) / 2
+                Y: =Parent.Height - 120
+                ZIndex: =3
+
+            "'ManageRequestCategory-TitleLabel_1' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Title"
+                Width: =105
+                X: =(Parent.Width - Self.Width)/2 - 235
+                Y: =30
+                ZIndex: =4
+
+            "'ManageRequestCategory-RequestorLabel_5' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Requestor"
+                Width: =183
+                X: =(Parent.Width - Self.Width)/2  - 197
+                Y: =115
+                ZIndex: =5
+
+            "'ManageRequestCategory-DateCreatedLabel_1' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Date Created"
+                Width: =164
+                X: =(Parent.Width - Self.Width)/2  - 206
+                Y: =200
+                ZIndex: =6
+
+            "'ManageRequestCategory-CategoryLabel_1' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Category"
+                Width: =164
+                X: =(Parent.Width - Self.Width)/2 - 205
+                Y: =285
+                ZIndex: =7
+
+            "'ManageRequestCategory-TitleText' As label":
+                Height: =70
+                Size: =21
+                Text: =_SelectedRequest.'Request Title'
+                Width: =392
+                X: =(Parent.Width - Self.Width)/2 +91
+                Y: =30
+                ZIndex: =8
+
+            "'ManageRequestCategory-RequestorText' As label":
+                Height: =70
+                Size: =21
+                Text: =_SelectedRequest.'Requester Name'
+                Width: =392
+                X: =(Parent.Width - Self.Width)/2 +91
+                Y: =115
+                ZIndex: =9
+
+            "'ManageRequestCategory-DateCreatedText' As label":
+                Height: =70
+                Size: =21
+                Text: =_SelectedRequest.Date
+                Width: =392
+                X: =(Parent.Width - Self.Width)/2 +91
+                Y: =200
+                ZIndex: =10
+
+            "'ManageRequestCategory-CategoryText' As label":
+                Height: =70
+                Size: =21
+                Text: =_SelectedRequest.Category.Value
+                Width: =392
+                X: =(Parent.Width - Self.Width)/2 +91
+                Y: =285
+                ZIndex: =11
+

@@ -1,0 +1,683 @@
+"'TO Request Date Screen' As screen":
+
+    "'TO Request Date Screen Main Container' As groupContainer.verticalAutoLayoutContainer":
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =10
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        PaddingBottom: =20
+        PaddingLeft: =20
+        PaddingRight: =17.99
+        PaddingTop: =17.99
+        Width: =Parent.Width
+        ZIndex: =1
+
+        "'TO Request Date Screen Header' As groupContainer.horizontalAutoLayoutContainer":
+            Fill: =fxTheme.Header.BGColor
+            FillPortions: =0
+            Height: =75
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutJustifyContent: =LayoutJustifyContent.Center
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =1
+
+            Icon2_1 As icon.ArrowLeft:
+                Color: =fxTheme.Header.TextColor
+                Icon: =Icon.ArrowLeft
+                OnSelect: |-
+                    =Reset('TO Request Date Screen Start Date Input');
+                    Reset('TO Request Date Screen End Date Input');
+                    Reset('TO Request Date Screen Entire Day Toggle');
+                    Reset('TO Request Date Screen Start Time Input');
+                    Reset('TO Request Date Screen End Time Input');
+                    Reset('TO Request Date Screen Reason Dropdown');
+                    Reset('TO Request Date Screen Comments Input');
+                    UpdateContext({Edit: Blank()});
+                    
+                    Back();
+                Width: =50
+                ZIndex: =1
+
+            Label11_1 As label:
+                Align: =Align.Center
+                Color: =fxTheme.Header.TextColor
+                FillPortions: =1
+                Font: =Font.Lato
+                Size: =20
+                Text: ="Requests"
+                ZIndex: =2
+
+            Image1_1 As image:
+                Image: |
+                    =
+                ImagePosition: =ImagePosition.Fill
+                LayoutMinHeight: =75
+                ZIndex: =3
+
+            Label21_1 As label:
+                Font: =Font.Lato
+                Size: =15
+                Text: ="Hello, " & User().FullName
+                Visible: ='TO Request Screen'.Size<>1
+                ZIndex: =4
+
+        "'TO Request Date Container' As groupContainer.verticalAutoLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =6
+            Height: =0
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =10
+            LayoutMinHeight: =300
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =1326.00
+            X: =20.00
+            ZIndex: =2
+
+            "'StartDate Container' As groupContainer.horizontalAutoLayoutContainer":
+                AlignInContainer: =AlignInContainer.SetByContainer
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutGap: =40
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingRight: =0.00
+                PaddingTop: =0.00
+                Width: =435.00
+                X: =0.00
+                ZIndex: =1
+
+                "'TO Request Date Screen Start Date Label' As label":
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FillPortions: =1
+                    FocusedBorderThickness: =4
+                    Font: =Font.Lato
+                    Height: =24
+                    LayoutMinWidth: =100
+                    LineHeight: =1
+                    PaddingBottom: =15
+                    PaddingLeft: =0
+                    PaddingRight: =0.00
+                    PaddingTop: =13.50
+                    Size: =20
+                    Text: ="Start Date"
+                    Width: =130.46
+                    X: =0.00
+                    Y: =18
+                    ZIndex: =1
+
+                "'TO Request Date Screen Start Date Input' As datepicker":
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    CalendarHeaderFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    Color: =RGBA(51, 51, 51, 1)
+                    DefaultDate: =If(IsBlankOrError(Edit), DateAdd(Today(), 14, TimeUnit.Days), Edit.StartDate)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    EndYear: =Year(Today()) + 2
+                    FillPortions: =1
+                    Font: =Font.Lato
+                    Height: =60
+                    HoverDateFill: =RGBA(200, 200, 200, 1)
+                    IconBackground: =RGBA(0, 120, 212, 1)
+                    LayoutMinHeight: =15
+                    LayoutMinWidth: =100
+                    OnChange: |-
+                        =If(
+                            DateDiff(Today(), 'TO Request Date Screen Start Date Input'.SelectedDate, TimeUnit.Days) < 14,
+                            Notify("Please select a date at least 2 weeks in the future.", NotificationType.Error),
+                           'TO Request Date Screen Start Date Input'.SelectedDate
+                        );
+                    PaddingBottom: =10
+                    PaddingLeft: =16
+                    PaddingRight: =9
+                    PaddingTop: =9
+                    SelectedDateFill: =RGBA(0, 120, 212, 1)
+                    Size: =If('TO Request Screen'.Size=1,10.24,20.24)
+                    StartYear: =Year(Today())
+                    Width: =400
+                    X: =145.00
+                    ZIndex: =2
+
+            "'End Date Container' As groupContainer.horizontalAutoLayoutContainer":
+                AlignInContainer: =AlignInContainer.SetByContainer
+                Fill: =RGBA(0,0,0,0)
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutGap: =40
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingRight: =0.00
+                PaddingTop: =0.00
+                Width: =435.00
+                X: =445.00
+                ZIndex: =6
+
+                "'TO Request Date Screen End Date Label' As label":
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FillPortions: =1
+                    FocusedBorderThickness: =4
+                    Font: =Font.Lato
+                    Height: =24
+                    LineHeight: =0.8
+                    PaddingBottom: =15
+                    PaddingLeft: =0
+                    PaddingRight: =0.00
+                    PaddingTop: =13.50
+                    Size: =20.24
+                    Text: ="End Date"
+                    Width: =130.46
+                    X: =0.00
+                    Y: =18
+                    ZIndex: =1
+
+                "'TO Request Date Screen End Date Input' As datepicker":
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    CalendarHeaderFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    Color: =RGBA(51, 51, 51, 1)
+                    DefaultDate: =If(IsBlankOrError(Edit), 'TO Request Date Screen Start Date Input'.SelectedDate, Edit.StartDate)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FillPortions: =1
+                    Font: =Font.Lato
+                    Height: =60
+                    HoverDateFill: =RGBA(200, 200, 200, 1)
+                    IconBackground: =RGBA(0, 120, 212, 1)
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =100
+                    OnChange: =If('TO Request Date Screen End Date Input'.SelectedDate < 'TO Request Date Screen Start Date Input'.SelectedDate, Notify("End date cannot be earlier than the start date", NotificationType.Error), "")
+                    PaddingBottom: =10
+                    PaddingLeft: =16
+                    PaddingRight: =9.00
+                    PaddingTop: =9.00
+                    SelectedDateFill: =RGBA(0, 120, 212, 1)
+                    Size: =If('TO Request Screen'.Size=1,10.24,20.24)
+                    Width: =290.00
+                    X: =145.00
+                    ZIndex: =2
+
+            "'Entire Day Container' As groupContainer.horizontalAutoLayoutContainer":
+                AlignInContainer: =AlignInContainer.SetByContainer
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingRight: =0.00
+                PaddingTop: =0.00
+                Width: =435.00
+                X: =891.00
+                ZIndex: =7
+
+                "'TO Request Date Screen Entire Day Toggle Label' As label":
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =4
+                    Height: =41
+                    LineHeight: =1.361816
+                    PaddingBottom: =15
+                    PaddingLeft: =0
+                    PaddingRight: =0.00
+                    PaddingTop: =13.50
+                    Size: =20.24
+                    Text: ="Entire Day"
+                    Width: =133.16
+                    X: =0.00
+                    Y: =4
+                    ZIndex: =1
+
+                "'TO Request Date Screen Entire Day Toggle' As toggleSwitch":
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    Color: =RGBA(177, 177, 177, 1)
+                    Default: =If(IsBlankOrError(Edit), true, Edit.EntireDay)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FalseFill: =RGBA(102, 102, 102, 1)
+                    FalseHoverFill: =RGBA(33, 33, 33, 1)
+                    FalseText: ="Off"
+                    FocusedBorderThickness: =4
+                    Height: =49
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                    ShowLabel: =false
+                    Size: =20.24
+                    TrueFill: =RGBA(0, 120, 212, 1)
+                    TrueHoverFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    TrueText: ="On"
+                    Width: =89.97
+                    X: =335.00
+                    Y: =11
+                    ZIndex: =2
+
+            "'Start Time Container' As groupContainer.horizontalAutoLayoutContainer":
+                AlignInContainer: =AlignInContainer.SetByContainer
+                Fill: =RGBA(175, 191, 224, 1)
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutGap: =40
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingRight: =0.00
+                PaddingTop: =0.00
+                Visible: =Not('TO Request Date Screen Entire Day Toggle'.Value)
+                Width: =0.00
+                X: =0.00
+                ZIndex: =8
+
+                "'TO Request Date Screen Start Time Label' As label":
+                    AutoHeight: =true
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FillPortions: =1
+                    FocusedBorderThickness: =4
+                    Height: =41
+                    LineHeight: =1.361816
+                    PaddingBottom: =15
+                    PaddingLeft: =0
+                    PaddingRight: =0.00
+                    PaddingTop: =13.50
+                    Size: =20.24
+                    Text: ="Start Time"
+                    Width: =138.55
+                    X: =0.00
+                    Y: =14.5
+                    ZIndex: =1
+
+                "'TO Request Date Screen Start Time Input' As dropdown":
+                    ChevronWidth: =34
+                    Default: =If(IsBlankOrError(Edit), "1", Edit.StartTime)
+                    FillPortions: =1
+                    FlyoutMaximumHeight: =400
+                    Items: |-
+                        =["8:00 am", "9:00 am", "10:00 am", "11:00 am","12:00 pm", "1:00 pm","2:00 pm", "3:00 pm","4:00 pm", "5:00 pm"]
+                    PaddingLeft: =16
+                    PaddingRight: =9
+                    PaddingTop: =9
+                    Size: =20
+                    ZIndex: =3
+
+            "'End Time Container' As groupContainer.horizontalAutoLayoutContainer":
+                AlignInContainer: =AlignInContainer.SetByContainer
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutGap: =40
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMinHeight: =50
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingRight: =0.00
+                PaddingTop: =0.00
+                Visible: =Not('TO Request Date Screen Entire Day Toggle'.Value)
+                Width: =0.00
+                X: =0.00
+                ZIndex: =9
+
+                "'TO Request Date Screen End Time Label' As label":
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    Color: =RGBA(51, 51, 51, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    FillPortions: =1
+                    FocusedBorderThickness: =4
+                    Height: =41
+                    LineHeight: =1.361816
+                    PaddingBottom: =15
+                    PaddingLeft: =0
+                    PaddingRight: =0.00
+                    PaddingTop: =13.50
+                    Size: =20.24
+                    Text: ="End Time"
+                    Width: =138.55
+                    X: =0.00
+                    Y: =14.5
+                    ZIndex: =1
+
+                "'TO Request Date Screen End Time Input' As dropdown":
+                    ChevronWidth: =34
+                    Default: =If(IsBlankOrError(Edit), "2", Edit.EndTime)
+                    FillPortions: =1
+                    FlyoutMaximumHeight: =400
+                    Items: |-
+                        =["8:00 am", "9:00 am", "10:00 am", "11:00 am","12:00 pm", "1:00 pm","2:00 pm", "3:00 pm","4:00 pm", "5:00 pm"]
+                    OnChange: =
+                    Size: =20
+                    ZIndex: =3
+
+        "'TO Request Date Screen Reason Container' As groupContainer.horizontalAutoLayoutContainer":
+            Fill: =RGBA(0,0,0,0)
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =3
+
+            "'TO Request Date Screen Reason Label' As label":
+                Font: =Font.Lato
+                Size: =20
+                Text: ="Reason Code"
+                Width: =Parent.Width*.30
+                ZIndex: =1
+
+            "'TO Request Date Screen Reason Dropdown' As combobox":
+                BorderColor: =RGBA(166, 166, 166, 1)
+                ChevronBackground: =RGBA(255, 255, 255, 1)
+                ChevronDisabledBackground: =RGBA(244, 244, 244, 1)
+                ChevronDisabledFill: =RGBA(166, 166, 166, 1)
+                ChevronFill: =RGBA(51, 51, 51, 1)
+                ChevronHoverBackground: =RGBA(212, 212, 212, 1)
+                ChevronHoverFill: =RGBA(33, 33, 33, 1)
+                ChevronWidth: =34
+                Color: =RGBA(166, 166, 166, 1)
+                Default: =If(IsBlankOrError(Edit), Blank(), LookUp(Choices([@TimeOffRequestDays].Reason), Value = Edit.Reason))
+                DefaultSelectedItems: =[]
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisplayFields: =["Title","Description"]
+                FlyoutMaximumHeight: =400
+                Font: =Font.Lato
+                Height: ='TO Request Date Screen Reason Container'.Height
+                HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                HoverColor: =RGBA(51, 51, 51, 1)
+                HoverFill: =RGBA(212, 212, 212, 1)
+                IsSearchable: =false
+                Items: =RequestCodes
+                LayoutMinHeight: =50
+                OnChange: =
+                OnSelect: |-
+                    =UpdateContext({
+                        codeSelected: 'TO Request Date Screen Reason Dropdown'.Selected.Title
+                    });
+                PaddingBottom: =15
+                PaddingLeft: =16
+                PaddingRight: =14.40
+                PaddingTop: =13.50
+                PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                PressedFill: =RGBA(0, 120, 212, 1)
+                SearchFields: =["Title","Description"]
+                SearchItems: =[]
+                SelectionFill: =RGBA(255, 255, 255, 1)
+                SelectMultiple: =false
+                Size: =20.24
+                Template: =ListItemTemplate.Double
+                Tooltip: =
+                UsePhoneLayout: =false
+                Width: =Parent.Width*.55
+                X: =20.00
+                Y: =380.5
+                ZIndex: =2
+
+            Icon2_2 As icon.Information:
+                AlignInContainer: =AlignInContainer.Stretch
+                FillPortions: =1
+                HoverColor: =ColorFade(Self.Color, 30%)
+                Icon: =Icon.Information
+                OnSelect: |-
+                    =UpdateContext({PopUp: true})
+                Tooltip: =codeSelected
+                ZIndex: =3
+
+        "'TO Request Date Screen Equipment Container' As groupContainer.horizontalAutoLayoutContainer":
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =4
+
+            "'TO Request Date Screen Equipment Label' As label":
+                Font: =Font.Lato
+                Height: =70
+                Size: =20
+                Text: ="I need access to SBPD IT equipment while abroad"
+                Width: =400
+                ZIndex: =1
+
+            "'TO Request Date Screen Equipment Toggle' As toggleSwitch":
+                Default: =If(IsBlankOrError(Edit), false, Edit.ITEquipment)
+                FalseText: ="No"
+                TrueText: ="Yes"
+                ZIndex: =2
+
+        "'TO Request Date Screen Comments Input' As text":
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Color: =RGBA(166, 166, 166, 1)
+            Default: =If(IsBlankOrError(Edit), "", Edit.Comments)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FillPortions: =
+            Font: =Font.Lato
+            Height: =Parent.Height*.30
+            HintText: ="Additional Comments"
+            HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            LineHeight: =1.361816
+            PaddingBottom: =15
+            PaddingLeft: =16
+            PaddingRight: =14.40
+            PaddingTop: =13.50
+            PressedBorderColor: =RGBA(0, 120, 212, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(255, 255, 255, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =20.24
+            Width: =1326.00
+            X: =20.00
+            Y: =460.5
+            ZIndex: =5
+
+        "'TO Request Date Screen Error Label' As label":
+            Color: =RGBA(168, 0, 0, 1)
+            Text: =""
+            Visible: =Not(IsBlank(Self.Text))
+            ZIndex: =6
+
+        "'TO Request Date Screen Add To Request Button' As button":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =0
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 120, 212, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Lighter
+            Height: =71
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+            Italic: =true
+            OnSelect: |
+                =If(And('TO Request Date Screen Reason Dropdown'.Selected.Title = "Other", 'TO Request Date Screen Comments Input'.Text = ""),
+                    'TO Request Date Screen Error Label'.Text = "Comments are required for Other Leave Code",
+                    If(IsBlankOrError(Edit),
+                        Collect(RequestDates, {
+                            ID: Blank(),
+                            StartDate: 'TO Request Date Screen Start Date Input'.SelectedDate,
+                            EndDate:   'TO Request Date Screen End Date Input'.SelectedDate,
+                            EntireDay: 'TO Request Date Screen Entire Day Toggle'.Value,
+                            //StartTime: 'TO Request Date Screen Start Time Input'.Text,
+                            StartTime: 'TO Request Date Screen Start Time Input'.Selected.Value,
+                            //EndTime:   'TO Request Date Screen End Time Input'.Text,
+                            EndTime:   'TO Request Date Screen End Time Input'.Selected.Value,
+                            Reason:    'TO Request Date Screen Reason Dropdown'.Selected.Title,
+                            Comments:  'TO Request Date Screen Comments Input'.Text,
+                            ITEquipment: 'TO Request Date Screen Equipment Toggle'.Value
+                        }),
+                        Update(RequestDates, Edit, {
+                            ID: Edit.ID,
+                            StartDate: 'TO Request Date Screen Start Date Input'.SelectedDate,
+                            EndDate:   'TO Request Date Screen End Date Input'.SelectedDate,
+                            EntireDay: 'TO Request Date Screen Entire Day Toggle'.Value,
+                            //StartTime: 'TO Request Date Screen Start Time Input'.Text,
+                            StartTime: 'TO Request Date Screen Start Time Input'.Selected.Value,
+                            //EndTime:   'TO Request Date Screen End Time Input'.Text,
+                            EndTime:   'TO Request Date Screen End Time Input'.Selected.Value,
+                            Reason:    'TO Request Date Screen Reason Dropdown'.Selected.Title,
+                            Comments:  'TO Request Date Screen Comments Input'.Text,
+                            ITEquipment: 'TO Request Date Screen Equipment Toggle'.Value
+                        })
+                    );
+                    
+                
+                
+                    'TO Request Date Screen Error Label'.Text = "";
+                    Reset('TO Request Date Screen Start Date Input');
+                    Reset('TO Request Date Screen End Date Input');
+                    Reset('TO Request Date Screen Entire Day Toggle');
+                    Reset('TO Request Date Screen Start Time Input');
+                    Reset('TO Request Date Screen End Time Input');
+                    Reset('TO Request Date Screen Reason Dropdown');
+                    Reset('TO Request Date Screen Comments Input');
+                    UpdateContext({Edit: Blank()});
+                    
+                    If(!Back(), Navigate('TO Request Screen'));
+                );
+            PaddingBottom: =12
+            PaddingLeft: =56
+            PaddingRight: =50.38
+            PaddingTop: =9.90
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =23.62
+            Text: ="Add to Request"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =1326.00
+            X: =20.00
+            Y: =841
+            ZIndex: =7
+
+    ModifyApprove_1 As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height
+        Visible: |+
+            =PopUp
+            
+            
+        Width: =Parent.Width
+        ZIndex: =2
+
+        Rectangle2_11 As rectangle:
+            Fill: =RGBA(0, 0, 0, .8)
+            Height: =Parent.Height
+            Width: =Parent.Width
+            ZIndex: =1
+
+        Rectangle5_11 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height-50
+            Width: =Parent.Width-50
+            X: =(Parent.Width-Self.Width)/2
+            Y: =(Parent.Height-Self.Height)/2
+            ZIndex: =2
+
+        Container35_10 As groupContainer.verticalAutoLayoutContainer:
+            Height: =Rectangle5_11.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMode: =LayoutMode.Auto
+            Width: =Rectangle5_11.Width
+            X: =Rectangle5_11.X
+            Y: =Rectangle5_11.Y
+            ZIndex: =5
+
+            Container3_6 As groupContainer.verticalAutoLayoutContainer:
+                Fill: =RGBA(215, 223, 240, 1)
+                Height: =70
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =20
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =30
+                PaddingTop: =30
+                ZIndex: =1
+
+                Label17_8 As label:
+                    Align: =Align.Center
+                    FontWeight: =FontWeight.Semibold
+                    Height: =50
+                    Size: =16
+                    Text: ="Leave Codes  "
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                "Gallery1_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                    '#CopilotOverlayLabel': ="Filtered"
+                    DelayItemLoading: =true
+                    Fill: =RGBA(175, 191, 224, 1)
+                    Items: =RequestCodes
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =0
+                    TemplateSize: =104
+                    ZIndex: =2
+
+                    Title2_1 As label:
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.TemplateHeight
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =20
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: |-
+                            =ThisItem.Title & ":"
+                        Width: =Parent.TemplateWidth/5
+                        ZIndex: =2
+
+                    Subtitle1_1 As label:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =96
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =ThisItem.Description
+                        Width: =Parent.TemplateWidth*.86
+                        X: =90
+                        ZIndex: =3
+
+                    Separator2_1 As rectangle:
+                        Height: =8
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - Self.Height
+                        ZIndex: =5
+
+                Button9_16 As button:
+                    Height: =60
+                    OnSelect: |-
+                        =UpdateContext({PopUp: false});
+                    Text: ="Cancel"
+                    X: =593
+                    Y: =492
+                    ZIndex: =3
+

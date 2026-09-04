@@ -1,0 +1,258 @@
+"'Training Tracker - MCLE Certificate' As screen.'printableLayout_A4Landscape_ver1.0'":
+    Height: =8.5*92
+    OnVisible: |
+        =UpdateContext({
+            Credits: [
+                //{Title: "General MCLE", Hours: 32},
+                //{Title: "Legal Ethics", Hours: 32},
+                ////{Title: "Recognition & Elimination of Bias", Hours: 32},
+                {Title: "Implicit Bias", Hours: 32},
+                //{Title: "Prevention & Detection Competence", Hours: 32},
+                //{Title: "Wellness Competence", Hours: 32},
+                //{Title: "Technology in the Practice of Law", Hours: 32},
+                //{Title: "Civility in the Legal Profession", Hours: 32}
+            ],
+            ProviderName: "Santa Barbara Public Defender",
+            ProviderNum: 123456789,
+            Activity: {
+                Title: "MCLE Activity",
+                Location: "Remote",
+                Date: Date(2024, 2, 13),
+                Time: Time(20, 15, 45)
+            },
+            Index: 1,
+            AttendanceRecord: LookUp(MCLETrainingAttendance, ID = First(AttendanceRecords).ID)
+        });
+        Clear(CertificatePDFs);
+        
+        If(IsBlankOrError(MeetingRecord),
+            UpdateContext({
+                MeetingRecord: First(MCLETrainings_1)
+            })
+        );
+    Width: =11*92
+
+    MCLE_Certificate_Timer As timer:
+        AutoStart: =true
+        Duration: =1
+        OnTimerEnd: |-
+            =UpdateContext({
+                AttendanceRecord: Last(FirstN(AttendanceRecords, Index + 1)),
+                Index: Index + 1
+            });
+            
+            If(Index > CountRows(AttendanceRecords) + 1,
+                UpdateContext({More: false});
+                Navigate('General Success Screen');
+                ,
+            
+                Collect(CertificatePDFs,
+                    PDF(MCLE_Certificate_Container, {
+                        Orientation: PaperOrientation.Landscape,
+                        Size: PaperSize.Letter,
+                        Margin: "0"
+                    })
+                );
+                UpdateContext({
+                    AttendanceRecord: Last(FirstN(AttendanceRecords, Index + 1)),
+                    Index: Index + 1
+                });
+            );
+        Repeat: =true
+        Start: =Index <= CountRows(AttendanceRecords)
+        Visible: =false
+        X: =963
+        ZIndex: =17
+
+    MCLE_Certificate_Container As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height
+        Width: =Parent.Width
+        ZIndex: =18
+
+        MCLE_Certificate_Outer_Border As rectangle:
+            BorderThickness: =5
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height - 2*Self.Y
+            Width: =Parent.Width - 2*Self.X
+            X: =20
+            Y: =Self.X
+            ZIndex: =1
+
+        MCLE_Certificate_Inner_Border As rectangle:
+            BorderThickness: =1
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: |
+                =Parent.Height - 2*Self.Y
+            Width: |+
+                =Parent.Width - 2 * Self.X
+                
+            X: =27
+            Y: =Self.X
+            ZIndex: =2
+
+        MCLE_Certificate_Upper_Text As label:
+            Align: =Align.Center
+            AutoHeight: =true
+            Font: =Font.Georgia
+            FontWeight: =FontWeight.Bold
+            Height: =49
+            Size: =16
+            Text: |-
+                ="Minimum Continuing Legal Education (MCLE) Credit Hours Awarded for the Above Activity:"
+            Width: =860
+            X: =(Parent.Width - Self.Width)/2
+            Y: =260
+            ZIndex: =3
+
+        MCLE_Certificate_Table As htmlViewer:
+            AutoHeight: =true
+            Font: =Font.Georgia
+            Height: =330
+            HtmlText: |-
+                ="<table style='table-layout: fixed;width: 100%;border-collapse: collapse;' border>"&
+                "<thead style='color: #169; font-size: 1.2em'><th style='width: 70%;'>Credit Type</th><th>Credit Hours</th></thead>"&
+                "<tbody>"&
+                Concat(ForAll(LookUp(MCLETrainings_1, ID=AttendanceRecord.TrainingID).MCLE_Category, {Title: Value, Hours: DateDiff(LookUp(MCLETrainings_1, ID=AttendanceRecord.TrainingID).TrainingEndDay, LookUp(MCLETrainings_1, ID=AttendanceRecord.TrainingID).TrainingEndDay, TimeUnit.Minutes) / 60 / CountRows(LookUp(MCLETrainings_1, ID=AttendanceRecord.TrainingID).MCLE_Category)}), "<tr><td style='text-align: right;padding:5px;'>"&Title&"</td><td style='padding:5px;text-align:center;'>"&Hours&"</td></tr>", "")&
+                "</tbody><tfoot>"&
+                "<tr><th style='text-align: right;padding:2%;border-left-color: transparent;border-bottom-color: transparent;color: #169; font-size: 1.2em'>Total</th><td style='padding:5px;'>"&DateDiff(LookUp(MCLETrainings_1, ID=AttendanceRecord.TrainingID).TrainingEndDay, LookUp(MCLETrainings_1, ID=AttendanceRecord.TrainingID).TrainingEndDay, TimeUnit.Minutes) / 60&"</td></tr>"&
+                "</tfoot></table>"
+            Size: =10
+            Width: =410
+            X: =315
+            Y: =319
+            ZIndex: =4
+
+        MCLE_Certificate_Title As htmlViewer:
+            AutoHeight: =true
+            Font: =Font.Georgia
+            Height: =294
+            HtmlText: |-
+                ="<center>California MCLE Certificate of <font color='#169'>Attendance</font></center>"
+            Size: =32
+            Width: =531
+            X: =(Parent.Width - Self.Width)/2
+            Y: =20
+            ZIndex: =5
+
+        MCLE_Certificate_Lower_Text As label:
+            Align: =Align.Center
+            AutoHeight: =true
+            Font: =Font.Georgia
+            FontWeight: =FontWeight.Bold
+            Height: =55
+            Size: =16
+            Text: ="Below section is to be completed by the California Licensee and/or the Provider after participation in the activity"
+            Width: =860
+            X: =(Parent.Width - Self.Width)/2
+            Y: =MCLE_Certificate_Table.Y + MCLE_Certificate_Table.Height + 10
+            ZIndex: =6
+
+        MCLE_Certificate_CA_Name As htmlViewer:
+            AutoHeight: =true
+            Font: =Font.Georgia
+            Height: =103
+            HtmlText: |-
+                ="<p style='margin-bottom: 2px;line-height:0.5;'>"&AttendanceRecord.Attendee
+                &"</p>"&
+                "<p style='border-top: 2px solid;text-align: center;'><b>Name of CA Licensee</b> (<i>print name</i>)</p>"
+            Size: =12
+            Width: =302
+            X: =108
+            Y: =679
+            ZIndex: =7
+
+        MCLE_Certificate_CA_Bar As htmlViewer:
+            AutoHeight: =true
+            Font: =Font.Georgia
+            Height: =103
+            HtmlText: |-
+                ="<p style='margin-bottom: 2px;line-height:0.5;'>"&"&nbsp"&"</p>"&
+                "<p style='border-top: 2px solid;text-align: center;'><b>CA Bar Number</b></p>"
+            Size: =12
+            Width: =155
+            X: =460
+            Y: =679
+            ZIndex: =8
+
+        MCLE_Certificate_CA_Signature As htmlViewer:
+            AutoHeight: =true
+            Font: =Font.Georgia
+            Height: =103
+            HtmlText: |-
+                ="<p style='margin-bottom: 2px;line-height:0.5;'>&nbsp;</p>"&
+                "<p style='border-top: 2px solid;text-align: center;'><b>Signature of CA Licensee</b></p>"
+            Size: =12
+            Width: =302
+            X: =666
+            Y: =679
+            ZIndex: =9
+
+        MCLE_Certificate_Provider_Name As label:
+            AutoHeight: =true
+            Font: =Font.Georgia
+            FontWeight: =FontWeight.Bold
+            Height: =32
+            Text: |-
+                ="Provider Name: "& LookUp(MCLETrainings_1, ID=AttendanceRecord.TrainingID).'Training Host'
+            Width: =617
+            X: =84
+            Y: =134
+            ZIndex: =10
+
+        MCLE_Certificate_Activity_Title As label:
+            AutoHeight: =true
+            Font: =Font.Georgia
+            FontWeight: =FontWeight.Bold
+            Height: =32
+            Text: |-
+                ="Title of Activity: "& LookUp(MCLETrainings_1, ID=AttendanceRecord.TrainingID).Training
+            Width: =860
+            X: =84
+            Y: =165
+            ZIndex: =11
+
+        MCLE_Certificate_Activity_Location As label:
+            AutoHeight: =true
+            Font: =Font.Georgia
+            FontWeight: =FontWeight.Bold
+            Height: =31
+            Text: |-
+                ="Location of the Activity: "& LookUp(MCLETrainings_1, ID=AttendanceRecord.TrainingID).Location
+            Width: =860
+            X: =84
+            Y: =193
+            ZIndex: =12
+
+        MCLE_Certificate_Activity_Time As label:
+            AutoHeight: =true
+            Font: =Font.Georgia
+            FontWeight: =FontWeight.Bold
+            Height: =31
+            Text: |-
+                ="Date & Time of the Activity: "& Text(LookUp(MCLETrainings_1, ID=AttendanceRecord.TrainingID).TrainingStartDate, DateTimeFormat.ShortDateTime)
+            Width: =860
+            X: =84
+            Y: =226
+            ZIndex: =13
+
+        MCLE_Certificate_Provider_Number As label:
+            AutoHeight: =true
+            Font: =Font.Georgia
+            FontWeight: =FontWeight.Bold
+            Height: =31
+            Text: |-
+                ="Provider No.: "& ProviderNum
+            Width: =279
+            X: =701
+            Y: =134
+            ZIndex: =14
+
+    "'MCLE_Certificate_Please Wait' As label":
+        Align: =Align.Center
+        Fill: =RGBA(215, 223, 240, 1)
+        Height: =App.Height
+        Size: =20
+        Text: ="Please Wait"
+        Width: =App.Width
+        ZIndex: =19
+

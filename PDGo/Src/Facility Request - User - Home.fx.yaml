@@ -1,0 +1,24 @@
+"'Facility Request - User - Home' As screen":
+
+    "'Button-SubmitFacilityRequestForm' As button":
+        Height: =173
+        OnSelect: =Navigate('Facility Request - User - Facility Form')
+        Size: =24
+        Text: ="Submit Facility Request Form"
+        Width: =324
+        X: =(Parent.Width - Self.Width) / 2
+        Y: =40
+        ZIndex: =1
+
+    "'Button-EditResubmitForm' As button":
+        Height: =173
+        OnSelect: =Navigate('Facility Request - User - Edit Forms')
+        Size: =24
+        Text: |-
+            ="Edit & Resubmit Form(s)
+            "
+        Width: =324
+        X: =(Parent.Width - Self.Width) / 2
+        Y: =312
+        ZIndex: =2
+

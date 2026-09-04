@@ -1,0 +1,139 @@
+"'Profile - Office' As screen":
+
+    "'Office Image' As image":
+        Height: =256
+        Image: ='Courthouse and Sunken Garden'
+        ImagePosition: =ImagePosition.Fill
+        Width: =Min(Parent.Width, 1500)
+        X: =(Parent.Width - Self.Width)/2
+        Y: =111
+        ZIndex: =1
+
+    "'Background Color_2' As rectangle":
+        BorderStyle: =BorderStyle.None
+        Fill: =fxTheme.Header.BGColor
+        Height: =111
+        Width: =Parent.Width
+        ZIndex: =9
+
+    "'Back Button_2' As icon.ArrowLeft":
+        Color: =fxTheme.Header.TextColor
+        Height: =fxTheme.Header.IconSize
+        Icon: =Icon.ArrowLeft
+        OnSelect: =Back();
+        Width: =fxTheme.Header.IconSize
+        X: =30
+        Y: =30
+        ZIndex: =10
+
+    "'Profile - Office Header Text' As label":
+        Color: =fxTheme.Header.TextColor
+        Font: =Font.Lato
+        Height: =70
+        Size: =26
+        Text: ="Office"
+        Width: =124
+        X: =(Parent.Width - Self.Width)/2
+        Y: =20
+        ZIndex: =11
+
+    Container14 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.None
+        Height: =Parent.Height - Self.Y
+        Width: =640
+        X: =(Parent.Width - Self.Width)/2
+        Y: =367
+        ZIndex: =12
+
+        "'Office Name_1' As label":
+            Font: =Font.'Lato Black'
+            FontWeight: =FontWeight.Semibold
+            Height: =70
+            PaddingLeft: =25
+            Size: =25
+            Text: ="SB Public Defender Main Office"
+            Width: =581
+            Y: =40
+            ZIndex: =1
+
+        "'Office Address_1' As label":
+            Color: =RGBA(116, 116, 116, 1)
+            Font: =Font.'Lato Light'
+            Height: =51
+            PaddingLeft: =25
+            Size: =21
+            Text: ="1100 Anacapa Santa Barbara 93101"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =640
+            Y: =98
+            ZIndex: =2
+
+        "'Office Hours Label_1' As label":
+            Font: =Font.'Lato Light'
+            FontWeight: =FontWeight.Bold
+            Height: =60
+            PaddingLeft: =25
+            Size: =20
+            Text: |-
+                ="Hours:"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =130
+            Y: =199
+            ZIndex: =3
+
+        "'Office Phone Number_1' As label":
+            Font: =Font.'Lato Light'
+            Height: =70
+            Size: =21
+            Text: ="(805) 568-3470"
+            Width: =260
+            X: =75
+            Y: =130
+            ZIndex: =4
+
+        "'Office Phone Icon_1' As icon.Phone":
+            Height: =30
+            Icon: =Icon.Phone
+            Width: =30
+            X: =34
+            Y: =150
+            ZIndex: =5
+
+        "'Office Hours Times_2' As label":
+            Font: =Font.'Lato Light'
+            Height: =300
+            LineHeight: =1.4
+            Size: =21
+            Text: |-
+                ="Monday
+                Tuesday
+                Wednesday
+                Thursday
+                Friday
+                Saturday
+                Sunday"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =170
+            X: =130
+            Y: =199
+            ZIndex: =6
+
+        "'Office Hours Times_3' As label":
+            Font: =Font.'Lato Light'
+            Height: =300
+            LineHeight: =1.4
+            Size: =21
+            Text: |-
+                ="8 AM - 5 PM
+                8 AM - 5 PM
+                8 AM - 5 PM
+                8 AM - 5 PM
+                8 AM - 5 PM
+                Closed
+                Closed"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =233
+            X: =330
+            Y: =199
+            ZIndex: =7
+

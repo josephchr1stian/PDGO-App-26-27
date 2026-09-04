@@ -1,0 +1,193 @@
+"'Training Tracker - Check In' As screen":
+
+    Container1_4 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Container3_9 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =fxTheme.Header.BGColor
+            Height: =225
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =1
+
+            HomeTitle_4 As label:
+                Align: =Align.Center
+                AlignInContainer: =AlignInContainer.Center
+                Color: =fxTheme.Header.TextColor
+                Font: =Font.Lato
+                Height: =74
+                LayoutMinHeight: =70
+                LayoutMinWidth: =560
+                Size: =26
+                Text: ="Check-In"
+                Width: =Parent.Width
+                X: =83
+                Y: =127
+                ZIndex: =1
+
+        Container4_3 As groupContainer.verticalAutoLayoutContainer:
+            FillPortions: =7
+            Height: =225
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =2
+
+            Container9_1 As groupContainer.manualLayoutContainer:
+                Height: =Parent.Height
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                Width: =Parent.Width
+                ZIndex: =1
+
+                Button7_3 As button:
+                    Height: =90
+                    OnSelect: |-
+                        =UpdateContext(
+                            {
+                                MeetingRecord: LookUp(
+                                    MCLETrainings_1,
+                                    'Access Code' = TextInput2.Text && ID = _currentSelectedTraining.ID
+                                )
+                            }
+                        );
+                        If(!IsBlank(LookUp(MCLETrainingAttendance, TrainingID = MeetingRecord.ID && Attendee = User().FullName)),
+                        Patch(
+                            MCLETrainingAttendance,
+                            LookUp(
+                                MCLETrainingAttendance,
+                                TrainingID = MeetingRecord.ID && Attendee = User().FullName
+                            ),
+                            {
+                                'Check-InTime': Now(),
+                                Attended: true
+                            }
+                        ),
+                        Patch(
+                            MCLETrainingAttendance,
+                            Defaults(MCLETrainingAttendance),
+                            {
+                                Attendee: User().FullName,
+                                TrainingID: _currentSelectedTraining.ID,
+                                'Check-InTime': Now(),
+                                Attended: true
+                            }
+                        ));
+                        Navigate('Training Tracker - View Training Details', ScreenTransition.Cover);
+                    Size: =24
+                    Text: ="Submit Access Code"
+                    Width: =Parent.Width - 120
+                    X: =60
+                    Y: =456
+                    ZIndex: =18
+
+                Label11 As label:
+                    Align: =Align.Center
+                    FontWeight: =FontWeight.Bold
+                    Height: =70
+                    Size: =36
+                    Text: ="OR"
+                    Width: =100
+                    X: =Parent.Width / 2 - Label11.Width / 2
+                    Y: =225
+                    ZIndex: =19
+
+                TextInput2 As text:
+                    Default: =Blank() 
+                    Format: =TextFormat.Number
+                    Height: =74
+                    HintText: ="Enter Access Code Here"
+                    MaxLength: =8
+                    Size: =21
+                    Width: =Parent.Width - 120
+                    X: =60
+                    Y: =354
+                    ZIndex: =20
+
+                Label12 As label:
+                    Align: =Align.Center
+                    Height: =196
+                    Size: =21
+                    Text: ="Don't have a QR Code or Access Code? Contact your Training Host."
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =520
+                    X: =Parent.Width / 2 - Label12.Width / 2
+                    Y: =638
+                    ZIndex: =21
+
+                "BarcodeReader1 As 'Barcode Reader'":
+                    BorderFillColor: =RGBA(47, 81, 151, 1)
+                    BorderThickness: =0
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledContentColor: =RGBA(166, 166, 166, 1)
+                    DisabledFillColor: =RGBA(244, 244, 244, 1)
+                    DisplayMode: =DisplayMode.Edit
+                    FillColor: =RGBA(56, 96, 178, 1)
+                    FontSize: =24
+                    Height: =77
+                    HoverBorderColor: =RGBA(88, 115, 171, 1)
+                    HoverContentColor: =RGBA(255, 255, 255, 1)
+                    HoverFillColor: =RGBA(47, 81, 151, 1)
+                    OnCancel: =false
+                    OnScan: |-
+                        =If(!IsBlank(LookUp(MCLETrainingAttendance, Value(Last(BarcodeReader1.Barcodes).Value) = TrainingID && Attendee = User().FullName)),
+                        Patch(
+                            MCLETrainingAttendance,
+                            LookUp(
+                                MCLETrainingAttendance,
+                                Value(Last(BarcodeReader1.Barcodes).Value) = TrainingID && Attendee = User().FullName
+                            ),
+                            {
+                                'Check-InTime': Now(),
+                                Attended: true
+                            }
+                        ),
+                        Patch(
+                            MCLETrainingAttendance,
+                            Defaults(MCLETrainingAttendance),
+                            {
+                                Attendee: User().FullName,
+                                TrainingID: Value(Last(BarcodeReader1.Barcodes).Value),
+                                'Check-InTime': Now(),
+                                Attended: true
+                            }
+                        ));
+                        
+                        
+                        Collect(
+                            barCodes,
+                            {
+                                Type: Last(BarcodeReader1.Barcodes).Type,
+                                Value: Last(BarcodeReader1.Barcodes).Value
+                            }
+                        )
+                    PaddingBottom: =5
+                    PaddingLeft: =5
+                    PaddingRight: =5
+                    PaddingTop: =5
+                    PressedBorderColor: =RGBA(56, 96, 178, 1)
+                    PressedContentColor: =RGBA(56, 96, 178, 1)
+                    PressedFillColor: =RGBA(255, 255, 255, 1)
+                    Text: ="Scan QR Code"
+                    TextColor: =RGBA(255, 255, 255, 1)
+                    Width: =Parent.Width - 120
+                    X: =60
+                    Y: =84
+                    ZIndex: =22
+
+    "'Back Button_17' As icon.ArrowLeft":
+        Color: =fxTheme.Header.TextColor
+        Height: =fxTheme.Header.IconSize
+        Icon: =Icon.ArrowLeft
+        OnSelect: =Back();
+        Width: =fxTheme.Header.IconSize
+        X: =30
+        Y: =Container3_9.Height / 2 - 21
+        ZIndex: =2
+

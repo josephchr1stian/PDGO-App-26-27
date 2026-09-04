@@ -1,0 +1,131 @@
+"'Training Tracker - MCLE Certificate Chooser' As screen":
+
+    Container12 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =20
+        LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Container14_3 As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =fxTheme.Header.BGColor
+            FillPortions: =0
+            Height: ='Background Color_9'.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =20
+            PaddingRight: =20
+            Width: =Parent.Width
+            X: =
+            Y: =
+            ZIndex: =1
+
+            Icon11_3 As icon.ArrowLeft:
+                Color: =fxTheme.Header.TextColor
+                Height: =fxTheme.Header.IconSize
+                Icon: =Icon.ArrowLeft
+                OnSelect: =Back();
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            Label15_4 As label:
+                Align: =Align.Center
+                Color: =fxTheme.Header.TextColor
+                Font: =Font.Lato
+                Height: =70
+                LayoutMinHeight: =70
+                LayoutMinWidth: =560
+                Size: =25
+                Text: ="Generate Certificates"
+                Width: =487
+                X: =(Parent.Width - Self.Width) / 2
+                Y: =15
+                ZIndex: =2
+
+        Label19 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =70
+            LayoutMinHeight: =70
+            LayoutMinWidth: =560
+            PaddingLeft: =30
+            PaddingTop: =30
+            Size: =21
+            Text: |-
+                ="Trainings:"
+            Width: =560
+            ZIndex: =2
+
+        ComboBox5 As combobox:
+            AlignInContainer: =AlignInContainer.Center
+            DisplayFields: =["TrainingLocation"]
+            Height: =70
+            IsSearchable: =false
+            Items: =Filter(MCLETrainings_1, TrainingEndDay <= Now(), TrainingType = "MCLE")
+            LayoutMinHeight: =70
+            LayoutMinWidth: =500
+            OnSelect: |-
+                =UpdateContext({test2:Filter(MCLETrainingAttendance, TrainingID in ForAll(ComboBox5.SelectedItems, ID), 'Check-InTime' <> Blank(), 'Checkout Time' <> Blank())})
+            SearchFields: =["TrainingLocation"]
+            SearchItems: =[]
+            Size: =21
+            Width: =Parent.Width - 80
+            ZIndex: =3
+
+        Label20 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =70
+            LayoutMinHeight: =70
+            LayoutMinWidth: =560
+            PaddingLeft: =30
+            PaddingTop: =30
+            Size: =21
+            Text: |-
+                ="Attendees:"
+            Width: =560
+            ZIndex: =4
+
+        ComboBox4 As combobox:
+            AlignInContainer: =AlignInContainer.Center
+            DefaultSelectedItems: =
+            DisplayFields: =["Name","AttendedTime"]
+            FillPortions: =1
+            Height: =70
+            InputTextPlaceholder: ="Select Attendees"
+            IsSearchable: =false
+            Items: |-
+                =ForAll(Filter(MCLETrainingAttendance, TrainingID in ForAll(ComboBox5.SelectedItems, ID), 'Check-InTime' <> Blank(), 'Checkout Time' <> Blank()), {
+                    Name: ThisRecord.Attendee,
+                    ID: ThisRecord.ID,
+                    AttendedTime: Concatenate(Text(DateDiff(ThisRecord.'Check-InTime', ThisRecord.'Checkout Time', TimeUnit.Minutes)), " min"),
+                    CO: ThisRecord.'Checkout Time',
+                    CI: ThisRecord.'Check-InTime'
+                })
+            LayoutMinHeight: =70
+            LayoutMinWidth: =575
+            OnSelect: |-
+                =UpdateContext({test: Self.SelectedItems})
+            SearchFields: =["AttendedTime"]
+            SearchItems: =[]
+            Size: =21
+            Template: =ListItemTemplate.Double
+            Width: =Parent.Width - 80
+            ZIndex: =5
+
+        Button1 As button:
+            Height: =70
+            LayoutMinHeight: =70
+            LayoutMinWidth: =280
+            OnSelect: |-
+                =Navigate('Training Tracker - MCLE Certificate', ScreenTransition.Cover, {AttendanceRecords: ComboBox4.SelectedItems})
+            Size: =24
+            Text: ="Generate Certificates"
+            Width: =280
+            ZIndex: =6
+

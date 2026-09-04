@@ -1,0 +1,111 @@
+"'Facility Request - Admin - Manage Categories' As screen":
+
+    Container25 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Container26 As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(0, 18, 107, 1)
+            FillPortions: =0
+            Height: |
+                =92
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =1
+
+            "'ManageRequestCategory-BackArrow_6' As icon.ArrowLeft":
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =40
+                Icon: =Icon.ArrowLeft
+                OnSelect: =Back(ScreenTransition.UnCoverRight)
+                Width: =40
+                X: =30
+                Y: =Parent.Height / 2 - 20
+                ZIndex: =1
+
+            "'ManageRequestCategory-Label_6' As label":
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =70
+                Size: =26
+                Text: ="Manage All Categories"
+                Width: =411
+                X: =(Parent.Width - Self.Width)/2
+                Y: =(Parent.Height - Self.Height)/2
+                ZIndex: =2
+
+        "Gallery1_2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            '#CopilotOverlayLabel': ="Filtered"
+            DelayItemLoading: =true
+            Height: =Parent.Height
+            Items: ='Facility Request Categories'
+            Layout: =Layout.Vertical
+            LayoutMinHeight: =287
+            LayoutMinWidth: =320
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =179
+            Width: =Parent.Width
+            Y: =92
+            ZIndex: =2
+
+            Title1_1 As label:
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =79
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: |-
+                    =Concatenate("Title: ", ThisItem.Title)
+                VerticalAlign: =VerticalAlign.Top
+                Width: =495
+                X: =47
+                Y: =39
+                ZIndex: =2
+
+            Subtitle1_3 As label:
+                FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                Height: =Self.Size * 1.8
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =20
+                Text: |-
+                    =Concatenate("# of Requests: ", CountRows(Filter('Facility Request_1', Category.Value = ThisItem.Title)))
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Title1_1.Width
+                X: =47
+                Y: =118
+                ZIndex: =3
+
+            Icon3_1 As icon.NextArrow:
+                Height: =36
+                Icon: =Icon.NextArrow
+                OnSelect: =Select(Parent)
+                Width: =39
+                X: =Parent.TemplateWidth - Self.Width - 42
+                Y: =82
+                ZIndex: =7
+
+            "'RequestListItem-HoverEffect_5' As rectangle":
+                BorderThickness: =1
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =Parent.TemplateHeight -  25
+                HoverFill: =RGBA(0, 0, 0, 0.1)
+                OnSelect: |-
+                    =Set(_SelectedCategory, ThisItem);
+                    Navigate('Facility Request - Admin - Manage Category', ScreenTransition.Cover)
+                Width: =Parent.Width - 50
+                X: =(Parent.TemplateWidth - Self.Width)/2
+                Y: =(Parent.TemplateHeight - Self.Height)/2 + 10
+                ZIndex: =8
+

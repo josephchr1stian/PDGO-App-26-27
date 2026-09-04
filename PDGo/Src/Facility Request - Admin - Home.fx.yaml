@@ -1,0 +1,44 @@
+"'Facility Request - Admin - Home' As screen":
+
+    "'Button-SubmitFacilityRequestForm_1' As button":
+        Height: =173
+        OnSelect: =Navigate('Facility Request - Admin - View Requests')
+        Size: =24
+        Text: ="View Requests"
+        Width: =324
+        X: =(Parent.Width - Self.Width) / 2
+        Y: =680
+        ZIndex: =1
+
+    "'Button-SubmitFacilityRequestForm_2' As button":
+        Height: =173
+        OnSelect: =Navigate('Facility Request - Admin - Manage Categories')
+        Size: =24
+        Text: ="Manage Categories"
+        Width: =324
+        X: =(Parent.Width - Self.Width) / 2
+        Y: =926
+        ZIndex: =2
+
+    "'Button-SubmitFacilityRequestForm_3' As button":
+        Height: =173
+        OnSelect: =Navigate('Facility Request - User - Facility Form')
+        Size: =24
+        Text: ="Submit Facility Request Form"
+        Width: =324
+        X: =(Parent.Width - Self.Width) / 2
+        Y: =138
+        ZIndex: =3
+
+    "'Button-EditResubmitForm_1' As button":
+        Height: =173
+        OnSelect: =Navigate('Facility Request - User - Edit Forms')
+        Size: =24
+        Text: |-
+            ="Edit & Resubmit Form(s)
+            "
+        Width: =324
+        X: =(Parent.Width - Self.Width) / 2
+        Y: =410
+        ZIndex: =4
+

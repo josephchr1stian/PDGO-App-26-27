@@ -1,0 +1,153 @@
+{
+  "02ceff66-c97d-4d72-8b73-146b70c0bb35": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1656/1.0.1656.3432/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://csula.sharepoint.com/sites/2023-2024SBPDGoDevelopment": {
+        "dataSources": {
+          "Courses": {
+            "tableName": "f3f3719c-3f50-4589-8bf9-644a2ff16c08"
+          },
+          "Facility Request Categories": {
+            "tableName": "73cc69e7-d86a-47d3-b601-22ab1b41ffcd"
+          },
+          "Facility Request_1": {
+            "tableName": "1fab6ee3-06cc-4e77-aafc-51ed8bde461d"
+          },
+          "MCLETrainingAttendance": {
+            "tableName": "ad9258cb-7085-4a45-b859-15d0cbc3c569"
+          },
+          "MCLETrainings_1": {
+            "tableName": "c711c28f-ed07-432e-92ee-38efdaedffed"
+          },
+          "TimeOffRequestDays": {
+            "tableName": "ccb1c1ca-b402-425b-9030-90826cfc4dd4"
+          },
+          "TimeOffRequests": {
+            "tableName": "4c384f23-2da6-42cb-8590-aaab69ba77b5"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Teams",
+      "Users-Teams",
+      "Users",
+      "MCLETrainingAttendance",
+      "MCLETrainings_1",
+      "TimeOffRequestDays",
+      "TimeOffRequests",
+      "Facility Request_1",
+      "RequestCodes",
+      "Courses",
+      "Facility Request Categories"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "02ceff66-c97d-4d72-8b73-146b70c0bb35"
+  },
+  "4e34b6c9-6b53-4553-a47d-09bfd95626ad": {
+    "connectionRef": {
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1664/1.0.1664.3477/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline"
+    },
+    "datasets": {
+      "https://csula.sharepoint.com/sites/2023-2024SBPDGoDevelopment": {
+        "dataSources": {
+          "RequestCodes": {
+            "tableName": "f5b7d729-f486-4acf-ab83-0b66fc47e516"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "RequestCodes"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "4e34b6c9-6b53-4553-a47d-09bfd95626ad"
+  },
+  "94904251-1cb1-4cda-89a3-a0b768efe8bb": {
+    "connectionRef": {
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1664/1.0.1664.3477/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users"
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "94904251-1cb1-4cda-89a3-a0b768efe8bb"
+  },
+  "a0b87287-25cd-4c05-bde7-29a7bffe1a26": {
+    "appActions": [
+      "CalendarGetTables",
+      "GetEventsCalendarViewV2"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Outlook",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/henryorsborn/partial-builds/asev3migrations-with-resourceTemplate/1.0.1653.3403/office365/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Outlook"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "a0b87287-25cd-4c05-bde7-29a7bffe1a26"
+  },
+  "b95cc6fb-c45e-4842-8626-f38dffe0d0c6": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1656/1.0.1656.3432/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://csula.sharepoint.com/sites/2023-2024SBPDGoDevelopment": {
+        "dataSources": {
+          "Teams": {
+            "tableName": "6c5b363b-0b4f-4ae4-9cb3-7aa5294a4fdc"
+          },
+          "Users": {
+            "tableName": "9108f1e8-ec56-4214-8f95-31fd20749383"
+          },
+          "Users-Teams": {
+            "tableName": "4b7d4783-60f7-4be3-ac8e-935869776f42"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Teams",
+      "Users-Teams",
+      "Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "b95cc6fb-c45e-4842-8626-f38dffe0d0c6"
+  }
+}

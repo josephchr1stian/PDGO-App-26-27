@@ -1,0 +1,303 @@
+"'Facility Request - Admin - Manage Category' As screen":
+
+    Container18 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Container19 As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(0, 18, 107, 1)
+            FillPortions: =0
+            Height: =92
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =1
+
+            "'ManageRequest-BackArrow_4' As icon.ArrowLeft":
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =40
+                Icon: =Icon.ArrowLeft
+                OnSelect: =Back(ScreenTransition.UnCoverRight)
+                Width: =40
+                X: =30
+                Y: =Parent.Height / 2 - 20
+                ZIndex: =1
+
+            ManageRequestLabel_4 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =70
+                Size: =26
+                Text: ="Manage Category"
+                Width: =309
+                X: =(Parent.Width - Self.Width)/2
+                Y: =(Parent.Height - Self.Height)/2
+                ZIndex: =2
+
+        Container20_1 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            Height: =275
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            ZIndex: =2
+
+            "'ManageRequest-TitleLabel_3' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Category"
+                Width: =164
+                X: =30
+                Y: =29
+                ZIndex: =1
+
+            "'ManageRequest-TitleText_3' As label":
+                Height: =70
+                Size: =21
+                Text: =_SelectedCategory.Title
+                Width: =358
+                X: =240
+                Y: =29
+                ZIndex: =2
+
+            "'ManageRequest-DateCreatedLabel_3' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: ="Date Created"
+                Width: =217
+                X: =30
+                Y: =(Parent.Height - Self.Height)/2  + 7
+                ZIndex: =3
+
+            "'ManageRequest-DateCreatedText_3' As label":
+                Height: =70
+                Size: =21
+                Text: =_SelectedCategory.Created
+                Width: =358
+                X: =240
+                Y: =(Parent.Height - Self.Height)/2  + 7
+                ZIndex: =4
+
+            "'ManageRequest-PriorityLabel_3' As label":
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =21
+                Text: |-
+                    ="# Of Requests"
+                Width: =217
+                X: =30
+                Y: =Parent.Height - Self.Height - 15
+                ZIndex: =5
+
+            "'ManageRequest-PriorityText_3' As label":
+                Height: =70
+                Size: =21
+                Text: =CountRows(Filter('Facility Request_1', Category.Value = _SelectedCategory.Title))
+                Width: =398
+                X: =240
+                Y: =Parent.Height - Self.Height - 15
+                ZIndex: =6
+
+        Container21 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.None
+            Height: =650
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =4
+
+            "Gallery2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                '#CopilotOverlayLabel': ="Filtered"
+                DelayItemLoading: =true
+                Height: =Parent.Height
+                Items: =Filter('Facility Request_1', Category.Value = _SelectedCategory.Title)
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =0
+                TemplateSize: =172
+                Width: =Parent.Width
+                X: =
+                ZIndex: =1
+
+                "'RequestListItem-Title_1' As label":
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =56
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =18
+                    Text: |-
+                        =Concatenate("Title: ", ThisItem.'Request Title')
+                    Width: =394
+                    X: =168
+                    Y: =92
+                    ZIndex: =1
+
+                "'RequestListItem-DateYear_2' As label":
+                    Align: =Align.Center
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =42
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =18
+                    Text: =Text(DateTimeValue(ThisItem.Date), "yyyy")
+                    Width: =80
+                    X: =44
+                    Y: =99
+                    ZIndex: =2
+
+                "'RequestListItem-DateMonth_2' As label":
+                    Align: =Align.Center
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =42
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =22
+                    Text: =Text(DateTimeValue(ThisItem.Date), "mmm")
+                    Width: =80
+                    X: =44
+                    Y: =69
+                    ZIndex: =3
+
+                "'RequestListItem-DateDayNum_2' As label":
+                    Align: =Align.Center
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =47
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =18
+                    Text: =Text(DateTimeValue(ThisItem.Date), "dd")
+                    Width: =52
+                    X: =58
+                    Y: =39
+                    ZIndex: =4
+
+                "'RequestListItem-ID_2' As label":
+                    Color: =RGBA(130, 141, 158, 1)
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =50
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =18
+                    Text: |-
+                        =Concatenate("ID: ", ThisItem.ID)
+                    Width: =114
+                    X: =168
+                    Y: =22
+                    ZIndex: =5
+
+                "'RequestListItem-RequesterName_1' As label":
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: =50
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =20
+                    Text: =ThisItem.'Requester Name'
+                    Width: =291
+                    X: =168
+                    Y: =61
+                    ZIndex: =6
+
+                "'RequestListItem-HoverEffect_3' As rectangle":
+                    BorderThickness: =1
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =Parent.TemplateHeight - 30
+                    HoverFill: =RGBA(0, 0, 0, 0.1)
+                    OnSelect: |-
+                        =Set(_SelectedRequest, ThisItem);
+                        Set(_VisitedManageRequestCategory, false);
+                        Navigate('Facility Request - Admin - Manage Request', ScreenTransition.Cover)
+                    Width: |-
+                        =Parent.Width -45
+                        //582
+                    X: =(Parent.TemplateWidth - Self.Width)/2
+                    Y: =(Parent.TemplateHeight - Self.Height)/2
+                    ZIndex: =7
+
+                Icon5_1 As icon.NextArrow:
+                    Height: =32
+                    Icon: =Icon.NextArrow
+                    OnSelect: =Select(Parent)
+                    Width: =32
+                    X: =Parent.TemplateWidth - Self.Width - 55
+                    Y: =(Parent.TemplateHeight - Self.Height)/2
+                    ZIndex: =8
+
+        Container27 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.None
+            FillPortions: =0
+            Height: =150
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGap: =30
+            LayoutJustifyContent: =LayoutJustifyContent.Center
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =5
+
+            "'ManageRequest-CloseReqestButton_2' As button":
+                Fill: =RGBA(184, 0, 0, 1)
+                Height: =70
+                LayoutMinHeight: =70
+                LayoutMinWidth: =280
+                OnSelect: |-
+                    =Remove('Facility Request Categories', LookUp('Facility Request Categories', ID = _SelectedCategory.ID));
+                    ForAll(Filter('Facility Request_1', Category.Value = _SelectedCategory.Title), Category.Value = "");
+                    Back(ScreenTransition.UnCoverRight);
+                Size: =24
+                Text: ="Delete Category"
+                Visible: =If(_SelectedRequest.'Status (Status0)'.Value = "Opened" Or _SelectedRequest.'Status (Status0)'.Value = "In Progress", true, false)
+                Width: =280
+                X: =310
+                Y: =1035
+                ZIndex: =1
+
+            "'ManageRequest-ReopenButton_2' As button":
+                Height: =70
+                LayoutMinHeight: =70
+                LayoutMinWidth: =280
+                OnSelect: |-
+                    =Patch('Facility Request_1', LookUp('Facility Request_1', ID = _SelectedRequest.ID), {'Status (Status0)': {Value:"In Progress"}});
+                    Navigate('Facility Request - Admin - View Requests', ScreenTransition.UnCoverRight);
+                Size: =24
+                Text: ="Reopen Request"
+                Visible: =If(_SelectedRequest.'Status (Status0)'.Value = "Closed", true, false)
+                Width: =280
+                X: =295
+                Y: =1035
+                ZIndex: =2
+
+            "'ManageRequest-ApproveButton_2' As button":
+                Height: =70
+                LayoutMinHeight: =70
+                LayoutMinWidth: =280
+                OnSelect: =Navigate('Facility Request - Admin - Edit Category', ScreenTransition.UnCoverRight);
+                Size: =24
+                Text: ="Edit Category"
+                Visible: =If(_SelectedRequest.'Status (Status0)'.Value = "Opened", true, false)
+                Width: =280
+                X: =25
+                Y: =1035
+                ZIndex: =3
+

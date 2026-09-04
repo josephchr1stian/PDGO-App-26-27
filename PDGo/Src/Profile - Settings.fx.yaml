@@ -1,0 +1,49 @@
+"'Profile - Settings' As screen":
+
+    "'Background Color_3' As rectangle":
+        BorderStyle: =BorderStyle.None
+        Fill: =fxTheme.Header.BGColor
+        Height: =111
+        Width: =Parent.Width
+        ZIndex: =1
+
+    "'Back Button_4' As icon.ArrowLeft":
+        Color: =fxTheme.Header.TextColor
+        Height: =fxTheme.Header.IconSize
+        Icon: =Icon.ArrowLeft
+        OnSelect: =Back( ScreenTransition.Cover)
+        Width: =fxTheme.Header.IconSize
+        X: =30
+        Y: =30
+        ZIndex: =2
+
+    Label2_2 As label:
+        Color: =fxTheme.Header.TextColor
+        Font: =Font.Lato
+        Height: =70
+        Size: =26
+        Text: ="Settings"
+        Width: =149
+        X: |
+            =(Parent.Width - Self.Width) / 2
+        Y: =20
+        ZIndex: =3
+
+    Label16 As label:
+        Font: =Font.Lato
+        Height: =70
+        Size: =21
+        Text: ="Notifications"
+        Width: =233
+        X: =30
+        Y: =146
+        ZIndex: =4
+
+    Toggle1 As toggleSwitch:
+        Height: =27
+        Size: =21
+        Width: =114
+        X: =476
+        Y: =167
+        ZIndex: =5
+

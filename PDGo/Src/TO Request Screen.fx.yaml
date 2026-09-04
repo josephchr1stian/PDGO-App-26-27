@@ -1,0 +1,189 @@
+"'TO Request Screen' As screen":
+
+    "'TO Request Screen Main Container' As groupContainer.verticalAutoLayoutContainer":
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =10
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =1
+        Width: =Parent.Width
+        ZIndex: =1
+
+        "'TO Request Screen Header' As groupContainer.horizontalAutoLayoutContainer":
+            Fill: =fxTheme.Header.BGColor
+            FillPortions: =0
+            Height: =75
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutJustifyContent: =LayoutJustifyContent.Center
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            ZIndex: =1
+
+            "'TO Request Screen Header Back' As icon.ArrowLeft":
+                Color: =fxTheme.Header.TextColor
+                Icon: =Icon.ArrowLeft
+                OnSelect: =Back();
+                Width: =50
+                ZIndex: =1
+
+            "'TO Request Screen Header Text' As label":
+                Align: =Align.Center
+                Color: =fxTheme.Header.TextColor
+                FillPortions: =1
+                Font: =Font.Lato
+                Size: =20
+                Text: ="Requests"
+                ZIndex: =2
+
+            "'TO Request Screen Header Profile' As image":
+                Image: =
+                ImagePosition: =ImagePosition.Fill
+                LayoutMinHeight: =75
+                ZIndex: =3
+
+            "'TO Request Screen Header Name' As label":
+                Font: =Font.Lato
+                Size: =15
+                Text: ="Hello, " & User().FullName
+                Visible: ='TO Request Screen'.Size<>1
+                ZIndex: =4
+
+        "'TO Request Screen Dates Gallery' As gallery.galleryVertical":
+            '#CopilotOverlayLabel': ="Filtered"
+            DelayItemLoading: =true
+            Height: =Parent.Height
+            Items: =RequestDates
+            Layout: =Layout.Vertical
+            LayoutMinHeight: =287
+            LayoutMinWidth: =320
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplateSize: =If(Self.Layout = Layout.Horizontal, Min(140, Self.Width - 60), Min(50, Self.Height - 60))
+            Width: =Parent.Width
+            ZIndex: =3
+
+            "'TO Request Screen Dates Gallery Columns' As groupContainer.horizontalAutoLayoutContainer":
+                Height: =Parent.TemplateHeight
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutDirection: =If(App.Width > ScreenSize.Medium, LayoutDirection.Horizontal, LayoutDirection.Vertical)
+                LayoutGap: =20
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.TemplateWidth
+                ZIndex: =1
+
+                "'TO Request Screen Dates Date Range' As label":
+                    FillPortions: =1
+                    Font: =Font.Lato
+                    LayoutMinWidth: =60
+                    Size: =If('TO Request Screen'.Size=1,7,12)
+                    Text: =ThisItem.StartDate & "-" & ThisItem.EndDate
+                    Width: |
+                        =
+                        Parent.Width*.20
+                    ZIndex: =1
+
+                "'TO Request Screen Dates Time Range' As label":
+                    FillPortions: =1
+                    Font: =Font.Lato
+                    LayoutMinWidth: =60
+                    Size: =If('TO Request Screen'.Size=1,7,12)
+                    Text: =ThisItem.StartTime & "-" & ThisItem.EndTime
+                    Width: =Parent.Width*.20
+                    ZIndex: =2
+
+                "'TO Request Screen Dates Reason' As label":
+                    FillPortions: =1
+                    LayoutMinWidth: =40
+                    Size: =If('TO Request Screen'.Size=1,7,12)
+                    Text: |
+                        =ThisItem.Reason
+                    Width: =Parent.Width*.10
+                    ZIndex: =3
+
+                "'TO Request Screen Dates Edit Button' As button":
+                    FillPortions: =2
+                    Font: =Font.Lato
+                    LayoutMinWidth: =50
+                    OnSelect: |-
+                        =Navigate('TO Request Date Screen', ScreenTransition.Cover, {Edit: ThisItem})
+                    Size: =10
+                    Text: ="Edit"
+                    Width: =Parent.Width*.20
+                    ZIndex: =5
+
+                "'TO Request Screen Dates Delete Button' As button":
+                    Fill: =RGBA(151, 0, 0, 1)
+                    FillPortions: =1
+                    Font: =Font.Lato
+                    LayoutMinWidth: =60
+                    OnSelect: =Remove(RequestDates, ThisItem)
+                    Size: =10
+                    Text: ="Delete"
+                    Width: =Parent.Width*.20
+                    ZIndex: =6
+
+        "'TO Request Screen Add Date Button' As button":
+            Fill: =RGBA(56, 96, 178, .80)
+            Font: =Font.Lato
+            OnSelect: =Navigate('TO Request Date Screen')
+            Text: ="Add Request"
+            ZIndex: =4
+
+        "'TO Request Screen Comments Input' As text":
+            Default: =If(IsBlank(Edit), "", Edit.Comments)
+            FillPortions: =1
+            Font: =Font.Lato
+            HintText: ="Additional Comments"
+            LayoutMinHeight: =150
+            Mode: =TextMode.MultiLine
+            ZIndex: =5
+
+        "'TO Request Screen Submit Button' As button":
+            Font: =Font.Lato
+            Height: =80
+            OnSelect: |-
+                =If(!IsBlankOrError(Edit), Patch(TimeOffRequests, Edit, {
+                    Status: {Value: "Cancelled"}
+                });
+                With({
+                    Request: Patch(TimeOffRequests, Defaults(TimeOffRequests), {
+                        Reason: 'TO Request Screen Comments Input'.Text,
+                        Requester: UserRecord.ID,
+                        Status: {Value: "Pending"},
+                        Comments: ""
+                    })
+                },
+                    ForAll(RequestDates, With({Date: ThisRecord},
+                            Patch(TimeOffRequestDays,
+                                If(IsBlankOrError(ID),
+                                    Defaults(TimeOffRequestDays),
+                                    LookUp(TimeOffRequestDays, ID = Date.ID)
+                                ),
+                                {
+                                    Request: {Id: Request.ID, Value: Request.ID},
+                                    StartDate: Date.StartDate,
+                                    EndDate: Date.EndDate,
+                                    EntireDay: Date.EntireDay,
+                                    StartTime: Date.StartTime,
+                                    EndTime: Date.EndTime,
+                                    Reason: { Id: LookUp(RequestCodes, Title = Date.Reason).ID, Value: Date.Reason },
+                                    AdditionalComments: Date.Comments,
+                                    ITEquipment: Date.ITEquipment
+                                }
+                            )
+                        );
+                    );
+                );
+                
+                Clear(RequestDates);
+                Reset('TO Request Screen Comments Input');
+                Navigate('General Success Screen', ScreenTransition.CoverRight);
+            Text: ="Submit Request"
+            ZIndex: =6
+

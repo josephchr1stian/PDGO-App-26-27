@@ -1,0 +1,106 @@
+"'Profile - Selected Team Member' As screen":
+
+    "'Background Color_5' As rectangle":
+        BorderStyle: =BorderStyle.None
+        Fill: =fxTheme.Header.BGColor
+        Height: =296
+        Width: =Parent.Width
+        ZIndex: =1
+
+    "'Profile Selected Team Member Back Button' As icon.ArrowLeft":
+        Color: =fxTheme.Header.TextColor
+        Height: =fxTheme.Header.IconSize
+        Icon: =Icon.ArrowLeft
+        OnSelect: =Back();
+        Width: =fxTheme.Header.IconSize
+        X: =42
+        Y: =30
+        ZIndex: =2
+
+    "'Profile Selected Team Member Full Name' As label":
+        Align: =Align.Center
+        Color: =fxTheme.Header.TextColor
+        Font: =Font.Lato
+        Height: =51
+        Size: =26
+        Text: =SelectedTeamMember.'Full Name'
+        Width: =580
+        X: =(Parent.Width - Self.Width)/2
+        Y: =201
+        ZIndex: =3
+
+    "'Profile Selected Team Member Profile Picture' As image":
+        ContentLanguage: =
+        Height: =145
+        Image: =SelectedTeamMember.'Profile Picture'
+        ImagePosition: =ImagePosition.Fill
+        RadiusBottomLeft: ='Profile Selected Team Member Profile Picture'.Height
+        RadiusBottomRight: ='Profile Selected Team Member Profile Picture'.Height
+        RadiusTopLeft: ='Profile Selected Team Member Profile Picture'.Height
+        RadiusTopRight: ='Profile Selected Team Member Profile Picture'.Height
+        Width: =145
+        X: =(Parent.Width - Self.Width)/2
+        Y: =56
+        ZIndex: =4
+
+    "'Profile Selected Team Member About Container' As groupContainer.manualLayoutContainer":
+        DropShadow: =DropShadow.None
+        Height: =716
+        Width: =640
+        X: =(Parent.Width - Self.Width)/2
+        Y: =296
+        ZIndex: =5
+
+        "'Profile Selected Team Member About Me Label' As label":
+            Font: =Font.'Lato Black'
+            Height: =44
+            Size: =21
+            Text: ="About Me"
+            Width: =148
+            X: =36
+            Y: =66
+            ZIndex: =1
+
+        "'Profile Selected Team Member About Me Description' As label":
+            Height: =188
+            Overflow: =Overflow.Scroll
+            Size: =18
+            Text: =SelectedTeamMember.'About Me'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =560
+            X: =36
+            Y: =110
+            ZIndex: =2
+
+        "'Profile Selected Team Member Phone Number' As label":
+            Height: =70
+            Size: =21
+            Text: =SelectedTeamMember.'Phone Number'
+            Width: =448
+            X: =133
+            Y: =331
+            ZIndex: =3
+
+        "'Profile Selected Team Member Email Address' As label":
+            Height: =70
+            Size: =21
+            Text: =SelectedTeamMember.'Email Address'
+            Width: =449
+            X: =133
+            Y: =434
+            ZIndex: =4
+
+        Icon8_2 As icon.Phone:
+            Height: =50
+            Icon: =Icon.Phone
+            Width: =50
+            X: =56
+            Y: =341
+            ZIndex: =5
+
+        Icon9_2 As icon.Mail:
+            Icon: =Icon.Mail
+            X: =49
+            Y: =440
+            ZIndex: =6
+

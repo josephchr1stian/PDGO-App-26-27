@@ -1,0 +1,137 @@
+"'Profile - Team' As screen":
+
+    "'Profile - Team Member Gallery' As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+        '#CopilotOverlayLabel': ="Filtered"
+        DelayItemLoading: =true
+        Height: =Parent.Height - 'Profile - Team Navbar Background'.Height
+        Items: =Filter(Users, 'Team ID'.Value = LookUp(Users, 'Email Address' = User().Email, 'Team ID').Value)
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        OnSelect: |-
+            =Set(_selectedTeamMember, ThisItem);
+            Navigate('Profile - Selected Team Member', ScreenTransition.CoverRight, {SelectedTeamMember: ThisItem})
+        TemplatePadding: =0
+        TemplateSize: =177
+        Width: =Parent.Width
+        X: =(Parent.Width - Self.Width)/2
+        Y: =100
+        ZIndex: =1
+
+        "'Profile - Team Member Profile Image' As image":
+            Height: =108
+            Image: =ThisItem.'Profile Picture'
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =108
+            X: =16
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =1
+
+        "'Profile - Team Member Name' As label":
+            Font: =Font.'Lato Black'
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =43
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =20
+            Text: =ThisItem.'Full Name'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 173
+            X: =136
+            Y: =38
+            ZIndex: =2
+
+        "'Profile - Team Member EMail' As label":
+            Font: =Font.Lato
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.'Email Address'
+            VerticalAlign: =VerticalAlign.Top
+            Width: ='Profile - Team Member Name'.Width
+            X: ='Profile - Team Member Name'.X
+            Y: ='Profile - Team Member Name'.Y + 'Profile - Team Member Name'.Height
+            ZIndex: =3
+
+        "'Profile - Team Member Nav Icon' As icon.ChevronRight":
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(166, 166, 166, 1)
+            Height: =50
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent)
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =50
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =4
+
+        "'Profile - Team Member Seperator' As rectangle":
+            Height: =8
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =5
+
+        "'Profile - Team Member Selected Indicator' As rectangle":
+            Height: =Parent.TemplateHeight - 'Profile - Team Member Seperator'.Height
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected
+            Width: =4
+            ZIndex: =6
+
+        "'Profile - Team Member Phone' As label":
+            Font: =Font.Lato
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.'Phone Number'
+            VerticalAlign: =VerticalAlign.Top
+            Width: ='Profile - Team Member Name'.Width
+            X: ='Profile - Team Member Name'.X
+            Y: =102
+            ZIndex: =7
+
+    "'Profile - Team Navbar Background' As rectangle":
+        Fill: =fxTheme.Header.BGColor
+        Width: =Parent.Width
+        ZIndex: =2
+
+    "'Profile - Team Navbar Title' As label":
+        Align: =Align.Center
+        Color: =fxTheme.Header.TextColor
+        Font: =Font.Lato
+        Height: =70
+        Size: =25
+        Text: ="Team"
+        Width: =Parent.Width
+        Y: =15
+        ZIndex: =3
+
+    "'Profile - Team Back Button' As icon.ArrowLeft":
+        Color: =fxTheme.Header.TextColor
+        Height: =fxTheme.Header.IconSize
+        Icon: =Icon.ArrowLeft
+        OnSelect: =Back();
+        Width: =fxTheme.Header.IconSize
+        X: =70
+        Y: =30
+        ZIndex: =4
+

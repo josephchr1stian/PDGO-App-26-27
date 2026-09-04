@@ -1,0 +1,80 @@
+"'Admin - Tools' As screen":
+
+    "'Background Color_9' As rectangle":
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(25, 53, 110, 1)
+        Height: =111
+        Width: =Parent.Width
+        ZIndex: =1
+
+    Container15 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =20
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =2
+
+        Container14_1 As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =fxTheme.Header.BGColor
+            FillPortions: =0
+            Height: ='Background Color_9'.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =20
+            PaddingRight: =20
+            Width: ='Background Color_9'.Width
+            X: =
+            Y: =
+            ZIndex: =1
+
+            Icon11_2 As icon.ArrowLeft:
+                Color: =fxTheme.Header.TextColor
+                Height: =fxTheme.Header.IconSize
+                Icon: =Icon.ArrowLeft
+                OnSelect: =Navigate('Home Screen', ScreenTransition.CoverRight)
+                Width: =fxTheme.Header.IconSize
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            Label15_3 As label:
+                Align: =Align.Center
+                Color: =fxTheme.Header.TextColor
+                Font: =Font.Lato
+                Height: =70
+                LayoutMinHeight: =70
+                LayoutMinWidth: =560
+                Size: =25
+                Text: ="Admin - Tools"
+                Width: =487
+                X: =115
+                Y: =15
+                ZIndex: =2
+
+        Button9 As button:
+            Height: =100
+            LayoutMinHeight: =70
+            LayoutMinWidth: =280
+            OnSelect: =Navigate('Training Tracker - MCLE Certificate Chooser', ScreenTransition.Cover)
+            Size: =24
+            Text: ="Generate Certificates"
+            Visible: ="Training Certificates" in ForAll(UserRecord.Capabilities, Value)
+            Width: =280
+            ZIndex: =2
+
+        Button10 As button:
+            Height: =100
+            LayoutMinHeight: =70
+            LayoutMinWidth: =280
+            OnSelect: =Navigate('Facility Request - Admin - Home', ScreenTransition.Cover);
+            Size: =24
+            Text: ="Facilites Requests"
+            Visible: ="Facilities" in UserRecord.Capabilities
+            Width: =280
+            ZIndex: =3
+

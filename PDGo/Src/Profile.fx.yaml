@@ -1,0 +1,417 @@
+Profile As screen:
+    OnVisible: |-
+        =/*resets calendar view and date selection to today*/
+                 
+        Set(_dateSelected, Today());         
+        Set(_firstDayOfMonth, DateAdd(Today(), 1 - Day(Today()), TimeUnit.Days));         
+        Set(_firstDayInView, DateAdd(_firstDayOfMonth, -(Weekday(_firstDayOfMonth) - 2 + 1), TimeUnit.Days));         
+        Set(_lastDayOfMonth, DateAdd(DateAdd(_firstDayOfMonth, 1, TimeUnit.Months), -1, TimeUnit.Days));
+        Set(_calendarVisible, true);
+
+    "'About Container' As groupContainer.manualLayoutContainer":
+        DropShadow: =DropShadow.None
+        Height: =716
+        Width: =640
+        Y: =420
+        ZIndex: =1
+
+        "'About Me Label' As label":
+            Font: =Font.'Lato Black'
+            Height: =44
+            Size: =21
+            Text: ="About Me"
+            Width: =148
+            X: =36
+            Y: =66
+            ZIndex: =1
+
+        "'About Me Description' As label":
+            Height: =188
+            Overflow: =Overflow.Scroll
+            Size: =18
+            Text: =LookUp(Users, 'Email Address' = User().Email, 'About Me')
+            VerticalAlign: =VerticalAlign.Top
+            Width: =560
+            X: =36
+            Y: =110
+            ZIndex: =2
+
+        Label6 As label:
+            Height: =70
+            Size: =21
+            Text: =LookUp(Users, 'Email Address' = User().Email, 'Phone Number')
+            Width: =448
+            X: =133
+            Y: =331
+            ZIndex: =3
+
+        Label7 As label:
+            Height: =70
+            Size: =21
+            Text: =User().Email
+            Width: =449
+            X: =133
+            Y: =434
+            ZIndex: =4
+
+        Icon8 As icon.Phone:
+            Height: =50
+            Icon: =Icon.Phone
+            Width: =50
+            X: =56
+            Y: =341
+            ZIndex: =5
+
+        Icon9 As icon.Mail:
+            Icon: =Icon.Mail
+            X: =49
+            Y: =440
+            ZIndex: =6
+
+    "'Profile Main Container' As groupContainer.verticalAutoLayoutContainer":
+        DropShadow: =DropShadow.None
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =2
+
+        "'Profile Banner Container' As groupContainer.manualLayoutContainer":
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =fxTheme.Header.BGColor
+            FillPortions: =0
+            Height: =420
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            Width: =Parent.Width
+            ZIndex: =1
+
+            "'Profile User Banner Buttons' As groupContainer.horizontalAutoLayoutContainer":
+                Height: =109
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =20
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                Y: =Parent.Height + Parent.Y - Self.Height - 20
+                ZIndex: =7
+
+                "'Profile User Banner Team Button Container' As groupContainer":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =107
+                    LayoutMinHeight: =112
+                    LayoutMinWidth: =250
+                    Width: =84
+                    X: =29
+                    Y: =278
+                    ZIndex: =1
+
+                    "'Profile User Banner Team Button Background' As circle":
+                        Fill: =RGBA(136, 160, 209, 1)
+                        Height: =80
+                        OnSelect: =Navigate('Profile - Team', ScreenTransition.CoverRight)
+                        Width: =80
+                        ZIndex: =1
+
+                    "'Profile User Banner Team Button Icon' As icon.People":
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =36
+                        Icon: =Icon.People
+                        OnSelect: =Navigate('Profile - Team', ScreenTransition.CoverRight)
+                        Width: =57
+                        X: =11
+                        Y: =22
+                        ZIndex: =2
+
+                    "'Profile User Banner Team Button Label' As label":
+                        Align: =Align.Center
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =26
+                        OnSelect: =Navigate('Profile - Team', ScreenTransition.CoverRight)
+                        Size: =14
+                        Text: ="Team"
+                        Width: =80
+                        Y: =81
+                        ZIndex: =3
+
+                "'Profile User Banner Office Button Container' As groupContainer":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =107
+                    LayoutMinHeight: =112
+                    LayoutMinWidth: =250
+                    Width: =82
+                    X: =178
+                    Y: =15
+                    ZIndex: =2
+
+                    "'Profile User Banner Office Button Background' As circle":
+                        Fill: =RGBA(136, 160, 209, 1)
+                        Height: =80
+                        OnSelect: =Navigate('Profile - Office', ScreenTransition.CoverRight)
+                        Width: =80
+                        ZIndex: =1
+
+                    "'Profile User Banner Office Button Icon' As icon.OfficeBuilding":
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =42
+                        Icon: =Icon.OfficeBuilding
+                        OnSelect: =Navigate('Profile - Office', ScreenTransition.CoverRight)
+                        Width: =73
+                        X: =3
+                        Y: =19
+                        ZIndex: =2
+
+                    "'Profile User Banner Office Button Label' As label":
+                        Align: =Align.Center
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =26
+                        OnSelect: =Navigate('Profile - Office', ScreenTransition.CoverRight)
+                        Size: =14
+                        Text: ="Office"
+                        Width: =80
+                        Y: =80
+                        ZIndex: =3
+
+                "'Profile User Banner Team Calendar Container' As groupContainer":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =105
+                    LayoutMinHeight: =112
+                    LayoutMinWidth: =250
+                    Width: =90
+                    X: =232
+                    Y: =234
+                    ZIndex: =3
+
+                    "'Profile User Banner Calendar Button Background' As circle":
+                        Fill: =RGBA(136, 160, 209, 1)
+                        Height: =80
+                        OnSelect: =Navigate('Profile - Calendar', ScreenTransition.CoverRight)
+                        Width: =80
+                        X: =7
+                        ZIndex: =1
+
+                    "'Profile User Banner Calendar Button Icon' As icon.CalendarBlank":
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =37
+                        Icon: =Icon.CalendarBlank
+                        OnSelect: =Navigate('Profile - Calendar', ScreenTransition.CoverRight)
+                        Width: =52
+                        X: =21
+                        Y: =21
+                        ZIndex: =2
+
+                    "'Profile User Banner Calendar Button Label' As label":
+                        Align: =Align.Center
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =26
+                        OnSelect: =Navigate('Profile - Calendar', ScreenTransition.CoverRight)
+                        Size: =14
+                        Text: ="Calendar"
+                        Width: =94
+                        Y: =80
+                        ZIndex: =3
+
+                "'Profile User Banner Supervisor Button Container' As groupContainer":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =108
+                    LayoutMinHeight: =112
+                    LayoutMinWidth: =250
+                    Width: =107
+                    X: =224
+                    Y: =233
+                    ZIndex: =4
+
+                    "'Profile User Banner Supervisor Button Background' As circle":
+                        Fill: =RGBA(136, 160, 209, 1)
+                        Height: =80
+                        OnSelect: |-
+                            =Navigate('Profile - Supervisor', ScreenTransition.CoverRight);
+                            
+                            Set(_mySupervisor, LookUp(Users, 'Email Address' = User().Email, Supervisor))
+                        Width: =80
+                        X: =16
+                        ZIndex: =1
+
+                    "'Profile User Banner Supervisor Button Icon' As icon.Person":
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =46
+                        Icon: =Icon.Person
+                        OnSelect: |-
+                            =Navigate('Profile - Supervisor', ScreenTransition.CoverRight);
+                            
+                            Set(_mySupervisor, LookUp(Users, 'Email Address' = User().Email, Supervisor))
+                        Width: =40
+                        X: =35
+                        Y: =17
+                        ZIndex: =2
+
+                    "'Profile User Banner Supervisor Button Label' As label":
+                        Align: =Align.Center
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =26
+                        OnSelect: |-
+                            =Navigate('Profile - Supervisor', ScreenTransition.CoverRight);
+                            
+                            Set(_mySupervisor, LookUp(Users, 'Email Address' = User().Email, Supervisor))
+                        Size: =14
+                        Text: ="Supervisor"
+                        Width: =111
+                        Y: =80
+                        ZIndex: =3
+
+                "'Profile User Banner Settings Button Container' As groupContainer":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    FillPortions: =0
+                    Height: =112
+                    LayoutMinHeight: =112
+                    LayoutMinWidth: =250
+                    Visible: =false
+                    Width: =104
+                    X: =449
+                    Y: =233
+                    ZIndex: =5
+
+                    "'Profile User Banner Settings Button Background' As circle":
+                        Fill: =RGBA(136, 160, 209, 1)
+                        Height: =80
+                        OnSelect: =Navigate('Profile - Settings', ScreenTransition.CoverRight)
+                        Width: =80
+                        X: =15
+                        ZIndex: =1
+
+                    "'Profile User Banner Settings Button Icon' As icon.Person":
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =46
+                        Icon: =Icon.Settings
+                        OnSelect: =Navigate('Profile - Settings', ScreenTransition.CoverRight)
+                        Width: =43
+                        X: =34
+                        Y: =19
+                        ZIndex: =2
+
+                    "'Profile User Banner Settings Button Label' As label":
+                        Align: =Align.Center
+                        Color: =RGBA(255, 255, 255, 1)
+                        Height: =26
+                        OnSelect: =Navigate('Profile - Settings', ScreenTransition.CoverRight)
+                        Size: =14
+                        Text: |-
+                            ="Settings
+                            "
+                        Width: =111
+                        Y: =80
+                        ZIndex: =3
+
+            "'Profile User Banner Profile Picture' As image":
+                BorderColor: =RGBA(186, 202, 226, 1)
+                BorderThickness: =2
+                Height: =145
+                Image: =LookUp(Users, 'Email Address' = User().Email, 'Profile Picture')
+                ImagePosition: =ImagePosition.Fill
+                RadiusBottomLeft: ='Profile User Banner Profile Picture'.Height
+                RadiusBottomRight: ='Profile User Banner Profile Picture'.Height
+                RadiusTopLeft: ='Profile User Banner Profile Picture'.Height
+                RadiusTopRight: ='Profile User Banner Profile Picture'.Height
+                Width: =Self.Height
+                X: =(Parent.Width - Self.Width)/2
+                Y: =40
+                ZIndex: =8
+
+            "'Profile User Banner User Name' As label":
+                Align: =Align.Center
+                Color: =fxTheme.Header.TextColor
+                Font: =Font.Lato
+                Height: =51
+                Size: =26
+                Text: =LookUp(Users, 'Email Address' = User().Email, 'Full Name')
+                Width: =Parent.Width - 2*Self.X
+                X: =40
+                Y: =200
+                ZIndex: =9
+
+        "'About Container_2' As groupContainer.manualLayoutContainer":
+            Height: =716
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            Visible: =false
+            Width: =Parent.Width
+            Y: =420
+            ZIndex: =2
+
+            "'About Me Label_2' As label":
+                Font: =Font.'Lato Black'
+                Height: =44
+                Size: =21
+                Text: ="About Me"
+                Width: =148
+                X: =36
+                Y: =66
+                ZIndex: =1
+
+            "'About Me Description_2' As label":
+                Height: =188
+                Overflow: =Overflow.Scroll
+                Size: =18
+                Text: =LookUp(Users, 'Email Address' = User().Email, 'About Me')
+                VerticalAlign: =VerticalAlign.Top
+                Width: =560
+                X: =36
+                Y: =110
+                ZIndex: =2
+
+            Label6_2 As label:
+                Height: =70
+                Size: =21
+                Text: =LookUp(Users, 'Email Address' = User().Email, 'Phone Number')
+                Width: =448
+                X: =133
+                Y: =331
+                ZIndex: =3
+
+            Label7_2 As label:
+                Height: =70
+                Size: =21
+                Text: =User().Email
+                Width: =449
+                X: =133
+                Y: =434
+                ZIndex: =4
+
+            Icon8_3 As icon.Phone:
+                Height: =50
+                Icon: =Icon.Phone
+                Width: =50
+                X: =56
+                Y: =341
+                ZIndex: =5
+
+            Icon9_3 As icon.Mail:
+                Icon: =Icon.Mail
+                X: =49
+                Y: =440
+                ZIndex: =6
+
+    "'Profile Back Button' As icon.ArrowLeft":
+        Color: =fxTheme.Header.TextColor
+        Height: =fxTheme.Header.IconSize
+        Icon: =Icon.ArrowLeft
+        OnSelect: =Navigate('Home Screen', ScreenTransition.Cover)
+        Width: =fxTheme.Header.IconSize
+        X: =40
+        Y: =40
+        ZIndex: =3
+
+    "'Profile User Banner Edit Button' As icon.Edit":
+        Color: =fxTheme.Header.TextColor
+        Height: =fxTheme.Header.IconSize
+        Icon: =Icon.Edit
+        OnSelect: =Navigate('Profile - Edit', ScreenTransition.CoverRight)
+        Width: =fxTheme.Header.IconSize
+        X: =Parent.Width - Self.Width - 20
+        Y: =44
+        ZIndex: =4
+
