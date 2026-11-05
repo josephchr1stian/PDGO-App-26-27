@@ -97,13 +97,13 @@ The framework must be **configuration-driven** — new categories and routing ru
 | 6. UAT + documentation | Apr – May (early) | UAT complete, docs finalized |
 | 7. Final handoff + executive demo | Apr – May 1 | Capstone presentation, May 1 |
 
-## 8. Current State of the Inherited App — Gaps & Open Questions
+## 8. Current State of the App
 
-The repo includes a Power Apps canvas app (`PDGo/`) inherited from a prior cohort. It already has working modules for Facility Requests (user submission + admin assign/manage/categorize), Time Off requests, a Training Tracker (MCLE trainings, check-in/out, certificates), and Profile/Team screens. It was built primarily through the Power Apps Studio drag-and-drop designer — the `.fx.yaml` files under `PDGo/Src/` are Studio's serialized/diffable export of that design, not hand-written app code.
+The team app lives in `PDGoTicketing/` (Power Apps canvas app, CSULA tenant). Data is in SharePoint lists at `csula.sharepoint.com/sites/team-12-pd-go`: tickets in **AdministrativeServiceRequests**, routing in **PDGo Users**, parking waitlist in **Parking Requests**.
 
-Known gaps to resolve early, before building on top of it:
+Open items:
 
-- **[open question]** The app's data connections point at `https://csula.sharepoint.com/sites/2023-2024SBPDGoDevelopment` — a prior Santa Barbara PD cohort's SharePoint site. This needs to be re-pointed to a real LA County PD data source (new SharePoint site, Dataverse, or otherwise) before any of the existing screens will work for this project.
-- **[open question]** The Facility Request module is the closest existing analog to the unified ticketing system, but it only covers one of the five target service families (Facilities). Procurement, Employee Safety, Warehouse/Records, and Administrative Support have no existing screens.
-- **[open question]** There's no rules-based routing engine, unified lifecycle across services, or management dashboard yet — these are core, ungraded-if-missing pieces of the core scope (Section 3.1) and don't exist in the inherited app.
-- **[open question]** Whether the team keeps building in Power Apps canvas (matching the sponsor's stated core technology) or considers a different architecture is a decision to confirm with the Project/Business Liaison, not something to assume.
+- **[open question]** Privacy: users should only be able to read their own tickets. Hiding them in the app is not enough — anyone with read access to the list can open it directly in SharePoint. Requires SharePoint item-level permissions plus a Power Automate flow for anything that needs a cross-ticket count (e.g. waitlist position).
+- **[open question]** Waitlist (sponsor's request, for Civic Center parking): users see their position only. Enable per ticket type via a Yes/No column on **PDGOTicketTypes**.
+- **[open question]** Priority: the team proposes dropping it. FR-06 and FR-09 above mention prioritizing and reporting by priority — confirm with the sponsor.
+- **[open question]** The admin sign-in uses a hardcoded placeholder password; replace before any real data is used.

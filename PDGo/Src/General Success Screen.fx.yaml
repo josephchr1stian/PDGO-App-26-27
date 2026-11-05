@@ -1,3 +1,0 @@
-"'General Success Screen' As screen":
-    OnVisible: =Reset(Timer1);
-
