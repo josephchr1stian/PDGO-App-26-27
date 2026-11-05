@@ -1,0 +1,627 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  TicketRequestScreen:
+    Properties:
+      Fill: =RGBA(245, 247, 250, 1)
+      OnVisible: |-
+        =Set(varOpenTicket, Blank());
+        Set(varBlink, false);
+        ClearCollect(
+            colAllTickets,
+            ForAll(
+                AdministrativeServiceRequests,
+                {
+                    Key: "ADM-" & ID,
+                    Src: "Administrative",
+                    RecId: ID,
+                    Ticket: Coalesce(ServiceSubcategory, Title),
+                    Desc: Description,
+                    Category: Title,
+                    StatusText: Status.Value,
+                    Requester: RequestedBy,
+                    CreatedOn: Created,
+                    Cur: With(
+                        {st: Lower(Trim(Coalesce(Status.Value, "submitted")))},
+                        If(
+                            st in ["completed", "complete", "closed", "resolved", "done", "fulfilled"], 5,
+                            st in ["approved", "in progress", "assigned", "working", "scheduled"], 3,
+                            2
+                        )
+                    )
+                }
+            ),
+            ForAll(
+                'Locksmith Requests',
+                {
+                    Key: "LCK-" & ID,
+                    Src: "Locksmith",
+                    RecId: ID,
+                    Ticket: Title,
+                    Desc: Description,
+                    Category: RequestType,
+                    StatusText: RequestStatus,
+                    Requester: RequesterName,
+                    CreatedOn: Created,
+                    Cur: With(
+                        {st: Lower(Trim(Coalesce(RequestStatus, "submitted")))},
+                        If(
+                            st in ["completed", "complete", "closed", "resolved", "done", "fulfilled"], 5,
+                            st in ["approved", "in progress", "assigned", "working", "scheduled"], 3,
+                            2
+                        )
+                    )
+                }
+            )
+        )
+    Children:
+      - trHeaderBar:
+          Control: Rectangle@2.3.0
+          Properties:
+            Fill: =RGBA(40, 134, 222, 1)
+            Height: =64
+            Width: =Parent.Width
+      - trHeaderTitle:
+          Control: Label@2.5.1
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =64
+            Size: =20
+            Text: ="Ticket Requests"
+            Width: =400
+            X: =24
+      - trBackBtn:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Color: =RGBA(0, 40, 85, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =36
+            HoverColor: =RGBA(0, 40, 85, 1)
+            HoverFill: =RGBA(199, 224, 244, 1)
+            OnSelect: =Back()
+            Text: ="Back"
+            Width: =96
+            X: =Parent.Width - 120
+            Y: =14
+      - trBlinkTimer:
+          Control: Timer@2.1.0
+          Properties:
+            AutoStart: =true
+            Duration: =600
+            Height: =10
+            OnTimerEnd: =Set(varBlink, !varBlink)
+            Repeat: =true
+            Visible: =false
+            Width: =10
+      - trListTitle:
+          Control: Label@2.5.1
+          Properties:
+            Color: =RGBA(0, 40, 85, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            Size: =14
+            Text: ="All tickets (" & CountRows(colAllTickets) & ")"
+            Visible: =!(App.Width < 768 && !IsBlank(varOpenTicket))
+            Width: =If(IsBlank(varOpenTicket) || App.Width < 768, Parent.Width - 48, Parent.Width * 0.4 - 32)
+            X: =24
+            Y: =76
+      - trTicketGallery:
+          Control: Gallery@2.15.0
+          Variant: Vertical
+          Properties:
+            Fill: =RGBA(214, 221, 224, 1)
+            Height: =Parent.Height - 128
+            Items: =AdministrativeServiceRequests
+            OnSelect: =If(Coalesce(varOpenTicket.Key, "") = ThisItem.Key, Set(varOpenTicket, Blank()), Set(varOpenTicket, ThisItem))
+            TemplatePadding: =6
+            TemplateSize: =112
+            Visible: =!(App.Width < 768 && !IsBlank(varOpenTicket))
+            Width: =If(IsBlank(varOpenTicket) || App.Width < 768, Parent.Width - 48, Parent.Width * 0.4 - 32)
+            X: =24
+            Y: =112
+          Children:
+            - trCardBg:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =If(Coalesce(varOpenTicket.Key, "") = ThisItem.Key, RGBA(0, 120, 212, 1), RGBA(218, 222, 230, 1))
+                  BorderThickness: =If(Coalesce(varOpenTicket.Key, "") = ThisItem.Key, 2, 1)
+                  Fill: |-
+                    =If(
+                        !IsBlank(varOpenTicket.ID) &&
+                        varOpenTicket.ID = ThisItem.ID &&
+                        varOpenTicket.TicketSource = ThisItem.TicketSource,
+                        RGBA(255, 255, 255, 1)
+                    )
+                  Height: =Parent.TemplateHeight
+                  OnSelect: =Select(Parent)
+                  Width: =Parent.TemplateWidth
+            - trCardTitle:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(0, 40, 85, 1)
+                  FontWeight: =FontWeight.Semibold
+                  Height: =26
+                  OnSelect: =Select(Parent)
+                  Text: =ThisItem.Title
+                  Width: =Parent.TemplateWidth - 190
+                  Wrap: =false
+                  X: =16
+                  Y: =8
+            - trCardMeta:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(96, 94, 92, 1)
+                  Height: =22
+                  OnSelect: =Select(Parent)
+                  Size: =10
+                  Text: =ThisItem.Status.Value
+                  Width: =Parent.TemplateWidth - 32
+                  Wrap: =false
+                  X: =16
+                  Y: =34
+            - trCardStatus:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Right
+                  Color: =If(ThisItem.Cur >= 5, RGBA(16, 124, 16, 1), RGBA(0, 120, 212, 1))
+                  FontWeight: =FontWeight.Semibold
+                  Height: =26
+                  OnSelect: =Select(Parent)
+                  Size: =11
+                  Text: =ThisItem.RequestDate
+                  Width: =160
+                  X: =Parent.TemplateWidth - 176
+                  Y: =8
+            - trCardLine1:
+                Control: Rectangle@2.3.0
+                Properties:
+                  Fill: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5, RGBA(16, 124, 16, 1), 1 < c, RGBA(0, 120, 212, 1), RGBA(200, 205, 215, 1)))
+                  Height: =4
+                  OnSelect: =Select(Parent)
+                  Width: =42
+                  X: =50
+                  Y: =77
+            - trCardStep1:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 40, 85, 1)
+                  Color: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5 || 1 < c || (1 = c && varBlink), RGBA(255, 255, 255, 1), RGBA(0, 40, 85, 1)))
+                  Fill: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5, RGBA(16, 124, 16, 1), 1 < c, RGBA(0, 120, 212, 1), 1 = c, If(varBlink, RGBA(0, 120, 212, 1), RGBA(199, 224, 244, 1)), RGBA(255, 255, 255, 1)))
+                  FontWeight: =FontWeight.Bold
+                  Height: =34
+                  HoverBorderColor: =Self.BorderColor
+                  HoverColor: =Self.Color
+                  HoverFill: =Self.Fill
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.BorderColor
+                  PressedFill: =Self.Fill
+                  RadiusBottomLeft: =17
+                  RadiusBottomRight: =17
+                  RadiusTopLeft: =17
+                  RadiusTopRight: =17
+                  Size: =12
+                  Text: ="1"
+                  Width: =34
+                  X: =16
+                  Y: =62
+            - trCardLine2:
+                Control: Rectangle@2.3.0
+                Properties:
+                  Fill: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5, RGBA(16, 124, 16, 1), 2 < c, RGBA(0, 120, 212, 1), RGBA(200, 205, 215, 1)))
+                  Height: =4
+                  OnSelect: =Select(Parent)
+                  Width: =42
+                  X: =126
+                  Y: =77
+            - trCardStep2:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 40, 85, 1)
+                  Color: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5 || 2 < c || (2 = c && varBlink), RGBA(255, 255, 255, 1), RGBA(0, 40, 85, 1)))
+                  Fill: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5, RGBA(16, 124, 16, 1), 2 < c, RGBA(0, 120, 212, 1), 2 = c, If(varBlink, RGBA(0, 120, 212, 1), RGBA(199, 224, 244, 1)), RGBA(255, 255, 255, 1)))
+                  FontWeight: =FontWeight.Bold
+                  Height: =34
+                  HoverBorderColor: =Self.BorderColor
+                  HoverColor: =Self.Color
+                  HoverFill: =Self.Fill
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.BorderColor
+                  PressedFill: =Self.Fill
+                  RadiusBottomLeft: =17
+                  RadiusBottomRight: =17
+                  RadiusTopLeft: =17
+                  RadiusTopRight: =17
+                  Size: =12
+                  Text: ="2"
+                  Width: =34
+                  X: =92
+                  Y: =62
+            - trCardLine3:
+                Control: Rectangle@2.3.0
+                Properties:
+                  Fill: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5, RGBA(16, 124, 16, 1), 3 < c, RGBA(0, 120, 212, 1), RGBA(200, 205, 215, 1)))
+                  Height: =4
+                  OnSelect: =Select(Parent)
+                  Width: =42
+                  X: =202
+                  Y: =77
+            - trCardStep3:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 40, 85, 1)
+                  Color: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5 || 3 < c || (3 = c && varBlink), RGBA(255, 255, 255, 1), RGBA(0, 40, 85, 1)))
+                  Fill: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5, RGBA(16, 124, 16, 1), 3 < c, RGBA(0, 120, 212, 1), 3 = c, If(varBlink, RGBA(0, 120, 212, 1), RGBA(199, 224, 244, 1)), RGBA(255, 255, 255, 1)))
+                  FontWeight: =FontWeight.Bold
+                  Height: =34
+                  HoverBorderColor: =Self.BorderColor
+                  HoverColor: =Self.Color
+                  HoverFill: =Self.Fill
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.BorderColor
+                  PressedFill: =Self.Fill
+                  RadiusBottomLeft: =17
+                  RadiusBottomRight: =17
+                  RadiusTopLeft: =17
+                  RadiusTopRight: =17
+                  Size: =12
+                  Text: ="3"
+                  Width: =34
+                  X: =168
+                  Y: =62
+            - trCardStep4:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 40, 85, 1)
+                  Color: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5 || 4 < c || (4 = c && varBlink), RGBA(255, 255, 255, 1), RGBA(0, 40, 85, 1)))
+                  Fill: |-
+                    =With({c: ThisItem.Cur}, If(c >= 5, RGBA(16, 124, 16, 1), 4 < c, RGBA(0, 120, 212, 1), 4 = c, If(varBlink, RGBA(0, 120, 212, 1), RGBA(199, 224, 244, 1)), RGBA(255, 255, 255, 1)))
+                  FontWeight: =FontWeight.Bold
+                  Height: =34
+                  HoverBorderColor: =Self.BorderColor
+                  HoverColor: =Self.Color
+                  HoverFill: =Self.Fill
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.BorderColor
+                  PressedFill: =Self.Fill
+                  RadiusBottomLeft: =17
+                  RadiusBottomRight: =17
+                  RadiusTopLeft: =17
+                  RadiusTopRight: =17
+                  Size: =12
+                  Text: ="4"
+                  Width: =34
+                  X: =244
+                  Y: =62
+      - trDetailPanel:
+          Control: GroupContainer@1.5.0
+          Variant: ManualLayout
+          Properties:
+            BorderColor: =RGBA(218, 222, 230, 1)
+            BorderThickness: =1
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height - 92
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Visible: =!IsBlank(varOpenTicket)
+            Width: =If(App.Width < 768, Parent.Width - 48, Parent.Width - (trTicketGallery.X + trTicketGallery.Width + 16) - 24)
+            X: =If(App.Width < 768, 24, trTicketGallery.X + trTicketGallery.Width + 16)
+            Y: =76
+          Children:
+            - trPanelTitle:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(0, 40, 85, 1)
+                  FontWeight: =FontWeight.Bold
+                  Height: =32
+                  Size: =18
+                  Text: =varOpenTicket.Ticket
+                  Width: =Parent.Width - trPanelClose.Width - 60
+                  X: =24
+                  Y: =16
+            - trPanelSub:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(96, 94, 92, 1)
+                  Height: =22
+                  Size: =11
+                  Text: =varOpenTicket.Src & " request  •  " & varOpenTicket.Category
+                  Width: =Parent.Width - trPanelClose.Width - 60
+                  X: =24
+                  Y: =48
+            - trPanelClose:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 40, 85, 1)
+                  BorderThickness: =1
+                  Color: =RGBA(0, 40, 85, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =36
+                  HoverColor: =RGBA(0, 40, 85, 1)
+                  HoverFill: =RGBA(230, 241, 252, 1)
+                  OnSelect: =Set(varOpenTicket, Blank())
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  PressedColor: =RGBA(0, 40, 85, 1)
+                  PressedFill: =RGBA(199, 224, 244, 1)
+                  RadiusBottomLeft: =18
+                  RadiusBottomRight: =18
+                  RadiusTopLeft: =18
+                  RadiusTopRight: =18
+                  Text: =If(App.Width < 768, "← Back", "✕")
+                  Width: =If(App.Width < 768, 96, 36)
+                  X: =Parent.Width - Self.Width - 20
+                  Y: =16
+            - trPanelDivider:
+                Control: Rectangle@2.3.0
+                Properties:
+                  Fill: =RGBA(225, 223, 221, 1)
+                  Height: =1
+                  Width: =Parent.Width - 48
+                  X: =24
+                  Y: =80
+            - trLblStatus:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(96, 94, 92, 1)
+                  FontWeight: =FontWeight.Semibold
+                  Height: =20
+                  Size: =9
+                  Text: ="Status"
+                  Width: =Parent.Width - 380
+                  X: =24
+                  Y: =96
+            - trValStatus:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(0, 40, 85, 1)
+                  Height: =24
+                  Size: =12
+                  Text: =If(varOpenTicket.Cur >= 5, "Completed", Coalesce(varOpenTicket.StatusText, "Submitted"))
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Parent.Width - 380
+                  X: =24
+                  Y: =116
+            - trLblRequestedby:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(96, 94, 92, 1)
+                  FontWeight: =FontWeight.Semibold
+                  Height: =20
+                  Size: =9
+                  Text: ="Requested by"
+                  Width: =Parent.Width - 380
+                  X: =24
+                  Y: =150
+            - trValRequestedby:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(0, 40, 85, 1)
+                  Height: =24
+                  Size: =12
+                  Text: =Coalesce(varOpenTicket.Requester, "—")
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Parent.Width - 380
+                  X: =24
+                  Y: =170
+            - trLblSubmitted:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(96, 94, 92, 1)
+                  FontWeight: =FontWeight.Semibold
+                  Height: =20
+                  Size: =9
+                  Text: ="Submitted"
+                  Width: =Parent.Width - 380
+                  X: =24
+                  Y: =204
+            - trValSubmitted:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(0, 40, 85, 1)
+                  Height: =24
+                  Size: =12
+                  Text: =Text(varOpenTicket.CreatedOn, "mmmm d, yyyy  h:mm AM/PM")
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Parent.Width - 380
+                  X: =24
+                  Y: =224
+            - trLblDescription:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(96, 94, 92, 1)
+                  FontWeight: =FontWeight.Semibold
+                  Height: =20
+                  Size: =9
+                  Text: ="Description"
+                  Width: =Parent.Width - 380
+                  X: =24
+                  Y: =258
+            - trValDescription:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(0, 40, 85, 1)
+                  Height: =200
+                  Size: =12
+                  Text: =Coalesce(varOpenTicket.Desc, "No description provided.")
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Parent.Width - 380
+                  X: =24
+                  Y: =278
+            - trFlowBg:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(225, 223, 221, 1)
+                  BorderThickness: =1
+                  Fill: =RGBA(250, 250, 250, 1)
+                  Height: =Parent.Height - 120
+                  Width: =312
+                  X: =Parent.Width - 336
+                  Y: =96
+            - trFlowHeader:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(0, 40, 85, 1)
+                  FontWeight: =FontWeight.Bold
+                  Height: =26
+                  Text: ="Approval flow"
+                  Width: =280
+                  X: =Parent.Width - 320
+                  Y: =104
+            - trFlowSub:
+                Control: Label@2.5.1
+                Properties:
+                  Color: =RGBA(96, 94, 92, 1)
+                  Height: =20
+                  Size: =9
+                  Text: =varOpenTicket.Src & "-" & varOpenTicket.RecId & "  •  " & If(varOpenTicket.Cur >= 5, "All steps complete", "Step " & varOpenTicket.Cur & " of 4")
+                  Width: =280
+                  X: =Parent.Width - 320
+                  Y: =128
+            - trFlowGallery:
+                Control: Gallery@2.15.0
+                Variant: Vertical
+                Properties:
+                  Height: =Parent.Height - 200
+                  Items: |-
+                    =With(
+                        {c: varOpenTicket.Cur},
+                        ForAll(
+                            Sequence(4),
+                            With(
+                                {n: Value},
+                                {
+                                    Step: n,
+                                    Name: Switch(n, 1, "Submitted", 2, "Review", 3, If(varOpenTicket.Src = "Locksmith", "Locksmith", "In progress"), "Done"),
+                                    Role: Switch(n, 1, "Request submitted", 2, "Supervisor review", 3, "Work in progress", "Request completed"),
+                                    St: If(c >= 5, "complete", n < c, "done", n = c, "current", "waiting")
+                                }
+                            )
+                        )
+                    )
+                  ShowScrollbar: =false
+                  TemplatePadding: =0
+                  TemplateSize: =84
+                  Width: =280
+                  X: =Parent.Width - 320
+                  Y: =160
+                Children:
+                  - trFlowLine:
+                      Control: Rectangle@2.3.0
+                      Properties:
+                        Fill: =If(ThisItem.St = "complete", RGBA(16, 124, 16, 1), ThisItem.St = "done", RGBA(0, 120, 212, 1), RGBA(200, 205, 215, 1))
+                        Height: =Parent.TemplateHeight - 38
+                        Visible: =ThisItem.Step < 4
+                        Width: =3
+                        X: =17
+                        Y: =38
+                  - trFlowCircle:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(0, 40, 85, 1)
+                        Color: =If(ThisItem.St in ["complete", "done"] || (ThisItem.St = "current" && varBlink), RGBA(255, 255, 255, 1), RGBA(0, 40, 85, 1))
+                        Fill: =Switch(ThisItem.St, "complete", RGBA(16, 124, 16, 1), "done", RGBA(0, 120, 212, 1), "current", If(varBlink, RGBA(0, 120, 212, 1), RGBA(199, 224, 244, 1)), RGBA(255, 255, 255, 1))
+                        FontWeight: =FontWeight.Bold
+                        Height: =34
+                        HoverBorderColor: =Self.BorderColor
+                        HoverColor: =Self.Color
+                        HoverFill: =Self.Fill
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        PressedBorderColor: =Self.BorderColor
+                        PressedFill: =Self.Fill
+                        RadiusBottomLeft: =17
+                        RadiusBottomRight: =17
+                        RadiusTopLeft: =17
+                        RadiusTopRight: =17
+                        Size: =12
+                        Text: =If(ThisItem.St in ["complete", "done"], "✓", Text(ThisItem.Step))
+                        Width: =34
+                        X: =2
+                        Y: =2
+                  - trFlowName:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(0, 40, 85, 1)
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        Size: =12
+                        Text: =ThisItem.Name
+                        Width: =Parent.TemplateWidth - 56
+                        X: =48
+                  - trFlowRole:
+                      Control: Label@2.5.1
+                      Properties:
+                        Color: =RGBA(96, 94, 92, 1)
+                        Height: =20
+                        Size: =10
+                        Text: =ThisItem.Role
+                        Width: =Parent.TemplateWidth - 56
+                        X: =48
+                        Y: =20
+                  - trFlowPill:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =Self.Color
+                        BorderThickness: =1
+                        Color: =Switch(ThisItem.St, "complete", RGBA(16, 124, 16, 1), "done", RGBA(16, 124, 16, 1), "current", RGBA(0, 120, 212, 1), RGBA(96, 94, 92, 1))
+                        Fill: =Switch(ThisItem.St, "complete", RGBA(223, 246, 221, 1), "done", RGBA(223, 246, 221, 1), "current", RGBA(222, 236, 249, 1), RGBA(243, 242, 241, 1))
+                        FontWeight: =FontWeight.Bold
+                        Height: =22
+                        HoverBorderColor: =Self.BorderColor
+                        HoverColor: =Self.Color
+                        HoverFill: =Self.Fill
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        PressedBorderColor: =Self.BorderColor
+                        PressedFill: =Self.Fill
+                        RadiusBottomLeft: =11
+                        RadiusBottomRight: =11
+                        RadiusTopLeft: =11
+                        RadiusTopRight: =11
+                        Size: =9
+                        Text: =Switch(ThisItem.St, "complete", "✓ Completed", "done", "✓ Completed", "current", "● In progress", "Waiting")
+                        Width: =116
+                        X: =48
+                        Y: =44

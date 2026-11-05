@@ -1,0 +1,124 @@
+{
+  "Resources": [
+    {
+      "Name": "SampleCardImage",
+      "Schema": "i",
+      "IsSampleData": true,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "/ctrllib/modernCard/images/SampleCardImage.svg",
+      "Path": "/ctrllib/modernCard/images/SampleCardImage.svg",
+      "Content": "Image",
+      "ResourceKind": "Uri",
+      "RootPath": "ms-appx:///ctrllib/modernCard/images/SampleCardImage.svg"
+    },
+    {
+      "Name": "SampleCardHeaderImage",
+      "Schema": "i",
+      "IsSampleData": true,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "/ctrllib/modernCard/images/SampleCardHeaderImage.svg",
+      "Path": "/ctrllib/modernCard/images/SampleCardHeaderImage.svg",
+      "Content": "Image",
+      "ResourceKind": "Uri",
+      "RootPath": "ms-appx:///ctrllib/modernCard/images/SampleCardHeaderImage.svg"
+    },
+    {
+      "Name": "SampleImage",
+      "Schema": "i",
+      "IsSampleData": true,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "/ctrllib/image/images/SampleImage.svg",
+      "Path": "/ctrllib/image/images/SampleImage.svg",
+      "Content": "Image",
+      "ResourceKind": "Uri",
+      "RootPath": "ms-appx:///ctrllib/image/images/SampleImage.svg"
+    },
+    {
+      "Name": "917332300",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "89e3a570-5dc1-46f8-9941-673acaf4a0f0.jpg",
+      "Path": "Assets\\Images\\89e3a570-5dc1-46f8-9941-673acaf4a0f0.jpg",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil104wus.blob.core.windows.net/dcd41861-5361-4fd1-8861-4d0f06ade0aa-1/resource/ODllM2E1NzAtNWRjMS00NmY4LTk5NDEtNjczYWNhZjRhMGYw.jpg?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-11-05T04%3A18%3A58Z&ske=2026-11-06T04%3A33%3A58Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-11-06T04%3A33%3A58Z&sr=b&sp=r&sig=aLiRnDuWyCOtuXpX1SDr%2FgyyZ0d8HA9QugZewNLYK8E%3D"
+    },
+    {
+      "Name": "912961862",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "5c30505b-a8ec-4ce6-b28b-e02c9fe47b59.jpg",
+      "Path": "Assets\\Images\\5c30505b-a8ec-4ce6-b28b-e02c9fe47b59.jpg",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil104wus.blob.core.windows.net/dcd41861-5361-4fd1-8861-4d0f06ade0aa-1/resource/NWMzMDUwNWItYThlYy00Y2U2LWIyOGItZTAyYzlmZTQ3YjU5.jpg?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-11-05T04%3A18%3A58Z&ske=2026-11-06T04%3A33%3A58Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-11-06T04%3A33%3A58Z&sr=b&sp=r&sig=dN0UeDQhwdqRmDH%2FVTkeQrMetV9z%2FaLLnTt4g3jZzlk%3D"
+    },
+    {
+      "Name": "pdgo logo",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "50f74c6c-6760-4246-9fc0-5c9d2f15bb33.jpeg",
+      "Path": "Assets\\Images\\50f74c6c-6760-4246-9fc0-5c9d2f15bb33.jpeg",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil104wus.blob.core.windows.net/dcd41861-5361-4fd1-8861-4d0f06ade0aa-1/resource/NTBmNzRjNmMtNjc2MC00MjQ2LTlmYzAtNWM5ZDJmMTViYjMz.jpeg?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-11-05T04%3A18%3A58Z&ske=2026-11-06T04%3A33%3A58Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-11-06T04%3A33%3A58Z&sr=b&sp=r&sig=ghgrR%2FC1HR2CFdQqGM%2BnPJsLvAi81hkwdBmdCDV%2BIsU%3D"
+    },
+    {
+      "Name": "Screenshot 2026-10-30 at 11.40.48 AM",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "75cfbf58-c2c3-4c30-a0f7-18b244d81243.png",
+      "Path": "Assets\\Images\\75cfbf58-c2c3-4c30-a0f7-18b244d81243.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil104wus.blob.core.windows.net/dcd41861-5361-4fd1-8861-4d0f06ade0aa-1/resource/NzVjZmJmNTgtYzJjMy00YzMwLWEwZjctMThiMjQ0ZDgxMjQz.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-11-05T04%3A18%3A58Z&ske=2026-11-06T04%3A33%3A58Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-11-06T04%3A33%3A58Z&sr=b&sp=r&sig=6iBcXhYcIvadNwDN%2FvbqZBSPWre9Z4t%2BXM%2BbtM1MFpc%3D"
+    },
+    {
+      "Name": "PDGo Logo",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "27bda325-29e8-4c13-8085-9c3de02123b0.png",
+      "Path": "Assets\\Images\\27bda325-29e8-4c13-8085-9c3de02123b0.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil104wus.blob.core.windows.net/dcd41861-5361-4fd1-8861-4d0f06ade0aa-1/resource/MjdiZGEzMjUtMjllOC00YzEzLTgwODUtOWMzZGUwMjEyM2Iw.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-11-05T04%3A18%3A58Z&ske=2026-11-06T04%3A33%3A58Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-11-06T04%3A33%3A58Z&sr=b&sp=r&sig=0RPtu7ruyeMXuyKzuGQWYBeLP2i%2B3KnCrkgXUJdXtVM%3D"
+    },
+    {
+      "Name": "PD Logo",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "bd48733e-960f-4c76-b408-d593c7b7f34f.png",
+      "Path": "Assets\\Images\\bd48733e-960f-4c76-b408-d593c7b7f34f.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil104wus.blob.core.windows.net/dcd41861-5361-4fd1-8861-4d0f06ade0aa-1/resource/YmQ0ODczM2UtOTYwZi00Yzc2LWI0MDgtZDU5M2M3YjdmMzRm.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-11-05T04%3A18%3A58Z&ske=2026-11-06T04%3A33%3A58Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-11-06T04%3A33%3A58Z&sr=b&sp=r&sig=aqLiFu33ghYF1bdj2gE8BVwm6yA0k0RKV1%2B4a8%2FgYa4%3D"
+    },
+    {
+      "Name": "Public Defender Logo",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "dd94271f-aa25-4ac4-9c70-1a6a6941f258.jpeg",
+      "Path": "Assets\\Images\\dd94271f-aa25-4ac4-9c70-1a6a6941f258.jpeg",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil104wus.blob.core.windows.net/dcd41861-5361-4fd1-8861-4d0f06ade0aa-1/resource/ZGQ5NDI3MWYtYWEyNS00YWM0LTljNzAtMWE2YTY5NDFmMjU4.jpeg?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-11-05T04%3A18%3A58Z&ske=2026-11-06T04%3A33%3A58Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-11-06T04%3A33%3A58Z&sr=b&sp=r&sig=Fn96pDVWf%2BWjZa3lChAQOGMue5xfirRf%2FDq%2BadjprEA%3D"
+    }
+  ]
+}

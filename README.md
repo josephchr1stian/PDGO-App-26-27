@@ -11,7 +11,20 @@ See [`requirements.md`](./requirements.md) for the full breakdown of scope, func
   - Time Off requests
   - Training Tracker (MCLE trainings, check-in/out, certificates)
   - Profile / Team / Supervisor screens
+- **`PDGoTicketing/`** — **the current team app** ("Faculty Bucket List" in the CSULA tenant, data in `csula.sharepoint.com/sites/team-12-pd-go`). Unpacked `.msapp`; the readable source is `PDGoTicketing/Src/*.pa.yaml`, one file per screen. The rest (`Controls/`, `References/`) is Studio's internal state — don't hand-edit it.
+- **`PDGoTicketing.msapp`** — the same app as a single file, kept as a restorable snapshot (Power Apps Studio → Open → Browse files).
 - **`requirements.md`** — project requirements derived from the sponsor's proposal document.
+
+> This repo is **public**. Mock/test data only — never commit the client's real emails, names, or ticket data.
+
+## Workflow for `PDGoTicketing/`
+
+The live app in Power Apps (co-authored in Studio) is the source of truth; git holds snapshots of it so changes are reviewable and diffable.
+
+1. **Branch** off `main` for your work: `git checkout -b <name>/<feature>`.
+2. **Snapshot** the app into `PDGoTicketing/` — either export from Studio (File → Save as → download `.msapp`) and unpack it, or pull the live session's YAML with the Canvas Authoring `sync_canvas` tool.
+3. **Commit** and open a PR. The diff of `Src/*.pa.yaml` shows exactly which formulas and controls changed.
+4. Merging a PR does **not** change the live app by itself. Changes reach the app by being made in Studio (or pushed into a co-authoring session), then snapshotted again.
 
 **Heads up:** the app's data connections currently point at a prior cohort's SharePoint site (`2023-2024SBPDGoDevelopment`), not an LA County PD data source. That needs to be sorted out before the existing screens will actually work for this project — see the open questions at the bottom of `requirements.md`.
 

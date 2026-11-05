@@ -1,0 +1,767 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  TicketDetailScreen:
+    Properties:
+      Fill: |
+        =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+      OnVisible: =ViewForm(Form1)
+    Children:
+      - Text3:
+          Control: ModernText@1.0.0
+          Properties:
+            FontWeight: =FontWeight.Bold
+            Height: |
+              =48
+            Size: =28
+            Text: |-
+              =
+              selTicket.ServiceSubcategory
+            Width: =600
+            X: =40
+            Y: =80
+      - Button1:
+          Control: ModernButton@1.0.0
+          Properties:
+            OnSelect: |-
+              =ResetForm(Form1);
+
+              Navigate(
+                  Coalesce(varPreviousScreen, UserHome), ScreenTransition.Fade
+              )
+            Text: ="Back"
+            X: =40
+            Y: =30
+      - Button2:
+          Control: ModernButton@1.0.0
+          Properties:
+            OnSelect: |-
+              =If(
+                  CanEditTicket,
+                  EditForm(Form1),
+                  Notify("You do not have permission to edit this ticket", NotificationType.Error)
+              )
+            Text: ="Edit ticket"
+            Visible: =CanEditTicket && Form1.Mode = FormMode.View
+            Width: =140
+            X: =160
+            Y: =30
+      - Form1:
+          Control: Form@2.4.4
+          Variant: Modern
+          Layout: Vertical
+          Properties:
+            BorderColor: =RGBA(245, 245, 245, 1)
+            DataSource: =AdministrativeServiceRequests
+            DefaultMode: =FormMode.View
+            Height: =420
+            Item: =selTicket
+            OnFailure: |-
+              =Notify (
+                  Coalesce(Form1.Error, "Could not save changes."), NotificationType.Error
+              )
+            OnSuccess: |-
+              =Set(selTicket, Form1.LastSubmit);
+              ViewForm(Form1);
+              Notify("Ticket updated.", NotificationType.Success)
+            Width: =1100
+            X: =40
+            Y: =130
+          Children:
+            - Title_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Title"
+                  Default: =ThisItem.Title
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Title)
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, Title)
+                  Required: =false
+                  Update: =DataCardValue6.Text
+                  Width: =266
+                  X: =0
+                  Y: =0
+                Children:
+                  - DataCardKey6:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: |
+                          ="Category"
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue6:
+                      Control: ModernTextInput@1.1.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        Default: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        MaxLength: =Parent.MaxLength
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), ValidationState.None, ValidationState.Error)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey6.Y + DataCardKey6.Height + 4
+                  - ErrorMessage6:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue6.Y + DataCardValue6.Height
+                  - StarVisible6:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey6.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey6.Y
+            - Description_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernTextualMultilineEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Description"
+                  Default: =ThisItem.Description
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Description)
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, Description)
+                  Required: =true
+                  Update: =DataCardValue22.Text
+                  Width: =266
+                  X: =1
+                  Y: =0
+                Children:
+                  - DataCardKey22:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue22:
+                      Control: ModernTextInput@1.1.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        Default: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =144
+                        MaxLength: =Parent.MaxLength
+                        Required: =Parent.Required
+                        Type: =TextInputType.Multiline
+                        ValidationState: =If(IsBlank(Parent.Error), ValidationState.None, ValidationState.Error)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey22.Y + DataCardKey22.Height + 4
+                  - ErrorMessage22:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue22.Y + DataCardValue22.Height
+                  - StarVisible22:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey22.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey22.Y
+            - Location_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernTextualEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Location"
+                  Default: =ThisItem.Location
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Location)
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, Location)
+                  Required: =true
+                  Update: =DataCardValue14.Text
+                  Width: =266
+                  X: =2
+                  Y: =0
+                Children:
+                  - DataCardKey14:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue14:
+                      Control: ModernTextInput@1.1.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        Default: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        MaxLength: =Parent.MaxLength
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), ValidationState.None, ValidationState.Error)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey14.Y + DataCardKey14.Height + 4
+                  - ErrorMessage14:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue14.Y + DataCardValue14.Height
+                  - StarVisible14:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey14.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey14.Y
+            - Building_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernTextualEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Building"
+                  Default: =ThisItem.Building
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Building)
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, Building)
+                  Required: =true
+                  Update: =DataCardValue15.Text
+                  Width: =266
+                  X: =0
+                  Y: =1
+                Children:
+                  - DataCardKey15:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue15:
+                      Control: ModernTextInput@1.1.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        Default: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        MaxLength: =Parent.MaxLength
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), ValidationState.None, ValidationState.Error)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey15.Y + DataCardKey15.Height + 4
+                  - ErrorMessage15:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue15.Y + DataCardValue15.Height
+                  - StarVisible15:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey15.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey15.Y
+            - Floor_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernTextualEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Floor"
+                  Default: =ThisItem.'Room / Area'
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,'Room / Area')
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, 'Room / Area')
+                  Required: =false
+                  Update: =DataCardValue16.Text
+                  Width: =266
+                  X: =1
+                  Y: =1
+                Children:
+                  - DataCardKey16:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue16:
+                      Control: ModernTextInput@1.1.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        Default: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        MaxLength: =Parent.MaxLength
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), ValidationState.None, ValidationState.Error)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey16.Y + DataCardKey16.Height + 4
+                  - ErrorMessage16:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue16.Y + DataCardValue16.Height
+                  - StarVisible16:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey16.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey16.Y
+            - Status_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernComboBoxEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Status"
+                  Default: =ThisItem.Status
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Status)
+                  Required: =true
+                  Update: =DataCardValue17.Selected
+                  Width: =266
+                  X: =2
+                  Y: =1
+                Children:
+                  - DataCardKey17:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue17:
+                      Control: ModernCombobox@1.1.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        DefaultSelectedItems: =[Parent.Default]
+                        DisplayMode: =Parent.DisplayMode
+                        ItemDisplayText: =ThisItem.Value
+                        Items: =Choices([@AdministrativeServiceRequests].Status)
+                        SelectMultiple: =false
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey17.Y + DataCardKey17.Height + 4
+                  - ErrorMessage17:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue17.Y + DataCardValue17.Height
+                  - StarVisible17:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey17.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey17.Y
+            - Priority_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernComboBoxEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Priority"
+                  Default: =ThisItem.Priority
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Priority)
+                  Required: =false
+                  Update: =DataCardValue18.Selected
+                  Width: =266
+                  X: =0
+                  Y: =2
+                Children:
+                  - DataCardKey18:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue18:
+                      Control: ModernCombobox@1.1.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        DefaultSelectedItems: =[Parent.Default]
+                        DisplayMode: =Parent.DisplayMode
+                        ItemDisplayText: =ThisItem.Value
+                        Items: =Choices([@AdministrativeServiceRequests].Priority)
+                        SelectMultiple: =false
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey18.Y + DataCardKey18.Height + 4
+                  - ErrorMessage18:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue18.Y + DataCardValue18.Height
+                  - StarVisible18:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey18.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey18.Y
+            - RequestedBy_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernTextualEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="RequestedBy"
+                  Default: =ThisItem.RequestedBy
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,RequestedBy)
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, RequestedBy)
+                  Required: =false
+                  Update: =DataCardValue19.Text
+                  Width: =266
+                  X: =1
+                  Y: =2
+                Children:
+                  - DataCardKey19:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue19:
+                      Control: ModernTextInput@1.1.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        Default: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        MaxLength: =Parent.MaxLength
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), ValidationState.None, ValidationState.Error)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey19.Y + DataCardKey19.Height + 4
+                  - ErrorMessage19:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue19.Y + DataCardValue19.Height
+                  - StarVisible19:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey19.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey19.Y
+            - AssignedTo_DataCard1:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="AssignedTo"
+                  Default: =ThisItem.AssignedTo
+                  DisplayMode: =If(varRole = "Supervisor", Parent.DisplayMode, DisplayMode.View)
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,AssignedTo)
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, AssignedTo)
+                  Required: =false
+                  Update: =DataCardValue20.Text
+                  Width: =266
+                  X: =2
+                  Y: =2
+                Children:
+                  - DataCardKey20:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue20:
+                      Control: ModernTextInput@1.1.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        Default: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        MaxLength: =Parent.MaxLength
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), ValidationState.None, ValidationState.Error)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey20.Y + DataCardKey20.Height + 4
+                  - ErrorMessage20:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue20.Y + DataCardValue20.Height
+                  - StarVisible20:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey20.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey20.Y
+            - RequestDate_DataCard1:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernDateEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="RequestDate"
+                  Default: =ThisItem.RequestDate
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,RequestDate)
+                  Required: =false
+                  Update: =DataCardValue21.SelectedDate
+                  Width: =266
+                  X: =0
+                  Y: =3
+                Children:
+                  - DataCardKey21:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue21:
+                      Control: ModernDatePicker@1.0.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        DefaultDate: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        IsEditable: =true
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey21.Y + DataCardKey21.Height + 4
+                  - ErrorMessage21:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue21.Y + DataCardValue21.Height
+                  - StarVisible21:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey21.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey21.Y
+      - Button4:
+          Control: ModernButton@1.0.0
+          Properties:
+            OnSelect: |-
+              =If (
+                  CanEditTicket,
+                  SubmitForm(Form1),
+                  Notify ("You don't have permission to edit this ticket.", NotificationType.Error)
+              )
+            Text: ="Save"
+            Visible: =CanEditTicket && Form1.Mode = FormMode.Edit
+            X: =261
+            Y: =537
+      - Button5:
+          Control: ModernButton@1.0.0
+          Properties:
+            OnSelect: |-
+              =ResetForm(Form1);
+              ViewForm(Form1)
+            Text: ="Cancel"
+            Visible: =Form1.Mode = FormMode.Edit
+            X: =404
+            Y: =537

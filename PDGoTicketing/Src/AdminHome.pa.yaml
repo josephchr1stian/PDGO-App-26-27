@@ -1,0 +1,355 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  AdminHome:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - Button3_1:
+          Control: ModernButton@1.0.0
+          Properties:
+            OnSelect: =Set(varEmail, ""); Set(varUser, Blank()); Set(varRole, ""); Set(selTicket, Blank()); Navigate(Login, ScreenTransition.Fade)
+            Text: ="Sign out"
+            Width: =140
+            X: =1180
+            Y: =20
+      - Gallery1_2:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+          Properties:
+            BorderColor: =RGBA(245, 245, 245, 1)
+            Height: =487
+            Items: =PDGOCategories
+            OnSelect: =Set(selCat, ThisItem); Set(selTicket, Blank()); NewForm(RequestSubmissionForm); Navigate('.SubmitRequestScreen', ScreenTransition.Fade)
+            TemplateSize: =90
+            Width: =1280
+            WrapCount: =2
+            X: =40
+            Y: =40
+          Children:
+            - Rectangle2_2:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Height: =Parent.TemplateHeight - Separator2_2.Height
+                  OnSelect: =Select(Parent)
+                  Visible: =ThisItem.IsSelected
+                  Width: =4
+            - Image1_2:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  BorderThickness: =2
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledFill: =RGBA(0, 0, 0, 0)
+                  FocusedBorderThickness: =4
+                  Height: =72
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverFill: =RGBA(0, 0, 0, 0)
+                  Image: ="data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' fill='none' stroke='#0A0A5C' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'>" & Switch(ThisItem.Title, "Admin", "<rect x='3' y='7' width='18' height='13' rx='2'/><path d='M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'/>", "Cleaning", "<path d='M12 2.7l5.7 5.6a8 8 0 1 1-11.4 0z'/>", "IT", "<rect x='2' y='3' width='20' height='14' rx='2'/><path d='M8 21h8M12 17v4'/>", "Maintenance", "<path d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/>", "Security", "<path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/>", "<circle cx='12' cy='12' r='9'/><path d='M12 8v4M12 16h.01'/>") & "</svg>")
+                  OnSelect: =Select(Parent)
+                  PressedBorderColor: =RGBA(0, 0, 0, 0)
+                  PressedFill: =RGBA(0, 0, 0, 0)
+                  RadiusBottomLeft: =8
+                  RadiusBottomRight: =8
+                  RadiusTopLeft: =8
+                  RadiusTopRight: =8
+                  Width: =72
+                  X: =16
+                  Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            - NextArrow2_2:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  AccessibleLabel: =Self.Tooltip
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(166, 166, 166, 1)
+                  DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                  DisabledColor: =RGBA(119, 119, 119, 1)
+                  Height: =50
+                  Icon: =Icon.ChevronRight
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =16
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  PaddingTop: =16
+                  Tooltip: ="View item details"
+                  Width: =50
+                  X: =Parent.TemplateWidth - Self.Width - 12
+                  Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            - Title2_2:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(50, 49, 48, 1)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =Self.Size * 1.8
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =12
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =14
+                  Text: =ThisItem.Title
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Parent.TemplateWidth - 173
+                  X: =103
+                  Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle2_2.Size * 1.8)) / 2
+            - Subtitle2_2:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  Color: =RGBA(96, 94, 92, 1)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                  Height: =Self.Size * 1.8
+                  OnSelect: =Select(Parent)
+                  PaddingBottom: =0
+                  PaddingLeft: =12
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Size: =12
+                  Text: |
+                    ="Tap to submit a request"
+                  VerticalAlign: =VerticalAlign.Top
+                  Width: =Title2_2.Width
+                  X: =Title2_2.X
+                  Y: =Title2_2.Y + Title2_2.Height
+            - Separator2_2:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderThickness: =1
+                  Fill: =RGBA(0, 0, 0, 1)
+                  Height: =2
+                  OnSelect: =Select(Parent)
+                  Width: =Parent.TemplateWidth
+                  Y: =Parent.TemplateHeight - Self.Height
+      - Label1_1:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(50, 49, 48, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Size: =20
+            Text: |
+              =If((varRole = "Admin" || varRole = "Supervisor") && varView <> "Submitted", "My assigned tickets", "My submitted tickets")
+            Width: =400
+            X: =40
+            Y: =Table1_1.Y - 36
+      - Table1_1:
+          Control: ModernDataGrid@1.6.0
+          Properties:
+            Height: =If(Self.Y + 500 > Parent.Height, Parent.Height - Self.Y, 500)
+            Items: |
+              =Sort(If((varRole = "Admin" || varRole = "Supervisor") && varView <> "Submitted", Filter(AdministrativeServiceRequests, Lower(AssignedTo) = Lower(varEmail)), Filter(AdministrativeServiceRequests, Lower(RequestedBy) = Lower(varEmail))), RequestDate, SortOrder.Descending)
+            OnChange: |-
+              =Set(selTicket, Self.Selected); 
+              Set(varPreviousScreen, AdminHome);
+              Navigate(TicketDetailScreen, ScreenTransition.Fade)
+            SelectMultiple: =false
+            ShowSelector: =false
+            Width: =1280
+            X: =40
+            Y: =368
+          Children:
+            - Category11_1:
+                Control: ModernDataGridColumn@1.2.0
+                Variant: Textual
+                IsLocked: true
+                Properties:
+                  FieldDisplayName: ="Category"
+                  FieldName: ="cr8f7_Category"
+                  FieldVariantName: ="complexTypeColumn"
+                  Text: =ThisItem.Title
+            - Modified On11_1:
+                Control: ModernDataGridColumn@1.2.0
+                Variant: DateTime
+                IsLocked: true
+                Properties:
+                  FieldDisplayName: ="Modified On"
+                  FieldName: ="modifiedon"
+                  FieldVariantName: ="textualColumn"
+                  Text: =Text(ThisItem.Modified, DateTimeFormat.LongDateTime)
+            - Created On11_1:
+                Control: ModernDataGridColumn@1.2.0
+                Variant: DateTime
+                IsLocked: true
+                Properties:
+                  FieldDisplayName: ="Created On"
+                  FieldName: ="createdon"
+                  FieldVariantName: ="textualColumn"
+                  Text: =Text(ThisItem.Created, "mmm d, yyyy")
+            - Ticket Status11_1:
+                Control: ModernDataGridColumn@1.2.0
+                Variant: ComplexOptionSet
+                IsLocked: true
+                Properties:
+                  FieldDisplayName: ="Ticket Status"
+                  FieldName: ="cr8f7_ticketstatus"
+                  FieldVariantName: ="textualColumn"
+                  Text: =ThisItem.Status.Value
+            - Description11_2:
+                Control: ModernDataGridColumn@1.2.0
+                Variant: Textual
+                IsLocked: true
+                Properties:
+                  FieldDisplayName: ="Description"
+                  FieldName: ="cr8f7_description"
+                  FieldVariantName: ="textualColumn"
+                  Text: =ThisItem.Description
+            - Title51_1:
+                Control: ModernDataGridColumn@1.2.0
+                Variant: Textual
+                IsLocked: true
+                Properties:
+                  FieldDisplayName: ="Title"
+                  FieldName: ="cr8f7_title"
+                  FieldVariantName: ="textualColumn"
+                  Text: =ThisItem.ServiceSubcategory
+      - AvatarWel1_2:
+          Control: ModernAvatar@1.1.0
+          Properties:
+            Height: =32
+            OnSelect: =Set(varMenu, !varMenu)
+            Width: =32
+            X: =1125
+            Y: =20
+      - AccountMenu_2:
+          Control: GroupContainer@1.5.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.Regular
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =8
+            PaddingBottom: =12
+            PaddingLeft: =12
+            PaddingRight: =12
+            PaddingTop: =12
+            Visible: =varMenu
+            Width: =240
+            X: =Parent.Width - Self.Width - 16
+            Y: =64
+          Children:
+            - menuName_2:
+                Control: Label@2.5.1
+                Properties:
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  BorderThickness: =2
+                  Color: =RGBA(50, 49, 48, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  FocusedBorderThickness: =4
+                  Font: =Font.'Segoe UI'
+                  FontWeight: =FontWeight.Semibold
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  Size: =12
+                  Text: =If(IsBlank(varRole), "Not signed in", Coalesce(varUser.Title, User().FullName))
+            - menuRole_2:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  BorderThickness: =2
+                  Color: =RGBA(96, 94, 92, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  FocusedBorderThickness: =4
+                  Font: =Font.'Segoe UI'
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  Overflow: =Overflow.Scroll
+                  Size: =12
+                  Text: |+
+                    =If(IsBlank(varRole), "Sign in to see your tickets", varEmail & " · " & varRole & If(IsBlank(varDept), "", " · " & varDept))
+
+
+            - signOut_2:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Fill: =RGBA(0, 120, 212, 1)
+                  Font: =Font.'Segoe UI'
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(16, 110, 190, 1)
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  OnSelect: |-
+                    =Set(varMenu, false);
+                    Set(varRole, "");
+                    Set(varEmail, "");
+                    Navigate(Login, ScreenTransition.Fade)
+                  PressedBorderColor: =RGBA(0, 69, 120, 1)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(16, 110, 190, 1)
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: ="Sign Out"
+                  Visible: =Not(IsBlank(varRole))
+            - signIn_2:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  BorderStyle: =BorderStyle.None
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisabledColor: =RGBA(161, 159, 157, 1)
+                  DisabledFill: =RGBA(242, 242, 241, 0)
+                  Fill: =RGBA(0, 120, 212, 1)
+                  Font: =Font.'Segoe UI'
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(16, 110, 190, 1)
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  OnSelect: =Set(varMenu, false); Navigate(Login, ScreenTransition.Fade)
+                  PressedBorderColor: =RGBA(0, 69, 120, 1)
+                  PressedColor: =RGBA(255, 255, 255, 1)
+                  PressedFill: =RGBA(16, 110, 190, 1)
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: ="Sign In"
+                  Visible: =IsBlank(varRole)
+      - Button6:
+          Control: ModernButton@1.0.0
+          Properties:
+            OnSelect: |
+              =Set(varView, If(varView = "Submitted", "Assigned", "Submitted"))
+            Text: |
+              =If(varView = "Submitted", "View assigned tickets", "View my submitted tickets")
+            Visible: |
+              =varRole = "Admin" || varRole = "Supervisor"
+            Width: =260
+            X: =1040
+            Y: =322
