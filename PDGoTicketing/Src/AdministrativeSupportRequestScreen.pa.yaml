@@ -1,0 +1,1750 @@
+Screens:
+  AdministrativeSupportRequestScreen:
+    Properties:
+      Fill: =RGBA(248, 249, 252, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+      OnVisible: |-
+        =Set(varResetAttachments, false);
+        Set(varShowSubmitErrors, false);
+        NewForm(AdministrativeSupportRequestForm);
+        ResetForm(AdministrativeSupportRequestForm)
+    Children:
+      - AdministrativeSupportHeaderBarRectangle:
+          Control: Rectangle
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            DisabledFill: =RGBA(161, 159, 157, 1)
+            Fill: =RGBA(0, 120, 212, 1)
+            FocusedBorderThickness: =4
+            Height: |-
+              =If(
+                  Parent.Width < 600,
+                  64,
+                  64
+              )
+            HoverFill: =RGBA(0, 120, 212, 1)
+            PressedFill: =RGBA(0, 120, 212, 1)
+            Width: =Parent.Width
+      - AdministrativeSupportRequestTitleLabel:
+          Control: Label
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =64
+            Size: |-
+              =If(
+                  Parent.Width < 600,
+                  18,
+                  24
+              )
+            Text: ="Submit an Administrative Support Request"
+            Width: =Parent.Width - 48
+            X: =(Parent.Width - Self.Width) / 2
+            Y: |-
+              =AdministrativeSupportHeaderBarRectangle.Y +
+              (AdministrativeSupportHeaderBarRectangle.Height - Self.Height) / 2
+      - AdministrativeSupportBackToHomeButton:
+          Control: Classic/Button
+          Properties:
+            BorderColor: =RGBA(210, 220, 230, 1)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =1
+            Color: =RGBA(0, 120, 212, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            DisabledFill: =RGBA(242, 242, 241, 0)
+            Fill: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Segoe UI'
+            Height: =44
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(16, 110, 190, 1)
+            OnSelect: =Navigate('Pdgo Hub', ScreenTransition.Fade)
+            PressedBorderColor: =RGBA(0, 69, 120, 1)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(16, 110, 190, 1)
+            RadiusBottomLeft: =6
+            RadiusBottomRight: =6
+            RadiusTopLeft: =6
+            RadiusTopRight: =6
+            Text: ="← Back to Home"
+            Width: =Min(200, Parent.Width - 48)
+            X: |-
+              =If(
+                  Parent.Width < 600,
+                  12,
+                  24
+              )
+            Y: |-
+              =AdministrativeSupportHeaderBarRectangle.Y +
+              AdministrativeSupportHeaderBarRectangle.Height +
+              8
+      - AdministrativeSupportFormBackgroundRectangle:
+          Control: Rectangle
+          Properties:
+            BorderColor: =RGBA(218, 225, 233, 1)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =1
+            DisabledFill: =RGBA(161, 159, 157, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            FocusedBorderThickness: =4
+            Height: |-
+              =AdministrativeSupportSubmitRequestButton.Y +
+              AdministrativeSupportSubmitRequestButton.Height +
+              12 -
+              Self.Y
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(0, 120, 212, 1)
+            Width: |-
+              =Min(
+                  AdministrativeSupportRequestForm.Width + 32,
+                  Parent.Width - 8
+              )
+            X: =(Parent.Width - Self.Width) / 2
+            Y: =AdministrativeSupportRequestForm.Y - 12
+      - AdministrativeSupportRequestForm:
+          Control: Form
+          Variant: Classic
+          Layout: Vertical
+          Properties:
+            BorderColor: =RGBA(245, 245, 245, 1)
+            DataSource: =AdministrativeServiceRequests
+            DefaultMode: =FormMode.New
+            Height: |-
+              =Max(
+                  200,
+                  AdministrativeSupportSubmitRequestButton.Y - Self.Y - 32
+              )
+            NumberOfColumns: =1
+            OnFailure: |
+              =Notify(
+                  "Submission failed: " & AdministrativeSupportRequestForm.Error,
+                  NotificationType.Error
+              )
+            OnSuccess: |-
+              =Set(
+                  SubmittedRequestID,
+                  AdministrativeSupportRequestForm.LastSubmit.ID
+              );
+
+              Notify(
+                  "Your request has been submitted successfully!",
+                  NotificationType.Success
+              );
+
+              ResetForm(AdministrativeSupportRequestForm);
+
+              NewForm(AdministrativeSupportRequestForm)
+            Width: =Min(800, Parent.Width - 48)
+            X: =(Parent.Width - Self.Width) / 2
+            Y: =AdministrativeSupportBackToHomeButton.Y + AdministrativeSupportBackToHomeButton.Height + 24
+          Children:
+            - AdministrativeSupportServiceCategoryDataCard:
+                Control: TypedDataCard
+                Variant: ClassicTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Title"
+                  Default: =ThisItem.Title
+                  DisplayName: ="Service Category"
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, Title)
+                  Required: =true
+                  Update: ="Administrative Support"
+                  Visible: =false
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =0
+                Children:
+                  - AdministrativeSupportServiceCategoryRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportServiceCategoryFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportServiceCategoryFieldLabel.Y
+                  - AdministrativeSupportServiceCategoryFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportServiceCategoryDropdown:
+                      Control: Classic/DropDown
+                      Properties:
+                        AllowEmptySelection: =true
+                        BorderColor: =RGBA(210, 220, 230, 1)
+                        BorderThickness: =1
+                        ChevronBackground: =RGBA(255, 255, 255, 1)
+                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
+                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
+                        ChevronFill: =RGBA(0, 120, 212, 1)
+                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
+                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =""
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(245, 249, 255, 1)
+                        Items: |-
+                          =Table({Value: "Administrative Support"})
+                        Items.Value: =Value
+                        OnChange: |-
+                          =Set(varShowSubmitErrors, false);
+
+                          Reset(AdministrativeSupportServiceSubcategoryDropdown);
+                          Reset(AdministrativeSupportRequestTypeDropdown);
+
+                          Set(varResetAttachments, true);
+                          Set(varResetAttachments, false)
+                        PaddingBottom: =5
+                        PaddingLeft: =5
+                        PaddingRight: =5
+                        PaddingTop: =5
+                        PressedBorderColor: =RGBA(16, 110, 190, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 120, 212, 1)
+                        SelectionColor: =RGBA(50, 49, 48, 1)
+                        SelectionFill: =RGBA(0, 120, 212, 1)
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =40
+                  - AdministrativeSupportServiceCategoryInput:
+                      Control: Classic/TextInput
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Tooltip: =Parent.DisplayName
+                        Visible: =false
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportServiceCategoryFieldLabel.Y + AdministrativeSupportServiceCategoryFieldLabel.Height + 5
+                  - AdministrativeSupportServiceCategoryErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportServiceCategoryInput.Y + AdministrativeSupportServiceCategoryInput.Height
+            - AdministrativeSupportServiceSubcategoryDataCard:
+                Control: TypedDataCard
+                Variant: ClassicTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="ServiceSubcategory"
+                  Default: =ThisItem.ServiceSubcategory
+                  DisplayName: ="Service Subcategory"
+                  Height: |-
+                    =AdministrativeSupportServiceSubcategoryDropdown.Y +
+                    AdministrativeSupportServiceSubcategoryDropdown.Height + 20
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, ServiceSubcategory)
+                  Required: =true
+                  Update: =AdministrativeSupportServiceSubcategoryDropdown.Selected.Value
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =1
+                Children:
+                  - AdministrativeSupportServiceSubcategoryRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportServiceSubcategoryFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportServiceSubcategoryFieldLabel.Y
+                  - AdministrativeSupportServiceSubcategoryFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportServiceSubcategoryInput:
+                      Control: Classic/TextInput
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Tooltip: =Parent.DisplayName
+                        Visible: =false
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportServiceSubcategoryFieldLabel.Y + AdministrativeSupportServiceSubcategoryFieldLabel.Height + 5
+                  - AdministrativeSupportServiceSubcategoryDropdown:
+                      Control: Classic/DropDown
+                      Properties:
+                        AllowEmptySelection: =true
+                        BorderColor: =RGBA(210, 220, 230, 1)
+                        BorderThickness: =1
+                        ChevronBackground: =RGBA(255, 255, 255, 1)
+                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
+                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
+                        ChevronFill: =RGBA(0, 120, 212, 1)
+                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
+                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =""
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(245, 249, 255, 1)
+                        Items: |-
+                          =Table(
+                              {Value: "General Requests"},
+                              {Value: "Access Requests"},
+                              {Value: "Workspace Setup"},
+                              {Value: "Other Administrative Support"}
+                          )
+                        Items.Value: =Value
+                        OnChange: |-
+                          =Set(varShowSubmitErrors, false);
+
+                          Reset(AdministrativeSupportRequestTypeDropdown);
+
+                          Set(varResetAttachments, true);
+                          Set(varResetAttachments, false)
+                        PaddingBottom: =5
+                        PaddingLeft: =5
+                        PaddingRight: =5
+                        PaddingTop: =5
+                        PressedBorderColor: =RGBA(16, 110, 190, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 120, 212, 1)
+                        SelectionColor: =RGBA(50, 49, 48, 1)
+                        SelectionFill: =RGBA(0, 120, 212, 1)
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: |-
+                          =AdministrativeSupportServiceSubcategoryFieldLabel.Y +
+                          AdministrativeSupportServiceSubcategoryFieldLabel.Height + 5
+                  - AdministrativeSupportServiceSubcategoryErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportServiceSubcategoryInput.Y + AdministrativeSupportServiceSubcategoryInput.Height
+            - AdministrativeSupportRequestTypeDataCard:
+                Control: TypedDataCard
+                Variant: ClassicTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="RequestType"
+                  Default: =ThisItem.'Request Type'
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,'Request Type')
+                  Height: =AdministrativeSupportRequestTypeDropdown.Y + AdministrativeSupportRequestTypeDropdown.Height + 20
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, 'Request Type')
+                  Required: =false
+                  Update: =Blank()
+                  Visible: =false
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =2
+                Children:
+                  - AdministrativeSupportRequestTypeRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportRequestTypeFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportRequestTypeFieldLabel.Y
+                  - AdministrativeSupportRequestTypeFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportRequestTypeDropdown:
+                      Control: Classic/DropDown
+                      Properties:
+                        AllowEmptySelection: =true
+                        BorderColor: =RGBA(210, 220, 230, 1)
+                        BorderThickness: =1
+                        ChevronBackground: =RGBA(255, 255, 255, 1)
+                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
+                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
+                        ChevronFill: =RGBA(0, 120, 212, 1)
+                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
+                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =""
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(245, 249, 255, 1)
+                        Items: |-
+                          =Table({Value: ""})
+                        Items.Value: =Value
+                        PaddingBottom: =5
+                        PaddingLeft: =5
+                        PaddingRight: =5
+                        PaddingTop: =5
+                        PressedBorderColor: =RGBA(16, 110, 190, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 120, 212, 1)
+                        SelectionColor: =RGBA(50, 49, 48, 1)
+                        SelectionFill: =RGBA(0, 120, 212, 1)
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =40
+                  - AdministrativeSupportRequestTypeInput:
+                      Control: Classic/TextInput
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Tooltip: =Parent.DisplayName
+                        Visible: =false
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportRequestTypeFieldLabel.Y + AdministrativeSupportRequestTypeFieldLabel.Height + 5
+                  - AdministrativeSupportRequestTypeErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode = DisplayMode.Edit && varShowSubmitErrors
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportRequestTypeInput.Y + AdministrativeSupportRequestTypeInput.Height
+            - AdministrativeSupportLocationDataCard:
+                Control: TypedDataCard
+                Variant: ClassicTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Location"
+                  Default: =ThisItem.Location
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Location)
+                  Height: =120
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, Location)
+                  Required: =true
+                  Update: =AdministrativeSupportLocationInput.Text
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =3
+                Children:
+                  - AdministrativeSupportLocationRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportLocationFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportLocationFieldLabel.Y
+                  - AdministrativeSupportLocationFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportLocationInput:
+                      Control: Classic/TextInput
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =RGBA(210, 220, 230, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        FocusedBorderColor: =RGBA(0, 120, 212, 1)
+                        FocusedBorderThickness: =2
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(245, 249, 255, 1)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportLocationFieldLabel.Y + AdministrativeSupportLocationFieldLabel.Height + 5
+                  - AdministrativeSupportLocationErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode = DisplayMode.Edit && varShowSubmitErrors
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportLocationInput.Y + AdministrativeSupportLocationInput.Height
+            - AdministrativeSupportBuildingDataCard:
+                Control: TypedDataCard
+                Variant: ClassicTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Building"
+                  Default: =ThisItem.Building
+                  DisplayName: ="Building"
+                  Height: =AdministrativeSupportBuildingInput.Y + AdministrativeSupportBuildingInput.Height + 20
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, Building)
+                  Required: =true
+                  Update: =AdministrativeSupportBuildingInput.Text
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =4
+                Children:
+                  - AdministrativeSupportBuildingRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportBuildingFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportBuildingFieldLabel.Y
+                  - AdministrativeSupportBuildingFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportBuildingInput:
+                      Control: Classic/TextInput
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =RGBA(210, 220, 230, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        FocusedBorderColor: =RGBA(0, 120, 212, 1)
+                        FocusedBorderThickness: =2
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(245, 249, 255, 1)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportBuildingFieldLabel.Y + AdministrativeSupportBuildingFieldLabel.Height + 5
+                  - AdministrativeSupportBuildingErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode = DisplayMode.Edit && varShowSubmitErrors
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportBuildingInput.Y + AdministrativeSupportBuildingInput.Height
+            - AdministrativeSupportRoomAreaDataCard:
+                Control: TypedDataCard
+                Variant: ClassicTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Floor"
+                  Default: =ThisItem.'Room / Area'
+                  DisplayName: ="Room / Area"
+                  Height: =AdministrativeSupportRoomAreaInput.Y + AdministrativeSupportRoomAreaInput.Height + 20
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, 'Room / Area')
+                  Required: =false
+                  Update: =AdministrativeSupportRoomAreaInput.Text
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =5
+                Children:
+                  - AdministrativeSupportRoomAreaRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportRoomAreaFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportRoomAreaFieldLabel.Y
+                  - AdministrativeSupportRoomAreaFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportRoomAreaInput:
+                      Control: Classic/TextInput
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =RGBA(210, 220, 230, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        FocusedBorderColor: =RGBA(0, 120, 212, 1)
+                        FocusedBorderThickness: =2
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(245, 249, 255, 1)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportRoomAreaFieldLabel.Y + AdministrativeSupportRoomAreaFieldLabel.Height + 5
+                  - AdministrativeSupportRoomAreaErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportRoomAreaInput.Y + AdministrativeSupportRoomAreaInput.Height
+            - AdministrativeSupportDescriptionDataCard:
+                Control: TypedDataCard
+                Variant: ClassicTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Description"
+                  Default: =ThisItem.Description
+                  DisplayName: ="Description"
+                  Height: =AdministrativeSupportDescriptionInput.Y + AdministrativeSupportDescriptionInput.Height + 20
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, Description)
+                  Required: =true
+                  Update: =AdministrativeSupportDescriptionInput.Text
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =6
+                Children:
+                  - AdministrativeSupportDescriptionRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportDescriptionFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportDescriptionFieldLabel.Y
+                  - AdministrativeSupportDescriptionFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportDescriptionInput:
+                      Control: Classic/TextInput
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =RGBA(210, 220, 230, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        FocusedBorderColor: =RGBA(0, 120, 212, 1)
+                        FocusedBorderThickness: =2
+                        Font: =Font.'Segoe UI'
+                        Height: =100
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(245, 249, 255, 1)
+                        MaxLength: =Parent.MaxLength
+                        Mode: =TextMode.MultiLine
+                        PaddingLeft: =5
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportDescriptionFieldLabel.Y + AdministrativeSupportDescriptionFieldLabel.Height + 5
+                  - AdministrativeSupportDescriptionErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode = DisplayMode.Edit && varShowSubmitErrors
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportDescriptionInput.Y + AdministrativeSupportDescriptionInput.Height
+            - AdministrativeSupportPriorityDataCard:
+                Control: TypedDataCard
+                Variant: ClassicComboBoxEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Priority"
+                  Default: =ThisItem.Priority
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Priority)
+                  Height: =AdministrativeSupportPriorityDropdown.Y + AdministrativeSupportPriorityDropdown.Height + 20
+                  Required: =false
+                  Update: |-
+                    ={Value: AdministrativeSupportPriorityDropdown.Selected.Value}
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =7
+                Children:
+                  - AdministrativeSupportPriorityRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportPriorityFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportPriorityFieldLabel.Y
+                  - AdministrativeSupportPriorityFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportPriorityInput:
+                      Control: Classic/ComboBox
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =RGBA(210, 220, 230, 1)
+                        BorderThickness: =1
+                        ChevronBackground: =RGBA(255, 255, 255, 1)
+                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
+                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
+                        ChevronFill: =RGBA(0, 120, 212, 1)
+                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
+                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
+                        Color: =RGBA(50, 49, 48, 1)
+                        DefaultSelectedItems: |-
+                          =Table(
+                              {Value: "Normal"}
+                          )
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayFields: =["Value"]
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(245, 249, 255, 1)
+                        Items: |-
+                          =Table(
+                              {Value: "Low"},
+                              {Value: "Normal"},
+                              {Value: "High"},
+                              {Value: "Urgent"}
+                          )
+                        PressedBorderColor: =RGBA(16, 110, 190, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 120, 212, 1)
+                        SearchFields: =["Value"]
+                        SelectMultiple: =false
+                        SelectionColor: =RGBA(255, 255, 255, 1)
+                        SelectionFill: =RGBA(255, 255, 255, 1)
+                        Tooltip: =Parent.DisplayName
+                        Visible: =false
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportPriorityFieldLabel.Y + AdministrativeSupportPriorityFieldLabel.Height + 5
+                  - AdministrativeSupportPriorityDropdown:
+                      Control: Classic/DropDown
+                      Properties:
+                        BorderColor: =RGBA(210, 220, 230, 1)
+                        BorderThickness: =1
+                        ChevronBackground: =RGBA(255, 255, 255, 1)
+                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
+                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
+                        ChevronFill: =RGBA(0, 120, 212, 1)
+                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
+                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: ="Normal"
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(245, 249, 255, 1)
+                        Items: |-
+                          =Table(
+                              {Value: "Low"},
+                              {Value: "Normal"},
+                              {Value: "High"},
+                              {Value: "Urgent"}
+                          )
+                        Items.Value: =Value
+                        PaddingBottom: =5
+                        PaddingLeft: =5
+                        PaddingRight: =5
+                        PaddingTop: =5
+                        PressedBorderColor: =RGBA(16, 110, 190, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 120, 212, 1)
+                        SelectionColor: =RGBA(50, 49, 48, 1)
+                        SelectionFill: =RGBA(0, 120, 212, 1)
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportPriorityFieldLabel.Y + AdministrativeSupportPriorityFieldLabel.Height + 5
+                  - AdministrativeSupportPriorityErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportPriorityInput.Y + AdministrativeSupportPriorityInput.Height
+            - AdministrativeSupportAttachmentsDataCard:
+                Control: TypedDataCard
+                Variant: ClassicAttachmentsEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="{Attachments}"
+                  Default: =ThisItem.Attachments
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Attachments)
+                  Height: =AdministrativeSupportAttachmentsInput.Y + AdministrativeSupportAttachmentsInput.Height + 20
+                  Required: =false
+                  Update: =AdministrativeSupportAttachmentsInput.Attachments
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =8
+                Children:
+                  - AdministrativeSupportAttachmentsRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportAttachmentsFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportAttachmentsFieldLabel.Y
+                  - AdministrativeSupportAttachmentsFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportAttachmentsInput:
+                      Control: Attachments
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =RGBA(210, 220, 230, 1)
+                        BorderThickness: =1
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.'Segoe UI'
+                        Height: =120
+                        HoverBorderColor: =RGBA(0, 120, 212, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        ItemColor: =RGBA(0, 0, 0, 1)
+                        ItemFill: =RGBA(0, 120, 212, 1)
+                        ItemHoverColor: =RGBA(50, 49, 48, 1)
+                        ItemHoverFill: =RGBA(245, 245, 245, 1)
+                        ItemSpacing: =12
+                        Items: =Parent.Default
+                        NoAttachmentsColor: =RGBA(161, 159, 157, 1)
+                        PaddingBottom: =5
+                        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                        PaddingRight: =5
+                        PaddingTop: =5
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 120, 212, 1)
+                        Reset: =varResetAttachments
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportAttachmentsFieldLabel.Y + AdministrativeSupportAttachmentsFieldLabel.Height + 5
+                  - AdministrativeSupportAttachmentsErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportAttachmentsInput.Y + AdministrativeSupportAttachmentsInput.Height
+            - AdministrativeSupportStatusDataCard:
+                Control: TypedDataCard
+                Variant: ClassicComboBoxEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="Status"
+                  Default: =ThisItem.Status
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Status)
+                  Required: =false
+                  Update: |-
+                    ={Value: "Submitted"}
+                  Visible: =false
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =9
+                Children:
+                  - AdministrativeSupportStatusRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportStatusFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportStatusFieldLabel.Y
+                  - AdministrativeSupportStatusFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportStatusInput:
+                      Control: Classic/ComboBox
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        ChevronBackground: =RGBA(245, 245, 245, 1)
+                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
+                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
+                        ChevronFill: =RGBA(50, 49, 48, 1)
+                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
+                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
+                        Color: =RGBA(50, 49, 48, 1)
+                        DefaultSelectedItems: =Parent.Default
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayFields: =["Value"]
+                        DisplayMode: =Parent.DisplayMode
+                        Fill: =RGBA(245, 245, 245, 1)
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(245, 245, 245, 1)
+                        Items: =Choices([@AdministrativeServiceRequests].Status)
+                        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                        PressedBorderColor: =RGBA(16, 110, 190, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(0, 120, 212, 1)
+                        SearchFields: =["Value"]
+                        SelectMultiple: =false
+                        SelectionColor: =RGBA(255, 255, 255, 1)
+                        SelectionFill: =RGBA(0, 120, 212, 1)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportStatusFieldLabel.Y + AdministrativeSupportStatusFieldLabel.Height + 5
+                  - AdministrativeSupportStatusErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportStatusInput.Y + AdministrativeSupportStatusInput.Height
+            - AdministrativeSupportRequestedByDataCard:
+                Control: TypedDataCard
+                Variant: ClassicTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="RequestedBy"
+                  Default: =ThisItem.RequestedBy
+                  DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,RequestedBy)
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, RequestedBy)
+                  Required: =false
+                  Update: =User().Email
+                  Visible: =false
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =10
+                Children:
+                  - AdministrativeSupportRequestedByRequiredIndicator:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =AdministrativeSupportRequestedByFieldLabel.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =AdministrativeSupportRequestedByFieldLabel.Y
+                  - AdministrativeSupportRequestedByFieldLabel:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportRequestedByInput:
+                      Control: Classic/TextInput
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportRequestedByFieldLabel.Y + AdministrativeSupportRequestedByFieldLabel.Height + 5
+                  - AdministrativeSupportRequestedByErrorLabel:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportRequestedByInput.Y + AdministrativeSupportRequestedByInput.Height
+            - AdministrativeSupportStaffAssignedOfficeDataCard:
+                Control: TypedDataCard
+                Variant: ClassicTextualEdit
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="StaffAssignedOffice"
+                  Default: =ThisItem.StaffAssignedOffice
+                  DisplayName: ="Staff's Assigned Office"
+                  MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, StaffAssignedOffice)
+                  Required: =false
+                  Update: =AdministrativeSupportStaffAssignedOfficeInput.Text
+                  Visible: =false
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =11
+                Children:
+                  - StarVisible1_7:
+                      Control: Label
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =DataCardKey1_7.Height
+                        PaddingLeft: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey1_7.Y
+                  - DataCardKey1_7:
+                      Control: Label
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(50, 49, 48, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        PaddingLeft: =0
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - AdministrativeSupportStaffAssignedOfficeInput:
+                      Control: Classic/TextInput
+                      MetadataKey: FieldValue
+                      Properties:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Color: =RGBA(50, 49, 48, 1)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.'Segoe UI'
+                        HoverBorderColor: =RGBA(16, 110, 190, 1)
+                        HoverColor: =RGBA(50, 49, 48, 1)
+                        HoverFill: =RGBA(255, 255, 255, 1)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        PressedBorderColor: =RGBA(0, 120, 212, 1)
+                        PressedColor: =RGBA(50, 49, 48, 1)
+                        PressedFill: =RGBA(255, 255, 255, 1)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey1_7.Y + DataCardKey1_7.Height + 5
+                  - ErrorMessage1_7:
+                      Control: Label
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        Color: =RGBA(168, 0, 0, 1)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(168, 0, 0, 1)
+                        FocusedBorderThickness: =4
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =AdministrativeSupportStaffAssignedOfficeInput.Y + AdministrativeSupportStaffAssignedOfficeInput.Height
+      - AdministrativeSupportSubmitRequestButton:
+          Control: Classic/Button
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(161, 159, 157, 1)
+            DisabledFill: =RGBA(242, 242, 241, 0)
+            Fill: =RGBA(0, 120, 212, 1)
+            Font: =Font.'Segoe UI'
+            Height: |
+              =44
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(0, 95, 175, 1)
+            OnSelect: |-
+              =Set(varShowSubmitErrors, true);
+
+              If(
+                  IsBlank(AdministrativeSupportServiceSubcategoryDropdown.Selected.Value),
+                  Notify(
+                      "Please select a Service Subcategory.",
+                      NotificationType.Error
+                  ),
+                  SubmitForm(AdministrativeSupportRequestForm)
+              )
+            PressedBorderColor: =RGBA(0, 69, 120, 1)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(0, 75, 145, 1)
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Text: ="Submit Request"
+            Width: =Min(240, Parent.Width - 48)
+            X: =(Parent.Width - Self.Width) / 2
+            Y: =Parent.Height - Self.Height - 60

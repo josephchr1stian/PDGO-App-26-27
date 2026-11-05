@@ -1,15 +1,15 @@
 Screens:
-  FacilitiesRequestScreenM:
+  FacilitiesRequestScreen:
     Properties:
       Fill: =RGBA(248, 249, 252, 1)
       LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
       OnVisible: |-
         =Set(varResetAttachments, false);
         Set(varShowSubmitErrors, false);
-        NewForm(FacilitiesRequestFormM);
-        ResetForm(FacilitiesRequestFormM)
+        NewForm(FacilitiesRequestForm);
+        ResetForm(FacilitiesRequestForm)
     Children:
-      - FacilitiesBackToHomeButtonM:
+      - FacilitiesBackToHomeButton:
           Control: Classic/Button
           Properties:
             BorderColor: =RGBA(210, 220, 230, 1)
@@ -42,10 +42,10 @@ Screens:
                   24
               )
             Y: |-
-              =FacilitiesHeaderBarRectangleM.Y +
-              FacilitiesHeaderBarRectangleM.Height +
+              =FacilitiesHeaderBarRectangle.Y +
+              FacilitiesHeaderBarRectangle.Height +
               8
-      - FacilitiesFormBackgroundRectangleM:
+      - FacilitiesFormBackgroundRectangle:
           Control: Rectangle
           Properties:
             BorderColor: =RGBA(218, 225, 233, 1)
@@ -55,20 +55,20 @@ Screens:
             Fill: =RGBA(255, 255, 255, 1)
             FocusedBorderThickness: =4
             Height: |-
-              =FacilitiesSubmitRequestButtonM.Y +
-              FacilitiesSubmitRequestButtonM.Height +
+              =FacilitiesSubmitRequestButton.Y +
+              FacilitiesSubmitRequestButton.Height +
               12 -
               Self.Y
             HoverFill: =RGBA(255, 255, 255, 1)
             PressedFill: =RGBA(0, 120, 212, 1)
             Width: |-
               =Min(
-                  FacilitiesRequestFormM.Width + 32,
+                  FacilitiesRequestForm.Width + 32,
                   Parent.Width - 8
               )
             X: =(Parent.Width - Self.Width) / 2
-            Y: =FacilitiesRequestFormM.Y - 12
-      - FacilitiesHeaderBarRectangleM:
+            Y: =FacilitiesRequestForm.Y - 12
+      - FacilitiesHeaderBarRectangle:
           Control: Rectangle
           Properties:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -79,13 +79,13 @@ Screens:
             Height: |-
               =If(
                   Parent.Width < 600,
-                  48,
+                  64,
                   64
               )
             HoverFill: =RGBA(0, 120, 212, 1)
             PressedFill: =RGBA(0, 120, 212, 1)
             Width: =Parent.Width
-      - FacilitiesRequestFormM:
+      - FacilitiesRequestForm:
           Control: Form
           Variant: Classic
           Layout: Vertical
@@ -96,18 +96,18 @@ Screens:
             Height: |-
               =Max(
                   200,
-                  FacilitiesSubmitRequestButtonM.Y - Self.Y - 32
+                  FacilitiesSubmitRequestButton.Y - Self.Y - 32
               )
             NumberOfColumns: =1
             OnFailure: |
               =Notify(
-                  "Submission failed: " & FacilitiesRequestFormM.Error,
+                  "Submission failed: " & FacilitiesRequestForm.Error,
                   NotificationType.Error
               )
             OnSuccess: |-
               =Set(
                   SubmittedRequestID,
-                  FacilitiesRequestFormM.LastSubmit.ID
+                  FacilitiesRequestForm.LastSubmit.ID
               );
 
               Notify(
@@ -115,14 +115,14 @@ Screens:
                   NotificationType.Success
               );
 
-              ResetForm(FacilitiesRequestFormM);
+              ResetForm(FacilitiesRequestForm);
 
-              NewForm(FacilitiesRequestFormM)
+              NewForm(FacilitiesRequestForm)
             Width: =Min(800, Parent.Width - 48)
             X: =(Parent.Width - Self.Width) / 2
-            Y: =FacilitiesBackToHomeButtonM.Y + FacilitiesBackToHomeButtonM.Height + 24
+            Y: =FacilitiesBackToHomeButton.Y + FacilitiesBackToHomeButton.Height + 24
           Children:
-            - FacilitiesServiceCategoryDataCardM:
+            - FacilitiesServiceCategoryDataCard:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
@@ -138,7 +138,7 @@ Screens:
                   X: =0
                   Y: =0
                 Children:
-                  - FacilitiesServiceCategoryFieldLabelM:
+                  - FacilitiesServiceCategoryFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -159,7 +159,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesServiceCategoryInputM:
+                  - FacilitiesServiceCategoryInput:
                       Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
@@ -188,8 +188,8 @@ Screens:
                         Visible: =false
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesServiceCategoryFieldLabelM.Y + FacilitiesServiceCategoryFieldLabelM.Height + 5
-                  - FacilitiesServiceCategoryErrorLabelM:
+                        Y: =FacilitiesServiceCategoryFieldLabel.Y + FacilitiesServiceCategoryFieldLabel.Height + 5
+                  - FacilitiesServiceCategoryErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -213,8 +213,8 @@ Screens:
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesServiceCategoryInputM.Y + FacilitiesServiceCategoryInputM.Height
-                  - FacilitiesServiceCategoryRequiredIndicatorM:
+                        Y: =FacilitiesServiceCategoryInput.Y + FacilitiesServiceCategoryInput.Height
+                  - FacilitiesServiceCategoryRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -228,14 +228,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesServiceCategoryFieldLabelM.Height
+                        Height: =FacilitiesServiceCategoryFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesServiceCategoryFieldLabelM.Y
-                  - FacilitiesServiceCategoryDropdownM:
+                        Y: =FacilitiesServiceCategoryFieldLabel.Y
+                  - FacilitiesServiceCategoryDropdown:
                       Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
@@ -268,8 +268,8 @@ Screens:
                         OnChange: |-
                           =Set(varShowSubmitErrors, false);
 
-                          Reset(FacilitiesServiceSubcategoryDropdownM);
-                          Reset(FacilitiesRequestTypeDropdownM);
+                          Reset(FacilitiesServiceSubcategoryDropdown);
+                          Reset(FacilitiesRequestTypeDropdown);
 
                           Set(varResetAttachments, true);
                           Set(varResetAttachments, false)
@@ -285,7 +285,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =40
-            - FacilitiesServiceSubcategoryDataCardM:
+            - FacilitiesServiceSubcategoryDataCard:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
@@ -294,16 +294,16 @@ Screens:
                   Default: =ThisItem.ServiceSubcategory
                   DisplayName: ="Service Subcategory"
                   Height: |-
-                    =FacilitiesServiceSubcategoryDropdownM.Y +
-                    FacilitiesServiceSubcategoryDropdownM.Height + 20
+                    =FacilitiesServiceSubcategoryDropdown.Y +
+                    FacilitiesServiceSubcategoryDropdown.Height + 20
                   MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, ServiceSubcategory)
                   Required: =true
-                  Update: =FacilitiesServiceSubcategoryDropdownM.Selected.Value
+                  Update: =FacilitiesServiceSubcategoryDropdown.Selected.Value
                   Width: =Parent.Width
                   X: =0
                   Y: =1
                 Children:
-                  - FacilitiesServiceSubcategoryFieldLabelM:
+                  - FacilitiesServiceSubcategoryFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -324,7 +324,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesServiceSubcategoryInputM:
+                  - FacilitiesServiceSubcategoryInput:
                       Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
@@ -353,8 +353,8 @@ Screens:
                         Visible: =false
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesServiceSubcategoryFieldLabelM.Y + FacilitiesServiceSubcategoryFieldLabelM.Height + 5
-                  - FacilitiesServiceSubcategoryErrorLabelM:
+                        Y: =FacilitiesServiceSubcategoryFieldLabel.Y + FacilitiesServiceSubcategoryFieldLabel.Height + 5
+                  - FacilitiesServiceSubcategoryErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -378,8 +378,8 @@ Screens:
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesServiceSubcategoryInputM.Y + FacilitiesServiceSubcategoryInputM.Height
-                  - FacilitiesServiceSubcategoryRequiredIndicatorM:
+                        Y: =FacilitiesServiceSubcategoryInput.Y + FacilitiesServiceSubcategoryInput.Height
+                  - FacilitiesServiceSubcategoryRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -393,14 +393,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesServiceSubcategoryFieldLabelM.Height
+                        Height: =FacilitiesServiceSubcategoryFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesServiceSubcategoryFieldLabelM.Y
-                  - FacilitiesServiceSubcategoryDropdownM:
+                        Y: =FacilitiesServiceSubcategoryFieldLabel.Y
+                  - FacilitiesServiceSubcategoryDropdown:
                       Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
@@ -434,7 +434,7 @@ Screens:
                         OnChange: |-
                           =Set(varShowSubmitErrors, false);
 
-                          Reset(FacilitiesRequestTypeDropdownM);
+                          Reset(FacilitiesRequestTypeDropdown);
 
                           Set(varResetAttachments, true);
                           Set(varResetAttachments, false)
@@ -450,9 +450,9 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: |-
-                          =FacilitiesServiceSubcategoryFieldLabelM.Y +
-                          FacilitiesServiceSubcategoryFieldLabelM.Height + 5
-            - FacilitiesRequestTypeDataCardM:
+                          =FacilitiesServiceSubcategoryFieldLabel.Y +
+                          FacilitiesServiceSubcategoryFieldLabel.Height + 5
+            - FacilitiesRequestTypeDataCard:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
@@ -460,21 +460,21 @@ Screens:
                   DataField: ="RequestType"
                   Default: =ThisItem.'Request Type'
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,'Request Type')
-                  Height: =FacilitiesRequestTypeDropdownM.Y + FacilitiesRequestTypeDropdownM.Height + 20
+                  Height: =FacilitiesRequestTypeDropdown.Y + FacilitiesRequestTypeDropdown.Height + 20
                   MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, 'Request Type')
-                  Required: =FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Building Maintenance"
+                  Required: =FacilitiesServiceSubcategoryDropdown.Selected.Value = "Building Maintenance"
                   Update: |-
                     =If(
-                        FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Building Maintenance",
-                        FacilitiesRequestTypeDropdownM.Selected.Value,
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value = "Building Maintenance",
+                        FacilitiesRequestTypeDropdown.Selected.Value,
                         Blank()
                     )
-                  Visible: =FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Building Maintenance"
+                  Visible: =FacilitiesServiceSubcategoryDropdown.Selected.Value = "Building Maintenance"
                   Width: =Parent.Width
                   X: =0
                   Y: =2
                 Children:
-                  - FacilitiesRequestTypeFieldLabelM:
+                  - FacilitiesRequestTypeFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -495,7 +495,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesRequestTypeInputM:
+                  - FacilitiesRequestTypeInput:
                       Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
@@ -524,8 +524,8 @@ Screens:
                         Visible: =false
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesRequestTypeFieldLabelM.Y + FacilitiesRequestTypeFieldLabelM.Height + 5
-                  - FacilitiesRequestTypeErrorLabelM:
+                        Y: =FacilitiesRequestTypeFieldLabel.Y + FacilitiesRequestTypeFieldLabel.Height + 5
+                  - FacilitiesRequestTypeErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -548,16 +548,16 @@ Screens:
                         Text: |-
                           =If(
                               varShowSubmitErrors &&
-                              FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Building Maintenance" &&
-                              IsBlank(FacilitiesRequestTypeDropdownM.Selected.Value),
+                              FacilitiesServiceSubcategoryDropdown.Selected.Value = "Building Maintenance" &&
+                              IsBlank(FacilitiesRequestTypeDropdown.Selected.Value),
                               "Request Type is required.",
                               Parent.Error
                           )
                         Visible: =Parent.DisplayMode = DisplayMode.Edit && varShowSubmitErrors
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesRequestTypeInputM.Y + FacilitiesRequestTypeInputM.Height
-                  - FacilitiesRequestTypeRequiredIndicatorM:
+                        Y: =FacilitiesRequestTypeInput.Y + FacilitiesRequestTypeInput.Height
+                  - FacilitiesRequestTypeRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -571,14 +571,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesRequestTypeFieldLabelM.Height
+                        Height: =FacilitiesRequestTypeFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesRequestTypeFieldLabelM.Y
-                  - FacilitiesRequestTypeDropdownM:
+                        Y: =FacilitiesRequestTypeFieldLabel.Y
+                  - FacilitiesRequestTypeDropdown:
                       Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
@@ -626,7 +626,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =40
-            - FacilitiesLocationDataCardM:
+            - FacilitiesLocationDataCard:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
@@ -636,10 +636,10 @@ Screens:
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Location)
                   Height: |-
                     =If(
-                        FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request",
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request",
                         Max(
                             120,
-                            FacilitiesParkingFeeLabelM.Y + FacilitiesParkingFeeLabelM.Height + 16
+                            FacilitiesParkingFeeLabel.Y + FacilitiesParkingFeeLabel.Height + 16
                         ),
                         120
                     )
@@ -647,15 +647,15 @@ Screens:
                   Required: =true
                   Update: |-
                     =If(
-                        FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request",
-                        FacilitiesParkingLocationDropdownM.Selected.Value,
-                        FacilitiesLocationInputM.Text
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request",
+                        FacilitiesParkingLocationDropdown.Selected.Value,
+                        FacilitiesLocationInput.Text
                     )
                   Width: =Parent.Width
                   X: =0
                   Y: =3
                 Children:
-                  - FacilitiesLocationFieldLabelM:
+                  - FacilitiesLocationFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -676,7 +676,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesLocationInputM:
+                  - FacilitiesLocationInput:
                       Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
@@ -705,11 +705,11 @@ Screens:
                         RadiusTopLeft: =0
                         RadiusTopRight: =0
                         Tooltip: =Parent.DisplayName
-                        Visible: =FacilitiesServiceSubcategoryDropdownM.Selected.Value <> "Parking Request"
+                        Visible: =FacilitiesServiceSubcategoryDropdown.Selected.Value <> "Parking Request"
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesLocationFieldLabelM.Y + FacilitiesLocationFieldLabelM.Height + 5
-                  - FacilitiesLocationErrorLabelM:
+                        Y: =FacilitiesLocationFieldLabel.Y + FacilitiesLocationFieldLabel.Height + 5
+                  - FacilitiesLocationErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -733,8 +733,8 @@ Screens:
                         Visible: =Parent.DisplayMode = DisplayMode.Edit && varShowSubmitErrors
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesLocationInputM.Y + FacilitiesLocationInputM.Height
-                  - FacilitiesLocationRequiredIndicatorM:
+                        Y: =FacilitiesLocationInput.Y + FacilitiesLocationInput.Height
+                  - FacilitiesLocationRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -748,14 +748,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesLocationFieldLabelM.Height
+                        Height: =FacilitiesLocationFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesLocationFieldLabelM.Y
-                  - FacilitiesParkingLocationDropdownM:
+                        Y: =FacilitiesLocationFieldLabel.Y
+                  - FacilitiesParkingLocationDropdown:
                       Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
@@ -791,11 +791,11 @@ Screens:
                         PressedFill: =RGBA(0, 120, 212, 1)
                         SelectionColor: =RGBA(50, 49, 48, 1)
                         SelectionFill: =RGBA(0, 120, 212, 1)
-                        Visible: =FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request"
-                        Width: =FacilitiesLocationInputM.Width
-                        X: =FacilitiesLocationInputM.X
-                        Y: =FacilitiesLocationInputM.Y
-                  - FacilitiesParkingFeeLabelM:
+                        Visible: =FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request"
+                        Width: =FacilitiesLocationInput.Width
+                        X: =FacilitiesLocationInput.X
+                        Y: =FacilitiesLocationInput.Y
+                  - FacilitiesParkingFeeLabel:
                       Control: Label
                       Properties:
                         AutoHeight: =true
@@ -810,7 +810,7 @@ Screens:
                         Height: =50
                         Text: |-
                           =Switch(
-                              FacilitiesParkingLocationDropdownM.Selected.Value,
+                              FacilitiesParkingLocationDropdown.Selected.Value,
                               "Civic Center",
                               "Civic Center parking is paid and has a waiting list. Your request will be reviewed.",
                               "Other parking locations (free)",
@@ -818,12 +818,12 @@ Screens:
                               ""
                           )
                         Visible: |-
-                          =FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request" &&
-                          !IsBlank(FacilitiesParkingLocationDropdownM.Selected.Value)
-                        Width: =FacilitiesParkingLocationDropdownM.Width
-                        X: =FacilitiesParkingLocationDropdownM.X
-                        Y: =FacilitiesParkingLocationDropdownM.Y + FacilitiesParkingLocationDropdownM.Height + 8
-            - FacilitiesBuildingDataCardM:
+                          =FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
+                          !IsBlank(FacilitiesParkingLocationDropdown.Selected.Value)
+                        Width: =FacilitiesParkingLocationDropdown.Width
+                        X: =FacilitiesParkingLocationDropdown.X
+                        Y: =FacilitiesParkingLocationDropdown.Y + FacilitiesParkingLocationDropdown.Height + 8
+            - FacilitiesBuildingDataCard:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
@@ -832,24 +832,24 @@ Screens:
                   Default: =ThisItem.Building
                   DisplayName: |-
                     =If(
-                        FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request",
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request",
                         "Building / Parking Area",
                         "Building"
                     )
-                  Height: =FacilitiesBuildingInputM.Y + FacilitiesBuildingInputM.Height + 20
+                  Height: =FacilitiesBuildingInput.Y + FacilitiesBuildingInput.Height + 20
                   MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, Building)
-                  Required: =FacilitiesServiceSubcategoryDropdownM.Selected.Value <> "Parking Request"
-                  Update: =FacilitiesBuildingInputM.Text
+                  Required: =FacilitiesServiceSubcategoryDropdown.Selected.Value <> "Parking Request"
+                  Update: =FacilitiesBuildingInput.Text
                   Visible: |-
                     =!(
-                        FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request" &&
-                        FacilitiesParkingLocationDropdownM.Selected.Value = "Other parking locations (free)"
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
+                        FacilitiesParkingLocationDropdown.Selected.Value = "Other parking locations (free)"
                     )
                   Width: =Parent.Width
                   X: =0
                   Y: =4
                 Children:
-                  - FacilitiesBuildingFieldLabelM:
+                  - FacilitiesBuildingFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -870,7 +870,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesBuildingInputM:
+                  - FacilitiesBuildingInput:
                       Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
@@ -901,8 +901,8 @@ Screens:
                         Tooltip: =Parent.DisplayName
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesBuildingFieldLabelM.Y + FacilitiesBuildingFieldLabelM.Height + 5
-                  - FacilitiesBuildingErrorLabelM:
+                        Y: =FacilitiesBuildingFieldLabel.Y + FacilitiesBuildingFieldLabel.Height + 5
+                  - FacilitiesBuildingErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -926,8 +926,8 @@ Screens:
                         Visible: =Parent.DisplayMode = DisplayMode.Edit && varShowSubmitErrors
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesBuildingInputM.Y + FacilitiesBuildingInputM.Height
-                  - FacilitiesBuildingRequiredIndicatorM:
+                        Y: =FacilitiesBuildingInput.Y + FacilitiesBuildingInput.Height
+                  - FacilitiesBuildingRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -941,14 +941,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesBuildingFieldLabelM.Height
+                        Height: =FacilitiesBuildingFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesBuildingFieldLabelM.Y
-            - FacilitiesRoomAreaDataCardM:
+                        Y: =FacilitiesBuildingFieldLabel.Y
+            - FacilitiesRoomAreaDataCard:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
@@ -956,16 +956,16 @@ Screens:
                   DataField: ="Floor"
                   Default: =ThisItem.'Room / Area'
                   DisplayName: ="Room / Area"
-                  Height: =FacilitiesRoomAreaInputM.Y + FacilitiesRoomAreaInputM.Height + 20
+                  Height: =FacilitiesRoomAreaInput.Y + FacilitiesRoomAreaInput.Height + 20
                   MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, 'Room / Area')
                   Required: =false
-                  Update: =FacilitiesRoomAreaInputM.Text
-                  Visible: =FacilitiesServiceSubcategoryDropdownM.Selected.Value <> "Parking Request"
+                  Update: =FacilitiesRoomAreaInput.Text
+                  Visible: =FacilitiesServiceSubcategoryDropdown.Selected.Value <> "Parking Request"
                   Width: =Parent.Width
                   X: =0
                   Y: =5
                 Children:
-                  - FacilitiesRoomAreaFieldLabelM:
+                  - FacilitiesRoomAreaFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -986,7 +986,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesRoomAreaInputM:
+                  - FacilitiesRoomAreaInput:
                       Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
@@ -1017,8 +1017,8 @@ Screens:
                         Tooltip: =Parent.DisplayName
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesRoomAreaFieldLabelM.Y + FacilitiesRoomAreaFieldLabelM.Height + 5
-                  - FacilitiesRoomAreaErrorLabelM:
+                        Y: =FacilitiesRoomAreaFieldLabel.Y + FacilitiesRoomAreaFieldLabel.Height + 5
+                  - FacilitiesRoomAreaErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -1042,8 +1042,8 @@ Screens:
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesRoomAreaInputM.Y + FacilitiesRoomAreaInputM.Height
-                  - FacilitiesRoomAreaRequiredIndicatorM:
+                        Y: =FacilitiesRoomAreaInput.Y + FacilitiesRoomAreaInput.Height
+                  - FacilitiesRoomAreaRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -1057,14 +1057,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesRoomAreaFieldLabelM.Height
+                        Height: =FacilitiesRoomAreaFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesRoomAreaFieldLabelM.Y
-            - FacilitiesDescriptionDataCardM:
+                        Y: =FacilitiesRoomAreaFieldLabel.Y
+            - FacilitiesDescriptionDataCard:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
@@ -1073,7 +1073,7 @@ Screens:
                   Default: =ThisItem.Description
                   DisplayName: |-
                     =Switch(
-                        FacilitiesServiceSubcategoryDropdownM.Selected.Value,
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value,
                         "Parking Request", "Reason for Parking Request",
                         "Locksmith Request", "Reason for Locksmith Request",
                         "Badge Access", "Reason for Badge Access",
@@ -1082,25 +1082,25 @@ Screens:
                         "Building Maintenance", "Description",
                         "Description"
                     )
-                  Height: =FacilitiesDescriptionInputM.Y + FacilitiesDescriptionInputM.Height + 20
+                  Height: =FacilitiesDescriptionInput.Y + FacilitiesDescriptionInput.Height + 20
                   MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, Description)
                   Required: |-
                     =If(
-                        FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request",
-                        FacilitiesParkingLocationDropdownM.Selected.Value = "Civic Center",
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request",
+                        FacilitiesParkingLocationDropdown.Selected.Value = "Civic Center",
                         true
                     )
-                  Update: =FacilitiesDescriptionInputM.Text
+                  Update: =FacilitiesDescriptionInput.Text
                   Visible: |-
                     =!(
-                        FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request" &&
-                        FacilitiesParkingLocationDropdownM.Selected.Value = "Other parking locations (free)"
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
+                        FacilitiesParkingLocationDropdown.Selected.Value = "Other parking locations (free)"
                     )
                   Width: =Parent.Width
                   X: =0
                   Y: =6
                 Children:
-                  - FacilitiesDescriptionFieldLabelM:
+                  - FacilitiesDescriptionFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -1121,7 +1121,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesDescriptionInputM:
+                  - FacilitiesDescriptionInput:
                       Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
@@ -1154,8 +1154,8 @@ Screens:
                         Tooltip: =Parent.DisplayName
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesDescriptionFieldLabelM.Y + FacilitiesDescriptionFieldLabelM.Height + 5
-                  - FacilitiesDescriptionErrorLabelM:
+                        Y: =FacilitiesDescriptionFieldLabel.Y + FacilitiesDescriptionFieldLabel.Height + 5
+                  - FacilitiesDescriptionErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -1179,8 +1179,8 @@ Screens:
                         Visible: =Parent.DisplayMode = DisplayMode.Edit && varShowSubmitErrors
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesDescriptionInputM.Y + FacilitiesDescriptionInputM.Height
-                  - FacilitiesDescriptionRequiredIndicatorM:
+                        Y: =FacilitiesDescriptionInput.Y + FacilitiesDescriptionInput.Height
+                  - FacilitiesDescriptionRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -1194,14 +1194,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesDescriptionFieldLabelM.Height
+                        Height: =FacilitiesDescriptionFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesDescriptionFieldLabelM.Y
-            - FacilitiesPriorityDataCardM:
+                        Y: =FacilitiesDescriptionFieldLabel.Y
+            - FacilitiesPriorityDataCard:
                 Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
@@ -1209,20 +1209,20 @@ Screens:
                   DataField: ="Priority"
                   Default: =ThisItem.Priority
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Priority)
-                  Height: =FacilitiesPriorityDropdownM.Y + FacilitiesPriorityDropdownM.Height + 20
+                  Height: =FacilitiesPriorityDropdown.Y + FacilitiesPriorityDropdown.Height + 20
                   Required: =false
                   Update: |-
-                    ={Value: FacilitiesPriorityDropdownM.Selected.Value}
+                    ={Value: FacilitiesPriorityDropdown.Selected.Value}
                   Visible: |-
                     =!(
-                        FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request" &&
-                        FacilitiesParkingLocationDropdownM.Selected.Value = "Other parking locations (free)"
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
+                        FacilitiesParkingLocationDropdown.Selected.Value = "Other parking locations (free)"
                     )
                   Width: =Parent.Width
                   X: =0
                   Y: =7
                 Children:
-                  - FacilitiesPriorityFieldLabelM:
+                  - FacilitiesPriorityFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -1243,7 +1243,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesPriorityInputM:
+                  - FacilitiesPriorityInput:
                       Control: Classic/ComboBox
                       MetadataKey: FieldValue
                       Properties:
@@ -1287,8 +1287,8 @@ Screens:
                         Visible: =false
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesPriorityFieldLabelM.Y + FacilitiesPriorityFieldLabelM.Height + 5
-                  - FacilitiesPriorityErrorLabelM:
+                        Y: =FacilitiesPriorityFieldLabel.Y + FacilitiesPriorityFieldLabel.Height + 5
+                  - FacilitiesPriorityErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -1312,8 +1312,8 @@ Screens:
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesPriorityInputM.Y + FacilitiesPriorityInputM.Height
-                  - FacilitiesPriorityRequiredIndicatorM:
+                        Y: =FacilitiesPriorityInput.Y + FacilitiesPriorityInput.Height
+                  - FacilitiesPriorityRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -1327,14 +1327,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesPriorityFieldLabelM.Height
+                        Height: =FacilitiesPriorityFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesPriorityFieldLabelM.Y
-                  - FacilitiesPriorityDropdownM:
+                        Y: =FacilitiesPriorityFieldLabel.Y
+                  - FacilitiesPriorityDropdown:
                       Control: Classic/DropDown
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -1373,8 +1373,8 @@ Screens:
                         SelectionFill: =RGBA(0, 120, 212, 1)
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesPriorityFieldLabelM.Y + FacilitiesPriorityFieldLabelM.Height + 5
-            - FacilitiesAttachmentsDataCardM:
+                        Y: =FacilitiesPriorityFieldLabel.Y + FacilitiesPriorityFieldLabel.Height + 5
+            - FacilitiesAttachmentsDataCard:
                 Control: TypedDataCard
                 Variant: ClassicAttachmentsEdit
                 Properties:
@@ -1382,19 +1382,19 @@ Screens:
                   DataField: ="{Attachments}"
                   Default: =ThisItem.Attachments
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Attachments)
-                  Height: =FacilitiesAttachmentsInputM.Y + FacilitiesAttachmentsInputM.Height + 20
+                  Height: =FacilitiesAttachmentsInput.Y + FacilitiesAttachmentsInput.Height + 20
                   Required: =false
-                  Update: =FacilitiesAttachmentsInputM.Attachments
+                  Update: =FacilitiesAttachmentsInput.Attachments
                   Visible: |-
                     =!(
-                        FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request" &&
-                        FacilitiesParkingLocationDropdownM.Selected.Value = "Other parking locations (free)"
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
+                        FacilitiesParkingLocationDropdown.Selected.Value = "Other parking locations (free)"
                     )
                   Width: =Parent.Width
                   X: =0
                   Y: =8
                 Children:
-                  - FacilitiesAttachmentsFieldLabelM:
+                  - FacilitiesAttachmentsFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -1415,7 +1415,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesAttachmentsInputM:
+                  - FacilitiesAttachmentsInput:
                       Control: Attachments
                       MetadataKey: FieldValue
                       Properties:
@@ -1448,8 +1448,8 @@ Screens:
                         Tooltip: =Parent.DisplayName
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesAttachmentsFieldLabelM.Y + FacilitiesAttachmentsFieldLabelM.Height + 5
-                  - FacilitiesAttachmentsErrorLabelM:
+                        Y: =FacilitiesAttachmentsFieldLabel.Y + FacilitiesAttachmentsFieldLabel.Height + 5
+                  - FacilitiesAttachmentsErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -1473,8 +1473,8 @@ Screens:
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesAttachmentsInputM.Y + FacilitiesAttachmentsInputM.Height
-                  - FacilitiesAttachmentsRequiredIndicatorM:
+                        Y: =FacilitiesAttachmentsInput.Y + FacilitiesAttachmentsInput.Height
+                  - FacilitiesAttachmentsRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -1488,14 +1488,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesAttachmentsFieldLabelM.Height
+                        Height: =FacilitiesAttachmentsFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesAttachmentsFieldLabelM.Y
-            - FacilitiesStatusDataCardM:
+                        Y: =FacilitiesAttachmentsFieldLabel.Y
+            - FacilitiesStatusDataCard:
                 Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
@@ -1511,7 +1511,7 @@ Screens:
                   X: =0
                   Y: =9
                 Children:
-                  - FacilitiesStatusFieldLabelM:
+                  - FacilitiesStatusFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -1532,7 +1532,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesStatusInputM:
+                  - FacilitiesStatusInput:
                       Control: Classic/ComboBox
                       MetadataKey: FieldValue
                       Properties:
@@ -1567,8 +1567,8 @@ Screens:
                         Tooltip: =Parent.DisplayName
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesStatusFieldLabelM.Y + FacilitiesStatusFieldLabelM.Height + 5
-                  - FacilitiesStatusErrorLabelM:
+                        Y: =FacilitiesStatusFieldLabel.Y + FacilitiesStatusFieldLabel.Height + 5
+                  - FacilitiesStatusErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -1592,8 +1592,8 @@ Screens:
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesStatusInputM.Y + FacilitiesStatusInputM.Height
-                  - FacilitiesStatusRequiredIndicatorM:
+                        Y: =FacilitiesStatusInput.Y + FacilitiesStatusInput.Height
+                  - FacilitiesStatusRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -1607,14 +1607,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesStatusFieldLabelM.Height
+                        Height: =FacilitiesStatusFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesStatusFieldLabelM.Y
-            - FacilitiesRequestedByDataCardM:
+                        Y: =FacilitiesStatusFieldLabel.Y
+            - FacilitiesRequestedByDataCard:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
@@ -1630,7 +1630,7 @@ Screens:
                   X: =0
                   Y: =10
                 Children:
-                  - FacilitiesRequestedByFieldLabelM:
+                  - FacilitiesRequestedByFieldLabel:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -1651,7 +1651,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesRequestedByInputM:
+                  - FacilitiesRequestedByInput:
                       Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
@@ -1679,8 +1679,8 @@ Screens:
                         Tooltip: =Parent.DisplayName
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesRequestedByFieldLabelM.Y + FacilitiesRequestedByFieldLabelM.Height + 5
-                  - FacilitiesRequestedByErrorLabelM:
+                        Y: =FacilitiesRequestedByFieldLabel.Y + FacilitiesRequestedByFieldLabel.Height + 5
+                  - FacilitiesRequestedByErrorLabel:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -1704,8 +1704,8 @@ Screens:
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesRequestedByInputM.Y + FacilitiesRequestedByInputM.Height
-                  - FacilitiesRequestedByRequiredIndicatorM:
+                        Y: =FacilitiesRequestedByInput.Y + FacilitiesRequestedByInput.Height
+                  - FacilitiesRequestedByRequiredIndicator:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -1719,14 +1719,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =FacilitiesRequestedByFieldLabelM.Height
+                        Height: =FacilitiesRequestedByFieldLabel.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =FacilitiesRequestedByFieldLabelM.Y
-            - FacilitiesStaffAssignedOfficeDataCardM:
+                        Y: =FacilitiesRequestedByFieldLabel.Y
+            - FacilitiesStaffAssignedOfficeDataCard:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
@@ -1736,13 +1736,13 @@ Screens:
                   DisplayName: ="Staff's Assigned Office"
                   MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, StaffAssignedOffice)
                   Required: =false
-                  Update: =FacilitiesStaffAssignedOfficeInputM.Text
+                  Update: =FacilitiesStaffAssignedOfficeInput.Text
                   Visible: =false
                   Width: =Parent.Width
                   X: =0
                   Y: =11
                 Children:
-                  - DataCardKey1_3:
+                  - DataCardKey1_4:
                       Control: Label
                       MetadataKey: FieldName
                       Properties:
@@ -1763,7 +1763,7 @@ Screens:
                         Wrap: =false
                         X: =30
                         Y: =10
-                  - FacilitiesStaffAssignedOfficeInputM:
+                  - FacilitiesStaffAssignedOfficeInput:
                       Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
@@ -1791,8 +1791,8 @@ Screens:
                         Tooltip: =Parent.DisplayName
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =DataCardKey1_3.Y + DataCardKey1_3.Height + 5
-                  - ErrorMessage1_3:
+                        Y: =DataCardKey1_4.Y + DataCardKey1_4.Height + 5
+                  - ErrorMessage1_4:
                       Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
@@ -1816,8 +1816,8 @@ Screens:
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         Width: =Parent.Width - 60
                         X: =30
-                        Y: =FacilitiesStaffAssignedOfficeInputM.Y + FacilitiesStaffAssignedOfficeInputM.Height
-                  - StarVisible1_3:
+                        Y: =FacilitiesStaffAssignedOfficeInput.Y + FacilitiesStaffAssignedOfficeInput.Height
+                  - StarVisible1_4:
                       Control: Label
                       MetadataKey: FieldRequired
                       Properties:
@@ -1831,14 +1831,14 @@ Screens:
                         FocusedBorderThickness: =4
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
-                        Height: =DataCardKey1_3.Height
+                        Height: =DataCardKey1_4.Height
                         PaddingLeft: =0
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Width: =30
                         Wrap: =false
-                        Y: =DataCardKey1_3.Y
-      - FacilitiesRequestTitleLabelM:
+                        Y: =DataCardKey1_4.Y
+      - FacilitiesRequestTitleLabel:
           Control: Label
           Properties:
             Align: =Align.Center
@@ -1863,9 +1863,9 @@ Screens:
             Width: =Parent.Width - 48
             X: =(Parent.Width - Self.Width) / 2
             Y: |-
-              =FacilitiesHeaderBarRectangleM.Y +
-              (FacilitiesHeaderBarRectangleM.Height - Self.Height) / 2
-      - FacilitiesSubmitRequestButtonM:
+              =FacilitiesHeaderBarRectangle.Y +
+              (FacilitiesHeaderBarRectangle.Height - Self.Height) / 2
+      - FacilitiesSubmitRequestButton:
           Control: Classic/Button
           Properties:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -1885,27 +1885,27 @@ Screens:
               =Set(varShowSubmitErrors, true);
 
               If(
-                  IsBlank(FacilitiesServiceSubcategoryDropdownM.Selected.Value),
+                  IsBlank(FacilitiesServiceSubcategoryDropdown.Selected.Value),
                   Notify(
                       "Please select a Service Subcategory.",
                       NotificationType.Error
                   ),
 
-                  FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request" &&
-                  IsBlank(FacilitiesParkingLocationDropdownM.Selected.Value),
+                  FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
+                  IsBlank(FacilitiesParkingLocationDropdown.Selected.Value),
                   Notify(
                       "Please select a Parking Location.",
                       NotificationType.Error
                   ),
 
-                  FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Building Maintenance" &&
-                  IsBlank(FacilitiesRequestTypeDropdownM.Selected.Value),
+                  FacilitiesServiceSubcategoryDropdown.Selected.Value = "Building Maintenance" &&
+                  IsBlank(FacilitiesRequestTypeDropdown.Selected.Value),
                   Notify(
                       "Please select a Request Type.",
                       NotificationType.Error
                   ),
 
-                  SubmitForm(FacilitiesRequestFormM)
+                  SubmitForm(FacilitiesRequestForm)
               )
             PressedBorderColor: =RGBA(0, 69, 120, 1)
             PressedColor: =RGBA(255, 255, 255, 1)
@@ -1917,8 +1917,8 @@ Screens:
             Text: ="Submit Request"
             Visible: |-
               =!(
-                  FacilitiesServiceSubcategoryDropdownM.Selected.Value = "Parking Request" &&
-                  FacilitiesParkingLocationDropdownM.Selected.Value = "Other parking locations (free)"
+                  FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
+                  FacilitiesParkingLocationDropdown.Selected.Value = "Other parking locations (free)"
               )
             Width: =Min(240, Parent.Width - 48)
             X: =(Parent.Width - Self.Width) / 2

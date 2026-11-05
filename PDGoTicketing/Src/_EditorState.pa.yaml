@@ -4,8 +4,11 @@ EditorState:
     - UserHome
     - AdminHome
     - Pdgo Hub
-    - FacilitiesRequestScreenM
+    - FacilitiesRequestScreen
     - ProcurementRequestScreen
+    - EmployeeSafetyRequestScreen
+    - WarehouseRequestScreen
+    - AdministrativeSupportRequestScreen
     - TicketRequestScreen
     - Login New Hub
     - Pdgo Hub 10-30-26

@@ -325,7 +325,7 @@ Screens:
                         Image: =BlankImg
                         ImagePlacement: =ImagePlacement.AfterHeader
                         LayoutDirection: =LayoutDirection.Horizontal
-                        OnSelect: =Navigate('FacilitiesRequestScreenM',ScreenTransition.Fade)
+                        OnSelect: =Navigate('FacilitiesRequestScreen',ScreenTransition.Fade)
                         Subtitle: ="Building services, repairs, maintenance, office moves"
                         Title: ="Facilities"
                   - CapCardWel_32:
@@ -345,6 +345,7 @@ Screens:
                         Image: =Blank()
                         ImagePlacement: =ImagePlacement.AfterHeader
                         LayoutDirection: =LayoutDirection.Horizontal
+                        OnSelect: =Navigate(EmployeeSafetyRequestScreen, ScreenTransition.Fade)
                         Subtitle: ="Safety concerns, ergonomics, hazards, inspections, training"
                         Title: ="Employee Safety"
                   - CapCardWel_52:
@@ -354,6 +355,7 @@ Screens:
                         Image: =Blank()
                         ImagePlacement: =ImagePlacement.AfterHeader
                         LayoutDirection: =LayoutDirection.Horizontal
+                        OnSelect: =Navigate(WarehouseRequestScreen, ScreenTransition.Fade)
                         Subtitle: ="Supply & Equipment requests, deliveries, surplus, storage"
                         Title: |
                           ="Warehouse"
@@ -364,6 +366,7 @@ Screens:
                         Image: =Blank()
                         ImagePlacement: =ImagePlacement.AfterHeader
                         LayoutDirection: =LayoutDirection.Horizontal
+                        OnSelect: =Navigate(AdministrativeSupportRequestScreen, ScreenTransition.Fade)
                         Subtitle: ="General requests, access, workspace setup, & other administrative needs"
                         Title: ="Administrative Support"
             - Table Header:
