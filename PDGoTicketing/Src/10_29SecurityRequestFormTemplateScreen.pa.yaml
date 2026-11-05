@@ -1,11 +1,3 @@
-# ************************************************************************************************
-# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
-# Use the maker portal to create and edit your Power Apps.
-# 
-# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
-# 
-# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
-# ************************************************************************************************
 Screens:
   10_29SecurityRequestFormTemplateScreen:
     Properties:
@@ -18,7 +10,7 @@ Screens:
         ResetForm(TemplateRequestForm_1)
     Children:
       - TemplateRequestHeaderBar_1:
-          Control: Rectangle@2.3.0
+          Control: Rectangle
           Properties:
             BorderColor: =RGBA(0, 0, 0, 0)
             BorderStyle: =BorderStyle.None
@@ -30,7 +22,7 @@ Screens:
             PressedFill: =RGBA(0, 120, 212, 1)
             Width: =Parent.Width
       - TemplateRequestTitleLabel_1:
-          Control: Label@2.5.1
+          Control: Label
           Properties:
             Align: =Align.Center
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -47,7 +39,7 @@ Screens:
             Text: ="Submit a Request"
             Width: =Parent.Width
       - TemplateBackToHomeButton_1:
-          Control: Classic/Button@2.2.0
+          Control: Classic/Button
           Properties:
             BorderColor: =RGBA(210, 220, 230, 1)
             BorderStyle: =BorderStyle.None
@@ -76,7 +68,7 @@ Screens:
               =24
             Y: =TemplateRequestTitleLabel_1.Y + TemplateRequestTitleLabel_1.Height + 8
       - TemplateFormBackground_1:
-          Control: Rectangle@2.3.0
+          Control: Rectangle
           Properties:
             BorderColor: =RGBA(218, 225, 233, 1)
             BorderStyle: =BorderStyle.None
@@ -91,7 +83,7 @@ Screens:
             X: =TemplateRequestForm_1.X - 16
             Y: =TemplateRequestForm_1.Y - 12
       - TemplateRequestForm_1:
-          Control: Form@2.4.4
+          Control: Form
           Variant: Classic
           Layout: Vertical
           Properties:
@@ -124,7 +116,7 @@ Screens:
             Y: =TemplateBackToHomeButton_1.Y + TemplateBackToHomeButton_1.Height + 24
           Children:
             - TemplateServiceCategoryDataCard_1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -138,7 +130,7 @@ Screens:
                   Y: =0
                 Children:
                   - TemplateServiceCategoryRequiredIndicator_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -159,7 +151,7 @@ Screens:
                         Wrap: =false
                         Y: =TemplateServiceCategoryFieldLabel_1.Y
                   - TemplateServiceCategoryFieldLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -180,7 +172,7 @@ Screens:
                         X: =30
                         Y: =10
                   - TemplateServiceCategoryDropdown_1:
-                      Control: Classic/DropDown@2.3.1
+                      Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -230,7 +222,7 @@ Screens:
                         X: =30
                         Y: =40
                   - TemplateServiceCategoryInput_1:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -260,7 +252,7 @@ Screens:
                         X: =30
                         Y: =TemplateServiceCategoryFieldLabel_1.Y + TemplateServiceCategoryFieldLabel_1.Height + 5
                   - TemplateServiceCategoryErrorLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -285,7 +277,7 @@ Screens:
                         X: =30
                         Y: =TemplateServiceCategoryInput_1.Y + TemplateServiceCategoryInput_1.Height
             - TemplateRequestTypeDataCard_1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -312,7 +304,7 @@ Screens:
                   Y: =1
                 Children:
                   - TemplateRequestTypeRequiredIndicator_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -333,7 +325,7 @@ Screens:
                         Wrap: =false
                         Y: =TemplateRequestTypeFieldLabel_1.Y
                   - TemplateRequestTypeFieldLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -354,7 +346,7 @@ Screens:
                         X: =30
                         Y: =10
                   - TemplateRequestTypeDropdown_1:
-                      Control: Classic/DropDown@2.3.1
+                      Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -396,7 +388,7 @@ Screens:
                         X: =30
                         Y: =40
                   - TemplateRequestTypeInput_1:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -426,7 +418,7 @@ Screens:
                         X: =30
                         Y: =TemplateRequestTypeFieldLabel_1.Y + TemplateRequestTypeFieldLabel_1.Height + 5
                   - TemplateRequestTypeErrorLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -459,7 +451,7 @@ Screens:
                         X: =30
                         Y: =TemplateRequestTypeInput_1.Y + TemplateRequestTypeInput_1.Height
             - TemplateLocationDataCard_1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -486,7 +478,7 @@ Screens:
                   Y: =2
                 Children:
                   - TemplateLocationRequiredIndicator_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -507,7 +499,7 @@ Screens:
                         Wrap: =false
                         Y: =TemplateLocationFieldLabel_1.Y
                   - TemplateLocationFieldLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -528,7 +520,7 @@ Screens:
                         X: =30
                         Y: =10
                   - TemplateLocationInput_1:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -565,7 +557,7 @@ Screens:
                         X: =30
                         Y: =TemplateLocationFieldLabel_1.Y + TemplateLocationFieldLabel_1.Height + 5
                   - TemplateParkingLocationDropdown_1:
-                      Control: Classic/DropDown@2.3.1
+                      Control: Classic/DropDown
                       Properties:
                         BorderColor: =RGBA(245, 245, 245, 1)
                         ChevronBackground: =RGBA(245, 245, 245, 1)
@@ -605,7 +597,7 @@ Screens:
                         X: =TemplateLocationInput_1.X
                         Y: =TemplateLocationInput_1.Y
                   - TemplateLocationErrorLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -630,7 +622,7 @@ Screens:
                         X: =30
                         Y: =TemplateLocationInput_1.Y + TemplateLocationInput_1.Height
                   - TemplateParkingFeeLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       Properties:
                         BorderColor: =RGBA(0, 0, 0, 0)
                         BorderStyle: =BorderStyle.None
@@ -658,7 +650,7 @@ Screens:
                         X: =TemplateParkingLocationDropdown_1.X
                         Y: =TemplateParkingLocationDropdown_1.Y + TemplateParkingLocationDropdown_1.Height + 8
             - TemplateStatusDataCard_1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -673,7 +665,7 @@ Screens:
                   Y: =3
                 Children:
                   - TemplateStatusRequiredIndicator_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -694,7 +686,7 @@ Screens:
                         Wrap: =false
                         Y: =TemplateStatusFieldLabel_1.Y
                   - TemplateStatusFieldLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -715,7 +707,7 @@ Screens:
                         X: =30
                         Y: =10
                   - TemplateStatusControl_1:
-                      Control: Classic/ComboBox@2.4.0
+                      Control: Classic/ComboBox
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -751,7 +743,7 @@ Screens:
                         X: =30
                         Y: =TemplateStatusFieldLabel_1.Y + TemplateStatusFieldLabel_1.Height + 5
                   - TemplateStatusErrorLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -776,7 +768,7 @@ Screens:
                         X: =30
                         Y: =TemplateStatusControl_1.Y + TemplateStatusControl_1.Height
             - TemplateRequestedByDataCard_1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -791,7 +783,7 @@ Screens:
                   Y: =4
                 Children:
                   - TemplateRequestedByRequiredIndicator_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -812,7 +804,7 @@ Screens:
                         Wrap: =false
                         Y: =TemplateRequestedByFieldLabel_1.Y
                   - TemplateRequestedByFieldLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -833,7 +825,7 @@ Screens:
                         X: =30
                         Y: =10
                   - TemplateRequestedByInput_1:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -862,7 +854,7 @@ Screens:
                         X: =30
                         Y: =TemplateRequestedByFieldLabel_1.Y + TemplateRequestedByFieldLabel_1.Height + 5
                   - TemplateRequestedByErrorLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -887,7 +879,7 @@ Screens:
                         X: =30
                         Y: =TemplateRequestedByInput_1.Y + TemplateRequestedByInput_1.Height
             - TemplateBuildingDataCard_1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -907,7 +899,7 @@ Screens:
                   Y: =5
                 Children:
                   - TemplateBuildingRequiredIndicator_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -928,7 +920,7 @@ Screens:
                         Wrap: =false
                         Y: =TemplateBuildingFieldLabel_1.Y
                   - TemplateBuildingFieldLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -949,7 +941,7 @@ Screens:
                         X: =30
                         Y: =10
                   - TemplateBuildingInput_1:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -981,7 +973,7 @@ Screens:
                         X: =30
                         Y: =TemplateBuildingFieldLabel_1.Y + TemplateBuildingFieldLabel_1.Height + 5
                   - TemplateBuildingErrorLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1006,7 +998,7 @@ Screens:
                         X: =30
                         Y: =TemplateBuildingInput_1.Y + TemplateBuildingInput_1.Height
             - TemplateFloorDataCard_1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1026,7 +1018,7 @@ Screens:
                   Y: =6
                 Children:
                   - TemplateFloorRequiredIndicator_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1047,7 +1039,7 @@ Screens:
                         Wrap: =false
                         Y: =TemplateFloorFieldLabel_1.Y
                   - TemplateFloorFieldLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1068,7 +1060,7 @@ Screens:
                         X: =30
                         Y: =10
                   - TemplateFloorInput_1:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -1100,7 +1092,7 @@ Screens:
                         X: =30
                         Y: =TemplateFloorFieldLabel_1.Y + TemplateFloorFieldLabel_1.Height + 5
                   - TemplateFloorErrorLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1125,7 +1117,7 @@ Screens:
                         X: =30
                         Y: =TemplateFloorInput_1.Y + TemplateFloorInput_1.Height
             - TemplateDescriptionDataCard_1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1147,7 +1139,7 @@ Screens:
                   Y: =7
                 Children:
                   - TemplateDescriptionRequiredIndicator_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1168,7 +1160,7 @@ Screens:
                         Wrap: =false
                         Y: =TemplateDescriptionFieldLabel_1.Y
                   - TemplateDescriptionFieldLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1189,7 +1181,7 @@ Screens:
                         X: =30
                         Y: =10
                   - TemplateDescriptionInput_1:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -1223,7 +1215,7 @@ Screens:
                         X: =30
                         Y: =TemplateDescriptionFieldLabel_1.Y + TemplateDescriptionFieldLabel_1.Height + 5
                   - TemplateDescriptionErrorLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1248,7 +1240,7 @@ Screens:
                         X: =30
                         Y: =TemplateDescriptionInput_1.Y + TemplateDescriptionInput_1.Height
             - TemplatePriorityDataCard_1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1268,7 +1260,7 @@ Screens:
                   Y: =8
                 Children:
                   - TemplatePriorityRequiredIndicator_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1289,7 +1281,7 @@ Screens:
                         Wrap: =false
                         Y: =TemplatePriorityFieldLabel_1.Y
                   - TemplatePriorityFieldLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1310,7 +1302,7 @@ Screens:
                         X: =30
                         Y: =10
                   - TemplatePriorityControl_1:
-                      Control: Classic/ComboBox@2.4.0
+                      Control: Classic/ComboBox
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -1355,7 +1347,7 @@ Screens:
                         X: =30
                         Y: =TemplatePriorityFieldLabel_1.Y + TemplatePriorityFieldLabel_1.Height + 5
                   - TemplatePriorityDropdown_1:
-                      Control: Classic/DropDown@2.3.1
+                      Control: Classic/DropDown
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
                         BorderThickness: =1
@@ -1395,7 +1387,7 @@ Screens:
                         X: =30
                         Y: =TemplatePriorityFieldLabel_1.Y + TemplatePriorityFieldLabel_1.Height + 5
                   - TemplatePriorityErrorLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1420,7 +1412,7 @@ Screens:
                         X: =30
                         Y: =TemplatePriorityControl_1.Y + TemplatePriorityControl_1.Height
             - TemplateAttachmentsDataCard_1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicAttachmentsEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1440,7 +1432,7 @@ Screens:
                   Y: =9
                 Children:
                   - TemplateAttachmentsRequiredIndicator_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1461,7 +1453,7 @@ Screens:
                         Wrap: =false
                         Y: =TemplateAttachmentsFieldLabel_1.Y
                   - TemplateAttachmentsFieldLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1482,7 +1474,7 @@ Screens:
                         X: =30
                         Y: =10
                   - TemplateAttachmentsControl_1:
-                      Control: Attachments@2.3.0
+                      Control: Attachments
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -1516,7 +1508,7 @@ Screens:
                         X: =30
                         Y: =TemplateAttachmentsFieldLabel_1.Y + TemplateAttachmentsFieldLabel_1.Height + 5
                   - TemplateAttachmentsErrorLabel_1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1541,7 +1533,7 @@ Screens:
                         X: =30
                         Y: =TemplateAttachmentsControl_1.Y + TemplateAttachmentsControl_1.Height
       - TemplateSubmitRequestButton_1:
-          Control: Classic/Button@2.2.0
+          Control: Classic/Button
           Properties:
             BorderColor: =RGBA(0, 0, 0, 0)
             BorderStyle: =BorderStyle.None

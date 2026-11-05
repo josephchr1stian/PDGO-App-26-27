@@ -1,11 +1,3 @@
-# ************************************************************************************************
-# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
-# Use the maker portal to create and edit your Power Apps.
-# 
-# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
-# 
-# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
-# ************************************************************************************************
 Screens:
   ProcurementRequestScreen:
     Properties:
@@ -18,7 +10,7 @@ Screens:
         ResetForm(ProcurementRequestForm)
     Children:
       - FacilitiesHeaderBarRectangle_2:
-          Control: Rectangle@2.3.0
+          Control: Rectangle
           Properties:
             BorderColor: =RGBA(0, 0, 0, 0)
             BorderStyle: =BorderStyle.None
@@ -30,7 +22,7 @@ Screens:
             PressedFill: =RGBA(0, 120, 212, 1)
             Width: =Parent.Width
       - ProcurementTitleLabel:
-          Control: Label@2.5.1
+          Control: Label
           Properties:
             Align: =Align.Center
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -47,7 +39,7 @@ Screens:
             Text: ="Submit a Procurement Request"
             Width: =Parent.Width
       - ProcurementBackToHomeButton:
-          Control: Classic/Button@2.2.0
+          Control: Classic/Button
           Properties:
             BorderColor: =RGBA(210, 220, 230, 1)
             BorderStyle: =BorderStyle.None
@@ -76,7 +68,7 @@ Screens:
               =24
             Y: =ProcurementTitleLabel.Y + ProcurementTitleLabel.Height + 8
       - ProcurementFormBackground:
-          Control: Rectangle@2.3.0
+          Control: Rectangle
           Properties:
             BorderColor: =RGBA(218, 225, 233, 1)
             BorderStyle: =BorderStyle.None
@@ -91,7 +83,7 @@ Screens:
             X: =ProcurementRequestForm.X - 16
             Y: =ProcurementRequestForm.Y - 12
       - ProcurementRequestForm:
-          Control: Form@2.4.4
+          Control: Form
           Variant: Classic
           Layout: Vertical
           Properties:
@@ -124,7 +116,7 @@ Screens:
             Y: =ProcurementBackToHomeButton.Y + ProcurementBackToHomeButton.Height + 24
           Children:
             - FacilitiesServiceCategoryDataCard_2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -139,7 +131,7 @@ Screens:
                   Y: =0
                 Children:
                   - FacilitiesServiceCategoryRequiredIndicator_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -160,7 +152,7 @@ Screens:
                         Wrap: =false
                         Y: =FacilitiesServiceCategoryFieldLabel_2.Y
                   - FacilitiesServiceCategoryFieldLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -181,7 +173,7 @@ Screens:
                         X: =30
                         Y: =10
                   - FacilitiesServiceCategoryDropdown_2:
-                      Control: Classic/DropDown@2.3.1
+                      Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -224,7 +216,7 @@ Screens:
                         X: =30
                         Y: =40
                   - FacilitiesServiceCategoryInput_2:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -254,7 +246,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesServiceCategoryFieldLabel_2.Y + FacilitiesServiceCategoryFieldLabel_2.Height + 5
                   - FacilitiesServiceCategoryErrorLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -279,7 +271,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesServiceCategoryInput_2.Y + FacilitiesServiceCategoryInput_2.Height
             - FacilitiesServiceSubcategoryDataCard_2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -293,7 +285,7 @@ Screens:
                   Y: =1
                 Children:
                   - FacilitiesServiceSubcategoryRequiredIndicator_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -314,7 +306,7 @@ Screens:
                         Wrap: =false
                         Y: =FacilitiesServiceSubcategoryFieldLabel_2.Y
                   - FacilitiesServiceSubcategoryFieldLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -335,7 +327,7 @@ Screens:
                         X: =30
                         Y: =10
                   - ProcurementSubcategoryDropdown:
-                      Control: Classic/DropDown@2.3.1
+                      Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -372,7 +364,7 @@ Screens:
                         X: =30
                         Y: =40
                   - FacilitiesServiceSubcategoryInput_2:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -402,7 +394,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesServiceSubcategoryFieldLabel_2.Y + FacilitiesServiceSubcategoryFieldLabel_2.Height + 5
                   - FacilitiesServiceSubcategoryErrorLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -427,7 +419,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesServiceSubcategoryInput_2.Y + FacilitiesServiceSubcategoryInput_2.Height
             - FacilitiesLocationDataCard_2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -450,7 +442,7 @@ Screens:
                   Y: =2
                 Children:
                   - FacilitiesLocationRequiredIndicator_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -471,7 +463,7 @@ Screens:
                         Wrap: =false
                         Y: =FacilitiesLocationFieldLabel_2.Y
                   - FacilitiesLocationFieldLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -492,7 +484,7 @@ Screens:
                         X: =30
                         Y: =10
                   - FacilitiesLocationInput_2:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -524,7 +516,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesLocationFieldLabel_2.Y + FacilitiesLocationFieldLabel_2.Height + 5
                   - FacilitiesParkingLocationDropdown_2:
-                      Control: Classic/DropDown@2.3.1
+                      Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
                         BorderColor: =RGBA(245, 245, 245, 1)
@@ -564,7 +556,7 @@ Screens:
                         X: =FacilitiesLocationInput_2.X
                         Y: =FacilitiesLocationInput_2.Y
                   - FacilitiesLocationErrorLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -589,7 +581,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesLocationInput_2.Y + FacilitiesLocationInput_2.Height
                   - FacilitiesParkingFeeLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       Properties:
                         BorderColor: =RGBA(0, 0, 0, 0)
                         BorderStyle: =BorderStyle.None
@@ -614,7 +606,7 @@ Screens:
                         X: =FacilitiesParkingLocationDropdown_2.X
                         Y: =FacilitiesParkingLocationDropdown_2.Y + FacilitiesParkingLocationDropdown_2.Height + 8
             - FacilitiesDescriptionDataCard_2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -630,7 +622,7 @@ Screens:
                   Y: =3
                 Children:
                   - FacilitiesDescriptionRequiredIndicator_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -651,7 +643,7 @@ Screens:
                         Wrap: =false
                         Y: =FacilitiesDescriptionFieldLabel_2.Y
                   - FacilitiesDescriptionFieldLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -672,7 +664,7 @@ Screens:
                         X: =30
                         Y: =10
                   - FacilitiesDescriptionInput_2:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -706,7 +698,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesDescriptionFieldLabel_2.Y + FacilitiesDescriptionFieldLabel_2.Height + 5
                   - FacilitiesDescriptionErrorLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -731,7 +723,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesDescriptionInput_2.Y + FacilitiesDescriptionInput_2.Height
             - FacilitiesAttachmentsDataCard_2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicAttachmentsEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -750,7 +742,7 @@ Screens:
                   Y: =4
                 Children:
                   - FacilitiesAttachmentsRequiredIndicator_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -771,7 +763,7 @@ Screens:
                         Wrap: =false
                         Y: =FacilitiesAttachmentsFieldLabel_2.Y
                   - FacilitiesAttachmentsFieldLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -792,7 +784,7 @@ Screens:
                         X: =30
                         Y: =10
                   - FacilitiesAttachmentsInput_2:
-                      Control: Attachments@2.3.0
+                      Control: Attachments
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
@@ -826,7 +818,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesAttachmentsFieldLabel_2.Y + FacilitiesAttachmentsFieldLabel_2.Height + 5
                   - FacilitiesAttachmentsErrorLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -851,14 +843,14 @@ Screens:
                         X: =30
                         Y: =FacilitiesAttachmentsInput_2.Y + FacilitiesAttachmentsInput_2.Height
             - DataCard1_2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: BlankCard
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
                   X: =0
                   Y: =5
             - FacilitiesStatusDataCard_2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -873,7 +865,7 @@ Screens:
                   Y: =6
                 Children:
                   - FacilitiesStatusRequiredIndicator_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -894,7 +886,7 @@ Screens:
                         Wrap: =false
                         Y: =FacilitiesStatusFieldLabel_2.Y
                   - FacilitiesStatusFieldLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -915,7 +907,7 @@ Screens:
                         X: =30
                         Y: =10
                   - FacilitiesStatusInput_2:
-                      Control: Classic/ComboBox@2.4.0
+                      Control: Classic/ComboBox
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -951,7 +943,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesStatusFieldLabel_2.Y + FacilitiesStatusFieldLabel_2.Height + 5
                   - FacilitiesStatusErrorLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -976,7 +968,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesStatusInput_2.Y + FacilitiesStatusInput_2.Height
             - FacilitiesRequestedByDataCard_2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -991,7 +983,7 @@ Screens:
                   Y: =7
                 Children:
                   - FacilitiesRequestedByRequiredIndicator_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1012,7 +1004,7 @@ Screens:
                         Wrap: =false
                         Y: =FacilitiesRequestedByFieldLabel_2.Y
                   - FacilitiesRequestedByFieldLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1033,7 +1025,7 @@ Screens:
                         X: =30
                         Y: =10
                   - FacilitiesRequestedByInput_2:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -1062,7 +1054,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesRequestedByFieldLabel_2.Y + FacilitiesRequestedByFieldLabel_2.Height + 5
                   - FacilitiesRequestedByErrorLabel_2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1087,7 +1079,7 @@ Screens:
                         X: =30
                         Y: =FacilitiesRequestedByInput_2.Y + FacilitiesRequestedByInput_2.Height
             - InCatalog_DataCard1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicToggleEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1101,7 +1093,7 @@ Screens:
                   Y: =8
                 Children:
                   - DataCardKey1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1122,7 +1114,7 @@ Screens:
                         X: =30
                         Y: =10
                   - DataCardValue1:
-                      Control: Classic/Toggle@2.1.0
+                      Control: Classic/Toggle
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -1143,7 +1135,7 @@ Screens:
                         X: =30
                         Y: =DataCardKey1.Y + DataCardKey1.Height + 5
                   - ErrorMessage1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1168,7 +1160,7 @@ Screens:
                         X: =30
                         Y: =DataCardValue1.Y + DataCardValue1.Height
                   - StarVisible1:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1189,7 +1181,7 @@ Screens:
                         Wrap: =false
                         Y: =DataCardKey1.Y
             - ItemLink_DataCard1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1204,7 +1196,7 @@ Screens:
                   Y: =9
                 Children:
                   - DataCardKey2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1225,7 +1217,7 @@ Screens:
                         X: =30
                         Y: =10
                   - DataCardValue2:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -1254,7 +1246,7 @@ Screens:
                         X: =30
                         Y: =DataCardKey2.Y + DataCardKey2.Height + 5
                   - ErrorMessage2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1279,7 +1271,7 @@ Screens:
                         X: =30
                         Y: =DataCardValue2.Y + DataCardValue2.Height
                   - StarVisible2:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1300,7 +1292,7 @@ Screens:
                         Wrap: =false
                         Y: =DataCardKey2.Y
             - Quantity_DataCard1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicNumberEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1314,7 +1306,7 @@ Screens:
                   Y: =10
                 Children:
                   - DataCardKey3:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1335,7 +1327,7 @@ Screens:
                         X: =30
                         Y: =10
                   - DataCardValue3:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -1364,7 +1356,7 @@ Screens:
                         X: =30
                         Y: =DataCardKey3.Y + DataCardKey3.Height + 5
                   - ErrorMessage3:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1389,7 +1381,7 @@ Screens:
                         X: =30
                         Y: =DataCardValue3.Y + DataCardValue3.Height
                   - StarVisible3:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1410,7 +1402,7 @@ Screens:
                         Wrap: =false
                         Y: =DataCardKey3.Y
             - EstimatedCost_DataCard1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicNumberEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1424,7 +1416,7 @@ Screens:
                   Y: =11
                 Children:
                   - DataCardKey4:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1445,7 +1437,7 @@ Screens:
                         X: =30
                         Y: =10
                   - DataCardValue4:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -1474,7 +1466,7 @@ Screens:
                         X: =30
                         Y: =DataCardKey4.Y + DataCardKey4.Height + 5
                   - ErrorMessage4:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1499,7 +1491,7 @@ Screens:
                         X: =30
                         Y: =DataCardValue4.Y + DataCardValue4.Height
                   - StarVisible4:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1520,7 +1512,7 @@ Screens:
                         Wrap: =false
                         Y: =DataCardKey4.Y
             - PurchaseReason_DataCard1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1534,7 +1526,7 @@ Screens:
                   Y: =12
                 Children:
                   - DataCardKey5:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1555,7 +1547,7 @@ Screens:
                         X: =30
                         Y: =10
                   - DataCardValue5:
-                      Control: Classic/ComboBox@2.4.0
+                      Control: Classic/ComboBox
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -1589,7 +1581,7 @@ Screens:
                         X: =30
                         Y: =DataCardKey5.Y + DataCardKey5.Height + 5
                   - ErrorMessage5:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1614,7 +1606,7 @@ Screens:
                         X: =30
                         Y: =DataCardValue5.Y + DataCardValue5.Height
                   - StarVisible5:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1635,7 +1627,7 @@ Screens:
                         Wrap: =false
                         Y: =DataCardKey5.Y
             - CardType_DataCard1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1649,7 +1641,7 @@ Screens:
                   Y: =13
                 Children:
                   - DataCardKey7:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1670,7 +1662,7 @@ Screens:
                         X: =30
                         Y: =10
                   - DataCardValue7:
-                      Control: Classic/ComboBox@2.4.0
+                      Control: Classic/ComboBox
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -1704,7 +1696,7 @@ Screens:
                         X: =30
                         Y: =DataCardKey7.Y + DataCardKey7.Height + 5
                   - ErrorMessage7:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1729,7 +1721,7 @@ Screens:
                         X: =30
                         Y: =DataCardValue7.Y + DataCardValue7.Height
                   - StarVisible7:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1750,7 +1742,7 @@ Screens:
                         Wrap: =false
                         Y: =DataCardKey7.Y
             - ItemCount_DataCard1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1764,7 +1756,7 @@ Screens:
                   Y: =14
                 Children:
                   - DataCardKey8:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1785,7 +1777,7 @@ Screens:
                         X: =30
                         Y: =10
                   - DataCardValue8:
-                      Control: Classic/ComboBox@2.4.0
+                      Control: Classic/ComboBox
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -1819,7 +1811,7 @@ Screens:
                         X: =30
                         Y: =DataCardKey8.Y + DataCardKey8.Height + 5
                   - ErrorMessage8:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1844,7 +1836,7 @@ Screens:
                         X: =30
                         Y: =DataCardValue8.Y + DataCardValue8.Height
                   - StarVisible8:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1865,7 +1857,7 @@ Screens:
                         Wrap: =false
                         Y: =DataCardKey8.Y
             - SalvageDisposition_DataCard1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -1879,7 +1871,7 @@ Screens:
                   Y: =15
                 Children:
                   - DataCardKey9:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
@@ -1900,7 +1892,7 @@ Screens:
                         X: =30
                         Y: =10
                   - DataCardValue9:
-                      Control: Classic/ComboBox@2.4.0
+                      Control: Classic/ComboBox
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -1934,7 +1926,7 @@ Screens:
                         X: =30
                         Y: =DataCardKey9.Y + DataCardKey9.Height + 5
                   - ErrorMessage9:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
@@ -1959,7 +1951,7 @@ Screens:
                         X: =30
                         Y: =DataCardValue9.Y + DataCardValue9.Height
                   - StarVisible9:
-                      Control: Label@2.5.1
+                      Control: Label
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -1980,7 +1972,7 @@ Screens:
                         Wrap: =false
                         Y: =DataCardKey9.Y
       - ProcurementSubmitButton:
-          Control: Classic/Button@2.2.0
+          Control: Classic/Button
           Properties:
             BorderColor: =RGBA(0, 0, 0, 0)
             BorderStyle: =BorderStyle.None

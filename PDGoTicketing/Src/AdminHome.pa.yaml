@@ -1,11 +1,3 @@
-# ************************************************************************************************
-# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
-# Use the maker portal to create and edit your Power Apps.
-# 
-# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
-# 
-# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
-# ************************************************************************************************
 Screens:
   AdminHome:
     Properties:
@@ -13,7 +5,7 @@ Screens:
       LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     Children:
       - Button3_1:
-          Control: ModernButton@1.0.0
+          Control: ModernButton
           Properties:
             OnSelect: =Set(varEmail, ""); Set(varUser, Blank()); Set(varRole, ""); Set(selTicket, Blank()); Navigate(Login, ScreenTransition.Fade)
             Text: ="Sign out"
@@ -21,7 +13,7 @@ Screens:
             X: =1180
             Y: =20
       - Gallery1_2:
-          Control: Gallery@2.15.0
+          Control: Gallery
           Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
           Properties:
             BorderColor: =RGBA(245, 245, 245, 1)
@@ -35,7 +27,7 @@ Screens:
             Y: =40
           Children:
             - Rectangle2_2:
-                Control: Rectangle@2.3.0
+                Control: Rectangle
                 Properties:
                   BorderColor: =RGBA(0, 0, 0, 0)
                   Fill: =RGBA(0, 0, 0, 0)
@@ -44,7 +36,7 @@ Screens:
                   Visible: =ThisItem.IsSelected
                   Width: =4
             - Image1_2:
-                Control: Image@2.2.3
+                Control: Image
                 Properties:
                   BorderColor: =RGBA(0, 0, 0, 0)
                   BorderStyle: =BorderStyle.None
@@ -67,7 +59,7 @@ Screens:
                   X: =16
                   Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
             - NextArrow2_2:
-                Control: Classic/Icon@2.5.0
+                Control: Classic/Icon
                 Properties:
                   AccessibleLabel: =Self.Tooltip
                   BorderColor: =RGBA(0, 0, 0, 1)
@@ -86,7 +78,7 @@ Screens:
                   X: =Parent.TemplateWidth - Self.Width - 12
                   Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
             - Title2_2:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   BorderColor: =RGBA(0, 0, 0, 1)
                   Color: =RGBA(50, 49, 48, 1)
@@ -106,7 +98,7 @@ Screens:
                   X: =103
                   Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle2_2.Size * 1.8)) / 2
             - Subtitle2_2:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   BorderColor: =RGBA(0, 0, 0, 1)
                   Color: =RGBA(96, 94, 92, 1)
@@ -127,7 +119,7 @@ Screens:
                   X: =Title2_2.X
                   Y: =Title2_2.Y + Title2_2.Height
             - Separator2_2:
-                Control: Rectangle@2.3.0
+                Control: Rectangle
                 Properties:
                   BorderColor: =RGBA(0, 0, 0, 0)
                   BorderThickness: =1
@@ -137,7 +129,7 @@ Screens:
                   Width: =Parent.TemplateWidth
                   Y: =Parent.TemplateHeight - Self.Height
       - Label1_1:
-          Control: Label@2.5.1
+          Control: Label
           Properties:
             BorderColor: =RGBA(0, 0, 0, 0)
             BorderStyle: =BorderStyle.None
@@ -154,7 +146,7 @@ Screens:
             X: =40
             Y: =Table1_1.Y - 36
       - Table1_1:
-          Control: ModernDataGrid@1.6.0
+          Control: ModernDataGrid
           Properties:
             Height: =If(Self.Y + 500 > Parent.Height, Parent.Height - Self.Y, 500)
             Items: |
@@ -170,7 +162,7 @@ Screens:
             Y: =368
           Children:
             - Category11_1:
-                Control: ModernDataGridColumn@1.2.0
+                Control: ModernDataGridColumn
                 Variant: Textual
                 IsLocked: true
                 Properties:
@@ -179,7 +171,7 @@ Screens:
                   FieldVariantName: ="complexTypeColumn"
                   Text: =ThisItem.Title
             - Modified On11_1:
-                Control: ModernDataGridColumn@1.2.0
+                Control: ModernDataGridColumn
                 Variant: DateTime
                 IsLocked: true
                 Properties:
@@ -188,7 +180,7 @@ Screens:
                   FieldVariantName: ="textualColumn"
                   Text: =Text(ThisItem.Modified, DateTimeFormat.LongDateTime)
             - Created On11_1:
-                Control: ModernDataGridColumn@1.2.0
+                Control: ModernDataGridColumn
                 Variant: DateTime
                 IsLocked: true
                 Properties:
@@ -197,7 +189,7 @@ Screens:
                   FieldVariantName: ="textualColumn"
                   Text: =Text(ThisItem.Created, "mmm d, yyyy")
             - Ticket Status11_1:
-                Control: ModernDataGridColumn@1.2.0
+                Control: ModernDataGridColumn
                 Variant: ComplexOptionSet
                 IsLocked: true
                 Properties:
@@ -206,7 +198,7 @@ Screens:
                   FieldVariantName: ="textualColumn"
                   Text: =ThisItem.Status.Value
             - Description11_2:
-                Control: ModernDataGridColumn@1.2.0
+                Control: ModernDataGridColumn
                 Variant: Textual
                 IsLocked: true
                 Properties:
@@ -215,7 +207,7 @@ Screens:
                   FieldVariantName: ="textualColumn"
                   Text: =ThisItem.Description
             - Title51_1:
-                Control: ModernDataGridColumn@1.2.0
+                Control: ModernDataGridColumn
                 Variant: Textual
                 IsLocked: true
                 Properties:
@@ -224,7 +216,7 @@ Screens:
                   FieldVariantName: ="textualColumn"
                   Text: =ThisItem.ServiceSubcategory
       - AvatarWel1_2:
-          Control: ModernAvatar@1.1.0
+          Control: ModernAvatar
           Properties:
             Height: =32
             OnSelect: =Set(varMenu, !varMenu)
@@ -232,7 +224,7 @@ Screens:
             X: =1125
             Y: =20
       - AccountMenu_2:
-          Control: GroupContainer@1.5.0
+          Control: GroupContainer
           Variant: AutoLayout
           Properties:
             DropShadow: =DropShadow.Regular
@@ -250,7 +242,7 @@ Screens:
             Y: =64
           Children:
             - menuName_2:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   AutoHeight: =true
                   BorderColor: =RGBA(0, 0, 0, 0)
@@ -267,7 +259,7 @@ Screens:
                   Size: =12
                   Text: =If(IsBlank(varRole), "Not signed in", Coalesce(varUser.Title, User().FullName))
             - menuRole_2:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   BorderColor: =RGBA(0, 0, 0, 0)
                   BorderStyle: =BorderStyle.None
@@ -286,7 +278,7 @@ Screens:
 
 
             - signOut_2:
-                Control: Classic/Button@2.2.0
+                Control: Classic/Button
                 Properties:
                   BorderColor: =RGBA(0, 0, 0, 0)
                   BorderStyle: =BorderStyle.None
@@ -316,7 +308,7 @@ Screens:
                   Text: ="Sign Out"
                   Visible: =Not(IsBlank(varRole))
             - signIn_2:
-                Control: Classic/Button@2.2.0
+                Control: Classic/Button
                 Properties:
                   BorderColor: =RGBA(0, 0, 0, 0)
                   BorderStyle: =BorderStyle.None
@@ -342,7 +334,7 @@ Screens:
                   Text: ="Sign In"
                   Visible: =IsBlank(varRole)
       - Button6:
-          Control: ModernButton@1.0.0
+          Control: ModernButton
           Properties:
             OnSelect: |
               =Set(varView, If(varView = "Submitted", "Assigned", "Submitted"))

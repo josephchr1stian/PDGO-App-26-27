@@ -1,11 +1,3 @@
-# ************************************************************************************************
-# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
-# Use the maker portal to create and edit your Power Apps.
-# 
-# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
-# 
-# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
-# ************************************************************************************************
 Screens:
   ParkingRequest:
     Properties:
@@ -14,7 +6,7 @@ Screens:
       OnVisible: "=Refresh('Parking Requests'); Set(varParkingSaving, false); ResetForm(frmParkingWaitlist); NewForm(frmParkingWaitlist)   "
     Children:
       - lblParkingHeading:
-          Control: Label@2.5.1
+          Control: Label
           Properties:
             FontWeight: =FontWeight.Bold
             Height: =60
@@ -24,7 +16,7 @@ Screens:
             X: =40
             Y: =30
       - lblParkingIntro:
-          Control: Label@2.5.1
+          Control: Label
           Properties:
             Height: =50
             Size: =15
@@ -33,7 +25,7 @@ Screens:
             X: =40
             Y: =95
       - ddParkingGarage:
-          Control: Classic/DropDown@2.3.1
+          Control: Classic/DropDown
           Properties:
             AccessibleLabel: ="Choose parking location"
             Default: ="Civic Center"
@@ -44,7 +36,7 @@ Screens:
             X: =40
             Y: =155
       - lblParkingMessage:
-          Control: Label@2.5.1
+          Control: Label
           Properties:
             Height: =65
             Live: =Live.Polite
@@ -54,7 +46,7 @@ Screens:
             X: =40
             Y: =210
       - frmParkingWaitlist:
-          Control: Form@2.4.4
+          Control: Form
           Variant: Classic
           Layout: Vertical
           Properties:
@@ -71,7 +63,7 @@ Screens:
             Y: =280
           Children:
             - pcTitle:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   DataField: ="Title"
@@ -84,7 +76,7 @@ Screens:
                   X: =0
                   Y: =0
             - pcEmail:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   DataField: ="RequesterEmail"
@@ -97,7 +89,7 @@ Screens:
                   X: =0
                   Y: =1
             - pcGarage:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   DataField: ="Garage"
@@ -110,7 +102,7 @@ Screens:
                   X: =0
                   Y: =2
             - pcStatus:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   DataField: ="RequestStatus"
@@ -123,7 +115,7 @@ Screens:
                   X: =0
                   Y: =3
             - pcActiveKey:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   DataField: ="ActiveKey"
@@ -136,7 +128,7 @@ Screens:
                   X: =0
                   Y: =4
             - pcDetails:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
                   DataField: ="RequestDetails"
@@ -151,14 +143,14 @@ Screens:
                   Y: =5
                 Children:
                   - lblParkingDetails:
-                      Control: Label@2.5.1
+                      Control: Label
                       Properties:
                         Height: =35
                         Text: ="Additional information (optional)"
                         Width: =Parent.Width - 60
                         X: =30
                   - txtParkingDetails:
-                      Control: Classic/TextInput@2.3.2
+                      Control: Classic/TextInput
                       Properties:
                         AccessibleLabel: ="Additional parking request information, optional"
                         Default: =""
@@ -170,7 +162,7 @@ Screens:
                         X: =30
                         Y: =40
             - pcAttachments:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ClassicAttachmentsEdit
                 Properties:
                   DataField: ="{Attachments}"
@@ -184,14 +176,14 @@ Screens:
                   Y: =6
                 Children:
                   - lblParkingAttachments:
-                      Control: Label@2.5.1
+                      Control: Label
                       Properties:
                         Height: =35
                         Text: ="Images or attachments (optional)"
                         Width: =Parent.Width - 60
                         X: =30
                   - attParking:
-                      Control: Attachments@2.3.0
+                      Control: Attachments
                       Properties:
                         DisplayMode: =Parent.DisplayMode
                         Height: =120
@@ -202,7 +194,7 @@ Screens:
                         X: =30
                         Y: =40
       - btnParkingJoin:
-          Control: Classic/Button@2.2.0
+          Control: Classic/Button
           Properties:
             DisplayMode: =If(varParkingSaving || !frmParkingWaitlist.Valid, DisplayMode.Disabled, DisplayMode.Edit)
             Height: =44
@@ -213,7 +205,7 @@ Screens:
             X: =340
             Y: =600
       - lblParkingMyRequest:
-          Control: Label@2.5.1
+          Control: Label
           Properties:
             Height: =180
             Size: =17
@@ -224,7 +216,7 @@ Screens:
             X: =40
             Y: =290
       - btnParkingRefresh:
-          Control: Classic/Button@2.2.0
+          Control: Classic/Button
           Properties:
             Height: =44
             OnSelect: =Refresh('Parking Requests')
@@ -233,7 +225,7 @@ Screens:
             X: =660
             Y: =600
       - btnParkingBack:
-          Control: Classic/Button@2.2.0
+          Control: Classic/Button
           Properties:
             Height: =44
             OnSelect: =Navigate(MainScreen1, ScreenTransition.None)
@@ -242,7 +234,7 @@ Screens:
             X: =40
             Y: =600
       - ReviewersCard1_1:
-          Control: GroupContainer@1.5.0
+          Control: GroupContainer
           Variant: AutoLayout
           Properties:
             DropShadow: =DropShadow.None
@@ -261,7 +253,7 @@ Screens:
             Y: =40
           Children:
             - ReviewersHeading1_1:
-                Control: ModernText@1.0.0
+                Control: ModernText
                 Properties:
                   FontWeight: =FontWeight.Semibold
                   Height: =28
@@ -273,7 +265,7 @@ Screens:
                   Text: ="Approval flow"
                   Width: =Parent.Width - 32
             - ReviewersSub1_1:
-                Control: ModernText@1.0.0
+                Control: ModernText
                 Properties:
                   Color: =RGBA(96, 94, 92, 1)
                   Height: =20
@@ -286,7 +278,7 @@ Screens:
                     =With({r: LookUp(ReviewersGallery1_1.AllItems, Status = "current"), d: LookUp(ReviewersGallery1_1.AllItems, Status = "denied")}, If(!IsBlank(d.Step), "Request denied · " & d.Name, IsBlank(r.Step), "All 4 steps complete", "Step " & r.Step & " of 4 · " & r.Role))
                   Width: =Parent.Width - 32
             - ReviewersGallery1_1:
-                Control: Gallery@2.15.0
+                Control: Gallery
                 Variant: Vertical
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -301,7 +293,7 @@ Screens:
                   Width: =Parent.Width - 32
                 Children:
                   - StepRow1_1:
-                      Control: GroupContainer@1.5.0
+                      Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
                         DropShadow: =DropShadow.None
@@ -316,7 +308,7 @@ Screens:
                         Width: =Parent.TemplateWidth
                       Children:
                         - StepRail1_1:
-                            Control: GroupContainer@1.5.0
+                            Control: GroupContainer
                             Variant: AutoLayout
                             Properties:
                               DropShadow: =DropShadow.None
@@ -333,7 +325,7 @@ Screens:
                               Width: =40
                             Children:
                               - StepTopLine1_1:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     AlignInContainer: =AlignInContainer.Center
@@ -351,7 +343,7 @@ Screens:
                                     PaddingTop: =8
                                     Width: =2
                               - StepBadge1_1:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     AlignInContainer: =AlignInContainer.Center
@@ -375,7 +367,7 @@ Screens:
                                     Width: =28
                                   Children:
                                     - StepBadgeText1_1:
-                                        Control: ModernText@1.0.0
+                                        Control: ModernText
                                         Properties:
                                           Align: =Align.Center
                                           Color: =If(ThisItem.Status = "waiting", RGBA(96, 94, 92, 1), RGBA(255, 255, 255, 1))
@@ -389,7 +381,7 @@ Screens:
                                           Text: =If(ThisItem.Status = "done", "✓", Text(ThisItem.Step))
                                           Width: =28
                               - StepBottomLine1_1:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     AlignInContainer: =AlignInContainer.Center
@@ -407,7 +399,7 @@ Screens:
                                     PaddingTop: =8
                                     Width: =2
                         - StepContent1_1:
-                            Control: GroupContainer@1.5.0
+                            Control: GroupContainer
                             Variant: AutoLayout
                             Properties:
                               DropShadow: =DropShadow.None
@@ -424,7 +416,7 @@ Screens:
                               PaddingTop: =8
                             Children:
                               - StepName1_1:
-                                  Control: ModernText@1.0.0
+                                  Control: ModernText
                                   Properties:
                                     FontWeight: =FontWeight.Semibold
                                     Height: =20
@@ -436,7 +428,7 @@ Screens:
                                     Text: =ThisItem.Name
                                     Width: =Parent.Width
                               - StepRole1_1:
-                                  Control: ModernText@1.0.0
+                                  Control: ModernText
                                   Properties:
                                     Color: =RGBA(96, 94, 92, 1)
                                     Height: =18
@@ -448,7 +440,7 @@ Screens:
                                     Text: =ThisItem.Role
                                     Width: =Parent.Width
                               - StepChip1_1:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     AlignInContainer: =AlignInContainer.Start
@@ -472,7 +464,7 @@ Screens:
                                     Width: =Switch(ThisItem.Status, "done", 116, "current", 116, 92)
                                   Children:
                                     - StepChipText1_1:
-                                        Control: ModernText@1.0.0
+                                        Control: ModernText
                                         Properties:
                                           Align: =Align.Center
                                           Color: =Switch(ThisItem.Status, "done", RGBA(16, 124, 16, 1), "current", RGBA(0, 65, 179, 1), "denied", RGBA(196, 43, 28, 1), RGBA(96, 94, 92, 1))

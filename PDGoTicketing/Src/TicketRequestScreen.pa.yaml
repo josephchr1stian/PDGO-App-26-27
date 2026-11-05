@@ -1,11 +1,3 @@
-# ************************************************************************************************
-# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
-# Use the maker portal to create and edit your Power Apps.
-# 
-# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
-# 
-# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
-# ************************************************************************************************
 Screens:
   TicketRequestScreen:
     Properties:
@@ -62,13 +54,13 @@ Screens:
         )
     Children:
       - trHeaderBar:
-          Control: Rectangle@2.3.0
+          Control: Rectangle
           Properties:
             Fill: =RGBA(40, 134, 222, 1)
             Height: =64
             Width: =Parent.Width
       - trHeaderTitle:
-          Control: Label@2.5.1
+          Control: Label
           Properties:
             Color: =RGBA(255, 255, 255, 1)
             FontWeight: =FontWeight.Bold
@@ -78,7 +70,7 @@ Screens:
             Width: =400
             X: =24
       - trBackBtn:
-          Control: Classic/Button@2.2.0
+          Control: Classic/Button
           Properties:
             BorderColor: =RGBA(255, 255, 255, 1)
             Color: =RGBA(0, 40, 85, 1)
@@ -92,7 +84,7 @@ Screens:
             X: =Parent.Width - 120
             Y: =14
       - trBlinkTimer:
-          Control: Timer@2.1.0
+          Control: Timer
           Properties:
             AutoStart: =true
             Duration: =600
@@ -102,7 +94,7 @@ Screens:
             Visible: =false
             Width: =10
       - trListTitle:
-          Control: Label@2.5.1
+          Control: Label
           Properties:
             Color: =RGBA(0, 40, 85, 1)
             FontWeight: =FontWeight.Semibold
@@ -114,7 +106,7 @@ Screens:
             X: =24
             Y: =76
       - trTicketGallery:
-          Control: Gallery@2.15.0
+          Control: Gallery
           Variant: Vertical
           Properties:
             Fill: =RGBA(214, 221, 224, 1)
@@ -129,7 +121,7 @@ Screens:
             Y: =112
           Children:
             - trCardBg:
-                Control: Rectangle@2.3.0
+                Control: Rectangle
                 Properties:
                   BorderColor: =If(Coalesce(varOpenTicket.Key, "") = ThisItem.Key, RGBA(0, 120, 212, 1), RGBA(218, 222, 230, 1))
                   BorderThickness: =If(Coalesce(varOpenTicket.Key, "") = ThisItem.Key, 2, 1)
@@ -144,7 +136,7 @@ Screens:
                   OnSelect: =Select(Parent)
                   Width: =Parent.TemplateWidth
             - trCardTitle:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(0, 40, 85, 1)
                   FontWeight: =FontWeight.Semibold
@@ -156,7 +148,7 @@ Screens:
                   X: =16
                   Y: =8
             - trCardMeta:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(96, 94, 92, 1)
                   Height: =22
@@ -168,7 +160,7 @@ Screens:
                   X: =16
                   Y: =34
             - trCardStatus:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Align: =Align.Right
                   Color: =If(ThisItem.Cur >= 5, RGBA(16, 124, 16, 1), RGBA(0, 120, 212, 1))
@@ -181,7 +173,7 @@ Screens:
                   X: =Parent.TemplateWidth - 176
                   Y: =8
             - trCardLine1:
-                Control: Rectangle@2.3.0
+                Control: Rectangle
                 Properties:
                   Fill: |-
                     =With({c: ThisItem.Cur}, If(c >= 5, RGBA(16, 124, 16, 1), 1 < c, RGBA(0, 120, 212, 1), RGBA(200, 205, 215, 1)))
@@ -191,7 +183,7 @@ Screens:
                   X: =50
                   Y: =77
             - trCardStep1:
-                Control: Classic/Button@2.2.0
+                Control: Classic/Button
                 Properties:
                   BorderColor: =RGBA(0, 40, 85, 1)
                   Color: |-
@@ -220,7 +212,7 @@ Screens:
                   X: =16
                   Y: =62
             - trCardLine2:
-                Control: Rectangle@2.3.0
+                Control: Rectangle
                 Properties:
                   Fill: |-
                     =With({c: ThisItem.Cur}, If(c >= 5, RGBA(16, 124, 16, 1), 2 < c, RGBA(0, 120, 212, 1), RGBA(200, 205, 215, 1)))
@@ -230,7 +222,7 @@ Screens:
                   X: =126
                   Y: =77
             - trCardStep2:
-                Control: Classic/Button@2.2.0
+                Control: Classic/Button
                 Properties:
                   BorderColor: =RGBA(0, 40, 85, 1)
                   Color: |-
@@ -259,7 +251,7 @@ Screens:
                   X: =92
                   Y: =62
             - trCardLine3:
-                Control: Rectangle@2.3.0
+                Control: Rectangle
                 Properties:
                   Fill: |-
                     =With({c: ThisItem.Cur}, If(c >= 5, RGBA(16, 124, 16, 1), 3 < c, RGBA(0, 120, 212, 1), RGBA(200, 205, 215, 1)))
@@ -269,7 +261,7 @@ Screens:
                   X: =202
                   Y: =77
             - trCardStep3:
-                Control: Classic/Button@2.2.0
+                Control: Classic/Button
                 Properties:
                   BorderColor: =RGBA(0, 40, 85, 1)
                   Color: |-
@@ -298,7 +290,7 @@ Screens:
                   X: =168
                   Y: =62
             - trCardStep4:
-                Control: Classic/Button@2.2.0
+                Control: Classic/Button
                 Properties:
                   BorderColor: =RGBA(0, 40, 85, 1)
                   Color: |-
@@ -327,7 +319,7 @@ Screens:
                   X: =244
                   Y: =62
       - trDetailPanel:
-          Control: GroupContainer@1.5.0
+          Control: GroupContainer
           Variant: ManualLayout
           Properties:
             BorderColor: =RGBA(218, 222, 230, 1)
@@ -344,7 +336,7 @@ Screens:
             Y: =76
           Children:
             - trPanelTitle:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(0, 40, 85, 1)
                   FontWeight: =FontWeight.Bold
@@ -355,7 +347,7 @@ Screens:
                   X: =24
                   Y: =16
             - trPanelSub:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(96, 94, 92, 1)
                   Height: =22
@@ -365,7 +357,7 @@ Screens:
                   X: =24
                   Y: =48
             - trPanelClose:
-                Control: Classic/Button@2.2.0
+                Control: Classic/Button
                 Properties:
                   BorderColor: =RGBA(0, 40, 85, 1)
                   BorderThickness: =1
@@ -390,7 +382,7 @@ Screens:
                   X: =Parent.Width - Self.Width - 20
                   Y: =16
             - trPanelDivider:
-                Control: Rectangle@2.3.0
+                Control: Rectangle
                 Properties:
                   Fill: =RGBA(225, 223, 221, 1)
                   Height: =1
@@ -398,7 +390,7 @@ Screens:
                   X: =24
                   Y: =80
             - trLblStatus:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(96, 94, 92, 1)
                   FontWeight: =FontWeight.Semibold
@@ -409,7 +401,7 @@ Screens:
                   X: =24
                   Y: =96
             - trValStatus:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(0, 40, 85, 1)
                   Height: =24
@@ -420,7 +412,7 @@ Screens:
                   X: =24
                   Y: =116
             - trLblRequestedby:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(96, 94, 92, 1)
                   FontWeight: =FontWeight.Semibold
@@ -431,7 +423,7 @@ Screens:
                   X: =24
                   Y: =150
             - trValRequestedby:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(0, 40, 85, 1)
                   Height: =24
@@ -442,7 +434,7 @@ Screens:
                   X: =24
                   Y: =170
             - trLblSubmitted:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(96, 94, 92, 1)
                   FontWeight: =FontWeight.Semibold
@@ -453,7 +445,7 @@ Screens:
                   X: =24
                   Y: =204
             - trValSubmitted:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(0, 40, 85, 1)
                   Height: =24
@@ -464,7 +456,7 @@ Screens:
                   X: =24
                   Y: =224
             - trLblDescription:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(96, 94, 92, 1)
                   FontWeight: =FontWeight.Semibold
@@ -475,7 +467,7 @@ Screens:
                   X: =24
                   Y: =258
             - trValDescription:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(0, 40, 85, 1)
                   Height: =200
@@ -486,7 +478,7 @@ Screens:
                   X: =24
                   Y: =278
             - trFlowBg:
-                Control: Rectangle@2.3.0
+                Control: Rectangle
                 Properties:
                   BorderColor: =RGBA(225, 223, 221, 1)
                   BorderThickness: =1
@@ -496,7 +488,7 @@ Screens:
                   X: =Parent.Width - 336
                   Y: =96
             - trFlowHeader:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(0, 40, 85, 1)
                   FontWeight: =FontWeight.Bold
@@ -506,7 +498,7 @@ Screens:
                   X: =Parent.Width - 320
                   Y: =104
             - trFlowSub:
-                Control: Label@2.5.1
+                Control: Label
                 Properties:
                   Color: =RGBA(96, 94, 92, 1)
                   Height: =20
@@ -516,7 +508,7 @@ Screens:
                   X: =Parent.Width - 320
                   Y: =128
             - trFlowGallery:
-                Control: Gallery@2.15.0
+                Control: Gallery
                 Variant: Vertical
                 Properties:
                   Height: =Parent.Height - 200
@@ -544,7 +536,7 @@ Screens:
                   Y: =160
                 Children:
                   - trFlowLine:
-                      Control: Rectangle@2.3.0
+                      Control: Rectangle
                       Properties:
                         Fill: =If(ThisItem.St = "complete", RGBA(16, 124, 16, 1), ThisItem.St = "done", RGBA(0, 120, 212, 1), RGBA(200, 205, 215, 1))
                         Height: =Parent.TemplateHeight - 38
@@ -553,7 +545,7 @@ Screens:
                         X: =17
                         Y: =38
                   - trFlowCircle:
-                      Control: Classic/Button@2.2.0
+                      Control: Classic/Button
                       Properties:
                         BorderColor: =RGBA(0, 40, 85, 1)
                         Color: =If(ThisItem.St in ["complete", "done"] || (ThisItem.St = "current" && varBlink), RGBA(255, 255, 255, 1), RGBA(0, 40, 85, 1))
@@ -579,7 +571,7 @@ Screens:
                         X: =2
                         Y: =2
                   - trFlowName:
-                      Control: Label@2.5.1
+                      Control: Label
                       Properties:
                         Color: =RGBA(0, 40, 85, 1)
                         FontWeight: =FontWeight.Semibold
@@ -589,7 +581,7 @@ Screens:
                         Width: =Parent.TemplateWidth - 56
                         X: =48
                   - trFlowRole:
-                      Control: Label@2.5.1
+                      Control: Label
                       Properties:
                         Color: =RGBA(96, 94, 92, 1)
                         Height: =20
@@ -599,7 +591,7 @@ Screens:
                         X: =48
                         Y: =20
                   - trFlowPill:
-                      Control: Classic/Button@2.2.0
+                      Control: Classic/Button
                       Properties:
                         BorderColor: =Self.Color
                         BorderThickness: =1

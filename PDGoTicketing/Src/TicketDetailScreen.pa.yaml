@@ -1,11 +1,3 @@
-# ************************************************************************************************
-# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
-# Use the maker portal to create and edit your Power Apps.
-# 
-# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
-# 
-# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
-# ************************************************************************************************
 Screens:
   TicketDetailScreen:
     Properties:
@@ -15,7 +7,7 @@ Screens:
       OnVisible: =ViewForm(Form1)
     Children:
       - Text3:
-          Control: ModernText@1.0.0
+          Control: ModernText
           Properties:
             FontWeight: =FontWeight.Bold
             Height: |
@@ -28,7 +20,7 @@ Screens:
             X: =40
             Y: =80
       - Button1:
-          Control: ModernButton@1.0.0
+          Control: ModernButton
           Properties:
             OnSelect: |-
               =ResetForm(Form1);
@@ -40,7 +32,7 @@ Screens:
             X: =40
             Y: =30
       - Button2:
-          Control: ModernButton@1.0.0
+          Control: ModernButton
           Properties:
             OnSelect: |-
               =If(
@@ -54,7 +46,7 @@ Screens:
             X: =160
             Y: =30
       - Form1:
-          Control: Form@2.4.4
+          Control: Form
           Variant: Modern
           Layout: Vertical
           Properties:
@@ -76,7 +68,7 @@ Screens:
             Y: =130
           Children:
             - Title_DataCard2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ModernTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -91,7 +83,7 @@ Screens:
                   Y: =0
                 Children:
                   - DataCardKey6:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldName
                       Properties:
                         FontWeight: =FontWeight.Semibold
@@ -106,7 +98,7 @@ Screens:
                         X: =24
                         Y: =10
                   - DataCardValue6:
-                      Control: ModernTextInput@1.1.2
+                      Control: ModernTextInput
                       MetadataKey: FieldValue
                       Properties:
                         AccessibleLabel: =Parent.DisplayName
@@ -119,7 +111,7 @@ Screens:
                         X: =24
                         Y: =DataCardKey6.Y + DataCardKey6.Height + 4
                   - ErrorMessage6:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: ErrorMessage
                       Properties:
                         Height: =30
@@ -130,7 +122,7 @@ Screens:
                         X: =24
                         Y: =DataCardValue6.Y + DataCardValue6.Height
                   - StarVisible6:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -143,7 +135,7 @@ Screens:
                         Width: =30
                         Y: =DataCardKey6.Y
             - Description_DataCard2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ModernTextualMultilineEdit
                 IsLocked: true
                 Properties:
@@ -159,7 +151,7 @@ Screens:
                   Y: =0
                 Children:
                   - DataCardKey22:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldName
                       Properties:
                         FontWeight: =FontWeight.Semibold
@@ -173,7 +165,7 @@ Screens:
                         X: =24
                         Y: =10
                   - DataCardValue22:
-                      Control: ModernTextInput@1.1.2
+                      Control: ModernTextInput
                       MetadataKey: FieldValue
                       Properties:
                         AccessibleLabel: =Parent.DisplayName
@@ -188,7 +180,7 @@ Screens:
                         X: =24
                         Y: =DataCardKey22.Y + DataCardKey22.Height + 4
                   - ErrorMessage22:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: ErrorMessage
                       Properties:
                         Height: =30
@@ -199,7 +191,7 @@ Screens:
                         X: =24
                         Y: =DataCardValue22.Y + DataCardValue22.Height
                   - StarVisible22:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -212,7 +204,7 @@ Screens:
                         Width: =30
                         Y: =DataCardKey22.Y
             - Location_DataCard2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ModernTextualEdit
                 IsLocked: true
                 Properties:
@@ -228,7 +220,7 @@ Screens:
                   Y: =0
                 Children:
                   - DataCardKey14:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldName
                       Properties:
                         FontWeight: =FontWeight.Semibold
@@ -242,7 +234,7 @@ Screens:
                         X: =24
                         Y: =10
                   - DataCardValue14:
-                      Control: ModernTextInput@1.1.2
+                      Control: ModernTextInput
                       MetadataKey: FieldValue
                       Properties:
                         AccessibleLabel: =Parent.DisplayName
@@ -255,7 +247,7 @@ Screens:
                         X: =24
                         Y: =DataCardKey14.Y + DataCardKey14.Height + 4
                   - ErrorMessage14:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: ErrorMessage
                       Properties:
                         Height: =30
@@ -266,7 +258,7 @@ Screens:
                         X: =24
                         Y: =DataCardValue14.Y + DataCardValue14.Height
                   - StarVisible14:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -279,7 +271,7 @@ Screens:
                         Width: =30
                         Y: =DataCardKey14.Y
             - Building_DataCard2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ModernTextualEdit
                 IsLocked: true
                 Properties:
@@ -295,7 +287,7 @@ Screens:
                   Y: =1
                 Children:
                   - DataCardKey15:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldName
                       Properties:
                         FontWeight: =FontWeight.Semibold
@@ -309,7 +301,7 @@ Screens:
                         X: =24
                         Y: =10
                   - DataCardValue15:
-                      Control: ModernTextInput@1.1.2
+                      Control: ModernTextInput
                       MetadataKey: FieldValue
                       Properties:
                         AccessibleLabel: =Parent.DisplayName
@@ -322,7 +314,7 @@ Screens:
                         X: =24
                         Y: =DataCardKey15.Y + DataCardKey15.Height + 4
                   - ErrorMessage15:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: ErrorMessage
                       Properties:
                         Height: =30
@@ -333,7 +325,7 @@ Screens:
                         X: =24
                         Y: =DataCardValue15.Y + DataCardValue15.Height
                   - StarVisible15:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -346,7 +338,7 @@ Screens:
                         Width: =30
                         Y: =DataCardKey15.Y
             - Floor_DataCard2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ModernTextualEdit
                 IsLocked: true
                 Properties:
@@ -362,7 +354,7 @@ Screens:
                   Y: =1
                 Children:
                   - DataCardKey16:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldName
                       Properties:
                         FontWeight: =FontWeight.Semibold
@@ -376,7 +368,7 @@ Screens:
                         X: =24
                         Y: =10
                   - DataCardValue16:
-                      Control: ModernTextInput@1.1.2
+                      Control: ModernTextInput
                       MetadataKey: FieldValue
                       Properties:
                         AccessibleLabel: =Parent.DisplayName
@@ -389,7 +381,7 @@ Screens:
                         X: =24
                         Y: =DataCardKey16.Y + DataCardKey16.Height + 4
                   - ErrorMessage16:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: ErrorMessage
                       Properties:
                         Height: =30
@@ -400,7 +392,7 @@ Screens:
                         X: =24
                         Y: =DataCardValue16.Y + DataCardValue16.Height
                   - StarVisible16:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -413,7 +405,7 @@ Screens:
                         Width: =30
                         Y: =DataCardKey16.Y
             - Status_DataCard2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ModernComboBoxEdit
                 IsLocked: true
                 Properties:
@@ -428,7 +420,7 @@ Screens:
                   Y: =1
                 Children:
                   - DataCardKey17:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldName
                       Properties:
                         FontWeight: =FontWeight.Semibold
@@ -442,7 +434,7 @@ Screens:
                         X: =24
                         Y: =10
                   - DataCardValue17:
-                      Control: ModernCombobox@1.1.2
+                      Control: ModernCombobox
                       MetadataKey: FieldValue
                       Properties:
                         AccessibleLabel: =Parent.DisplayName
@@ -455,7 +447,7 @@ Screens:
                         X: =24
                         Y: =DataCardKey17.Y + DataCardKey17.Height + 4
                   - ErrorMessage17:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: ErrorMessage
                       Properties:
                         Height: =30
@@ -466,7 +458,7 @@ Screens:
                         X: =24
                         Y: =DataCardValue17.Y + DataCardValue17.Height
                   - StarVisible17:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -479,7 +471,7 @@ Screens:
                         Width: =30
                         Y: =DataCardKey17.Y
             - Priority_DataCard2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ModernComboBoxEdit
                 IsLocked: true
                 Properties:
@@ -494,7 +486,7 @@ Screens:
                   Y: =2
                 Children:
                   - DataCardKey18:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldName
                       Properties:
                         FontWeight: =FontWeight.Semibold
@@ -508,7 +500,7 @@ Screens:
                         X: =24
                         Y: =10
                   - DataCardValue18:
-                      Control: ModernCombobox@1.1.2
+                      Control: ModernCombobox
                       MetadataKey: FieldValue
                       Properties:
                         AccessibleLabel: =Parent.DisplayName
@@ -521,7 +513,7 @@ Screens:
                         X: =24
                         Y: =DataCardKey18.Y + DataCardKey18.Height + 4
                   - ErrorMessage18:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: ErrorMessage
                       Properties:
                         Height: =30
@@ -532,7 +524,7 @@ Screens:
                         X: =24
                         Y: =DataCardValue18.Y + DataCardValue18.Height
                   - StarVisible18:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -545,7 +537,7 @@ Screens:
                         Width: =30
                         Y: =DataCardKey18.Y
             - RequestedBy_DataCard2:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ModernTextualEdit
                 IsLocked: true
                 Properties:
@@ -561,7 +553,7 @@ Screens:
                   Y: =2
                 Children:
                   - DataCardKey19:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldName
                       Properties:
                         FontWeight: =FontWeight.Semibold
@@ -575,7 +567,7 @@ Screens:
                         X: =24
                         Y: =10
                   - DataCardValue19:
-                      Control: ModernTextInput@1.1.2
+                      Control: ModernTextInput
                       MetadataKey: FieldValue
                       Properties:
                         AccessibleLabel: =Parent.DisplayName
@@ -588,7 +580,7 @@ Screens:
                         X: =24
                         Y: =DataCardKey19.Y + DataCardKey19.Height + 4
                   - ErrorMessage19:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: ErrorMessage
                       Properties:
                         Height: =30
@@ -599,7 +591,7 @@ Screens:
                         X: =24
                         Y: =DataCardValue19.Y + DataCardValue19.Height
                   - StarVisible19:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -612,7 +604,7 @@ Screens:
                         Width: =30
                         Y: =DataCardKey19.Y
             - AssignedTo_DataCard1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ModernTextualEdit
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
@@ -628,7 +620,7 @@ Screens:
                   Y: =2
                 Children:
                   - DataCardKey20:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldName
                       Properties:
                         FontWeight: =FontWeight.Semibold
@@ -642,7 +634,7 @@ Screens:
                         X: =24
                         Y: =10
                   - DataCardValue20:
-                      Control: ModernTextInput@1.1.2
+                      Control: ModernTextInput
                       MetadataKey: FieldValue
                       Properties:
                         AccessibleLabel: =Parent.DisplayName
@@ -655,7 +647,7 @@ Screens:
                         X: =24
                         Y: =DataCardKey20.Y + DataCardKey20.Height + 4
                   - ErrorMessage20:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: ErrorMessage
                       Properties:
                         Height: =30
@@ -666,7 +658,7 @@ Screens:
                         X: =24
                         Y: =DataCardValue20.Y + DataCardValue20.Height
                   - StarVisible20:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -679,7 +671,7 @@ Screens:
                         Width: =30
                         Y: =DataCardKey20.Y
             - RequestDate_DataCard1:
-                Control: TypedDataCard@1.0.7
+                Control: TypedDataCard
                 Variant: ModernDateEdit
                 IsLocked: true
                 Properties:
@@ -694,7 +686,7 @@ Screens:
                   Y: =3
                 Children:
                   - DataCardKey21:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldName
                       Properties:
                         FontWeight: =FontWeight.Semibold
@@ -708,7 +700,7 @@ Screens:
                         X: =24
                         Y: =10
                   - DataCardValue21:
-                      Control: ModernDatePicker@1.0.2
+                      Control: ModernDatePicker
                       MetadataKey: FieldValue
                       Properties:
                         AccessibleLabel: =Parent.DisplayName
@@ -719,7 +711,7 @@ Screens:
                         X: =24
                         Y: =DataCardKey21.Y + DataCardKey21.Height + 4
                   - ErrorMessage21:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: ErrorMessage
                       Properties:
                         Height: =30
@@ -730,7 +722,7 @@ Screens:
                         X: =24
                         Y: =DataCardValue21.Y + DataCardValue21.Height
                   - StarVisible21:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
@@ -743,7 +735,7 @@ Screens:
                         Width: =30
                         Y: =DataCardKey21.Y
       - Button4:
-          Control: ModernButton@1.0.0
+          Control: ModernButton
           Properties:
             OnSelect: |-
               =If (
@@ -756,7 +748,7 @@ Screens:
             X: =261
             Y: =537
       - Button5:
-          Control: ModernButton@1.0.0
+          Control: ModernButton
           Properties:
             OnSelect: |-
               =ResetForm(Form1);

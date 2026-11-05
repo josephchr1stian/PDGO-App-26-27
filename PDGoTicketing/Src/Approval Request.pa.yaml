@@ -1,11 +1,3 @@
-# ************************************************************************************************
-# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
-# Use the maker portal to create and edit your Power Apps.
-# 
-# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
-# 
-# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
-# ************************************************************************************************
 Screens:
   Approval Request:
     Properties:
@@ -13,7 +5,7 @@ Screens:
       LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     Children:
       - ApprScroll2:
-          Control: GroupContainer@1.5.0
+          Control: GroupContainer
           Variant: AutoLayout
           Properties:
             DropShadow: =DropShadow.None
@@ -26,7 +18,7 @@ Screens:
             Width: =Parent.Width
           Children:
             - TopNav2:
-                Control: GroupContainer@1.5.0
+                Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
                   DropShadow: =DropShadow.None
@@ -40,7 +32,7 @@ Screens:
                   Width: =Parent.Width
                 Children:
                   - TitleRow2:
-                      Control: GroupContainer@1.5.0
+                      Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
                         DropShadow: =DropShadow.None
@@ -57,7 +49,7 @@ Screens:
                         Width: =Parent.Width
                       Children:
                         - AppTitle2:
-                            Control: ModernText@1.0.0
+                            Control: ModernText
                             Properties:
                               FillPortions: =If(App.Width < 640, 1, 0)
                               Font: =Font.'Segoe UI'
@@ -70,7 +62,7 @@ Screens:
                               Text: ="Contoso Art Studio"
                               Width: =If(App.Width < 640, 0, 200)
                         - NavTabsDesktop2:
-                            Control: ModernTabList@1.0.2
+                            Control: ModernTabList
                             Properties:
                               AlignInContainer: =AlignInContainer.Center
                               Appearance: =TabListAppearance.Subtle
@@ -83,7 +75,7 @@ Screens:
                               LayoutMinWidth: =16
                               Visible: =App.Width >= 640
                         - IconChat2:
-                            Control: ModernIcon@1.1.1
+                            Control: ModernIcon
                             Properties:
                               Height: =24
                               Icon: =Icon.Message
@@ -92,7 +84,7 @@ Screens:
                               LayoutMinWidth: =16
                               Width: =24
                         - IconShare2:
-                            Control: ModernIcon@1.1.1
+                            Control: ModernIcon
                             Properties:
                               Height: =24
                               Icon: =Icon.Share
@@ -101,7 +93,7 @@ Screens:
                               LayoutMinWidth: =16
                               Width: =24
                         - IconSettings2:
-                            Control: ModernIcon@1.1.1
+                            Control: ModernIcon
                             Properties:
                               Height: =24
                               Icon: =Icon.Settings
@@ -110,14 +102,14 @@ Screens:
                               LayoutMinWidth: =16
                               Width: =24
                         - Avatar2:
-                            Control: ModernAvatar@1.1.0
+                            Control: ModernAvatar
                             Properties:
                               Height: =32
                               LayoutMinHeight: =16
                               LayoutMinWidth: =16
                               Width: =32
                   - NavTabsMobile2:
-                      Control: ModernTabList@1.0.2
+                      Control: ModernTabList
                       Properties:
                         Appearance: =TabListAppearance.Subtle
                         BasePaletteColor: =RGBA(0, 65, 179, 1)
@@ -130,7 +122,7 @@ Screens:
                         LayoutMinWidth: =16
                         Width: =Parent.Width
             - NavDivider2:
-                Control: ModernText@1.0.0
+                Control: ModernText
                 Properties:
                   Fill: =RGBA(237, 237, 237, 1)
                   Height: =2
@@ -141,7 +133,7 @@ Screens:
                   Text: =""
                   Width: =Parent.Width
             - TitleBand2:
-                Control: GroupContainer@1.5.0
+                Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
                   DropShadow: =DropShadow.None
@@ -160,7 +152,7 @@ Screens:
                   Width: =Parent.Width
                 Children:
                   - PageTitle2:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       Properties:
                         AutoHeight: =true
                         FontWeight: =FontWeight.Bold
@@ -172,7 +164,7 @@ Screens:
                         Text: ="Request a review"
                         Width: =Parent.Width - If(App.Width < 640, 32, 80)
                   - PageSubtitle2:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       Properties:
                         AutoHeight: =true
                         Color: =RGBA(96, 94, 92, 1)
@@ -184,7 +176,7 @@ Screens:
                         Text: ="Send your piece for approval and track where it is in the review process."
                         Width: =Parent.Width - If(App.Width < 640, 32, 80)
             - TwoColRow2:
-                Control: GroupContainer@1.5.0
+                Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
                   DropShadow: =DropShadow.None
@@ -202,7 +194,7 @@ Screens:
                   Width: =Parent.Width
                 Children:
                   - FormCard2:
-                      Control: GroupContainer@1.5.0
+                      Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
                         DropShadow: =DropShadow.None
@@ -220,7 +212,7 @@ Screens:
                         PaddingTop: =20
                       Children:
                         - FormHeading2:
-                            Control: ModernText@1.0.0
+                            Control: ModernText
                             Properties:
                               FontWeight: =FontWeight.Semibold
                               LayoutMinHeight: =16
@@ -231,7 +223,7 @@ Screens:
                               Text: ="Submission details"
                               Width: =Parent.Width - 40
                         - ReviewForm2:
-                            Control: Form@2.4.4
+                            Control: Form
                             Layout: Vertical
                             Properties:
                               BorderColor: =RGBA(245, 245, 245, 1)
@@ -243,7 +235,7 @@ Screens:
                               LayoutMinWidth: =16
                               NumberOfColumns: =If(App.Width < 640, 1, 2)
                         - ApprButtonRow2:
-                            Control: GroupContainer@1.5.0
+                            Control: GroupContainer
                             Variant: AutoLayout
                             Properties:
                               DropShadow: =DropShadow.None
@@ -262,7 +254,7 @@ Screens:
                               Width: =Parent.Width - 40
                             Children:
                               - SendReviewBtnR2:
-                                  Control: ModernButton@1.0.0
+                                  Control: ModernButton
                                   Properties:
                                     Height: =40
                                     LayoutMinHeight: =16
@@ -270,7 +262,7 @@ Screens:
                                     Text: ="Send for review"
                                     Width: =160
                               - CancelReviewBtnR2:
-                                  Control: ModernButton@1.0.0
+                                  Control: ModernButton
                                   Properties:
                                     Appearance: =ButtonAppearance.Secondary
                                     Height: =40
@@ -279,7 +271,7 @@ Screens:
                                     Text: ="Cancel"
                                     Width: =120
                   - ReviewersCard2:
-                      Control: GroupContainer@1.5.0
+                      Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
                         DropShadow: =DropShadow.None
@@ -299,7 +291,7 @@ Screens:
                         Width: =If(App.Width < 640, Parent.Width - 32, 0)
                       Children:
                         - ReviewersHeading2:
-                            Control: ModernText@1.0.0
+                            Control: ModernText
                             Properties:
                               FontWeight: =FontWeight.Semibold
                               Height: =28
@@ -311,7 +303,7 @@ Screens:
                               Text: ="Approval flow"
                               Width: =Parent.Width - 32
                         - ReviewersSub2:
-                            Control: ModernText@1.0.0
+                            Control: ModernText
                             Properties:
                               Color: =RGBA(96, 94, 92, 1)
                               Height: =20
@@ -323,7 +315,7 @@ Screens:
                               Text: ="Step 2 of 4 · Curator review in progress"
                               Width: =Parent.Width - 32
                         - ReviewersGallery2:
-                            Control: Gallery@2.15.0
+                            Control: Gallery
                             Variant: Vertical
                             Properties:
                               BorderColor: =RGBA(245, 245, 245, 1)
@@ -338,7 +330,7 @@ Screens:
                               Width: =Parent.Width - 32
                             Children:
                               - StepRow2:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -353,7 +345,7 @@ Screens:
                                     Width: =Parent.TemplateWidth
                                   Children:
                                     - StepRail2:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -370,7 +362,7 @@ Screens:
                                           Width: =40
                                         Children:
                                           - StepTopLine2:
-                                              Control: GroupContainer@1.5.0
+                                              Control: GroupContainer
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
@@ -388,7 +380,7 @@ Screens:
                                                 PaddingTop: =8
                                                 Width: =2
                                           - StepBadge2:
-                                              Control: GroupContainer@1.5.0
+                                              Control: GroupContainer
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
@@ -412,7 +404,7 @@ Screens:
                                                 Width: =28
                                               Children:
                                                 - StepBadgeText2:
-                                                    Control: ModernText@1.0.0
+                                                    Control: ModernText
                                                     Properties:
                                                       Align: =Align.Center
                                                       Color: =If(ThisItem.Status = "waiting", RGBA(96, 94, 92, 1), RGBA(255, 255, 255, 1))
@@ -426,7 +418,7 @@ Screens:
                                                       Text: =If(ThisItem.Status = "done", "✓", Text(ThisItem.Step))
                                                       Width: =28
                                           - StepBottomLine2:
-                                              Control: GroupContainer@1.5.0
+                                              Control: GroupContainer
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
@@ -444,7 +436,7 @@ Screens:
                                                 PaddingTop: =8
                                                 Width: =2
                                     - StepContent2:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -461,7 +453,7 @@ Screens:
                                           PaddingTop: =8
                                         Children:
                                           - StepName2:
-                                              Control: ModernText@1.0.0
+                                              Control: ModernText
                                               Properties:
                                                 FontWeight: =FontWeight.Semibold
                                                 Height: =20
@@ -473,7 +465,7 @@ Screens:
                                                 Text: =ThisItem.Name
                                                 Width: =Parent.Width
                                           - StepRole2:
-                                              Control: ModernText@1.0.0
+                                              Control: ModernText
                                               Properties:
                                                 Color: =RGBA(96, 94, 92, 1)
                                                 Height: =18
@@ -485,7 +477,7 @@ Screens:
                                                 Text: =ThisItem.Role
                                                 Width: =Parent.Width
                                           - StepChip2:
-                                              Control: GroupContainer@1.5.0
+                                              Control: GroupContainer
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Start
@@ -509,7 +501,7 @@ Screens:
                                                 Width: =Switch(ThisItem.Status, "done", 116, "current", 116, 92)
                                               Children:
                                                 - StepChipText2:
-                                                    Control: ModernText@1.0.0
+                                                    Control: ModernText
                                                     Properties:
                                                       Align: =Align.Center
                                                       Color: =Switch(ThisItem.Status, "done", RGBA(16, 124, 16, 1), "current", RGBA(0, 65, 179, 1), RGBA(96, 94, 92, 1))

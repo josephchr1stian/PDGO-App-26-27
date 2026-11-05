@@ -1,11 +1,3 @@
-# ************************************************************************************************
-# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
-# Use the maker portal to create and edit your Power Apps.
-# 
-# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
-# 
-# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
-# ************************************************************************************************
 App:
   Properties:
     Formulas: "=CanEditTicket =\n    !IsBlank(varEmail) &&\n    !IsBlank(selTicket.ID) &&\n    (\n        varRole = \"Admin\" ||\n        varRole = \"Supervisor\" ||\n        Lower(Trim(Coalesce(selTicket.AssignedTo, \"\"))) = varEmail\n    );\n\n BlankImg = \"data:image/svg+xml;utf8,\" & EncodeUrl(\"<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'></svg>\");\n\n NavTabs = If(varRole = \"Admin\" || varRole = \"Supervisor\", [\"Home\", \"Current Tickets\", \"Admin\"], [\"Home\", \"Current Tickets\"]);\n\n "

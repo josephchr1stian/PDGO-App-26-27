@@ -1,11 +1,3 @@
-# ************************************************************************************************
-# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
-# Use the maker portal to create and edit your Power Apps.
-# 
-# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
-# 
-# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
-# ************************************************************************************************
 Screens:
   Locksmith Request:
     Properties:
@@ -13,7 +5,7 @@ Screens:
       LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     Children:
       - ApprScroll1:
-          Control: GroupContainer@1.5.0
+          Control: GroupContainer
           Variant: AutoLayout
           Properties:
             DropShadow: =DropShadow.None
@@ -26,7 +18,7 @@ Screens:
             Width: =Parent.Width
           Children:
             - TwoColRow1:
-                Control: GroupContainer@1.5.0
+                Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
                   DropShadow: =DropShadow.None
@@ -43,7 +35,7 @@ Screens:
                   Width: =Parent.Width
                 Children:
                   - Button8:
-                      Control: ModernButton@1.0.0
+                      Control: ModernButton
                       Properties:
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
@@ -52,7 +44,7 @@ Screens:
                         PaddingTop: =0
                         Text: ="Back"
                   - FormCard1:
-                      Control: GroupContainer@1.5.0
+                      Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
                         AlignInContainer: =AlignInContainer.SetByContainer
@@ -71,7 +63,7 @@ Screens:
                         PaddingTop: =20
                       Children:
                         - FormHeading1:
-                            Control: ModernText@1.0.0
+                            Control: ModernText
                             Properties:
                               FontWeight: =FontWeight.Semibold
                               LayoutMinHeight: =16
@@ -82,7 +74,7 @@ Screens:
                               Text: ="Submission details"
                               Width: =Parent.Width - 40
                         - lkFormFields:
-                            Control: GroupContainer@1.5.0
+                            Control: GroupContainer
                             Variant: AutoLayout
                             Properties:
                               DropShadow: =DropShadow.None
@@ -95,13 +87,13 @@ Screens:
                               Width: =Parent.Width - 40
                             Children:
                               - lkMissing:
-                                  Control: ModernText@1.0.0
+                                  Control: ModernText
                                   Properties:
                                     Text: |-
                                       =Concat(Filter(Table({F: "Full name", M: IsBlank(lkName.Text)}, {F: "Email", M: IsBlank(lkEmail.Text)}, {F: "Department", M: IsBlank(lkDept.Selected.Value)}, {F: "Building", M: IsBlank(lkBuilding.Selected.Value)}, {F: "Room / office number", M: IsBlank(lkRoom.Text)}, {F: "Request type", M: IsBlank(lkType.Selected.Value)}, {F: "Description of the issue", M: IsBlank(lkDesc.Text)}, {F: "Priority level", M: IsBlank(lkPriority.Selected.Value)}, {F: "Authorization checkbox", M: !lkConfirm.Checked}), M), F, ", ")
                                     Visible: =false
                               - lkErrBanner:
-                                  Control: ModernText@1.0.0
+                                  Control: ModernText
                                   Properties:
                                     Color: =RGBA(164, 38, 44, 1)
                                     Fill: =RGBA(253, 231, 233, 1)
@@ -117,7 +109,7 @@ Screens:
                                     Visible: =lkShowErrors && !IsBlank(Self.Text)
                                     Width: =Parent.Width
                               - lkSecRequester:
-                                  Control: ModernText@1.0.0
+                                  Control: ModernText
                                   Properties:
                                     FontWeight: =FontWeight.Semibold
                                     LayoutMinHeight: =16
@@ -127,7 +119,7 @@ Screens:
                                     Text: ="1. Requester information"
                                     Width: =Parent.Width
                               - lkRow1:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -140,7 +132,7 @@ Screens:
                                     Width: =Parent.Width
                                   Children:
                                     - lkFldName:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -151,7 +143,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblName:
-                                              Control: HtmlViewer@2.1.0
+                                              Control: HtmlViewer
                                               Properties:
                                                 Font: =Font.'Segoe UI'
                                                 Height: '=28  '
@@ -163,7 +155,7 @@ Screens:
                                                 PaddingTop: =0
                                                 Width: =Parent.Width
                                           - lkName:
-                                              Control: ModernTextInput@1.1.2
+                                              Control: ModernTextInput
                                               Properties:
                                                 AccessibleLabel: ="First and last name"
                                                 FontWeight: =""
@@ -173,7 +165,7 @@ Screens:
                                                 TriggerOutput: =TriggerOutput.FocusOut
                                                 Width: =Parent.Width
                                     - lkFldEmail:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -184,7 +176,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblEmail:
-                                              Control: HtmlViewer@2.1.0
+                                              Control: HtmlViewer
                                               Properties:
                                                 Font: =Font.'Segoe UI'
                                                 Height: =28
@@ -196,7 +188,7 @@ Screens:
                                                 PaddingTop: =0
                                                 Width: =Parent.Width
                                           - lkEmail:
-                                              Control: ModernTextInput@1.1.2
+                                              Control: ModernTextInput
                                               Properties:
                                                 AccessibleLabel: ="name@calstatela.edu"
                                                 FontWeight: =""
@@ -206,7 +198,7 @@ Screens:
                                                 TriggerOutput: =TriggerOutput.FocusOut
                                                 Width: =Parent.Width
                               - lkRow2:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -219,7 +211,7 @@ Screens:
                                     Width: =Parent.Width
                                   Children:
                                     - lkFldPhone:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -230,7 +222,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblPhone:
-                                              Control: ModernText@1.0.0
+                                              Control: ModernText
                                               Properties:
                                                 FontWeight: =FontWeight.Semibold
                                                 Height: =20
@@ -249,7 +241,7 @@ Screens:
                                                 Width: =Parent.Width
                                                 Wrap: =false
                                           - lkPhone:
-                                              Control: ModernTextInput@1.1.2
+                                              Control: ModernTextInput
                                               Properties:
                                                 AccessibleLabel: ="(323) 555-0100"
                                                 FontWeight: =""
@@ -259,7 +251,7 @@ Screens:
                                                 TriggerOutput: =TriggerOutput.FocusOut
                                                 Width: =Parent.Width
                                     - lkFldDept:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -270,7 +262,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblDept:
-                                              Control: HtmlViewer@2.1.0
+                                              Control: HtmlViewer
                                               Properties:
                                                 Font: =Font.'Segoe UI'
                                                 Height: =28
@@ -282,7 +274,7 @@ Screens:
                                                 PaddingTop: =0
                                                 Width: =Parent.Width
                                           - lkDept:
-                                              Control: ModernCombobox@1.1.2
+                                              Control: ModernCombobox
                                               Properties:
                                                 AccessibleLabel: ="Select a department"
                                                 AllowExternalSelectedItems: =false
@@ -292,7 +284,7 @@ Screens:
                                                 SelectMultiple: =false
                                                 Width: =Parent.Width
                               - lkSecLocation:
-                                  Control: ModernText@1.0.0
+                                  Control: ModernText
                                   Properties:
                                     FontWeight: =FontWeight.Semibold
                                     LayoutMinHeight: =16
@@ -302,7 +294,7 @@ Screens:
                                     Text: ="2. Location"
                                     Width: =Parent.Width
                               - lkRow3:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -315,7 +307,7 @@ Screens:
                                     Width: =Parent.Width
                                   Children:
                                     - lkFldBuilding:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -326,7 +318,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblBuilding:
-                                              Control: HtmlViewer@2.1.0
+                                              Control: HtmlViewer
                                               Properties:
                                                 Font: =Font.'Segoe UI'
                                                 Height: =28
@@ -338,7 +330,7 @@ Screens:
                                                 PaddingTop: =0
                                                 Width: =Parent.Width
                                           - lkBuilding:
-                                              Control: ModernCombobox@1.1.2
+                                              Control: ModernCombobox
                                               Properties:
                                                 AccessibleLabel: ="Select a building"
                                                 AllowExternalSelectedItems: =false
@@ -348,7 +340,7 @@ Screens:
                                                 SelectMultiple: =false
                                                 Width: =Parent.Width
                                     - lkFldRoom:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -359,7 +351,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblRoom:
-                                              Control: HtmlViewer@2.1.0
+                                              Control: HtmlViewer
                                               Properties:
                                                 Font: =Font.'Segoe UI'
                                                 Height: =28
@@ -371,7 +363,7 @@ Screens:
                                                 PaddingTop: =0
                                                 Width: =Parent.Width
                                           - lkRoom:
-                                              Control: ModernTextInput@1.1.2
+                                              Control: ModernTextInput
                                               Properties:
                                                 AccessibleLabel: ="e.g., E&T A-210"
                                                 FontWeight: =""
@@ -381,7 +373,7 @@ Screens:
                                                 TriggerOutput: =TriggerOutput.FocusOut
                                                 Width: =Parent.Width
                               - lkRow4:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -394,7 +386,7 @@ Screens:
                                     Width: =Parent.Width
                                   Children:
                                     - lkFldFloor:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -405,7 +397,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblFloor:
-                                              Control: ModernText@1.0.0
+                                              Control: ModernText
                                               Properties:
                                                 FontWeight: =FontWeight.Semibold
                                                 Height: =20
@@ -424,7 +416,7 @@ Screens:
                                                 Width: =Parent.Width
                                                 Wrap: =false
                                           - lkFloor:
-                                              Control: ModernTextInput@1.1.2
+                                              Control: ModernTextInput
                                               Properties:
                                                 AccessibleLabel: ="e.g., 2"
                                                 FontWeight: =""
@@ -434,7 +426,7 @@ Screens:
                                                 TriggerOutput: =TriggerOutput.FocusOut
                                                 Width: =Parent.Width
                                     - lkFldLockId:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -445,7 +437,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblLockId:
-                                              Control: ModernText@1.0.0
+                                              Control: ModernText
                                               Properties:
                                                 FontWeight: =FontWeight.Semibold
                                                 Height: =20
@@ -464,7 +456,7 @@ Screens:
                                                 Width: =Parent.Width
                                                 Wrap: =false
                                           - lkLockId:
-                                              Control: ModernTextInput@1.1.2
+                                              Control: ModernTextInput
                                               Properties:
                                                 AccessibleLabel: ="Stamped on key or door tag"
                                                 FontWeight: =""
@@ -474,7 +466,7 @@ Screens:
                                                 TriggerOutput: =TriggerOutput.FocusOut
                                                 Width: =Parent.Width
                               - lkSecDetails:
-                                  Control: ModernText@1.0.0
+                                  Control: ModernText
                                   Properties:
                                     FontWeight: =FontWeight.Semibold
                                     LayoutMinHeight: =16
@@ -484,7 +476,7 @@ Screens:
                                     Text: ="3. Request details"
                                     Width: =Parent.Width
                               - lkRow5:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -497,7 +489,7 @@ Screens:
                                     Width: =Parent.Width
                                   Children:
                                     - lkFldType:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -508,7 +500,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblType:
-                                              Control: HtmlViewer@2.1.0
+                                              Control: HtmlViewer
                                               Properties:
                                                 Font: =Font.'Segoe UI'
                                                 Height: =28
@@ -520,7 +512,7 @@ Screens:
                                                 PaddingTop: =0
                                                 Width: =Parent.Width
                                           - lkType:
-                                              Control: ModernCombobox@1.1.2
+                                              Control: ModernCombobox
                                               Properties:
                                                 AccessibleLabel: ="Select a request type"
                                                 AllowExternalSelectedItems: =false
@@ -532,7 +524,7 @@ Screens:
                                                 Size: =0
                                                 Width: =Parent.Width
                                     - lkFldQty:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -543,7 +535,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblQty:
-                                              Control: ModernText@1.0.0
+                                              Control: ModernText
                                               Properties:
                                                 FontWeight: =FontWeight.Semibold
                                                 Height: =20
@@ -562,7 +554,7 @@ Screens:
                                                 Width: =Parent.Width
                                                 Wrap: =false
                                           - lkQty:
-                                              Control: ModernCombobox@1.1.2
+                                              Control: ModernCombobox
                                               Properties:
                                                 AccessibleLabel: ="Select number of keys"
                                                 AllowExternalSelectedItems: =false
@@ -572,7 +564,7 @@ Screens:
                                                 SelectMultiple: =false
                                                 Width: =Parent.Width
                               - lkFldDesc:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -585,7 +577,7 @@ Screens:
                                     Width: =Parent.Width
                                   Children:
                                     - lkLblDesc:
-                                        Control: HtmlViewer@2.1.0
+                                        Control: HtmlViewer
                                         Properties:
                                           Font: =Font.'Segoe UI'
                                           Height: =28
@@ -597,7 +589,7 @@ Screens:
                                           PaddingTop: =0
                                           Width: =Parent.Width
                                     - lkDesc:
-                                        Control: ModernTextInput@1.1.2
+                                        Control: ModernTextInput
                                         Properties:
                                           AccessibleLabel: ="Description of the issue"
                                           FontWeight: =""
@@ -609,7 +601,7 @@ Screens:
                                           Type: =TextInputType.Multiline
                                           Width: =Parent.Width
                               - lkAttachForm:
-                                  Control: Form@2.4.4
+                                  Control: Form
                                   Variant: Classic
                                   Layout: Vertical
                                   Properties:
@@ -622,7 +614,7 @@ Screens:
                                     Width: =Parent.Width
                                   Children:
                                     - lkAttachCard:
-                                        Control: TypedDataCard@1.0.7
+                                        Control: TypedDataCard
                                         Variant: ClassicAttachmentsEdit
                                         IsLocked: true
                                         Properties:
@@ -637,7 +629,7 @@ Screens:
                                           Y: =3
                                         Children:
                                           - lkAttachKey:
-                                              Control: Label@2.5.1
+                                              Control: Label
                                               MetadataKey: FieldName
                                               Properties:
                                                 AutoHeight: =true
@@ -657,7 +649,7 @@ Screens:
                                                 Wrap: =false
                                                 Y: =10
                                           - lkAttach:
-                                              Control: Attachments@2.3.0
+                                              Control: Attachments
                                               MetadataKey: FieldValue
                                               Properties:
                                                 BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -688,7 +680,7 @@ Screens:
                                                 Width: =Parent.Width
                                                 Y: =lkAttachKey.Y + lkAttachKey.Height + 5
                                           - lkAttachErr:
-                                              Control: Label@2.5.1
+                                              Control: Label
                                               MetadataKey: ErrorMessage
                                               Properties:
                                                 AutoHeight: =true
@@ -712,7 +704,7 @@ Screens:
                                                 Width: =Parent.Width
                                                 Y: =lkAttach.Y + lkAttach.Height
                                           - lkAttachStar:
-                                              Control: Label@2.5.1
+                                              Control: Label
                                               MetadataKey: FieldRequired
                                               Properties:
                                                 Align: =Align.Center
@@ -733,7 +725,7 @@ Screens:
                                                 Wrap: =false
                                                 Y: =lkAttachKey.Y
                               - lkSecPriority:
-                                  Control: ModernText@1.0.0
+                                  Control: ModernText
                                   Properties:
                                     FontWeight: =FontWeight.Semibold
                                     LayoutMinHeight: =16
@@ -743,7 +735,7 @@ Screens:
                                     Text: ="4. Priority and scheduling"
                                     Width: =Parent.Width
                               - lkRow6:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -756,7 +748,7 @@ Screens:
                                     Width: =Parent.Width
                                   Children:
                                     - lkFldPriority:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -767,7 +759,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblPriority:
-                                              Control: HtmlViewer@2.1.0
+                                              Control: HtmlViewer
                                               Properties:
                                                 Font: =Font.'Segoe UI'
                                                 Height: =28
@@ -779,7 +771,7 @@ Screens:
                                                 PaddingTop: =0
                                                 Width: =Parent.Width
                                           - lkPriority:
-                                              Control: ModernCombobox@1.1.2
+                                              Control: ModernCombobox
                                               Properties:
                                                 AccessibleLabel: ="Select priority"
                                                 AllowExternalSelectedItems: =false
@@ -791,7 +783,7 @@ Screens:
                                                 Size: =0
                                                 Width: =Parent.Width
                                     - lkFldDate:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -802,7 +794,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblDate:
-                                              Control: ModernText@1.0.0
+                                              Control: ModernText
                                               Properties:
                                                 FontWeight: =FontWeight.Semibold
                                                 Height: =20
@@ -821,7 +813,7 @@ Screens:
                                                 Width: =Parent.Width
                                                 Wrap: =false
                                           - lkDate:
-                                              Control: ModernDatePicker@1.0.2
+                                              Control: ModernDatePicker
                                               Properties:
                                                 AccessibleLabel: ="Preferred service date"
                                                 BorderStyle: =""
@@ -831,7 +823,7 @@ Screens:
                                                 Size: =0
                                                 Width: =Parent.Width
                               - lkEmergencyNote:
-                                  Control: ModernText@1.0.0
+                                  Control: ModernText
                                   Properties:
                                     Color: =RGBA(196, 49, 75, 1)
                                     Height: =40
@@ -850,7 +842,7 @@ Screens:
                                     Visible: =StartsWith(lkPriority.Selected.Value, "Emergency")
                                     Width: =Parent.Width
                               - lkRow7:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -863,7 +855,7 @@ Screens:
                                     Width: =Parent.Width
                                   Children:
                                     - lkFldTime:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -874,7 +866,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblTime:
-                                              Control: ModernText@1.0.0
+                                              Control: ModernText
                                               Properties:
                                                 FontWeight: =FontWeight.Semibold
                                                 Height: =20
@@ -893,7 +885,7 @@ Screens:
                                                 Width: =Parent.Width
                                                 Wrap: =false
                                           - lkTime:
-                                              Control: ModernCombobox@1.1.2
+                                              Control: ModernCombobox
                                               Properties:
                                                 AccessibleLabel: ="Select a time window"
                                                 AllowExternalSelectedItems: =false
@@ -905,7 +897,7 @@ Screens:
                                                 Size: =0
                                                 Width: =Parent.Width
                                     - lkFldApprover:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -916,7 +908,7 @@ Screens:
                                           LayoutMinWidth: =16
                                         Children:
                                           - lkLblApprover:
-                                              Control: HtmlViewer@2.1.0
+                                              Control: HtmlViewer
                                               Properties:
                                                 Font: =Font.'Segoe UI'
                                                 Height: =28
@@ -928,14 +920,14 @@ Screens:
                                                 PaddingTop: =0
                                                 Width: =Parent.Width
                                           - lkApprover:
-                                              Control: ModernTextInput@1.1.2
+                                              Control: ModernTextInput
                                               Properties:
                                                 AccessibleLabel: ="Request will be sent to"
                                                 Default: ="JOE"
                                                 DisplayMode: =DisplayMode.View
                                                 Width: =Parent.Width
                               - lkFldConfirm:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -948,13 +940,13 @@ Screens:
                                     Width: =Parent.Width
                                   Children:
                                     - lkConfirm:
-                                        Control: ModernCheckbox@1.0.2
+                                        Control: ModernCheckbox
                                         Properties:
                                           AccessibleLabel: ="I confirm I am authorized to request access to this space"
                                           Label: =""
                                           Width: =32
                                     - lkLblConfirm:
-                                        Control: HtmlViewer@2.1.0
+                                        Control: HtmlViewer
                                         Properties:
                                           Font: =Font.'Segoe UI'
                                           Height: =28
@@ -966,7 +958,7 @@ Screens:
                                           PaddingTop: =0
                                           Width: =Parent.Width - 40
                         - ApprButtonRow1:
-                            Control: GroupContainer@1.5.0
+                            Control: GroupContainer
                             Variant: AutoLayout
                             Properties:
                               DropShadow: =DropShadow.None
@@ -985,7 +977,7 @@ Screens:
                               Width: =Parent.Width - 40
                             Children:
                               - SendReviewBtnR1:
-                                  Control: ModernButton@1.0.0
+                                  Control: ModernButton
                                   Properties:
                                     Height: =40
                                     LayoutMinHeight: =16
@@ -1030,7 +1022,7 @@ Screens:
                                     Text: ="Submit request"
                                     Width: =160
                               - CancelReviewBtnR1:
-                                  Control: ModernButton@1.0.0
+                                  Control: ModernButton
                                   Properties:
                                     Appearance: =ButtonAppearance.Secondary
                                     Height: =40
@@ -1042,7 +1034,7 @@ Screens:
                                     Text: ="Cancel"
                                     Width: =120
                   - ReviewersCard1:
-                      Control: GroupContainer@1.5.0
+                      Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
                         AlignInContainer: =AlignInContainer.SetByContainer
@@ -1063,7 +1055,7 @@ Screens:
                         Width: =If(App.Width < 640, Parent.Width - 32, 0)
                       Children:
                         - ReviewersHeading1:
-                            Control: ModernText@1.0.0
+                            Control: ModernText
                             Properties:
                               FontWeight: =FontWeight.Semibold
                               Height: =28
@@ -1075,7 +1067,7 @@ Screens:
                               Text: ="Approval flow"
                               Width: =Parent.Width - 32
                         - ReviewersSub1:
-                            Control: ModernText@1.0.0
+                            Control: ModernText
                             Properties:
                               Color: =RGBA(96, 94, 92, 1)
                               Height: =20
@@ -1092,7 +1084,7 @@ Screens:
                                 )
                               Width: =Parent.Width - 32
                         - ReviewersGallery1:
-                            Control: Gallery@2.15.0
+                            Control: Gallery
                             Variant: Vertical
                             Properties:
                               BorderColor: =RGBA(245, 245, 245, 1)
@@ -1142,7 +1134,7 @@ Screens:
                               Width: =Parent.Width - 32
                             Children:
                               - StepRow1:
-                                  Control: GroupContainer@1.5.0
+                                  Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
                                     DropShadow: =DropShadow.None
@@ -1157,7 +1149,7 @@ Screens:
                                     Width: =Parent.TemplateWidth
                                   Children:
                                     - StepRail1:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -1174,7 +1166,7 @@ Screens:
                                           Width: =40
                                         Children:
                                           - StepTopLine1:
-                                              Control: GroupContainer@1.5.0
+                                              Control: GroupContainer
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
@@ -1192,7 +1184,7 @@ Screens:
                                                 PaddingTop: =8
                                                 Width: =2
                                           - StepBadge1:
-                                              Control: GroupContainer@1.5.0
+                                              Control: GroupContainer
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
@@ -1216,7 +1208,7 @@ Screens:
                                                 Width: =28
                                               Children:
                                                 - StepBadgeText1:
-                                                    Control: ModernText@1.0.0
+                                                    Control: ModernText
                                                     Properties:
                                                       Align: =Align.Center
                                                       Color: =If(ThisItem.Status = "waiting", RGBA(96, 94, 92, 1), RGBA(255, 255, 255, 1))
@@ -1230,7 +1222,7 @@ Screens:
                                                       Text: =If(ThisItem.Status = "done", "✓", Text(ThisItem.Step))
                                                       Width: =28
                                           - StepBottomLine1:
-                                              Control: GroupContainer@1.5.0
+                                              Control: GroupContainer
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
@@ -1248,7 +1240,7 @@ Screens:
                                                 PaddingTop: =8
                                                 Width: =2
                                     - StepContent1:
-                                        Control: GroupContainer@1.5.0
+                                        Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
                                           DropShadow: =DropShadow.None
@@ -1265,7 +1257,7 @@ Screens:
                                           PaddingTop: =8
                                         Children:
                                           - StepName1:
-                                              Control: ModernText@1.0.0
+                                              Control: ModernText
                                               Properties:
                                                 FontWeight: =FontWeight.Semibold
                                                 Height: =20
@@ -1277,7 +1269,7 @@ Screens:
                                                 Text: =ThisItem.Name
                                                 Width: =Parent.Width
                                           - StepRole1:
-                                              Control: ModernText@1.0.0
+                                              Control: ModernText
                                               Properties:
                                                 Color: =RGBA(96, 94, 92, 1)
                                                 Height: =18
@@ -1289,7 +1281,7 @@ Screens:
                                                 Text: =ThisItem.Role
                                                 Width: =Parent.Width
                                           - StepChip1:
-                                              Control: GroupContainer@1.5.0
+                                              Control: GroupContainer
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Start
@@ -1313,7 +1305,7 @@ Screens:
                                                 Width: =Switch(ThisItem.Status, "done", 116, "current", 116, 92)
                                               Children:
                                                 - StepChipText1:
-                                                    Control: ModernText@1.0.0
+                                                    Control: ModernText
                                                     Properties:
                                                       Align: =Align.Center
                                                       Color: =Switch(ThisItem.Status, "done", RGBA(16, 124, 16, 1), "current", RGBA(0, 65, 179, 1), RGBA(96, 94, 92, 1))
@@ -1327,7 +1319,7 @@ Screens:
                                                       Text: =Switch(ThisItem.Status, "done", "✓ Completed", "current", "● In progress", "○ Waiting")
                                                       Width: =Parent.Width - 20
             - TopNav3:
-                Control: GroupContainer@1.5.0
+                Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
                   DropShadow: =DropShadow.None
@@ -1341,7 +1333,7 @@ Screens:
                   Width: =Parent.Width
                 Children:
                   - TitleRow3:
-                      Control: GroupContainer@1.5.0
+                      Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
                         DropShadow: =DropShadow.None
@@ -1358,7 +1350,7 @@ Screens:
                         Width: =Parent.Width
                       Children:
                         - AppTitle3:
-                            Control: ModernText@1.0.0
+                            Control: ModernText
                             Properties:
                               FillPortions: =If(App.Width < 640, 1, 0)
                               Font: =Font.'Segoe UI'
@@ -1371,7 +1363,7 @@ Screens:
                               Text: ="PDgo Hub"
                               Width: =If(App.Width < 640, 0, 200)
                         - NavTabsDesktop3:
-                            Control: ModernTabList@1.0.2
+                            Control: ModernTabList
                             Properties:
                               AlignInContainer: =AlignInContainer.Center
                               Appearance: =TabListAppearance.Subtle
@@ -1384,7 +1376,7 @@ Screens:
                               LayoutMinWidth: =16
                               Visible: =App.Width >= 640
                         - IconChat3:
-                            Control: ModernIcon@1.1.1
+                            Control: ModernIcon
                             Properties:
                               Height: =24
                               Icon: =Icon.Message
@@ -1393,7 +1385,7 @@ Screens:
                               LayoutMinWidth: =16
                               Width: =24
                         - IconShare3:
-                            Control: ModernIcon@1.1.1
+                            Control: ModernIcon
                             Properties:
                               Height: =24
                               Icon: =Icon.Share
@@ -1402,7 +1394,7 @@ Screens:
                               LayoutMinWidth: =16
                               Width: =24
                         - IconSettings3:
-                            Control: ModernIcon@1.1.1
+                            Control: ModernIcon
                             Properties:
                               Height: =24
                               Icon: =Icon.Settings
@@ -1411,14 +1403,14 @@ Screens:
                               LayoutMinWidth: =16
                               Width: =24
                         - Avatar3:
-                            Control: ModernAvatar@1.1.0
+                            Control: ModernAvatar
                             Properties:
                               Height: =32
                               LayoutMinHeight: =16
                               LayoutMinWidth: =16
                               Width: =32
                   - NavTabsMobile3:
-                      Control: ModernTabList@1.0.2
+                      Control: ModernTabList
                       Properties:
                         Appearance: =TabListAppearance.Subtle
                         BasePaletteColor: =RGBA(0, 65, 179, 1)
@@ -1431,7 +1423,7 @@ Screens:
                         LayoutMinWidth: =16
                         Width: =Parent.Width
             - NavDivider3:
-                Control: ModernText@1.0.0
+                Control: ModernText
                 Properties:
                   Fill: =RGBA(237, 237, 237, 1)
                   Height: =2
@@ -1442,7 +1434,7 @@ Screens:
                   Text: =""
                   Width: =Parent.Width
             - TitleBand3:
-                Control: GroupContainer@1.5.0
+                Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
                   DropShadow: =DropShadow.None
@@ -1461,7 +1453,7 @@ Screens:
                   Width: =Parent.Width
                 Children:
                   - PageTitle3:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       Properties:
                         AutoHeight: =true
                         FontWeight: =FontWeight.Bold
@@ -1473,7 +1465,7 @@ Screens:
                         Text: ="Locksmith Request "
                         Width: =Parent.Width - If(App.Width < 640, 32, 80)
                   - PageSubtitle3:
-                      Control: ModernText@1.0.0
+                      Control: ModernText
                       Properties:
                         AutoHeight: =true
                         Color: =RGBA(96, 94, 92, 1)
@@ -1485,7 +1477,7 @@ Screens:
                         Text: ="Send your request and track where it is in the review process."
                         Width: =Parent.Width - If(App.Width < 640, 32, 80)
             - lkTicketsTable:
-                Control: ModernDataGrid@1.6.0
+                Control: ModernDataGrid
                 Properties:
                   AlignInContainer: =AlignInContainer.SetByContainer
                   FillPortions: =0
@@ -1497,7 +1489,7 @@ Screens:
                   Width: =If(Self.X + 800 > Parent.Width, Parent.Width - Self.X, 800)
                 Children:
                   - Request ID11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
@@ -1506,7 +1498,7 @@ Screens:
                         FieldVariantName: ="textualColumn"
                         Text: =ThisItem.Title
                   - Description11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
@@ -1515,7 +1507,7 @@ Screens:
                         FieldVariantName: ="textualColumn"
                         Text: =ThisItem.Description
                   - Room11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
@@ -1524,7 +1516,7 @@ Screens:
                         FieldVariantName: ="textualColumn"
                         Text: =ThisItem.Room
                   - Building11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
@@ -1533,7 +1525,7 @@ Screens:
                         FieldVariantName: ="textualColumn"
                         Text: =ThisItem.Building
                   - Department11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
@@ -1542,7 +1534,7 @@ Screens:
                         FieldVariantName: ="textualColumn"
                         Text: =ThisItem.Department
                   - PreferredDate11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: DateTime
                       IsLocked: true
                       Properties:
@@ -1551,7 +1543,7 @@ Screens:
                         FieldVariantName: ="textualColumn"
                         Text: =Text(ThisItem.PreferredDate,DateTimeFormat.LongDateTime)
                   - Priority11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
@@ -1560,7 +1552,7 @@ Screens:
                         FieldVariantName: ="textualColumn"
                         Text: =ThisItem.Priority
                   - RequestStatus11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
@@ -1569,7 +1561,7 @@ Screens:
                         FieldVariantName: ="textualColumn"
                         Text: =ThisItem.RequestStatus
                   - RequestType11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
@@ -1578,7 +1570,7 @@ Screens:
                         FieldVariantName: ="textualColumn"
                         Text: =ThisItem.RequestType
                   - Phone11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
@@ -1587,7 +1579,7 @@ Screens:
                         FieldVariantName: ="textualColumn"
                         Text: =ThisItem.Phone
                   - RequesterName11:
-                      Control: ModernDataGridColumn@1.2.0
+                      Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
