@@ -363,3 +363,21 @@ Screens:
             Width: =260
             X: =1040
             Y: =322
+      - btnBack_2:
+          Control: Classic/Button
+          Properties:
+            BorderThickness: =0
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 18, 105, 1)
+            Height: =44
+            HoverBorderColor: =RGBA(0, 69, 120, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: |
+              =RGBA(0, 69, 120, 1)
+            OnSelect: =Navigate('Pdgo Hub 10-30-26', ScreenTransition.UnCover)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(0, 12, 75, 1)
+            Size: =22
+            Text: ="←"
+            Tooltip: ="Back"
+            Width: =44
