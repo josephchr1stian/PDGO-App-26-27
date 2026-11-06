@@ -105,15 +105,18 @@ Screens:
                   NotificationType.Error
               )
             OnSuccess: |-
-              =Set(
-                  SubmittedRequestID,
-                  FacilitiesRequestForm.LastSubmit.ID
+              =Set(SubmittedRequestID, FacilitiesRequestForm.LastSubmit.ID);
+
+              If(
+                  FacilitiesRequestForm.LastSubmit.Status.Value = "Waiting List",
+                  Patch('Waitlist Queue', Defaults('Waitlist Queue'), {
+                      Title: "Civic Center Parking",
+                      TicketID: FacilitiesRequestForm.LastSubmit.ID,
+                      QueueStatus: {Value: "Waiting"}
+                  })
               );
 
-              Notify(
-                  "Your request has been submitted successfully!",
-                  NotificationType.Success
-              );
+              Notify("Your request has been submitted successfully!", NotificationType.Success);
 
               ResetForm(FacilitiesRequestForm);
 
@@ -1505,7 +1508,12 @@ Screens:
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Status)
                   Required: =true
                   Update: |-
-                    ={Value: "Submitted"}
+                    =If(
+                        FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
+                        FacilitiesParkingLocationDropdown.Selected.Value = "Civic Center",
+                        {Value: "Waiting List"},
+                        {Value: "Submitted"}
+                    )
                   Visible: =false
                   Width: =Parent.Width
                   X: =0
@@ -1904,7 +1912,12 @@ Screens:
                       "Please select a Request Type.",
                       NotificationType.Error
                   ),
-
+                      FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
+                  FacilitiesParkingLocationDropdown.Selected.Value = "Civic Center" &&
+                  !IsBlank(LookUp(AdministrativeServiceRequests,
+                      RequestedBy = User().Email && ServiceSubcategory = "Parking Request" &&
+                      (Status.Value = "Waiting List" || Status.Value = "Offered"))),
+                  Notify("You're already on the Civic Center waitlist.", NotificationType.Warning),
                   SubmitForm(FacilitiesRequestForm)
               )
             PressedBorderColor: =RGBA(0, 69, 120, 1)

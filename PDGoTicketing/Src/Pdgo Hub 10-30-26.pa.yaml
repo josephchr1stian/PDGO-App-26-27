@@ -338,8 +338,10 @@ Screens:
                         ImagePlacement: =ImagePlacement.AfterHeader
                         LayoutDirection: =LayoutDirection.Horizontal
                         OnSelect: =Navigate(ProcurementRequestScreen, ScreenTransition.Fade)
-                        Subtitle: ="purchase requests, supplies, equipment, vendors, quotes"
+                        Subtitle: ="Purchase requests, supplies, equipment, vendors, quotes"
+                        SubtitleColor: =RGBA(255, 255, 255, 1)
                         Title: ="Procurement"
+                        TitleColor: =RGBA(255, 255, 255, 1)
                   - CapCardWel_42:
                       Control: ModernCard
                       Properties:
@@ -395,7 +397,7 @@ Screens:
                         Sort(Filter(AdministrativeServiceRequests, AssignedTo = varEmail), RequestDate, SortOrder.Descending),
                         Sort(Filter(AdministrativeServiceRequests, RequestedBy = varEmail), RequestDate, SortOrder.Descending)
                     )
-                  OnChange: =If(!IsBlank(Self.Selected), Set(selTicket, Self.Selected); Navigate(TicketDetail_11_05, ScreenTransition.Fade))
+                  OnChange: =If(!IsBlank(Self.Selected), Set(selTicket, Self.Selected); Set(varPreviousScreen, 'Pdgo Hub 10-30-26'); Navigate(TicketDetail_11_05, ScreenTransition.Fade))
                   Width: =Parent.Width - 2 * If(App.Width < 640, 16, 40)
                   X: =39
                   Y: =580

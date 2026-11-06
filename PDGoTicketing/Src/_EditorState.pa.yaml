@@ -1,9 +1,8 @@
 EditorState:
   ScreensOrder:
     - Login
+    - Pdgo Hub 10-30-26
     - UserHome
-    - AdminHome
-    - Pdgo Hub
     - FacilitiesRequestScreen
     - ProcurementRequestScreen
     - EmployeeSafetyRequestScreen
@@ -11,9 +10,11 @@ EditorState:
     - AdministrativeSupportRequestScreen
     - TicketRequestScreen
     - Login New Hub
-    - Pdgo Hub 10-30-26
     - TicketDetail_11_05
+    - Pdgo Hub
+    - AdminHome
     - '-------------------------------------------------'
+    - '-------------------------------------------------_1'
     - 10_29SecurityRequestFormTemplateScreen
     - 10_29FacilitiesRequestScreen_AUTO_ASSIGN_TEST
     - Approval Request

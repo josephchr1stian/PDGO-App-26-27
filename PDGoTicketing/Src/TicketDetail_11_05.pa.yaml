@@ -13,7 +13,7 @@ Screens:
               =ResetForm(Form1_1);
 
               Navigate(
-                  Coalesce(varPreviousScreen, UserHome), ScreenTransition.Fade
+                  Coalesce(varPreviousScreen, 'Pdgo Hub 10-30-26'), ScreenTransition.Fade
               )
             Text: ="Back"
             X: =40
@@ -784,3 +784,30 @@ Screens:
             Width: =140
             X: =480
             Y: =620
+      - lblWaitlist:
+          Control: ModernText
+          Properties:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(45, 128, 40, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =40
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =18
+            Text: |-
+              =With({me: LookUp('Waitlist Queue', TicketID = selTicket.ID)},
+                  If(
+                      IsBlank(me), "Waitlist position unavailable",
+                      me.QueueStatus.Value = "Offered", "A Civic Center spot has been offered to you",
+                      "You're #" & (CountRows(Filter('Waitlist Queue',
+                          Title = me.Title && QueueStatus.Value = "Waiting" && Created < me.Created)) + 1)
+                      & " on the Civic Center waitlist."
+                  )
+              )
+            Visible: =selTicket.Status.Value = "Waiting List" || selTicket.Status.Value = "Offered"
+            Width: =340
+            X: =160
+            Y: =30

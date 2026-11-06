@@ -2,13 +2,14 @@
 
 CSULA senior capstone project (2026–2027) for the **LA County Public Defender's Office**: a unified, Jira/helpdesk-style ticketing system for Administrative Services — Facilities, Procurement, Employee Safety, Warehouse/Records, and Administrative Support.
 
-See [`requirements.md`](./requirements.md) for scope, functional requirements, and open questions.
+See [`requirements.md`](./requirements.md) for scope, functional requirements, and open questions, and [`ROADMAP.md`](./ROADMAP.md) for what's done, in progress, and planned.
 
 ## What's in this repo
 
 - **`PDGoTicketing/`** — the team app ("Faculty Bucket List" in the CSULA tenant, data in `csula.sharepoint.com/sites/team-12-pd-go`), as an unpacked `.msapp`. The readable source is `PDGoTicketing/Src/*.pa.yaml`, one file per screen. The rest (`Controls/`, `References/`) is Studio's internal state — don't hand-edit it.
 - **`PDGoTicketing.msapp`** — the same app as a single file, kept as a restorable snapshot (Power Apps Studio → Open → Browse files).
 - **`requirements.md`** — project requirements derived from the sponsor's proposal.
+- **`ROADMAP.md`** — done / in progress / revisit / future. Update it as things change.
 
 > This repo is **public**. Mock/test data only — never commit the client's real emails, names, or ticket data.
 
