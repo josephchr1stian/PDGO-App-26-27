@@ -12,6 +12,7 @@ EditorState:
     - TicketRequestScreen
     - Login New Hub
     - Pdgo Hub 10-30-26
+    - TicketDetail_11_05
     - '-------------------------------------------------'
     - 10_29SecurityRequestFormTemplateScreen
     - 10_29FacilitiesRequestScreen_AUTO_ASSIGN_TEST

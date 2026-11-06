@@ -149,8 +149,23 @@ Screens:
           Control: ModernDataGrid
           Properties:
             Height: =If(Self.Y + 500 > Parent.Height, Parent.Height - Self.Y, 500)
-            Items: |
-              =Sort(If((varRole = "Admin" || varRole = "Supervisor") && varView <> "Submitted", Filter(AdministrativeServiceRequests, Lower(AssignedTo) = Lower(varEmail)), Filter(AdministrativeServiceRequests, Lower(RequestedBy) = Lower(varEmail))), RequestDate, SortOrder.Descending)
+            Items: |-
+              =Sort(
+                  If(
+                      (varRole = "Admin" || varRole = "Supervisor") &&
+                      varView <> "Submitted",
+                      Filter(
+                          AdministrativeServiceRequests,
+                          Lower(AssignedTo) = Lower(varEmail)
+                      ),
+                      Filter(
+                          AdministrativeServiceRequests,
+                          Lower(RequestedBy) = Lower(varEmail)
+                      )
+                  ),
+                  RequestDate,
+                  SortOrder.Descending
+              )
             OnChange: |-
               =Set(selTicket, Self.Selected); 
               Set(varPreviousScreen, AdminHome);
@@ -336,10 +351,13 @@ Screens:
       - Button6:
           Control: ModernButton
           Properties:
-            OnSelect: |
-              =Set(varView, If(varView = "Submitted", "Assigned", "Submitted"))
-            Text: |
-              =If(varView = "Submitted", "View assigned tickets", "View my submitted tickets")
+            OnSelect: =Set(varView, If(varView = "Submitted", "Assigned", "Submitted"))
+            Text: |-
+              =If(
+                  varView = "Submitted",
+                  "View assigned tickets",
+                  "View my submitted tickets"
+              )
             Visible: |
               =varRole = "Admin" || varRole = "Supervisor"
             Width: =260

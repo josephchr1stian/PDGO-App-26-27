@@ -168,7 +168,12 @@ Screens:
                       Properties:
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
-                        OnSelect: =If(password.Text = "admin", Navigate(AdminHome, ScreenTransition.Fade), Notify("Access denied", NotificationType.Error))
+                        OnSelect: |-
+                          =If(
+                              password.Text = "admin",
+                              Navigate(AdminHome, ScreenTransition.Fade),
+                              Notify("Access denied", NotificationType.Error)
+                          )
                         Text: ="Admin Sign In"
                         Width: =160
       - btnBack:

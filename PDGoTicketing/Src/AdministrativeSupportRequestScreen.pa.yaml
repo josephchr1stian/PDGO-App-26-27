@@ -41,12 +41,7 @@ Screens:
             Font: =Font.'Segoe UI'
             FontWeight: =FontWeight.Semibold
             Height: =64
-            Size: |-
-              =If(
-                  Parent.Width < 600,
-                  18,
-                  24
-              )
+            Size: =If(Parent.Width < 480, 18, Parent.Width < 768, 20, 24)
             Text: ="Submit an Administrative Support Request"
             Width: =Parent.Width - 48
             X: =(Parent.Width - Self.Width) / 2

@@ -35,7 +35,7 @@ Screens:
             Font: =Font.'Segoe UI'
             FontWeight: =FontWeight.Semibold
             Height: =64
-            Size: =24
+            Size: =If(Parent.Width < 480, 18, Parent.Width < 768, 20, 24)
             Text: ="Submit a Procurement Request"
             Width: =Parent.Width
       - ProcurementBackToHomeButton:

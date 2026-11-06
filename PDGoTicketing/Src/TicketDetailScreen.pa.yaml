@@ -610,7 +610,12 @@ Screens:
                   BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="AssignedTo"
                   Default: =ThisItem.AssignedTo
-                  DisplayMode: =If(varRole = "Supervisor", Parent.DisplayMode, DisplayMode.View)
+                  DisplayMode: |-
+                    =If(
+                        varRole = "Supervisor",
+                        Parent.DisplayMode,
+                        DisplayMode.View
+                    )
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,AssignedTo)
                   MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, AssignedTo)
                   Required: =false
