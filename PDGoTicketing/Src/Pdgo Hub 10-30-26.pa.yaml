@@ -143,20 +143,10 @@ Screens:
                         Default: |-
                           ={Value: "Home"}
                         Height: =If(App.Width < 640, 48, 0)
-                        Items: |-
-                          =   If(
-                                 varRole = "Admin" || varRole = "Supervisor",
-                                 ["Home", "Current Tickets", "Admin"],
-                                 ["Home", "Current Tickets"]
-                             )
+                        Items: =NavTabs
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
-                        OnSelect: |-
-                          =   Switch(
-                                 Self.Selected.Value,
-                                 "Current Tickets", Navigate(UserHome, ScreenTransition.Fade),
-                                 "Admin", Navigate(AdminHome, ScreenTransition.Fade)
-                             )
+                        OnSelect: =Switch(Self.Selected.Value, "Admin", Navigate(AdminHome, ScreenTransition.Fade))
                         Width: =Parent.Width
                   - Table1_3:
                       Control: ModernDataGrid
@@ -392,12 +382,17 @@ Screens:
                   AlignInContainer: =AlignInContainer.Center
                   Height: =If(App.Width < 640, 320, 360)
                   Items: |-
-                    =If(
-                        (varRole = "Admin" || varRole = "Supervisor") && varView <> "Submitted",
-                        Sort(Filter(AdministrativeServiceRequests, AssignedTo = varEmail), RequestDate, SortOrder.Descending),
-                        Sort(Filter(AdministrativeServiceRequests, RequestedBy = varEmail), RequestDate, SortOrder.Descending)
+                    =Sort(
+                        If(
+                            varRole = "Admin" || varRole = "Supervisor",
+                            Filter(AdministrativeServiceRequests, AssignedTo = varEmail || RequestedBy = varEmail),
+                            Filter(AdministrativeServiceRequests, RequestedBy = varEmail)
+                        ),
+                        RequestDate,
+                        SortOrder.Descending
                     )
-                  OnChange: =If(!IsBlank(Self.Selected), Set(selTicket, Self.Selected); Set(varPreviousScreen, 'Pdgo Hub 10-30-26'); Navigate(TicketDetail_11_05, ScreenTransition.Fade))
+                  OnChange: |
+                    =If(!IsBlank(Self.Selected), Set(selTicket, Self.Selected); Set(varPreviousScreen, 'Pdgo Hub 10-30-26'); Navigate(TicketDetail_11_05, ScreenTransition.Fade))
                   Width: =Parent.Width - 2 * If(App.Width < 640, 16, 40)
                   X: =39
                   Y: =580

@@ -15,11 +15,14 @@ Last updated: 2026-11-06
   - The ticket detail shows "You're #N on the Civic Center waitlist", counted live from the queue.
   - Duplicate requests are blocked.
 - [x] Removed the placeholder `PDGOTicketTypes` list.
+- [x] **Waitlist admin actions** on the ticket detail (2026-11-06): *Offer spot* → *Spot accepted*, plus *Remove from waitlist*. Buttons and label read the `Waitlist Queue`, not ticket Status.
+- [x] My Requests shows admins/supervisors both their assigned and submitted tickets.
+- [x] Removed "Current Tickets" (old `UserHome`) from the menus; ticket detail Back returns to the hub.
 
 ## In progress
 
-- [ ] **Waitlist admin actions** on the ticket detail: *Offer spot*, *Spot accepted*, *Remove from waitlist*.
 - [ ] **Auto-assign by Facilities subcategory**: a Power Automate flow (teammate). Next step: load-balance between multiple handlers for the same subcategory.
+  - The flow must not set Status to *Assigned* on tickets that are *Waiting List* or *Offered*. It can still fill in AssignedTo. Otherwise requesters see "Assigned" while they're still in line.
 - [ ] **Privacy**: users can read only their own tickets. Plan: SharePoint item-level permissions on `AdministrativeServiceRequests` ("Read items that were created by the user").
   - `Waitlist Queue` stays readable by all but editable only by its creator.
   - Lock `PDGo Users` / `PDGOCategories` to read-only for regular users.
@@ -29,8 +32,6 @@ Last updated: 2026-11-06
 ## Revisit
 
 - [ ] **RequestedBy vs. test logins.** Request forms save `User().Email`, but My Requests filters on `varEmail` (the test-mode login). With a test login (e.g. joe@gmail.com) your own tickets don't show. Fix: save `varEmail` on all five request screens, plus the waitlist duplicate check.
-- [ ] **"Current Tickets" menu item** goes to the old `UserHome` screen. Remove it from `NavTabs` (App → Formulas) and the hub's mobile tab list.
-- [ ] **Ticket detail Back button** falls back to `UserHome`. The hub should set `varPreviousScreen` before opening a ticket.
 - [ ] **Waitlist position wording** says "You're #N" even when an admin is viewing.
 - [ ] **Old screens to retire** once nothing links to them: `ParkingRequest`, `UserHome`, `MainScreen1`, `TicketDetailScreen`, `Pdgo Hub`, `Login New Hub` (its Navigate formula is broken), the template/test screens, and the two `-----` screens.
 - [ ] **Unused lists and data sources**: `Parking Requests`, `Parkest request Test`, `Ticketdisplaytest`, `PDGOTickets`, `Faculty Bucket List`, `Locksmith Requests`. Remove `PDGOTicketTypes` from the app's Data panel; the list is gone.

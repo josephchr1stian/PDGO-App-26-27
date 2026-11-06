@@ -44,7 +44,7 @@ Screens:
               selTicket.ServiceSubcategory
             Width: =600
             X: =40
-            Y: =80
+            Y: =138
       - Form1_1:
           Control: Form
           Variant: Modern
@@ -65,7 +65,7 @@ Screens:
               Notify("Ticket updated.", NotificationType.Success)
             Width: =1100
             X: =40
-            Y: =130
+            Y: =188
           Children:
             - Title_DataCard2_1:
                 Control: TypedDataCard
@@ -746,7 +746,7 @@ Screens:
             Text: ="Save"
             Visible: =CanEditTicket && Form1_1.Mode = FormMode.Edit
             X: =261
-            Y: =537
+            Y: =595
       - Button5_1:
           Control: ModernButton
           Properties:
@@ -756,7 +756,7 @@ Screens:
             Text: ="Cancel"
             Visible: =Form1_1.Mode = FormMode.Edit
             X: =404
-            Y: =537
+            Y: =595
       - cmbReassign:
           Control: Classic/ComboBox
           Properties:
@@ -769,7 +769,7 @@ Screens:
             Visible: =varRole = "Admin" && Form1_1.Mode = FormMode.View
             Width: =420
             X: =40
-            Y: =620
+            Y: =678
       - btnReassign:
           Control: ModernButton
           Properties:
@@ -783,7 +783,7 @@ Screens:
             Visible: =varRole = "Admin" && Form1_1.Mode = FormMode.View
             Width: =140
             X: =480
-            Y: =620
+            Y: =678
       - lblWaitlist:
           Control: ModernText
           Properties:
@@ -807,7 +807,67 @@ Screens:
                       & " on the Civic Center waitlist."
                   )
               )
-            Visible: =selTicket.Status.Value = "Waiting List" || selTicket.Status.Value = "Offered"
+            Visible: =!IsBlank(LookUp('Waitlist Queue', TicketID = selTicket.ID && (QueueStatus.Value = "Waiting" || QueueStatus.Value = "Offered")))
             Width: =340
-            X: =160
-            Y: =30
+            X: =40
+            Y: =76
+      - OfferSpot:
+          Control: ModernButton
+          Properties:
+            BasePaletteColor: =RGBA(8, 222, 8, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Lato Black'
+            Height: =38
+            Icon: ="Key"
+            IconStyle: =IconStyle.Filled
+            OnSelect: |-
+              =Patch('Waitlist Queue', LookUp('Waitlist Queue', TicketID = selTicket.ID), {QueueStatus: {Value: "Offered"}});
+              Patch(AdministrativeServiceRequests, selTicket, {Status: {Value: "Offered"}});
+              Set(selTicket, LookUp(AdministrativeServiceRequests, ID = selTicket.ID));
+              Notify("Spot offered.", NotificationType.Success)
+            Size: =12
+            Text: ="Offer Spot"
+            Visible: =(varRole = "Admin" || varRole = "Supervisor") && Form1_1.Mode = FormMode.View && !IsBlank(LookUp('Waitlist Queue', TicketID = selTicket.ID && QueueStatus.Value = "Waiting"))
+            Width: =120
+            X: =40
+            Y: =627
+      - AcceptSpot:
+          Control: ModernButton
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Lato Black'
+            Height: =38
+            Icon: ="Key"
+            IconStyle: =IconStyle.Filled
+            OnSelect: |-
+              =Patch('Waitlist Queue', LookUp('Waitlist Queue', TicketID = selTicket.ID), {QueueStatus: {Value: "Done"}});
+              Patch(AdministrativeServiceRequests, selTicket, {Status: {Value: "Assigned"}});
+              Set(selTicket, LookUp(AdministrativeServiceRequests, ID = selTicket.ID));
+              Notify("Parking assigned.", NotificationType.Success)
+            Size: =12
+            Text: ="Offer Spot"
+            Visible: =(varRole = "Admin" || varRole = "Supervisor") && Form1_1.Mode = FormMode.View && !IsBlank(LookUp('Waitlist Queue', TicketID = selTicket.ID && QueueStatus.Value = "Offered"))
+            Width: =120
+            X: =40
+            Y: =627
+      - LeaveSpot:
+          Control: ModernButton
+          Properties:
+            BasePaletteColor: =RGBA(249, 83, 109, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Lato Black'
+            Height: =38
+            Icon: ="Dismiss"
+            IconStyle: =IconStyle.Filled
+            OnSelect: |-
+              =Patch('Waitlist Queue', LookUp('Waitlist Queue', TicketID = selTicket.ID), {QueueStatus: {Value: "Done"}});
+              Patch(AdministrativeServiceRequests, selTicket, {Status: {Value: "Declined"}});
+              Set(selTicket, LookUp(AdministrativeServiceRequests, ID = selTicket.ID));
+              Notify("Removed from the waitlist.", NotificationType.Success)
+            Size: =12
+            Text: ="Remove from waitlist"
+            Visible: =(varRole = "Admin" || varRole = "Supervisor") && Form1_1.Mode = FormMode.View && !IsBlank(LookUp('Waitlist Queue', TicketID = selTicket.ID && QueueStatus.Value = "Waiting"))
+            Width: =170
+            X: =180
+            Y: =627
