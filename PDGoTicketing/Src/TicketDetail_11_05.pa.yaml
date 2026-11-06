@@ -846,7 +846,7 @@ Screens:
               Set(selTicket, LookUp(AdministrativeServiceRequests, ID = selTicket.ID));
               Notify("Parking assigned.", NotificationType.Success)
             Size: =12
-            Text: ="Offer Spot"
+            Text: ="Spot Accepted"
             Visible: =(varRole = "Admin" || varRole = "Supervisor") && Form1_1.Mode = FormMode.View && !IsBlank(LookUp('Waitlist Queue', TicketID = selTicket.ID && QueueStatus.Value = "Offered"))
             Width: =120
             X: =40
@@ -867,7 +867,7 @@ Screens:
               Notify("Removed from the waitlist.", NotificationType.Success)
             Size: =12
             Text: ="Remove from waitlist"
-            Visible: =(varRole = "Admin" || varRole = "Supervisor") && Form1_1.Mode = FormMode.View && !IsBlank(LookUp('Waitlist Queue', TicketID = selTicket.ID && QueueStatus.Value = "Waiting"))
+            Visible: =(varRole = "Admin" || varRole = "Supervisor" || Lower(selTicket.RequestedBy) = varEmail) && Form1_1.Mode = FormMode.View && !IsBlank(LookUp('Waitlist Queue', TicketID = selTicket.ID && (QueueStatus.Value = "Waiting" || QueueStatus.Value = "Offered")))
             Width: =170
             X: =180
             Y: =627
