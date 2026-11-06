@@ -4,14 +4,6 @@ Screens:
       Fill: =RGBA(255, 255, 255, 1)
       LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     Children:
-      - Button3_1:
-          Control: ModernButton
-          Properties:
-            OnSelect: =Set(varEmail, ""); Set(varUser, Blank()); Set(varRole, ""); Set(selTicket, Blank()); Navigate(Login, ScreenTransition.Fade)
-            Text: ="Sign out"
-            Width: =140
-            X: =1180
-            Y: =20
       - Gallery1_2:
           Control: Gallery
           Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
@@ -236,8 +228,8 @@ Screens:
             Height: =32
             OnSelect: =Set(varMenu, !varMenu)
             Width: =32
-            X: =1125
-            Y: =20
+            X: =1275
+            Y: =10
       - AccountMenu_2:
           Control: GroupContainer
           Variant: AutoLayout

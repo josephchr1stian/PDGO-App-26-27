@@ -388,42 +388,54 @@ Screens:
                             Filter(AdministrativeServiceRequests, AssignedTo = varEmail || RequestedBy = varEmail),
                             Filter(AdministrativeServiceRequests, RequestedBy = varEmail)
                         ),
-                        RequestDate,
-                        SortOrder.Descending
+                        If(Status.Value in ["Completed", "Closed", "Resolved", "Declined", "Released"], 10000000000000, 0) - Value(Created),
+                        SortOrder.Ascending
                     )
                   OnChange: |
                     =If(!IsBlank(Self.Selected), Set(selTicket, Self.Selected); Set(varPreviousScreen, 'Pdgo Hub 10-30-26'); Navigate(TicketDetail_11_05, ScreenTransition.Fade))
+                  ShowSelector: =false
                   Width: =Parent.Width - 2 * If(App.Width < 640, 16, 40)
                   X: =39
                   Y: =580
                 Children:
-                  - AssignedTo_Column1:
-                      Control: ModernDataGridColumn
-                      Variant: Textual
-                      IsLocked: true
-                      Properties:
-                        FieldDisplayName: ="AssignedTo"
-                        FieldName: ="AssignedTo"
-                        FieldVariantName: ="textualColumn"
-                        Text: =ThisItem.AssignedTo
-                  - RequestDate_Column1:
-                      Control: ModernDataGridColumn
-                      Variant: Textual
-                      IsLocked: true
-                      Properties:
-                        FieldDisplayName: ="RequestDate"
-                        FieldName: ="RequestDate"
-                        FieldVariantName: ="textualColumn"
-                        Text: =ThisItem.RequestDate
                   - RequestedBy_Column1:
                       Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
-                        FieldDisplayName: ="RequestedBy"
+                        FieldDisplayName: ="Requested by"
                         FieldName: ="RequestedBy"
                         FieldVariantName: ="textualColumn"
                         Text: =ThisItem.RequestedBy
+                        Visible: =varRole = "Admin" || varRole = "Supervisor"
+                  - AssignedTo_Column1:
+                      Control: ModernDataGridColumn
+                      Variant: Textual
+                      IsLocked: true
+                      Properties:
+                        FieldDisplayName: ="Assigned to"
+                        FieldName: ="AssignedTo"
+                        FieldVariantName: ="textualColumn"
+                        Text: =ThisItem.AssignedTo
+                        Visible: =varRole = "Admin" || varRole = "Supervisor"
+                  - Modified_Column1:
+                      Control: ModernDataGridColumn
+                      Variant: Textual
+                      IsLocked: true
+                      Properties:
+                        FieldDisplayName: ="Last update"
+                        FieldName: ="Modified"
+                        FieldVariantName: ="textualColumn"
+                        Text: =Text(ThisItem.Modified, "mmm d, yyyy")
+                  - Created_Column1:
+                      Control: ModernDataGridColumn
+                      Variant: Textual
+                      IsLocked: true
+                      Properties:
+                        FieldDisplayName: ="Submitted"
+                        FieldName: ="Created"
+                        FieldVariantName: ="textualColumn"
+                        Text: =	Text(ThisItem.Created, "mmm d, yyyy")
                   - Status_Column1:
                       Control: ModernDataGridColumn
                       Variant: Textual
@@ -432,16 +444,37 @@ Screens:
                         FieldDisplayName: ="Status"
                         FieldName: ="Status"
                         FieldVariantName: ="textualColumn"
+                        Icon: =If(ThisItem.Status.Value in ["Completed", "Closed", "Resolved", "Declined", "Released"], "CheckmarkCircle", ThisItem.Status.Value = "Waiting List" || ThisItem.Status.Value = "Offered", "Clock", "CircleHalfFill")
                         Text: =ThisItem.Status.Value
-                  - Title_Column1:
+                  - Description_Column1:
                       Control: ModernDataGridColumn
                       Variant: Textual
                       IsLocked: true
                       Properties:
-                        FieldDisplayName: ="Title"
-                        FieldName: ="Title"
+                        FieldDisplayName: ="Details"
+                        FieldName: ="Description"
                         FieldVariantName: ="textualColumn"
-                        Text: =ThisItem.Title
+                        Text: =If(Len(ThisItem.Description) > 40, Left(ThisItem.Description, 40) & "…", ThisItem.Description)
+                  - ServiceSubcategory_Column1:
+                      Control: ModernDataGridColumn
+                      Variant: Textual
+                      IsLocked: true
+                      Properties:
+                        FieldDisplayName: ="Request"
+                        FieldName: ="ServiceSubcategory"
+                        FieldVariantName: ="textualColumn"
+                        Text: =ThisItem.ServiceSubcategory
+                  - ID_Column1:
+                      Control: ModernDataGridColumn
+                      Variant: Number
+                      IsLocked: true
+                      Properties:
+                        FieldDisplayName: |-
+                          ="Ticket #"
+                        FieldName: ="ID"
+                        FieldVariantName: ="numberColumn"
+                        Value: =ThisItem.ID
+                        Width: =90
       - AccountMenu_3:
           Control: GroupContainer
           Variant: AutoLayout

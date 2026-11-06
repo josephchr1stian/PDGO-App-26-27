@@ -17,7 +17,11 @@ Last updated: 2026-11-06
 - [x] Removed the placeholder `PDGOTicketTypes` list.
 - [x] **Waitlist admin actions** on the ticket detail (2026-11-06): *Offer spot* → *Spot accepted*, plus *Remove from waitlist*. Buttons and label read the `Waitlist Queue`, not ticket Status.
 - [x] My Requests shows admins/supervisors both their assigned and submitted tickets.
-- [x] Removed "Current Tickets" (old `UserHome`) from the menus; ticket detail Back returns to the hub.
+- [x] Removed "Current Tickets" (old `UserHome`) from the menus; one hub for everyone, content by role. Ticket detail Back returns to the hub.
+- [x] My Requests table: open tickets first (newest first), closed at the bottom with a ✓ icon; columns Ticket # / Request / Details / Status / Submitted / Last update, plus Assigned to / Requested by for admins.
+- [x] Waitlist duplicate check reads `Waitlist Queue` (one active spot per account).
+- [x] Removed the hardcoded "Admin Sign In" password button; admin access comes from the `PDGo Users` role.
+- [x] `TicketRequestScreen` shows only the signed-in user's tickets.
 
 ## In progress
 
@@ -35,11 +39,10 @@ Last updated: 2026-11-06
 - [ ] **Waitlist position wording** says "You're #N" even when an admin is viewing.
 - [ ] **Old screens to retire** once nothing links to them: `ParkingRequest`, `UserHome`, `MainScreen1`, `TicketDetailScreen`, `Pdgo Hub`, `Login New Hub` (its Navigate formula is broken), the template/test screens, and the two `-----` screens.
 - [ ] **Unused lists and data sources**: `Parking Requests`, `Parkest request Test`, `Ticketdisplaytest`, `PDGOTickets`, `Faculty Bucket List`, `Locksmith Requests`. Remove `PDGOTicketTypes` from the app's Data panel; the list is gone.
-- [ ] **Hardcoded admin password** (`"admin"` on the Login screen). Replace with role-based access from `PDGo Users` before any real data.
 - [ ] **Test mode** is on (`varTestMode = true` in App.OnStart). Turn off for UAT/handoff.
 - [ ] **Priority.** The team proposes dropping it; FR-06/FR-09 mention it. Confirm with the sponsor.
 - [ ] **Who approves Civic Center parking**: the screen text says Joe/Deepak, the notes say Vidal.
-- [ ] **`TicketRequestScreen`** lists every ticket to anyone. Restrict it to admins, or rely on privacy permissions.
+- [ ] **Modern table limits**: column formulas can't use Coalesce/IsBlank, and rows can't be shaded. A gallery would allow shaded closed rows and status pills.
 - [ ] **App checker** cleanup: unused variables, cross-screen references in the template screens.
 
 ## Future

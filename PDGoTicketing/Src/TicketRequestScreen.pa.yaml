@@ -100,7 +100,7 @@ Screens:
             FontWeight: =FontWeight.Semibold
             Height: =32
             Size: =14
-            Text: ="All tickets (" & CountRows(AdministrativeServiceRequests) & ")"
+            Text: ="My tickets (" & CountRows(Filter(AdministrativeServiceRequests, !IsBlank(varEmail) && RequestedBy = varEmail)) & ")"
             Visible: =!(App.Width < 768 && !IsBlank(varOpenTicket))
             Width: =If(IsBlank(varOpenTicket) || App.Width < 768, Parent.Width - 48, Parent.Width * 0.4 - 32)
             X: =24
@@ -112,7 +112,7 @@ Screens:
             Fill: =RGBA(214, 221, 224, 1)
             Height: =Parent.Height - 128
             Items: |-
-              =AddColumns(AdministrativeServiceRequests, Key, "ADM-" & ID, Src, "Administrative", RecId, ID, Ticket, Coalesce(ServiceSubcategory, Title), Desc, Description, Category, Title, StatusText, Status.Value, Requester, RequestedBy, CreatedOn, Created, Cur, With({st: Lower(Trim(Coalesce(Status.Value, "submitted")))}, If(st in ["completed", "complete", "closed", "resolved", "done", "fulfilled"], 5, st in ["approved", "in progress", "assigned", "working", "scheduled"], 3, 2)))
+              =AddColumns(Filter(AdministrativeServiceRequests, !IsBlank(varEmail) && RequestedBy = varEmail), Key, "ADM-" & ID, Src, "Administrative", RecId, ID, Ticket, Coalesce(ServiceSubcategory, Title), Desc, Description, Category, Title, StatusText, Status.Value, Requester, RequestedBy, CreatedOn, Created, Cur, With({st: Lower(Trim(Coalesce(Status.Value, "submitted")))}, If(st in ["completed", "complete", "closed", "resolved", "done", "fulfilled"], 5, st in ["approved", "in progress", "assigned", "working", "scheduled"], 3, 2)))
             OnSelect: =If(Coalesce(varOpenTicket.Key, "") = ThisItem.Key, Set(varOpenTicket, Blank()), Set(varOpenTicket, ThisItem))
             TemplatePadding: =6
             TemplateSize: =112

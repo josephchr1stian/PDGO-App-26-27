@@ -1894,30 +1894,23 @@ Screens:
 
               If(
                   IsBlank(FacilitiesServiceSubcategoryDropdown.Selected.Value),
-                  Notify(
-                      "Please select a Service Subcategory.",
-                      NotificationType.Error
-                  ),
+                  Notify("Please select a Service Subcategory.", NotificationType.Error),
 
                   FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
                   IsBlank(FacilitiesParkingLocationDropdown.Selected.Value),
-                  Notify(
-                      "Please select a Parking Location.",
-                      NotificationType.Error
-                  ),
+                  Notify("Please select a Parking Location.", NotificationType.Error),
 
                   FacilitiesServiceSubcategoryDropdown.Selected.Value = "Building Maintenance" &&
                   IsBlank(FacilitiesRequestTypeDropdown.Selected.Value),
-                  Notify(
-                      "Please select a Request Type.",
-                      NotificationType.Error
-                  ),
-                      FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
+                  Notify("Please select a Request Type.", NotificationType.Error),
+
+                  FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
                   FacilitiesParkingLocationDropdown.Selected.Value = "Civic Center" &&
-                  !IsBlank(LookUp(AdministrativeServiceRequests,
-                      RequestedBy = User().Email && ServiceSubcategory = "Parking Request" &&
-                      (Status.Value = "Waiting List" || Status.Value = "Offered"))),
+                  !IsBlank(LookUp('Waitlist Queue',
+                      'Created By'.Email = User().Email &&
+                      (QueueStatus.Value = "Waiting" || QueueStatus.Value = "Offered"))),
                   Notify("You're already on the Civic Center waitlist.", NotificationType.Warning),
+
                   SubmitForm(FacilitiesRequestForm)
               )
             PressedBorderColor: =RGBA(0, 69, 120, 1)

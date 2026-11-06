@@ -163,19 +163,6 @@ Screens:
                         LayoutMinWidth: =16
                         Text: =varLoginError
                         Visible: =Not(IsBlank(varLoginError))
-                  - btnAdminSignIn:
-                      Control: ModernButton
-                      Properties:
-                        LayoutMinHeight: =16
-                        LayoutMinWidth: =16
-                        OnSelect: |-
-                          =If(
-                              password.Text = "admin",
-                              Navigate(AdminHome, ScreenTransition.Fade),
-                              Notify("Access denied", NotificationType.Error)
-                          )
-                        Text: ="Admin Sign In"
-                        Width: =160
       - btnBack:
           Control: Classic/Button
           Properties:

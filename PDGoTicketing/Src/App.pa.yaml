@@ -1,5 +1,17 @@
 App:
   Properties:
-    Formulas: "=CanEditTicket =\n    !IsBlank(varEmail) &&\n    !IsBlank(selTicket.ID) &&\n    (\n        varRole = \"Admin\" ||\n        varRole = \"Supervisor\" ||\n        Lower(Trim(Coalesce(selTicket.AssignedTo, \"\"))) = varEmail\n    );\n\n BlankImg = \"data:image/svg+xml;utf8,\" & EncodeUrl(\"<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'></svg>\");\n\nNavTabs = If(varRole = \"Admin\" || varRole = \"Supervisor\", [\"Home\",  \"Current Tickets\", \"Admin\"], [\"Home\"]);\n\n "
+    Formulas: |-
+      =CanEditTicket =
+          !IsBlank(varEmail) &&
+          !IsBlank(selTicket.ID) &&
+          (
+              varRole = "Admin" ||
+              varRole = "Supervisor" ||
+              Lower(Trim(Coalesce(selTicket.AssignedTo, ""))) = varEmail
+          );
+
+      BlankImg = "data:image/svg+xml;utf8," & EncodeUrl("<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'></svg>");
+
+      NavTabs = If(varRole = "Admin" || varRole = "Supervisor", ["Home", "Admin"], ["Home"]);
     OnStart: =Set(varTestMode, true)
     Theme: =PowerAppsTheme
