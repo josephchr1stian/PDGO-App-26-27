@@ -539,11 +539,11 @@ Screens:
             - RequestedBy_DataCard2_1:
                 Control: TypedDataCard
                 Variant: ModernTextualEdit
-                IsLocked: true
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="RequestedBy"
                   Default: =ThisItem.RequestedBy
+                  DisplayMode: =DisplayMode.View
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,RequestedBy)
                   MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, RequestedBy)
                   Required: =false
@@ -610,12 +610,7 @@ Screens:
                   BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="AssignedTo"
                   Default: =ThisItem.AssignedTo
-                  DisplayMode: |-
-                    =If(
-                        varRole = "Supervisor",
-                        Parent.DisplayMode,
-                        DisplayMode.View
-                    )
+                  DisplayMode: =If(varRole = "Admin", Parent.DisplayMode, DisplayMode.View)
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,AssignedTo)
                   MaxLength: =DataSourceInfo([@AdministrativeServiceRequests], DataSourceInfo.MaxLength, AssignedTo)
                   Required: =false
@@ -678,11 +673,11 @@ Screens:
             - RequestDate_DataCard1_1:
                 Control: TypedDataCard
                 Variant: ModernDateEdit
-                IsLocked: true
                 Properties:
                   BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="RequestDate"
                   Default: =ThisItem.RequestDate
+                  DisplayMode: =DisplayMode.View
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,RequestDate)
                   Required: =false
                   Update: =DataCardValue21_1.SelectedDate
@@ -762,3 +757,30 @@ Screens:
             Visible: =Form1_1.Mode = FormMode.Edit
             X: =404
             Y: =537
+      - cmbReassign:
+          Control: Classic/ComboBox
+          Properties:
+            DisplayFields: =["Email"]
+            Height: =36
+            InputTextPlaceholder: ="Select a supervisor or admin"
+            Items: =Filter('PDGo Users', Role.Value = "Supervisor" || Role.Value = "Admin")
+            SearchFields: =["Email"]
+            SelectMultiple: =false
+            Visible: =varRole = "Admin" && Form1_1.Mode = FormMode.View
+            Width: =420
+            X: =40
+            Y: =620
+      - btnReassign:
+          Control: ModernButton
+          Properties:
+            DisplayMode: =If(IsBlank(cmbReassign.Selected), DisplayMode.Disabled, DisplayMode.Edit)
+            OnSelect: |-
+              =Patch(AdministrativeServiceRequests, selTicket, { AssignedTo: Lower(cmbReassign.Selected.Email) });
+              Set(selTicket, LookUp(AdministrativeServiceRequests, ID = selTicket.ID));
+              Reset(cmbReassign);
+              Notify("Ticket reassigned to " & selTicket.AssignedTo, NotificationType.Success)
+            Text: ="Reassign"
+            Visible: =varRole = "Admin" && Form1_1.Mode = FormMode.View
+            Width: =140
+            X: =480
+            Y: =620
