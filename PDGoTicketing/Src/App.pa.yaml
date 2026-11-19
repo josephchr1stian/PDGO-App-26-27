@@ -14,4 +14,4 @@ App:
 
       NavTabs = If(varRole = "Admin" || varRole = "Supervisor", ["Home", "Admin"], ["Home"]);
     OnStart: =Set(varTestMode, true)
-    Theme: =PowerAppsTheme
+    Theme: =PDGoTheme

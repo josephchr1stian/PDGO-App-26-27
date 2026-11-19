@@ -1,8 +1,6 @@
 Screens:
   10_29SecurityRequestFormTemplateScreen:
     Properties:
-      Fill: =RGBA(248, 249, 252, 1)
-      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
       OnVisible: |-
         =Set(varResetAttachments, false);
         Set(varShowSubmitErrors, false);
@@ -12,56 +10,20 @@ Screens:
       - TemplateRequestHeaderBar_1:
           Control: Rectangle
           Properties:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            DisabledFill: =RGBA(161, 159, 157, 1)
-            Fill: =RGBA(0, 120, 212, 1)
-            FocusedBorderThickness: =4
             Height: =64
-            HoverFill: =RGBA(0, 120, 212, 1)
-            PressedFill: =RGBA(0, 120, 212, 1)
             Width: =Parent.Width
       - TemplateRequestTitleLabel_1:
           Control: Label
           Properties:
             Align: =Align.Center
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            BorderThickness: =2
-            Color: =RGBA(255, 255, 255, 1)
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledColor: =RGBA(161, 159, 157, 1)
-            FocusedBorderThickness: =4
-            Font: =Font.'Segoe UI'
-            FontWeight: =FontWeight.Semibold
             Height: =64
-            Size: =24
             Text: ="Submit a Request"
             Width: =Parent.Width
       - TemplateBackToHomeButton_1:
           Control: Classic/Button
           Properties:
-            BorderColor: =RGBA(210, 220, 230, 1)
-            BorderStyle: =BorderStyle.None
-            BorderThickness: =1
-            Color: =RGBA(0, 120, 212, 1)
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledColor: =RGBA(161, 159, 157, 1)
-            DisabledFill: =RGBA(242, 242, 241, 0)
-            Fill: =RGBA(255, 255, 255, 1)
-            Font: =Font.'Segoe UI'
             Height: =44
-            HoverBorderColor: =RGBA(0, 0, 0, 0)
-            HoverColor: =RGBA(255, 255, 255, 1)
-            HoverFill: =RGBA(16, 110, 190, 1)
             OnSelect: =Navigate('Pdgo Hub', ScreenTransition.Fade)
-            PressedBorderColor: =RGBA(0, 69, 120, 1)
-            PressedColor: =RGBA(255, 255, 255, 1)
-            PressedFill: =RGBA(16, 110, 190, 1)
-            RadiusBottomLeft: =6
-            RadiusBottomRight: =6
-            RadiusTopLeft: =6
-            RadiusTopRight: =6
             Text: ="← Back to Home"
             Width: =200
             X: |
@@ -70,15 +32,7 @@ Screens:
       - TemplateFormBackground_1:
           Control: Rectangle
           Properties:
-            BorderColor: =RGBA(218, 225, 233, 1)
-            BorderStyle: =BorderStyle.None
-            BorderThickness: =1
-            DisabledFill: =RGBA(161, 159, 157, 1)
-            Fill: =RGBA(255, 255, 255, 1)
-            FocusedBorderThickness: =4
             Height: =TemplateRequestForm_1.Height + 76
-            HoverFill: =RGBA(255, 255, 255, 1)
-            PressedFill: =RGBA(0, 120, 212, 1)
             Width: =TemplateRequestForm_1.Width + 32
             X: =TemplateRequestForm_1.X - 16
             Y: =TemplateRequestForm_1.Y - 12
@@ -87,7 +41,6 @@ Screens:
           Variant: Classic
           Layout: Vertical
           Properties:
-            BorderColor: =RGBA(245, 245, 245, 1)
             DataSource: =AdministrativeServiceRequests
             DefaultMode: =FormMode.New
             Height: =Max(200, Parent.Height - Self.Y - 100)
@@ -119,7 +72,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Title"
                   Default: =ThisItem.Title
                   DisplayName: ="Service Category"
@@ -134,15 +86,6 @@ Screens:
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =TemplateServiceCategoryFieldLabel_1.Height
                         PaddingLeft: =0
                         Text: ="*"
@@ -155,15 +98,6 @@ Screens:
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =34
                         PaddingLeft: =0
                         Text: =Parent.DisplayName
@@ -175,23 +109,7 @@ Screens:
                       Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
-                        BorderColor: =RGBA(210, 220, 230, 1)
-                        BorderThickness: =1
-                        ChevronBackground: =RGBA(255, 255, 255, 1)
-                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
-                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
-                        ChevronFill: =RGBA(0, 120, 212, 1)
-                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
-                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =""
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(245, 249, 255, 1)
                         Items: |-
                           =[
                               "Facilities",
@@ -209,15 +127,6 @@ Screens:
 
                           Set(varResetAttachments, true);
                           Set(varResetAttachments, false)
-                        PaddingBottom: =5
-                        PaddingLeft: =5
-                        PaddingRight: =5
-                        PaddingTop: =5
-                        PressedBorderColor: =RGBA(16, 110, 190, 1)
-                        PressedColor: =RGBA(255, 255, 255, 1)
-                        PressedFill: =RGBA(0, 120, 212, 1)
-                        SelectionColor: =RGBA(50, 49, 48, 1)
-                        SelectionFill: =RGBA(0, 120, 212, 1)
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =40
@@ -226,22 +135,11 @@ Screens:
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =Parent.Default
                         DelayOutput: =true
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         DisplayMode: =Parent.DisplayMode
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(255, 255, 255, 1)
                         MaxLength: =Parent.MaxLength
                         PaddingLeft: =5
-                        PressedBorderColor: =RGBA(0, 120, 212, 1)
-                        PressedColor: =RGBA(50, 49, 48, 1)
-                        PressedFill: =RGBA(255, 255, 255, 1)
                         RadiusBottomLeft: =0
                         RadiusBottomRight: =0
                         RadiusTopLeft: =0
@@ -256,15 +154,6 @@ Screens:
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(168, 0, 0, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(168, 0, 0, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =10
                         Live: =Live.Assertive
                         PaddingBottom: =0
@@ -280,7 +169,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="RequestType"
                   Default: =ThisItem.'Request Type'
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,'Request Type')
@@ -308,15 +196,6 @@ Screens:
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =TemplateRequestTypeFieldLabel_1.Height
                         PaddingLeft: =0
                         Text: ="*"
@@ -329,15 +208,6 @@ Screens:
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =34
                         PaddingLeft: =0
                         Text: =Parent.DisplayName
@@ -349,23 +219,7 @@ Screens:
                       Control: Classic/DropDown
                       Properties:
                         AllowEmptySelection: =true
-                        BorderColor: =RGBA(210, 220, 230, 1)
-                        BorderThickness: =1
-                        ChevronBackground: =RGBA(255, 255, 255, 1)
-                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
-                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
-                        ChevronFill: =RGBA(0, 120, 212, 1)
-                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
-                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =""
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(245, 249, 255, 1)
                         Items: |-
                           =Table(
                               {Value: "Electrical"},
@@ -375,15 +229,6 @@ Screens:
                               {Value: "Plumbing"}
                           )
                         Items.Value: =Value
-                        PaddingBottom: =5
-                        PaddingLeft: =5
-                        PaddingRight: =5
-                        PaddingTop: =5
-                        PressedBorderColor: =RGBA(16, 110, 190, 1)
-                        PressedColor: =RGBA(255, 255, 255, 1)
-                        PressedFill: =RGBA(0, 120, 212, 1)
-                        SelectionColor: =RGBA(50, 49, 48, 1)
-                        SelectionFill: =RGBA(0, 120, 212, 1)
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =40
@@ -392,22 +237,11 @@ Screens:
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =Parent.Default
                         DelayOutput: =true
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         DisplayMode: =Parent.DisplayMode
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(255, 255, 255, 1)
                         MaxLength: =Parent.MaxLength
                         PaddingLeft: =5
-                        PressedBorderColor: =RGBA(0, 120, 212, 1)
-                        PressedColor: =RGBA(50, 49, 48, 1)
-                        PressedFill: =RGBA(255, 255, 255, 1)
                         RadiusBottomLeft: =0
                         RadiusBottomRight: =0
                         RadiusTopLeft: =0
@@ -422,15 +256,6 @@ Screens:
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(168, 0, 0, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(168, 0, 0, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =10
                         Live: =Live.Assertive
                         PaddingBottom: =0
@@ -454,7 +279,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Location"
                   Default: =ThisItem.Location
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Location)
@@ -482,15 +306,6 @@ Screens:
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =TemplateLocationFieldLabel_1.Height
                         PaddingLeft: =0
                         Text: ="*"
@@ -503,15 +318,6 @@ Screens:
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =34
                         PaddingLeft: =0
                         Text: =Parent.DisplayName
@@ -524,25 +330,12 @@ Screens:
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
-                        BorderThickness: =1
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =Parent.Default
                         DelayOutput: =true
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         DisplayMode: =Parent.DisplayMode
                         FocusedBorderColor: =RGBA(0, 120, 212, 1)
-                        FocusedBorderThickness: =2
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(245, 249, 255, 1)
                         MaxLength: =Parent.MaxLength
                         PaddingLeft: =5
-                        PressedBorderColor: =RGBA(0, 120, 212, 1)
-                        PressedColor: =RGBA(50, 49, 48, 1)
-                        PressedFill: =RGBA(255, 255, 255, 1)
                         RadiusBottomLeft: =0
                         RadiusBottomRight: =0
                         RadiusTopLeft: =0
@@ -559,37 +352,12 @@ Screens:
                   - TemplateParkingLocationDropdown_1:
                       Control: Classic/DropDown
                       Properties:
-                        BorderColor: =RGBA(245, 245, 245, 1)
-                        ChevronBackground: =RGBA(245, 245, 245, 1)
-                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
-                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
-                        ChevronFill: =RGBA(50, 49, 48, 1)
-                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
-                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
-                        Fill: =RGBA(245, 245, 245, 1)
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(245, 245, 245, 1)
                         Items: |-
                           =Table(
                               {Value: "Civic Center"},
                               {Value: "Other parking locations (free)"}
                           )
                         Items.Value: =Value
-                        PaddingBottom: =5
-                        PaddingLeft: =5
-                        PaddingRight: =5
-                        PaddingTop: =5
-                        PressedBorderColor: =RGBA(16, 110, 190, 1)
-                        PressedColor: =RGBA(255, 255, 255, 1)
-                        PressedFill: =RGBA(0, 120, 212, 1)
-                        SelectionColor: =RGBA(50, 49, 48, 1)
-                        SelectionFill: =RGBA(0, 120, 212, 1)
                         Visible: |-
                           =TemplateServiceCategoryDropdown_1.Selected.Value = "Facilities" &&
                           TemplateServiceSubcategoryDropdown_1.Selected.Value = "Parking Request"
@@ -601,15 +369,6 @@ Screens:
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(168, 0, 0, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(168, 0, 0, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =10
                         Live: =Live.Assertive
                         PaddingBottom: =0
@@ -624,14 +383,6 @@ Screens:
                   - TemplateParkingFeeLabel_1:
                       Control: Label
                       Properties:
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
                         Height: =50
                         Text: |-
                           =Switch(
@@ -653,7 +404,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Status"
                   Default: =ThisItem.Status
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Status)
@@ -669,15 +419,6 @@ Screens:
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =TemplateStatusFieldLabel_1.Height
                         PaddingLeft: =0
                         Text: ="*"
@@ -690,15 +431,6 @@ Screens:
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =34
                         PaddingLeft: =0
                         Text: =Parent.DisplayName
@@ -711,33 +443,13 @@ Screens:
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                        ChevronBackground: =RGBA(245, 245, 245, 1)
-                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
-                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
-                        ChevronFill: =RGBA(50, 49, 48, 1)
-                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
-                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
-                        Color: =RGBA(50, 49, 48, 1)
                         DefaultSelectedItems: =Parent.Default
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         DisplayFields: =["Value"]
                         DisplayMode: =Parent.DisplayMode
-                        Fill: =RGBA(245, 245, 245, 1)
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(245, 245, 245, 1)
                         Items: =Choices([@AdministrativeServiceRequests].Status)
                         PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
-                        PressedBorderColor: =RGBA(16, 110, 190, 1)
-                        PressedColor: =RGBA(255, 255, 255, 1)
-                        PressedFill: =RGBA(0, 120, 212, 1)
                         SearchFields: =["Value"]
                         SelectMultiple: =false
-                        SelectionColor: =RGBA(255, 255, 255, 1)
-                        SelectionFill: =RGBA(0, 120, 212, 1)
                         Tooltip: =Parent.DisplayName
                         Width: =Parent.Width - 60
                         X: =30
@@ -747,15 +459,6 @@ Screens:
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(168, 0, 0, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(168, 0, 0, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =10
                         Live: =Live.Assertive
                         PaddingBottom: =0
@@ -771,7 +474,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="RequestedBy"
                   Default: =ThisItem.RequestedBy
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,RequestedBy)
@@ -787,15 +489,6 @@ Screens:
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =TemplateRequestedByFieldLabel_1.Height
                         PaddingLeft: =0
                         Text: ="*"
@@ -808,15 +501,6 @@ Screens:
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =34
                         PaddingLeft: =0
                         Text: =Parent.DisplayName
@@ -829,22 +513,11 @@ Screens:
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =Parent.Default
                         DelayOutput: =true
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         DisplayMode: =Parent.DisplayMode
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(255, 255, 255, 1)
                         MaxLength: =Parent.MaxLength
                         PaddingLeft: =5
-                        PressedBorderColor: =RGBA(0, 120, 212, 1)
-                        PressedColor: =RGBA(50, 49, 48, 1)
-                        PressedFill: =RGBA(255, 255, 255, 1)
                         RadiusBottomLeft: =0
                         RadiusBottomRight: =0
                         RadiusTopLeft: =0
@@ -858,15 +531,6 @@ Screens:
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(168, 0, 0, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(168, 0, 0, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =10
                         Live: =Live.Assertive
                         PaddingBottom: =0
@@ -882,7 +546,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Building"
                   Default: =ThisItem.Building
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Building)
@@ -903,15 +566,6 @@ Screens:
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =TemplateBuildingFieldLabel_1.Height
                         PaddingLeft: =0
                         Text: ="*"
@@ -924,15 +578,6 @@ Screens:
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =34
                         PaddingLeft: =0
                         Text: =Parent.DisplayName
@@ -945,25 +590,12 @@ Screens:
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
-                        BorderThickness: =1
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =Parent.Default
                         DelayOutput: =true
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         DisplayMode: =Parent.DisplayMode
                         FocusedBorderColor: =RGBA(0, 120, 212, 1)
-                        FocusedBorderThickness: =2
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(245, 249, 255, 1)
                         MaxLength: =Parent.MaxLength
                         PaddingLeft: =5
-                        PressedBorderColor: =RGBA(0, 120, 212, 1)
-                        PressedColor: =RGBA(50, 49, 48, 1)
-                        PressedFill: =RGBA(255, 255, 255, 1)
                         RadiusBottomLeft: =0
                         RadiusBottomRight: =0
                         RadiusTopLeft: =0
@@ -977,15 +609,6 @@ Screens:
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(168, 0, 0, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(168, 0, 0, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =10
                         Live: =Live.Assertive
                         PaddingBottom: =0
@@ -1001,7 +624,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Floor"
                   Default: =ThisItem.'Room / Area'
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,'Room / Area')
@@ -1022,15 +644,6 @@ Screens:
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =TemplateFloorFieldLabel_1.Height
                         PaddingLeft: =0
                         Text: ="*"
@@ -1043,15 +656,6 @@ Screens:
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =34
                         PaddingLeft: =0
                         Text: =Parent.DisplayName
@@ -1064,25 +668,12 @@ Screens:
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
-                        BorderThickness: =1
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =Parent.Default
                         DelayOutput: =true
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         DisplayMode: =Parent.DisplayMode
                         FocusedBorderColor: =RGBA(0, 120, 212, 1)
-                        FocusedBorderThickness: =2
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(245, 249, 255, 1)
                         MaxLength: =Parent.MaxLength
                         PaddingLeft: =5
-                        PressedBorderColor: =RGBA(0, 120, 212, 1)
-                        PressedColor: =RGBA(50, 49, 48, 1)
-                        PressedFill: =RGBA(255, 255, 255, 1)
                         RadiusBottomLeft: =0
                         RadiusBottomRight: =0
                         RadiusTopLeft: =0
@@ -1096,15 +687,6 @@ Screens:
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(168, 0, 0, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(168, 0, 0, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =10
                         Live: =Live.Assertive
                         PaddingBottom: =0
@@ -1120,7 +702,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ClassicTextualEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Description"
                   Default: =ThisItem.Description
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Description)
@@ -1143,15 +724,6 @@ Screens:
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =TemplateDescriptionFieldLabel_1.Height
                         PaddingLeft: =0
                         Text: ="*"
@@ -1164,15 +736,6 @@ Screens:
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =34
                         PaddingLeft: =0
                         Text: =Parent.DisplayName
@@ -1185,27 +748,14 @@ Screens:
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
-                        BorderThickness: =1
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =Parent.Default
                         DelayOutput: =true
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         DisplayMode: =Parent.DisplayMode
                         FocusedBorderColor: =RGBA(0, 120, 212, 1)
-                        FocusedBorderThickness: =2
-                        Font: =Font.'Segoe UI'
                         Height: =100
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(245, 249, 255, 1)
                         MaxLength: =Parent.MaxLength
                         Mode: =TextMode.MultiLine
                         PaddingLeft: =5
-                        PressedBorderColor: =RGBA(0, 120, 212, 1)
-                        PressedColor: =RGBA(50, 49, 48, 1)
-                        PressedFill: =RGBA(255, 255, 255, 1)
                         RadiusBottomLeft: =0
                         RadiusBottomRight: =0
                         RadiusTopLeft: =0
@@ -1219,15 +769,6 @@ Screens:
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(168, 0, 0, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(168, 0, 0, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =10
                         Live: =Live.Assertive
                         PaddingBottom: =0
@@ -1243,7 +784,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ClassicComboBoxEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Priority"
                   Default: =ThisItem.Priority
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Priority)
@@ -1264,15 +804,6 @@ Screens:
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =TemplatePriorityFieldLabel_1.Height
                         PaddingLeft: =0
                         Text: ="*"
@@ -1285,15 +816,6 @@ Screens:
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =34
                         PaddingLeft: =0
                         Text: =Parent.DisplayName
@@ -1306,27 +828,12 @@ Screens:
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
-                        BorderThickness: =1
-                        ChevronBackground: =RGBA(255, 255, 255, 1)
-                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
-                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
-                        ChevronFill: =RGBA(0, 120, 212, 1)
-                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
-                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
-                        Color: =RGBA(50, 49, 48, 1)
                         DefaultSelectedItems: |-
                           =Table(
                               {Value: "Normal"}
                           )
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         DisplayFields: =["Value"]
                         DisplayMode: =Parent.DisplayMode
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(245, 249, 255, 1)
                         Items: |-
                           =Table(
                               {Value: "Low"},
@@ -1334,13 +841,8 @@ Screens:
                               {Value: "High"},
                               {Value: "Urgent"}
                           )
-                        PressedBorderColor: =RGBA(16, 110, 190, 1)
-                        PressedColor: =RGBA(255, 255, 255, 1)
-                        PressedFill: =RGBA(0, 120, 212, 1)
                         SearchFields: =["Value"]
                         SelectMultiple: =false
-                        SelectionColor: =RGBA(255, 255, 255, 1)
-                        SelectionFill: =RGBA(255, 255, 255, 1)
                         Tooltip: =Parent.DisplayName
                         Visible: =false
                         Width: =Parent.Width - 60
@@ -1349,23 +851,7 @@ Screens:
                   - TemplatePriorityDropdown_1:
                       Control: Classic/DropDown
                       Properties:
-                        BorderColor: =RGBA(210, 220, 230, 1)
-                        BorderThickness: =1
-                        ChevronBackground: =RGBA(255, 255, 255, 1)
-                        ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
-                        ChevronDisabledFill: =RGBA(161, 159, 157, 1)
-                        ChevronFill: =RGBA(0, 120, 212, 1)
-                        ChevronHoverBackground: =RGBA(245, 245, 245, 1)
-                        ChevronHoverFill: =RGBA(50, 49, 48, 1)
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: ="Normal"
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
-                        Font: =Font.'Segoe UI'
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(245, 249, 255, 1)
                         Items: |-
                           =Table(
                               {Value: "Low"},
@@ -1374,15 +860,6 @@ Screens:
                               {Value: "Urgent"}
                           )
                         Items.Value: =Value
-                        PaddingBottom: =5
-                        PaddingLeft: =5
-                        PaddingRight: =5
-                        PaddingTop: =5
-                        PressedBorderColor: =RGBA(16, 110, 190, 1)
-                        PressedColor: =RGBA(255, 255, 255, 1)
-                        PressedFill: =RGBA(0, 120, 212, 1)
-                        SelectionColor: =RGBA(50, 49, 48, 1)
-                        SelectionFill: =RGBA(0, 120, 212, 1)
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =TemplatePriorityFieldLabel_1.Y + TemplatePriorityFieldLabel_1.Height + 5
@@ -1391,15 +868,6 @@ Screens:
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(168, 0, 0, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(168, 0, 0, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =10
                         Live: =Live.Assertive
                         PaddingBottom: =0
@@ -1415,7 +883,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ClassicAttachmentsEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="{Attachments}"
                   Default: =ThisItem.Attachments
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Attachments)
@@ -1436,15 +903,6 @@ Screens:
                       MetadataKey: FieldRequired
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =TemplateAttachmentsFieldLabel_1.Height
                         PaddingLeft: =0
                         Text: ="*"
@@ -1457,15 +915,6 @@ Screens:
                       MetadataKey: FieldName
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =34
                         PaddingLeft: =0
                         Text: =Parent.DisplayName
@@ -1478,30 +927,14 @@ Screens:
                       MetadataKey: FieldValue
                       Properties:
                         BorderColor: =RGBA(210, 220, 230, 1)
-                        BorderThickness: =1
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         DisplayMode: =Parent.DisplayMode
-                        Font: =Font.'Segoe UI'
                         Height: =120
                         HoverBorderColor: =RGBA(0, 120, 212, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(255, 255, 255, 1)
-                        ItemColor: =RGBA(0, 0, 0, 1)
-                        ItemFill: =RGBA(0, 120, 212, 1)
-                        ItemHoverColor: =RGBA(50, 49, 48, 1)
-                        ItemHoverFill: =RGBA(245, 245, 245, 1)
-                        ItemSpacing: =12
                         Items: =Parent.Default
-                        NoAttachmentsColor: =RGBA(161, 159, 157, 1)
                         PaddingBottom: =5
                         PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
                         PaddingRight: =5
                         PaddingTop: =5
-                        PressedColor: =RGBA(255, 255, 255, 1)
-                        PressedFill: =RGBA(0, 120, 212, 1)
                         Reset: =varResetAttachments
                         Tooltip: =Parent.DisplayName
                         Width: =Parent.Width - 60
@@ -1512,15 +945,6 @@ Screens:
                       MetadataKey: ErrorMessage
                       Properties:
                         AutoHeight: =true
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(168, 0, 0, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(168, 0, 0, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
-                        FontWeight: =FontWeight.Semibold
                         Height: =10
                         Live: =Live.Assertive
                         PaddingBottom: =0
@@ -1535,19 +959,8 @@ Screens:
       - TemplateSubmitRequestButton_1:
           Control: Classic/Button
           Properties:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            Color: =RGBA(255, 255, 255, 1)
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledColor: =RGBA(161, 159, 157, 1)
-            DisabledFill: =RGBA(242, 242, 241, 0)
-            Fill: =RGBA(0, 120, 212, 1)
-            Font: =Font.'Segoe UI'
             Height: |
               =44
-            HoverBorderColor: =RGBA(0, 0, 0, 0)
-            HoverColor: =RGBA(255, 255, 255, 1)
-            HoverFill: =RGBA(0, 95, 175, 1)
             OnSelect: |-
               =Set(varShowSubmitErrors, true);
 
@@ -1574,13 +987,6 @@ Screens:
 
                   SubmitForm(TemplateRequestForm_1)
               )
-            PressedBorderColor: =RGBA(0, 69, 120, 1)
-            PressedColor: =RGBA(255, 255, 255, 1)
-            PressedFill: =RGBA(0, 75, 145, 1)
-            RadiusBottomLeft: =8
-            RadiusBottomRight: =8
-            RadiusTopLeft: =8
-            RadiusTopRight: =8
             Text: ="Submit Request"
             Visible: |-
               =!(

@@ -1,14 +1,10 @@
 Screens:
   Locksmith Request:
-    Properties:
-      Fill: =RGBA(255, 255, 255, 1)
-      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     Children:
       - ApprScroll1:
           Control: GroupContainer
           Variant: AutoLayout
           Properties:
-            DropShadow: =DropShadow.None
             Fill: =RGBA(255, 255, 255, 1)
             Height: =Parent.Height
             LayoutAlignItems: =LayoutAlignItems.Center
@@ -21,7 +17,6 @@ Screens:
                 Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =If(App.Width < 640, FormCard1.Height + 300, FormCard1.Height + 24)
@@ -48,7 +43,6 @@ Screens:
                       Variant: AutoLayout
                       Properties:
                         AlignInContainer: =AlignInContainer.SetByContainer
-                        DropShadow: =DropShadow.None
                         Fill: =RGBA(255, 255, 255, 1)
                         FillPortions: =7
                         Height: '=lkFormFields.Height + 150   '
@@ -77,7 +71,6 @@ Screens:
                             Control: GroupContainer
                             Variant: AutoLayout
                             Properties:
-                              DropShadow: =DropShadow.None
                               FillPortions: =0
                               Height: =If(App.Width < 640, 1460, 1020) + 220 + If(lkErrBanner.Visible, 94, 0)
                               LayoutDirection: =LayoutDirection.Vertical
@@ -122,7 +115,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     FillPortions: =0
                                     Height: =If(App.Width < 640, 136, 64)
                                     LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
@@ -135,7 +127,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -168,7 +159,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -201,7 +191,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     FillPortions: =0
                                     Height: =If(App.Width < 640, 136, 64)
                                     LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
@@ -214,7 +203,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -254,7 +242,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -297,7 +284,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     FillPortions: =0
                                     Height: =If(App.Width < 640, 136, 64)
                                     LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
@@ -310,7 +296,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -343,7 +328,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -376,7 +360,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     FillPortions: =0
                                     Height: =If(App.Width < 640, 136, 64)
                                     LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
@@ -389,7 +372,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -429,7 +411,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -479,7 +460,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     FillPortions: =0
                                     Height: =If(App.Width < 640, 136, 64)
                                     LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
@@ -492,7 +472,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -527,7 +506,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -567,7 +545,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     FillPortions: =0
                                     Height: =124
                                     LayoutDirection: =LayoutDirection.Vertical
@@ -605,7 +582,6 @@ Screens:
                                   Variant: Classic
                                   Layout: Vertical
                                   Properties:
-                                    BorderColor: =RGBA(245, 245, 245, 1)
                                     DataSource: ='Locksmith Requests'
                                     DefaultMode: =FormMode.New
                                     Height: =190
@@ -618,7 +594,6 @@ Screens:
                                         Variant: ClassicAttachmentsEdit
                                         IsLocked: true
                                         Properties:
-                                          BorderColor: =RGBA(245, 245, 245, 1)
                                           DataField: ="{Attachments}"
                                           Default: =ThisItem.Attachments
                                           DisplayName: =DataSourceInfo([@'Locksmith Requests'],DataSourceInfo.DisplayName,'{Attachments}')
@@ -633,15 +608,6 @@ Screens:
                                               MetadataKey: FieldName
                                               Properties:
                                                 AutoHeight: =true
-                                                BorderColor: =RGBA(0, 0, 0, 0)
-                                                BorderStyle: =BorderStyle.None
-                                                BorderThickness: =2
-                                                Color: =RGBA(50, 49, 48, 1)
-                                                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                                                DisabledColor: =RGBA(161, 159, 157, 1)
-                                                FocusedBorderThickness: =4
-                                                Font: =Font.'Segoe UI'
-                                                FontWeight: =FontWeight.Semibold
                                                 Height: =34
                                                 PaddingLeft: =0
                                                 Text: ="Attachments (optional - PNG or PDF files only)"
@@ -653,29 +619,12 @@ Screens:
                                               MetadataKey: FieldValue
                                               Properties:
                                                 BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                                                BorderStyle: =BorderStyle.None
-                                                Color: =RGBA(50, 49, 48, 1)
-                                                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                                                DisabledColor: =RGBA(161, 159, 157, 1)
-                                                DisabledFill: =RGBA(242, 242, 241, 0)
                                                 DisplayMode: =Parent.DisplayMode
-                                                Fill: =RGBA(245, 245, 245, 1)
-                                                Font: =Font.'Segoe UI'
-                                                HoverColor: =RGBA(50, 49, 48, 1)
-                                                HoverFill: =RGBA(245, 245, 245, 1)
-                                                ItemColor: =RGBA(0, 0, 0, 1)
-                                                ItemFill: =RGBA(0, 120, 212, 1)
-                                                ItemHoverColor: =RGBA(50, 49, 48, 1)
-                                                ItemHoverFill: =RGBA(245, 245, 245, 1)
-                                                ItemSpacing: =12
                                                 Items: =Parent.Default
-                                                NoAttachmentsColor: =RGBA(161, 159, 157, 1)
                                                 PaddingBottom: =5
                                                 PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
                                                 PaddingRight: =5
                                                 PaddingTop: =5
-                                                PressedColor: =RGBA(255, 255, 255, 1)
-                                                PressedFill: =RGBA(0, 120, 212, 1)
                                                 Tooltip: =Parent.DisplayName
                                                 Width: =Parent.Width
                                                 Y: =lkAttachKey.Y + lkAttachKey.Height + 5
@@ -684,15 +633,6 @@ Screens:
                                               MetadataKey: ErrorMessage
                                               Properties:
                                                 AutoHeight: =true
-                                                BorderColor: =RGBA(0, 0, 0, 0)
-                                                BorderStyle: =BorderStyle.None
-                                                BorderThickness: =2
-                                                Color: =RGBA(168, 0, 0, 1)
-                                                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                                                DisabledColor: =RGBA(168, 0, 0, 1)
-                                                FocusedBorderThickness: =4
-                                                Font: =Font.'Segoe UI'
-                                                FontWeight: =FontWeight.Semibold
                                                 Height: =10
                                                 Live: =Live.Assertive
                                                 PaddingBottom: =0
@@ -708,15 +648,6 @@ Screens:
                                               MetadataKey: FieldRequired
                                               Properties:
                                                 Align: =Align.Center
-                                                BorderColor: =RGBA(0, 0, 0, 0)
-                                                BorderStyle: =BorderStyle.None
-                                                BorderThickness: =2
-                                                Color: =RGBA(50, 49, 48, 1)
-                                                DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                                                DisabledColor: =RGBA(161, 159, 157, 1)
-                                                FocusedBorderThickness: =4
-                                                Font: =Font.'Segoe UI'
-                                                FontWeight: =FontWeight.Semibold
                                                 Height: =lkAttachKey.Height
                                                 PaddingLeft: =0
                                                 Text: ="*"
@@ -738,7 +669,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     FillPortions: =0
                                     Height: =If(App.Width < 640, 136, 64)
                                     LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
@@ -751,7 +681,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -786,7 +715,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -845,7 +773,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     FillPortions: =0
                                     Height: =If(App.Width < 640, 136, 64)
                                     LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
@@ -858,7 +785,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -900,7 +826,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =64
                                           LayoutDirection: =LayoutDirection.Vertical
                                           LayoutGap: =4
@@ -930,7 +855,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     Height: =32
                                     LayoutAlignItems: =LayoutAlignItems.Center
                                     LayoutDirection: =LayoutDirection.Horizontal
@@ -961,7 +885,6 @@ Screens:
                             Control: GroupContainer
                             Variant: AutoLayout
                             Properties:
-                              DropShadow: =DropShadow.None
                               FillPortions: =0
                               Height: =56
                               LayoutAlignItems: =LayoutAlignItems.Center
@@ -1038,7 +961,6 @@ Screens:
                       Variant: AutoLayout
                       Properties:
                         AlignInContainer: =AlignInContainer.SetByContainer
-                        DropShadow: =DropShadow.None
                         Fill: =RGBA(250, 250, 250, 1)
                         FillPortions: =3
                         Height: =If(App.Width < 640, 260, 512)
@@ -1087,7 +1009,6 @@ Screens:
                             Control: Gallery
                             Variant: Vertical
                             Properties:
-                              BorderColor: =RGBA(245, 245, 245, 1)
                               FillPortions: =0
                               Height: =384
                               Items: |-
@@ -1137,7 +1058,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     Height: =96
                                     LayoutAlignItems: =LayoutAlignItems.Center
                                     LayoutDirection: =LayoutDirection.Horizontal
@@ -1152,7 +1072,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           FillPortions: =0
                                           Height: =96
                                           LayoutAlignItems: =LayoutAlignItems.Center
@@ -1170,7 +1089,6 @@ Screens:
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
-                                                DropShadow: =DropShadow.None
                                                 Fill: =If(ThisItem.IsFirst, RGBA(250, 250, 250, 1), If(ThisItem.Status = "waiting", RGBA(225, 223, 221, 1), RGBA(16, 124, 16, 1)))
                                                 FillPortions: =0
                                                 Height: =34
@@ -1188,7 +1106,6 @@ Screens:
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
-                                                DropShadow: =DropShadow.None
                                                 Fill: =Switch(ThisItem.Status, "done", RGBA(16, 124, 16, 1), "current", RGBA(0, 65, 179, 1), RGBA(225, 223, 221, 1))
                                                 FillPortions: =0
                                                 Height: =28
@@ -1201,10 +1118,6 @@ Screens:
                                                 PaddingLeft: =8
                                                 PaddingRight: =8
                                                 PaddingTop: =8
-                                                RadiusBottomLeft: =100
-                                                RadiusBottomRight: =100
-                                                RadiusTopLeft: =100
-                                                RadiusTopRight: =100
                                                 Width: =28
                                               Children:
                                                 - StepBadgeText1:
@@ -1226,7 +1139,6 @@ Screens:
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
-                                                DropShadow: =DropShadow.None
                                                 Fill: =If(ThisItem.IsLast, RGBA(250, 250, 250, 1), If(ThisItem.Status = "done", RGBA(16, 124, 16, 1), RGBA(225, 223, 221, 1)))
                                                 FillPortions: =0
                                                 Height: =34
@@ -1243,7 +1155,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =96
                                           LayoutAlignItems: =LayoutAlignItems.Center
                                           LayoutDirection: =LayoutDirection.Vertical
@@ -1285,7 +1196,6 @@ Screens:
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Start
-                                                DropShadow: =DropShadow.None
                                                 Fill: =Switch(ThisItem.Status, "done", RGBA(223, 246, 221, 1), "current", RGBA(223, 237, 255, 1), RGBA(243, 242, 241, 1))
                                                 FillPortions: =0
                                                 Height: =24
@@ -1298,10 +1208,6 @@ Screens:
                                                 PaddingLeft: =10
                                                 PaddingRight: =10
                                                 PaddingTop: =8
-                                                RadiusBottomLeft: =100
-                                                RadiusBottomRight: =100
-                                                RadiusTopLeft: =100
-                                                RadiusTopRight: =100
                                                 Width: =Switch(ThisItem.Status, "done", 116, "current", 116, 92)
                                               Children:
                                                 - StepChipText1:
@@ -1322,7 +1228,6 @@ Screens:
                 Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =If(App.Width < 640, 104, 56)
@@ -1336,7 +1241,6 @@ Screens:
                       Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
-                        DropShadow: =DropShadow.None
                         Fill: =RGBA(255, 255, 255, 1)
                         FillPortions: =0
                         Height: =56
@@ -1437,7 +1341,6 @@ Screens:
                 Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =If(App.Width < 640, 152, 128)

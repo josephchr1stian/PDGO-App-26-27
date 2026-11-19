@@ -1,8 +1,5 @@
 Screens:
   MainScreen1:
-    Properties:
-      Fill: =RGBA(255, 255, 255, 1)
-      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     Children:
       - ScreenContainer1:
           Control: GroupContainer
@@ -39,11 +36,10 @@ Screens:
                       Properties:
                         AlignInContainer: =AlignInContainer.Stretch
                         BorderColor: =RGBA(0, 0, 0, 1)
-                        Color: =RGBA(255, 255, 255, 1)
+                        Color: =App.Theme.Colors.PrimaryForeground
                         DisabledColor: =RGBA(186, 186, 186, 1)
                         Fill: =RGBA(112, 168, 216, 1)
                         FillPortions: =1
-                        Font: =Font.'Open Sans'
                         FontWeight: =FontWeight.Semibold
                         Height: =68
                         PaddingBottom: =16
@@ -111,7 +107,6 @@ Screens:
                                     Fill: =RGBA(0, 0, 0, 0)
                                     FillPortions: =1
                                     FocusedBorderThickness: =3
-                                    Font: =Font.'Open Sans'
                                     Height: =44
                                     HintText: ="Search"
                                     HoverBorderColor: =Self.Color
@@ -124,7 +119,7 @@ Screens:
                                   Control: Classic/Icon
                                   Properties:
                                     BorderColor: =RGBA(0, 0, 0, 1)
-                                    Color: =RGBA(0, 120, 212, 1)
+                                    Color: =App.Theme.Colors.Primary
                                     DisabledBorderColor: =RGBA(56, 56, 56, 1)
                                     DisabledColor: =RGBA(119, 119, 119, 1)
                                     Height: =44
@@ -152,16 +147,7 @@ Screens:
                               - NewRecordAddIcon1:
                                   Control: Classic/Icon
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    Color: =RGBA(0, 120, 212, 1)
-                                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
-                                    DisabledColor: =RGBA(225, 223, 221, 1)
-                                    DisabledFill: =RGBA(0, 0, 0, 0)
-                                    FocusedBorderThickness: =4
                                     Height: =44
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverColor: =RGBA(16, 110, 190, 1)
-                                    HoverFill: =RGBA(0, 0, 0, 0)
                                     Icon: =Icon.Add
                                     OnSelect: |-
                                       =NewForm(Form1); UpdateContext({ newMode: true });
@@ -169,43 +155,23 @@ Screens:
                                     PaddingLeft: =10
                                     PaddingRight: =10
                                     PaddingTop: =10
-                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
-                                    PressedColor: =RGBA(16, 110, 190, 1)
-                                    PressedFill: =RGBA(0, 0, 0, 0)
                                     Width: =44
                               - NewRecordLabel1:
                                   Control: Label
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    BorderStyle: =BorderStyle.None
-                                    BorderThickness: =2
-                                    Color: =RGBA(50, 49, 48, 1)
-                                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                                    DisabledColor: =RGBA(161, 159, 157, 1)
                                     FillPortions: =1
-                                    FocusedBorderThickness: =4
-                                    Font: =Font.'Segoe UI'
                                     Height: =44
                                     Text: ="New"
                         - RecordsListSeparator1:
                             Control: Rectangle
                             Properties:
                               AlignInContainer: =AlignInContainer.Stretch
-                              BorderColor: =RGBA(0, 0, 0, 0)
-                              BorderStyle: =BorderStyle.None
-                              BorderThickness: =2
-                              DisabledFill: =RGBA(161, 159, 157, 1)
-                              Fill: =RGBA(225, 223, 221, 1)
-                              FocusedBorderThickness: =4
                               Height: =1
-                              HoverFill: =RGBA(0, 120, 212, 1)
                               LayoutMinWidth: =200
-                              PressedFill: =RGBA(0, 120, 212, 1)
                         - RecordsGallery1:
                             Control: Gallery
                             Variant: BrowseLayout_Vertical_ThreeTextVariant_ver5.0
                             Properties:
-                              BorderColor: =RGBA(245, 245, 245, 1)
                               Default: =CurrentItem
                               Fill: =RGBA(250, 250, 250, 1)
                               Items: =Search([@'Faculty Bucket List'], SearchInput1.Text, Title, Title)
@@ -219,8 +185,6 @@ Screens:
                                   Properties:
                                     BorderColor: =RGBA(0, 0, 0, 1)
                                     Color: =RGBA(50, 49, 48, 1)
-                                    DisabledColor: =RGBA(161, 159, 157, 1)
-                                    Font: =Font.'Segoe UI'
                                     FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
                                     Height: =Self.Size * 1.8
                                     OnSelect: =Select(Parent)
@@ -238,9 +202,6 @@ Screens:
                                   Control: Label
                                   Properties:
                                     BorderColor: =RGBA(0, 0, 0, 1)
-                                    Color: =RGBA(96, 94, 92, 1)
-                                    DisabledColor: =RGBA(161, 159, 157, 1)
-                                    Font: =Font.'Segoe UI'
                                     FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
                                     Height: =Self.Size * 1.8
                                     OnSelect: =Select(Parent)
@@ -258,9 +219,6 @@ Screens:
                                   Control: Label
                                   Properties:
                                     BorderColor: =RGBA(0, 0, 0, 1)
-                                    Color: =RGBA(96, 94, 92, 1)
-                                    DisabledColor: =RGBA(161, 159, 157, 1)
-                                    Font: =Font.'Segoe UI'
                                     FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
                                     Height: =Self.Size * 1.8
                                     OnSelect: =Select(Parent)
@@ -278,25 +236,14 @@ Screens:
                                   Control: Classic/Icon
                                   Properties:
                                     AccessibleLabel: =Self.Tooltip
-                                    BorderColor: =RGBA(0, 0, 0, 0)
                                     Color: =RGBA(166, 166, 166, 1)
-                                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
-                                    DisabledColor: =RGBA(225, 223, 221, 1)
-                                    DisabledFill: =RGBA(0, 0, 0, 0)
-                                    FocusedBorderThickness: =4
                                     Height: =50
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverColor: =RGBA(16, 110, 190, 1)
-                                    HoverFill: =RGBA(0, 0, 0, 0)
                                     Icon: =Icon.ChevronRight
                                     OnSelect: '=Select(Parent)  '
                                     PaddingBottom: =16
                                     PaddingLeft: =16
                                     PaddingRight: =16
                                     PaddingTop: =16
-                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
-                                    PressedColor: =RGBA(16, 110, 190, 1)
-                                    PressedFill: =RGBA(0, 0, 0, 0)
                                     Tooltip: ="View item details"
                                     Width: =50
                                     X: =Parent.TemplateWidth - Self.Width - 12
@@ -304,7 +251,6 @@ Screens:
                               - Separator1:
                                   Control: Rectangle
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
                                     Fill: =RGBA(255, 255, 255, 1)
                                     Height: =8
                                     OnSelect: =Select(Parent)
@@ -313,8 +259,7 @@ Screens:
                               - Rectangle1:
                                   Control: Rectangle
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    Fill: =RGBA(0, 120, 212, 1)
+                                    Fill: =App.Theme.Colors.Darker30
                                     Height: =Parent.TemplateHeight - Separator1.Height
                                     OnSelect: =Select(Parent)
                                     Visible: =ThisItem.IsSelected
@@ -353,16 +298,7 @@ Screens:
                               - BackIconButton1:
                                   Control: Classic/Icon
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    Color: =RGBA(0, 120, 212, 1)
-                                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
-                                    DisabledColor: =RGBA(225, 223, 221, 1)
-                                    DisabledFill: =RGBA(0, 0, 0, 0)
-                                    FocusedBorderThickness: =4
                                     Height: =50
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverColor: =RGBA(16, 110, 190, 1)
-                                    HoverFill: =RGBA(0, 0, 0, 0)
                                     Icon: =Icon.ChevronLeft
                                     OnSelect: |-
                                       =UpdateContext({ itemSelected: false })
@@ -370,9 +306,6 @@ Screens:
                                     PaddingLeft: =12
                                     PaddingRight: =12
                                     PaddingTop: =12
-                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
-                                    PressedColor: =RGBA(16, 110, 190, 1)
-                                    PressedFill: =RGBA(0, 0, 0, 0)
                                     TabIndex: =0
                                     Visible: =If(MainScreen1.Size = ScreenSize.Small, And(!editMode, !newMode, !deleteMode), false)
                                     Width: =50
@@ -380,56 +313,25 @@ Screens:
                                   Control: Label
                                   Properties:
                                     AlignInContainer: =AlignInContainer.Stretch
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    BorderStyle: =BorderStyle.None
-                                    BorderThickness: =2
-                                    Color: =RGBA(50, 49, 48, 1)
-                                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                                    DisabledColor: =RGBA(161, 159, 157, 1)
                                     FillPortions: =1
-                                    FocusedBorderThickness: =4
-                                    Font: =Font.'Segoe UI'
-                                    FontWeight: =FontWeight.Semibold
-                                    PaddingLeft: =30
                                     Text: =RecordsGallery1.Selected.Title
                               - SubmitFormButton1:
                                   Control: Classic/Icon
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    Color: =RGBA(0, 120, 212, 1)
-                                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
-                                    DisabledColor: =RGBA(225, 223, 221, 1)
-                                    DisabledFill: =RGBA(0, 0, 0, 0)
-                                    FocusedBorderThickness: =4
                                     Height: =50
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverColor: =RGBA(16, 110, 190, 1)
-                                    HoverFill: =RGBA(0, 0, 0, 0)
                                     Icon: =Icon.Check
                                     OnSelect: =SubmitForm(Form1)
                                     PaddingBottom: =12
                                     PaddingLeft: =12
                                     PaddingRight: =12
                                     PaddingTop: =12
-                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
-                                    PressedColor: =RGBA(16, 110, 190, 1)
-                                    PressedFill: =RGBA(0, 0, 0, 0)
                                     TabIndex: =0
                                     Visible: =Or(editMode, newMode)
                                     Width: =50
                               - ResetFormButton1:
                                   Control: Classic/Icon
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    Color: =RGBA(0, 120, 212, 1)
-                                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
-                                    DisabledColor: =RGBA(225, 223, 221, 1)
-                                    DisabledFill: =RGBA(0, 0, 0, 0)
-                                    FocusedBorderThickness: =4
                                     Height: =50
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverColor: =RGBA(16, 110, 190, 1)
-                                    HoverFill: =RGBA(0, 0, 0, 0)
                                     Icon: =Icon.Cancel
                                     OnSelect: |-
                                       =ResetForm(Form1); UpdateContext({ editMode: false, newMode: false });
@@ -437,25 +339,13 @@ Screens:
                                     PaddingLeft: =12
                                     PaddingRight: =12
                                     PaddingTop: =12
-                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
-                                    PressedColor: =RGBA(16, 110, 190, 1)
-                                    PressedFill: =RGBA(0, 0, 0, 0)
                                     TabIndex: =0
                                     Visible: =Or(editMode, newMode)
                                     Width: =50
                               - EditIconButton1:
                                   Control: Classic/Icon
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    Color: =RGBA(0, 120, 212, 1)
-                                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
-                                    DisabledColor: =RGBA(225, 223, 221, 1)
-                                    DisabledFill: =RGBA(0, 0, 0, 0)
-                                    FocusedBorderThickness: =4
                                     Height: =50
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverColor: =RGBA(16, 110, 190, 1)
-                                    HoverFill: =RGBA(0, 0, 0, 0)
                                     Icon: =Icon.Edit
                                     OnSelect: |-
                                       =UpdateContext({ editMode: true, selectedRecord: RecordsGallery1.Selected })
@@ -463,25 +353,13 @@ Screens:
                                     PaddingLeft: =12
                                     PaddingRight: =12
                                     PaddingTop: =12
-                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
-                                    PressedColor: =RGBA(16, 110, 190, 1)
-                                    PressedFill: =RGBA(0, 0, 0, 0)
                                     TabIndex: =0
                                     Visible: =And(!editMode, !newMode, !deleteMode)
                                     Width: =50
                               - DeleteIconButton1:
                                   Control: Classic/Icon
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    Color: =RGBA(0, 120, 212, 1)
-                                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
-                                    DisabledColor: =RGBA(225, 223, 221, 1)
-                                    DisabledFill: =RGBA(0, 0, 0, 0)
-                                    FocusedBorderThickness: =4
                                     Height: =50
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverColor: =RGBA(16, 110, 190, 1)
-                                    HoverFill: =RGBA(0, 0, 0, 0)
                                     Icon: =Icon.Trash
                                     OnSelect: |-
                                       =UpdateContext({ deleteMode: true, deleteCancelled: false, selectedRecord: RecordsGallery1.Selected })
@@ -489,9 +367,6 @@ Screens:
                                     PaddingLeft: =12
                                     PaddingRight: =12
                                     PaddingTop: =12
-                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
-                                    PressedColor: =RGBA(16, 110, 190, 1)
-                                    PressedFill: =RGBA(0, 0, 0, 0)
                                     TabIndex: =0
                                     Visible: =And(!editMode, !newMode, !deleteMode)
                                     Width: =50
@@ -588,15 +463,7 @@ Screens:
                             Properties:
                               Align: =Align.Center
                               AlignInContainer: =AlignInContainer.Stretch
-                              BorderColor: =RGBA(0, 0, 0, 0)
-                              BorderStyle: =BorderStyle.None
-                              BorderThickness: =2
-                              Color: =RGBA(50, 49, 48, 1)
-                              DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                              DisabledColor: =RGBA(161, 159, 157, 1)
                               FillPortions: =1
-                              FocusedBorderThickness: =4
-                              Font: =Font.'Segoe UI'
                               Text: ="Are you sure you want to delete this record?"
                         - ConfirmDeleteButtonBarContainer1:
                             Control: GroupContainer
@@ -615,48 +482,12 @@ Screens:
                               - CancelDeleteButton1:
                                   Control: Classic/Button
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    BorderStyle: =BorderStyle.None
-                                    Color: =RGBA(255, 255, 255, 1)
-                                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                                    DisabledColor: =RGBA(161, 159, 157, 1)
-                                    DisabledFill: =RGBA(242, 242, 241, 0)
-                                    Fill: =RGBA(0, 120, 212, 1)
-                                    Font: =Font.'Segoe UI'
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverColor: =RGBA(255, 255, 255, 1)
-                                    HoverFill: =RGBA(16, 110, 190, 1)
                                     OnSelect: |-
                                       =UpdateContext({ deleteMode: false, deleteCancelled: true })
-                                    PressedBorderColor: =RGBA(0, 69, 120, 1)
-                                    PressedColor: =RGBA(255, 255, 255, 1)
-                                    PressedFill: =RGBA(16, 110, 190, 1)
-                                    RadiusBottomLeft: =0
-                                    RadiusBottomRight: =0
-                                    RadiusTopLeft: =0
-                                    RadiusTopRight: =0
                                     Text: ="Cancel"
                               - ConfirmDeleteButton1:
                                   Control: Classic/Button
                                   Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    BorderStyle: =BorderStyle.None
-                                    Color: =RGBA(255, 255, 255, 1)
-                                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                                    DisabledColor: =RGBA(161, 159, 157, 1)
-                                    DisabledFill: =RGBA(242, 242, 241, 0)
-                                    Fill: =RGBA(0, 120, 212, 1)
-                                    Font: =Font.'Segoe UI'
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverColor: =RGBA(255, 255, 255, 1)
-                                    HoverFill: =RGBA(16, 110, 190, 1)
                                     OnSelect: |-
                                       =Remove([@'Faculty Bucket List'], selectedRecord); If(IsEmpty(Errors([@'Faculty Bucket List'], selectedRecord)), UpdateContext( { CurrentItem: First([@'Faculty Bucket List']), itemSelected: false, editMode: false, newMode: false, deleteMode: false }));
-                                    PressedBorderColor: =RGBA(0, 69, 120, 1)
-                                    PressedColor: =RGBA(255, 255, 255, 1)
-                                    PressedFill: =RGBA(16, 110, 190, 1)
-                                    RadiusBottomLeft: =0
-                                    RadiusBottomRight: =0
-                                    RadiusTopLeft: =0
-                                    RadiusTopRight: =0
                                     Text: ="Delete"

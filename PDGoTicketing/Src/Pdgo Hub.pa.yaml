@@ -1,14 +1,10 @@
 Screens:
   Pdgo Hub:
-    Properties:
-      Fill: =RGBA(255, 255, 255, 1)
-      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     Children:
       - WelcomeScroll1:
           Control: GroupContainer
           Variant: AutoLayout
           Properties:
-            DropShadow: =DropShadow.None
             Fill: =RGBA(255, 255, 255, 1)
             Height: =Parent.Height
             LayoutAlignItems: =LayoutAlignItems.Center
@@ -21,7 +17,6 @@ Screens:
                 Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =If(App.Width < 640, 104, 56)
@@ -35,7 +30,6 @@ Screens:
                       Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
-                        DropShadow: =DropShadow.None
                         Fill: =RGBA(255, 255, 255, 1)
                         FillPortions: =0
                         Height: =56
@@ -127,7 +121,6 @@ Screens:
                 Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =App.Theme.Colors.Lighter70
                   FillPortions: =0
                   Height: =If(App.Width < 640, 520, 320)
@@ -146,7 +139,6 @@ Screens:
                       Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
-                        DropShadow: =DropShadow.None
                         LayoutDirection: =LayoutDirection.Vertical
                         LayoutGap: =16
                         LayoutJustifyContent: =LayoutJustifyContent.Center
@@ -190,7 +182,6 @@ Screens:
                 Control: GroupContainer
                 Variant: GridLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =(RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) * 168) + ((RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) - 1) * 16) + 8
@@ -273,7 +264,6 @@ Screens:
                 Control: Gallery
                 Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   X: =40
                   Y: =40
                 Children:
@@ -282,8 +272,6 @@ Screens:
                       Properties:
                         BorderColor: =RGBA(0, 0, 0, 1)
                         Color: =RGBA(50, 49, 48, 1)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        Font: =Font.'Segoe UI'
                         FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
                         Height: =Self.Size * 1.8
                         OnSelect: =Select(Parent)
@@ -301,9 +289,6 @@ Screens:
                       Control: Label
                       Properties:
                         BorderColor: =RGBA(0, 0, 0, 1)
-                        Color: =RGBA(96, 94, 92, 1)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        Font: =Font.'Segoe UI'
                         FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
                         Height: =Self.Size * 1.8
                         OnSelect: =Select(Parent)
@@ -321,10 +306,7 @@ Screens:
                       Control: Classic/Icon
                       Properties:
                         AccessibleLabel: =Self.Tooltip
-                        BorderColor: =RGBA(0, 0, 0, 1)
                         Color: =RGBA(166, 166, 166, 1)
-                        DisabledBorderColor: =RGBA(56, 56, 56, 1)
-                        DisabledColor: =RGBA(119, 119, 119, 1)
                         Height: =50
                         Icon: =Icon.ChevronRight
                         OnSelect: =Select(Parent)
@@ -339,7 +321,6 @@ Screens:
                   - Separator2:
                       Control: Rectangle
                       Properties:
-                        BorderColor: =RGBA(0, 0, 0, 0)
                         Fill: =RGBA(255, 255, 255, 1)
                         Height: =8
                         OnSelect: =Select(Parent)
@@ -348,8 +329,7 @@ Screens:
                   - Rectangle2:
                       Control: Rectangle
                       Properties:
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        Fill: =RGBA(0, 120, 212, 1)
+                        Fill: =App.Theme.Colors.Darker30
                         Height: =Parent.TemplateHeight - Separator2.Height
                         OnSelect: =Select(Parent)
                         Visible: =ThisItem.IsSelected
@@ -375,14 +355,6 @@ Screens:
             - menuName:
                 Control: Label
                 Properties:
-                  BorderColor: =RGBA(0, 0, 0, 0)
-                  BorderStyle: =BorderStyle.None
-                  BorderThickness: =2
-                  Color: =RGBA(50, 49, 48, 1)
-                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                  DisabledColor: =RGBA(161, 159, 157, 1)
-                  FocusedBorderThickness: =4
-                  Font: =Font.'Segoe UI'
                   FontWeight: =FontWeight.Semibold
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
@@ -391,14 +363,7 @@ Screens:
             - menuRole:
                 Control: Label
                 Properties:
-                  BorderColor: =RGBA(0, 0, 0, 0)
-                  BorderStyle: =BorderStyle.None
-                  BorderThickness: =2
                   Color: =RGBA(96, 94, 92, 1)
-                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                  DisabledColor: =RGBA(161, 159, 157, 1)
-                  FocusedBorderThickness: =4
-                  Font: =Font.'Segoe UI'
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
                   Size: =12
@@ -406,17 +371,6 @@ Screens:
             - signOut:
                 Control: Classic/Button
                 Properties:
-                  BorderColor: =RGBA(0, 0, 0, 0)
-                  BorderStyle: =BorderStyle.None
-                  Color: =RGBA(255, 255, 255, 1)
-                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                  DisabledColor: =RGBA(161, 159, 157, 1)
-                  DisabledFill: =RGBA(242, 242, 241, 0)
-                  Fill: =RGBA(0, 120, 212, 1)
-                  Font: =Font.'Segoe UI'
-                  HoverBorderColor: =RGBA(0, 0, 0, 0)
-                  HoverColor: =RGBA(255, 255, 255, 1)
-                  HoverFill: =RGBA(16, 110, 190, 1)
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
                   OnSelect: |-
@@ -424,38 +378,13 @@ Screens:
                     Set(varRole, "");
                     Set(varEmail, "");
                     Navigate(Login, ScreenTransition.Fade)
-                  PressedBorderColor: =RGBA(0, 69, 120, 1)
-                  PressedColor: =RGBA(255, 255, 255, 1)
-                  PressedFill: =RGBA(16, 110, 190, 1)
-                  RadiusBottomLeft: =0
-                  RadiusBottomRight: =0
-                  RadiusTopLeft: =0
-                  RadiusTopRight: =0
                   Text: ="Sign Out"
                   Visible: =Not(IsBlank(varRole))
             - signIn:
                 Control: Classic/Button
                 Properties:
-                  BorderColor: =RGBA(0, 0, 0, 0)
-                  BorderStyle: =BorderStyle.None
-                  Color: =RGBA(255, 255, 255, 1)
-                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                  DisabledColor: =RGBA(161, 159, 157, 1)
-                  DisabledFill: =RGBA(242, 242, 241, 0)
-                  Fill: =RGBA(0, 120, 212, 1)
-                  Font: =Font.'Segoe UI'
-                  HoverBorderColor: =RGBA(0, 0, 0, 0)
-                  HoverColor: =RGBA(255, 255, 255, 1)
-                  HoverFill: =RGBA(16, 110, 190, 1)
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
                   OnSelect: =Set(varMenu, false); Navigate(Login, ScreenTransition.Fade)
-                  PressedBorderColor: =RGBA(0, 69, 120, 1)
-                  PressedColor: =RGBA(255, 255, 255, 1)
-                  PressedFill: =RGBA(16, 110, 190, 1)
-                  RadiusBottomLeft: =0
-                  RadiusBottomRight: =0
-                  RadiusTopLeft: =0
-                  RadiusTopRight: =0
                   Text: ="Sign In"
                   Visible: =IsBlank(varRole)

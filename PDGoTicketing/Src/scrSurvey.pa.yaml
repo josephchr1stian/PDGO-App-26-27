@@ -1,0 +1,213 @@
+Screens:
+  scrSurvey:
+    Properties:
+      OnVisible: =If(IsBlank(varSurveyTicketID), Set(varSurveyTicketID, "")); Set(varSurveySubmitted, false); Set(varSurveyAlreadyDone, !IsBlank(varSurveyTicket.ID) && !IsBlank(LookUp(PDGOSurveyResponses, TicketID = varSurveyTicket.ID))); Reset(rtgNavigate); Reset(rtgFindService); Reset(rtgOverall); Reset(radTimeframe); Reset(txtImprove); Reset(txtFeatures)
+    Children:
+      - conSurveyRoot:
+          Control: GroupContainer
+          Variant: ManualLayout
+          Properties:
+            Fill: =RGBA(243, 242, 241, 1)
+            Height: =Parent.Height
+            Width: =Parent.Width
+          Children:
+            - conSurveyHeader:
+                Control: GroupContainer
+                Variant: ManualLayout
+                Properties:
+                  Fill: =RGBA(0, 32, 96, 1)
+                  Height: =64
+                  Width: =Parent.Width
+                Children:
+                  - lblSurveyTitle:
+                      Control: Label
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.White
+                        Height: =Parent.Height
+                        Text: ="PD GO – Service Feedback"
+                        Width: =Parent.Width - 32
+                        X: =16
+            - conSurveyBody:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height - 64
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =12
+                  LayoutOverflowY: =LayoutOverflow.Scroll
+                  PaddingBottom: =32
+                  PaddingLeft: =Max(16, (Self.Width - 720) / 2)
+                  PaddingRight: =Max(16, (Self.Width - 720) / 2)
+                  PaddingTop: =24
+                  Visible: =!varSurveySubmitted && !varSurveyAlreadyDone
+                  Width: =Parent.Width
+                  Y: =64
+                Children:
+                  - lblSurveyIntro:
+                      Control: Label
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        Text: ="Your ticket has been completed. Please take a moment to tell us how it went."
+                  - lblTicketSummary:
+                      Control: Label
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        Fill: '=RGBA(237, 241, 248, 1)  '
+                        PaddingBottom: '=12  '
+                        PaddingLeft: '=12  '
+                        PaddingRight: '=12  '
+                        PaddingTop: =12
+                        Text: |-
+                          =If(IsBlank(varSurveyTicket.ID), "Ticket details unavailable.", "Ticket #" & varSurveyTicket.ID & "  •  " & varSurveyTicket.Service & " – " & varSurveyTicket.Category & Char(10) & "Location: " & varSurveyTicket.Location & Char(10) & "Handled by: " & Coalesce(varSurveyTicket.HandledBy, "PD staff") & Char(10) & "Submitted " & Text(varSurveyTicket.Submitted, "mmm d") & "  →  Completed " & Text(varSurveyTicket.Completed, "mmm d") & " (" & DateDiff(varSurveyTicket.Submitted, varSurveyTicket.Completed, TimeUnit.Days) & " days)" & Char(10) & Char(10) & "How it was resolved: " & Coalesce(varSurveyTicket.Resolution, "No resolution notes were added."))
+                  - lblQ1:
+                      Control: Label
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        LayoutMinHeight: =32
+                        Text: ="1. How easy was it to navigate the app? *"
+                  - rtgNavigate:
+                      Control: Rating
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Start
+                        Default: =0
+                        Width: =220
+                  - lblQ2:
+                      Control: Label
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        LayoutMinHeight: =32
+                        Text: ="2. How easy was it to find the service you were looking for? *"
+                  - rtgFindService:
+                      Control: Rating
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Start
+                        Default: =0
+                        Width: =220
+                  - lblQ3:
+                      Control: Label
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        LayoutMinHeight: =32
+                        Text: ="3. How satisfied are you with your overall experience with PD GO? *"
+                  - rtgOverall:
+                      Control: Rating
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Start
+                        Default: =0
+                        Width: =220
+                  - lblQ4:
+                      Control: Label
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        LayoutMinHeight: =32
+                        Text: =If(IsBlank(varSurveyTicket.ID), "4. Was the service completed within the expected timeframe? *", "4. Your request took " & DateDiff(varSurveyTicket.Submitted, varSurveyTicket.Completed, TimeUnit.Days) & " days. Was that within the timeframe you expected? *")
+                  - radTimeframe:
+                      Control: Classic/Radio
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Start
+                        Height: =60
+                        Items: =["Yes", "No"]
+                        Items.Value: =Value
+                        Layout: =Layout.Horizontal
+                        LayoutMinHeight: =40
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Width: =260
+                  - lblQ5:
+                      Control: Label
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        LayoutMinHeight: =32
+                        Text: ="5. What could we improve about the app/services?"
+                  - txtImprove:
+                      Control: Classic/TextInput
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        Default: =""
+                        FocusedBorderColor: =RGBA(0, 32, 96, 1)
+                        Height: =100
+                        HintText: ="Optional"
+                        LayoutMinHeight: =100
+                        Mode: =TextMode.MultiLine
+                  - lblQ6:
+                      Control: Label
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        LayoutMinHeight: =32
+                        Text: ="6. What features would you like us to add?"
+                  - txtFeatures:
+                      Control: Classic/TextInput
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        Default: =""
+                        FocusedBorderColor: =RGBA(0, 32, 96, 1)
+                        Height: =100
+                        HintText: ="Optional"
+                        LayoutMinHeight: =100
+                        Mode: =TextMode.MultiLine
+                  - btnSubmitSurvey:
+                      Control: Classic/Button
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        Height: =44
+                        LayoutMinHeight: =44
+                        OnSelect: |-
+                          =If(rtgNavigate.Value = 0 || rtgFindService.Value = 0 || rtgOverall.Value = 0 || IsBlank(radTimeframe.Selected.Value), Notify("Please answer questions 1 to 4 before submitting.", NotificationType.Warning), IsBlank(varSurveyTicket.ID), Notify("We couldn't find the ticket for this review. Please open it again from My Requests.", NotificationType.Error), IfError(Patch(PDGOSurveyResponses, Defaults(PDGOSurveyResponses), {Title: varSurveyTicket.Category, Ticket: {Id: varSurveyTicket.ID, Value: varSurveyTicket.Category}, TicketID: varSurveyTicket.ID, HandledBy: varSurveyTicket.HandledBy, EaseOfNavigation: rtgNavigate.Value, EaseOfFindingService: rtgFindService.Value, OverallSatisfaction: rtgOverall.Value, CompletedOnTime: radTimeframe.Selected.Value = "Yes", Improvements: txtImprove.Text, FeatureRequests: txtFeatures.Text, SubmittedBy: User().Email}), Notify("Couldn't save your review: " & FirstError.Message, NotificationType.Error), Set(varSurveySubmitted, true)))
+                        Text: ="Submit feedback"
+                  - btnSkipSurvey:
+                      Control: Classic/Button
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        Height: =44
+                        LayoutMinHeight: =44
+                        OnSelect: =Back(ScreenTransition.Fade)
+                        Text: ="Skip for now"
+            - conSurveyThanks:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height - 64
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =16
+                  LayoutJustifyContent: =LayoutJustifyContent.Center
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  Visible: '=varSurveySubmitted || varSurveyAlreadyDone '
+                  Width: =Parent.Width
+                  Y: =64
+                Children:
+                  - lblThanksTitle:
+                      Control: Label
+                      Properties:
+                        Align: =Align.Center
+                        AutoHeight: =true
+                        Text: =If(varSurveyAlreadyDone && !varSurveySubmitted, "You've already reviewed this ticket", "Thank you for your feedback!")
+                        Width: =Min(Parent.Width - 32, 480)
+                  - lblThanksBody:
+                      Control: Label
+                      Properties:
+                        Align: =Align.Center
+                        AutoHeight: =true
+                        LayoutMinHeight: =32
+                        Text: ="Your responses help us improve PD GO and our services."
+                        Width: =Min(Parent.Width - 32, 480)
+                  - btnThanksHome:
+                      Control: Classic/Button
+                      Properties:
+                        Height: =44
+                        LayoutMinHeight: =44
+                        OnSelect: =Back(ScreenTransition.Fade)
+                        Text: ="Back to home"
+                        Width: =Min(Parent.Width - 32, 320)

@@ -2,7 +2,6 @@ Screens:
   Login:
     Properties:
       Fill: =RGBA(243, 242, 241, 1)
-      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
       OnVisible: |-
         =Set(varRole, "");
         Set(varEmail, "");
@@ -43,14 +42,6 @@ Screens:
                       Control: Label
                       Properties:
                         Align: =Align.Center
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Bold
                         Height: =100
                         LayoutMinHeight: =16
@@ -64,22 +55,11 @@ Screens:
                       Control: Classic/TextInput
                       Properties:
                         BorderColor: =RGBA(0, 18, 107, 1)
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =""
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
-                        Font: =Font.'Segoe UI'
                         Height: =56
                         HintText: ="Email"
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(255, 255, 255, 1)
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
-                        PressedBorderColor: =RGBA(0, 120, 212, 1)
-                        PressedColor: =RGBA(50, 49, 48, 1)
-                        PressedFill: =RGBA(255, 255, 255, 1)
                         RadiusBottomLeft: =6
                         RadiusBottomRight: =6
                         RadiusTopLeft: =6
@@ -89,23 +69,12 @@ Screens:
                       Control: Classic/TextInput
                       Properties:
                         BorderColor: =RGBA(0, 18, 107, 1)
-                        Color: =RGBA(50, 49, 48, 1)
                         Default: =""
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
-                        Font: =Font.'Segoe UI'
                         Height: =56
                         HintText: ="Password"
-                        HoverBorderColor: =RGBA(16, 110, 190, 1)
-                        HoverColor: =RGBA(50, 49, 48, 1)
-                        HoverFill: =RGBA(255, 255, 255, 1)
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
                         Mode: =TextMode.Password
-                        PressedBorderColor: =RGBA(0, 120, 212, 1)
-                        PressedColor: =RGBA(50, 49, 48, 1)
-                        PressedFill: =RGBA(255, 255, 255, 1)
                         RadiusBottomLeft: =6
                         RadiusBottomRight: =6
                         RadiusTopLeft: =6
@@ -114,17 +83,8 @@ Screens:
                   - sign in:
                       Control: Classic/Button
                       Properties:
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        Color: =RGBA(255, 255, 255, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        DisabledFill: =RGBA(242, 242, 241, 0)
                         Fill: =RGBA(0, 18, 107, 1)
-                        Font: =Font.'Segoe UI'
                         Height: =56
-                        HoverBorderColor: =RGBA(0, 0, 0, 0)
-                        HoverColor: =RGBA(255, 255, 255, 1)
                         HoverFill: =RGBA(0, 69, 120, 1)
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
@@ -139,8 +99,6 @@ Screens:
                               If(varRole = "Supervisor" || varRole = "Admin", 'Pdgo Hub 10-30-26', 'Pdgo Hub 10-30-26'),
                               ScreenTransition.Fade
                           )
-                        PressedBorderColor: =RGBA(0, 69, 120, 1)
-                        PressedColor: =RGBA(255, 255, 255, 1)
                         PressedFill: =RGBA(0, 12, 75, 1)
                         RadiusBottomLeft: =6
                         RadiusBottomRight: =6
@@ -151,14 +109,7 @@ Screens:
                   - Label2:
                       Control: Label
                       Properties:
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
                         Color: =RGBA(164, 38, 44, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
                         Text: =varLoginError
@@ -166,7 +117,6 @@ Screens:
       - btnBack:
           Control: Classic/Button
           Properties:
-            BorderThickness: =0
             Color: =RGBA(255, 255, 255, 1)
             Fill: =RGBA(0, 18, 105, 1)
             Height: =44
@@ -177,7 +127,6 @@ Screens:
             OnSelect: =Navigate('Pdgo Hub 10-30-26', ScreenTransition.UnCover)
             PressedColor: =RGBA(255, 255, 255, 1)
             PressedFill: =RGBA(0, 12, 75, 1)
-            Size: =22
             Text: ="←"
             Tooltip: ="Back"
             Width: =44

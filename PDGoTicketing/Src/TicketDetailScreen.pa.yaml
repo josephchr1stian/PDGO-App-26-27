@@ -3,7 +3,6 @@ Screens:
     Properties:
       Fill: |
         =RGBA(255, 255, 255, 1)
-      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
       OnVisible: =ViewForm(Form1)
     Children:
       - Text3:
@@ -50,7 +49,6 @@ Screens:
           Variant: Modern
           Layout: Vertical
           Properties:
-            BorderColor: =RGBA(245, 245, 245, 1)
             DataSource: =AdministrativeServiceRequests
             DefaultMode: =FormMode.View
             Height: =420
@@ -71,7 +69,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ModernTextualEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Title"
                   Default: =ThisItem.Title
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Title)
@@ -139,7 +136,6 @@ Screens:
                 Variant: ModernTextualMultilineEdit
                 IsLocked: true
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Description"
                   Default: =ThisItem.Description
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Description)
@@ -208,7 +204,6 @@ Screens:
                 Variant: ModernTextualEdit
                 IsLocked: true
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Location"
                   Default: =ThisItem.Location
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Location)
@@ -275,7 +270,6 @@ Screens:
                 Variant: ModernTextualEdit
                 IsLocked: true
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Building"
                   Default: =ThisItem.Building
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Building)
@@ -342,7 +336,6 @@ Screens:
                 Variant: ModernTextualEdit
                 IsLocked: true
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Floor"
                   Default: =ThisItem.'Room / Area'
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,'Room / Area')
@@ -409,7 +402,6 @@ Screens:
                 Variant: ModernComboBoxEdit
                 IsLocked: true
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Status"
                   Default: =ThisItem.Status
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Status)
@@ -475,7 +467,6 @@ Screens:
                 Variant: ModernComboBoxEdit
                 IsLocked: true
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="Priority"
                   Default: =ThisItem.Priority
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,Priority)
@@ -541,7 +532,6 @@ Screens:
                 Variant: ModernTextualEdit
                 IsLocked: true
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="RequestedBy"
                   Default: =ThisItem.RequestedBy
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,RequestedBy)
@@ -607,7 +597,6 @@ Screens:
                 Control: TypedDataCard
                 Variant: ModernTextualEdit
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="AssignedTo"
                   Default: =ThisItem.AssignedTo
                   DisplayMode: |-
@@ -680,7 +669,6 @@ Screens:
                 Variant: ModernDateEdit
                 IsLocked: true
                 Properties:
-                  BorderColor: =RGBA(245, 245, 245, 1)
                   DataField: ="RequestDate"
                   Default: =ThisItem.RequestDate
                   DisplayName: =DataSourceInfo([@AdministrativeServiceRequests],DataSourceInfo.DisplayName,RequestDate)

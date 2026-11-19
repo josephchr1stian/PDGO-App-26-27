@@ -1,14 +1,10 @@
 Screens:
   Approval Request:
-    Properties:
-      Fill: =RGBA(255, 255, 255, 1)
-      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     Children:
       - ApprScroll2:
           Control: GroupContainer
           Variant: AutoLayout
           Properties:
-            DropShadow: =DropShadow.None
             Fill: =RGBA(255, 255, 255, 1)
             Height: =Parent.Height
             LayoutAlignItems: =LayoutAlignItems.Center
@@ -21,7 +17,6 @@ Screens:
                 Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =If(App.Width < 640, 104, 56)
@@ -35,7 +30,6 @@ Screens:
                       Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
-                        DropShadow: =DropShadow.None
                         Fill: =RGBA(255, 255, 255, 1)
                         FillPortions: =0
                         Height: =56
@@ -136,7 +130,6 @@ Screens:
                 Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =If(App.Width < 640, 152, 128)
@@ -179,7 +172,6 @@ Screens:
                 Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =If(App.Width < 640, 760, 560)
@@ -197,7 +189,6 @@ Screens:
                       Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
-                        DropShadow: =DropShadow.None
                         Fill: =RGBA(255, 255, 255, 1)
                         FillPortions: =7
                         Height: =If(App.Width < 640, 460, 512)
@@ -226,7 +217,6 @@ Screens:
                             Control: Form
                             Layout: Vertical
                             Properties:
-                              BorderColor: =RGBA(245, 245, 245, 1)
                               DataSource: |-
                                 =Table({Title: "Sunrise Study", Medium: "Watercolor", Reviewer: "Ava Mitchell", DueDate: Date(2026, 2, 12), Priority: "Standard", Notes: "Please review the warm gradient transitions and the harbor composition."})
                               Item: |-
@@ -238,7 +228,6 @@ Screens:
                             Control: GroupContainer
                             Variant: AutoLayout
                             Properties:
-                              DropShadow: =DropShadow.None
                               FillPortions: =0
                               Height: =56
                               LayoutAlignItems: =LayoutAlignItems.Center
@@ -274,7 +263,6 @@ Screens:
                       Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
-                        DropShadow: =DropShadow.None
                         Fill: =RGBA(250, 250, 250, 1)
                         FillPortions: =3
                         Height: =If(App.Width < 640, 260, 512)
@@ -318,7 +306,6 @@ Screens:
                             Control: Gallery
                             Variant: Vertical
                             Properties:
-                              BorderColor: =RGBA(245, 245, 245, 1)
                               FillPortions: =0
                               Height: =384
                               Items: |-
@@ -333,7 +320,6 @@ Screens:
                                   Control: GroupContainer
                                   Variant: AutoLayout
                                   Properties:
-                                    DropShadow: =DropShadow.None
                                     Height: =96
                                     LayoutAlignItems: =LayoutAlignItems.Center
                                     LayoutDirection: =LayoutDirection.Horizontal
@@ -348,7 +334,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           FillPortions: =0
                                           Height: =96
                                           LayoutAlignItems: =LayoutAlignItems.Center
@@ -366,7 +351,6 @@ Screens:
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
-                                                DropShadow: =DropShadow.None
                                                 Fill: =If(ThisItem.IsFirst, RGBA(250, 250, 250, 1), If(ThisItem.Status = "waiting", RGBA(225, 223, 221, 1), RGBA(16, 124, 16, 1)))
                                                 FillPortions: =0
                                                 Height: =34
@@ -384,7 +368,6 @@ Screens:
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
-                                                DropShadow: =DropShadow.None
                                                 Fill: =Switch(ThisItem.Status, "done", RGBA(16, 124, 16, 1), "current", RGBA(0, 65, 179, 1), RGBA(225, 223, 221, 1))
                                                 FillPortions: =0
                                                 Height: =28
@@ -397,10 +380,6 @@ Screens:
                                                 PaddingLeft: =8
                                                 PaddingRight: =8
                                                 PaddingTop: =8
-                                                RadiusBottomLeft: =100
-                                                RadiusBottomRight: =100
-                                                RadiusTopLeft: =100
-                                                RadiusTopRight: =100
                                                 Width: =28
                                               Children:
                                                 - StepBadgeText2:
@@ -422,7 +401,6 @@ Screens:
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Center
-                                                DropShadow: =DropShadow.None
                                                 Fill: =If(ThisItem.IsLast, RGBA(250, 250, 250, 1), If(ThisItem.Status = "done", RGBA(16, 124, 16, 1), RGBA(225, 223, 221, 1)))
                                                 FillPortions: =0
                                                 Height: =34
@@ -439,7 +417,6 @@ Screens:
                                         Control: GroupContainer
                                         Variant: AutoLayout
                                         Properties:
-                                          DropShadow: =DropShadow.None
                                           Height: =96
                                           LayoutAlignItems: =LayoutAlignItems.Center
                                           LayoutDirection: =LayoutDirection.Vertical
@@ -481,7 +458,6 @@ Screens:
                                               Variant: AutoLayout
                                               Properties:
                                                 AlignInContainer: =AlignInContainer.Start
-                                                DropShadow: =DropShadow.None
                                                 Fill: =Switch(ThisItem.Status, "done", RGBA(223, 246, 221, 1), "current", RGBA(223, 237, 255, 1), RGBA(243, 242, 241, 1))
                                                 FillPortions: =0
                                                 Height: =24
@@ -494,10 +470,6 @@ Screens:
                                                 PaddingLeft: =10
                                                 PaddingRight: =10
                                                 PaddingTop: =8
-                                                RadiusBottomLeft: =100
-                                                RadiusBottomRight: =100
-                                                RadiusTopLeft: =100
-                                                RadiusTopRight: =100
                                                 Width: =Switch(ThisItem.Status, "done", 116, "current", 116, 92)
                                               Children:
                                                 - StepChipText2:

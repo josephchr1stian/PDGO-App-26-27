@@ -1,14 +1,12 @@
 Screens:
   Pdgo Hub 10-30-26:
     Properties:
-      Fill: =RGBA(255, 255, 255, 1)
-      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+      OnVisible: =Reset('Ticket Table')
     Children:
       - Dashboard Scroll:
           Control: GroupContainer
           Variant: AutoLayout
           Properties:
-            DropShadow: =DropShadow.None
             Fill: =RGBA(255, 255, 255, 1)
             Height: =Parent.Height
             LayoutAlignItems: =LayoutAlignItems.Center
@@ -21,7 +19,6 @@ Screens:
                 Control: GroupContainer
                 Variant: AutoLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =If(App.Width < 640, 104, 56)
@@ -35,8 +32,7 @@ Screens:
                       Control: GroupContainer
                       Variant: AutoLayout
                       Properties:
-                        DropShadow: =DropShadow.None
-                        Fill: =RGBA(40, 134, 222, 1)
+                        Fill: =PDGoTheme.Colors.Primary
                         FillPortions: =0
                         Height: =56
                         LayoutAlignItems: =LayoutAlignItems.Center
@@ -120,20 +116,10 @@ Screens:
                         - Image1:
                             Control: Image
                             Properties:
-                              BorderColor: =RGBA(0, 0, 0, 0)
-                              BorderStyle: =BorderStyle.None
-                              BorderThickness: =2
-                              DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                              DisabledFill: =RGBA(0, 0, 0, 0)
-                              FocusedBorderThickness: =4
                               Height: =48
-                              HoverBorderColor: =RGBA(0, 0, 0, 0)
-                              HoverFill: =RGBA(0, 0, 0, 0)
                               Image: ='Public Defender Logo'
                               LayoutMinHeight: =16
                               LayoutMinWidth: =16
-                              PressedBorderColor: =RGBA(0, 0, 0, 0)
-                              PressedFill: =RGBA(0, 0, 0, 0)
                               Width: =48
                   - NavTabsMobileWel1_1:
                       Control: ModernTabList
@@ -243,14 +229,6 @@ Screens:
                   - txtWelcome:
                       Control: Label
                       Properties:
-                        BorderColor: =RGBA(0, 0, 0, 0)
-                        BorderStyle: =BorderStyle.None
-                        BorderThickness: =2
-                        Color: =RGBA(50, 49, 48, 1)
-                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                        DisabledColor: =RGBA(161, 159, 157, 1)
-                        FocusedBorderThickness: =4
-                        Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Bold
                         Height: =44
                         LayoutMinHeight: =16
@@ -293,7 +271,6 @@ Screens:
                 Control: GroupContainer
                 Variant: GridLayout
                 Properties:
-                  DropShadow: =DropShadow.None
                   Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =(RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) * 168) + ((RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) - 1) * 16) + 8
@@ -313,7 +290,7 @@ Screens:
                   - CapCardWel_12:
                       Control: ModernCard
                       Properties:
-                        Fill: =RGBA(40, 134, 222, 1)
+                        Fill: =FacilitiesTheme.Colors.Primary
                         Image: =BlankImg
                         ImagePlacement: =ImagePlacement.AfterHeader
                         LayoutDirection: =LayoutDirection.Horizontal
@@ -323,7 +300,7 @@ Screens:
                   - CapCardWel_32:
                       Control: ModernCard
                       Properties:
-                        Fill: =RGBA(240, 98, 15, 1)
+                        Fill: =ProcurementTheme.Colors.Primary
                         Image: =BlankImg
                         ImagePlacement: =ImagePlacement.AfterHeader
                         LayoutDirection: =LayoutDirection.Horizontal
@@ -335,7 +312,7 @@ Screens:
                   - CapCardWel_42:
                       Control: ModernCard
                       Properties:
-                        Fill: =RGBA(215, 58, 60, 1)
+                        Fill: =SafetyTheme.Colors.Primary
                         Image: =Blank()
                         ImagePlacement: =ImagePlacement.AfterHeader
                         LayoutDirection: =LayoutDirection.Horizontal
@@ -345,7 +322,7 @@ Screens:
                   - CapCardWel_52:
                       Control: ModernCard
                       Properties:
-                        Fill: =RGBA(52, 152, 47, 1)
+                        Fill: =WarehouseTheme.Colors.Primary
                         Image: =Blank()
                         ImagePlacement: =ImagePlacement.AfterHeader
                         LayoutDirection: =LayoutDirection.Horizontal
@@ -356,7 +333,7 @@ Screens:
                   - CapCardWel_62:
                       Control: ModernCard
                       Properties:
-                        Fill: =RGBA(109, 49, 162, 1)
+                        Fill: =AdminSupportTheme.Colors.Primary
                         Image: =Blank()
                         ImagePlacement: =ImagePlacement.AfterHeader
                         LayoutDirection: =LayoutDirection.Horizontal
@@ -371,6 +348,7 @@ Screens:
                   Height: =72
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
+                  OnSelect: =Navigate(TicketRequestScreen, ScreenTransition.Fade)
                   PaddingBottom: =8
                   PaddingLeft: =If(App.Width < 640, 16, 40)
                   Size: =18
@@ -391,8 +369,8 @@ Screens:
                         If(Status.Value in ["Completed", "Closed", "Resolved", "Declined", "Released"], 10000000000000, 0) - Value(Created),
                         SortOrder.Ascending
                     )
-                  OnChange: |
-                    =If(!IsBlank(Self.Selected), Set(selTicket, Self.Selected); Set(varPreviousScreen, 'Pdgo Hub 10-30-26'); Navigate(TicketDetail_11_05, ScreenTransition.Fade))
+                  OnChange: |-
+                    =If(!IsBlank(Self.Selected), Set(selTicket, Self.Selected); Set(varPreviousScreen, 'Pdgo Hub 10-30-26'); If(selTicket.Status.Value in ["Resolved", "Closed"] && IsBlank(LookUp(PDGOSurveyResponses, TicketID = selTicket.ID)), Set(varSurveyTicket, {ID: selTicket.ID, Service: Coalesce(selTicket.'Request Type', "PD GO"), Category: selTicket.Title, Location: selTicket.Building & ", " & selTicket.'Room / Area', HandledBy: selTicket.AssignedTo, Submitted: selTicket.RequestDate, Completed: selTicket.Modified, Resolution: Blank()}); Set(varSurveyTicketID, Text(selTicket.ID)); Navigate(scrSurvey, ScreenTransition.Fade), Navigate(TicketDetail_11_05, ScreenTransition.Fade)))
                   ShowSelector: =false
                   Width: =Parent.Width - 2 * If(App.Width < 640, 16, 40)
                   X: =39
@@ -479,7 +457,6 @@ Screens:
           Control: GroupContainer
           Variant: AutoLayout
           Properties:
-            DropShadow: =DropShadow.Regular
             Fill: =RGBA(255, 255, 255, 1)
             LayoutAlignItems: =LayoutAlignItems.Center
             LayoutDirection: =LayoutDirection.Vertical
@@ -496,48 +473,18 @@ Screens:
             - menuName_3:
                 Control: Label
                 Properties:
-                  BorderColor: =RGBA(0, 0, 0, 0)
-                  BorderStyle: =BorderStyle.None
-                  BorderThickness: =2
-                  Color: =RGBA(50, 49, 48, 1)
-                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                  DisabledColor: =RGBA(161, 159, 157, 1)
-                  FocusedBorderThickness: =4
-                  Font: =Font.'Segoe UI'
-                  FontWeight: =FontWeight.Semibold
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
-                  Size: =12
                   Text: =If(IsBlank(varRole), "Not signed in", Coalesce(varUser.Title, User().FullName))
             - menuRole_3:
                 Control: Label
                 Properties:
-                  BorderColor: =RGBA(0, 0, 0, 0)
-                  BorderStyle: =BorderStyle.None
-                  BorderThickness: =2
-                  Color: =RGBA(96, 94, 92, 1)
-                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                  DisabledColor: =RGBA(161, 159, 157, 1)
-                  FocusedBorderThickness: =4
-                  Font: =Font.'Segoe UI'
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
-                  Size: =12
                   Text: =If(IsBlank(varRole), "Sign in to see your tickets", varEmail & " · " & varRole)
             - signOut_3:
                 Control: Classic/Button
                 Properties:
-                  BorderColor: =RGBA(0, 0, 0, 0)
-                  BorderStyle: =BorderStyle.None
-                  Color: =RGBA(255, 255, 255, 1)
-                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                  DisabledColor: =RGBA(161, 159, 157, 1)
-                  DisabledFill: =RGBA(242, 242, 241, 0)
-                  Fill: =RGBA(0, 120, 212, 1)
-                  Font: =Font.'Segoe UI'
-                  HoverBorderColor: =RGBA(0, 0, 0, 0)
-                  HoverColor: =RGBA(255, 255, 255, 1)
-                  HoverFill: =RGBA(16, 110, 190, 1)
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
                   OnSelect: |-
@@ -545,38 +492,13 @@ Screens:
                     Set(varRole, "");
                     Set(varEmail, "");
                     Navigate(Login, ScreenTransition.Fade)
-                  PressedBorderColor: =RGBA(0, 69, 120, 1)
-                  PressedColor: =RGBA(255, 255, 255, 1)
-                  PressedFill: =RGBA(16, 110, 190, 1)
-                  RadiusBottomLeft: =0
-                  RadiusBottomRight: =0
-                  RadiusTopLeft: =0
-                  RadiusTopRight: =0
                   Text: ="Sign Out"
                   Visible: =Not(IsBlank(varRole))
             - signIn_3:
                 Control: Classic/Button
                 Properties:
-                  BorderColor: =RGBA(0, 0, 0, 0)
-                  BorderStyle: =BorderStyle.None
-                  Color: =RGBA(255, 255, 255, 1)
-                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                  DisabledColor: =RGBA(161, 159, 157, 1)
-                  DisabledFill: =RGBA(242, 242, 241, 0)
-                  Fill: =RGBA(0, 120, 212, 1)
-                  Font: =Font.'Segoe UI'
-                  HoverBorderColor: =RGBA(0, 0, 0, 0)
-                  HoverColor: =RGBA(255, 255, 255, 1)
-                  HoverFill: =RGBA(16, 110, 190, 1)
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
                   OnSelect: =Set(varMenu, false); Navigate(Login, ScreenTransition.Fade)
-                  PressedBorderColor: =RGBA(0, 69, 120, 1)
-                  PressedColor: =RGBA(255, 255, 255, 1)
-                  PressedFill: =RGBA(16, 110, 190, 1)
-                  RadiusBottomLeft: =0
-                  RadiusBottomRight: =0
-                  RadiusTopLeft: =0
-                  RadiusTopRight: =0
                   Text: ="Sign In"
                   Visible: =IsBlank(varRole)
