@@ -1220,9 +1220,13 @@ Screens:
 
                   FacilitiesServiceSubcategoryDropdown.Selected.Value = "Parking Request" &&
                   FacilitiesParkingLocationDropdown.Selected.Value = "Civic Center" &&
-                  !IsBlank(LookUp('Waitlist Queue',
-                      'Created By'.Email = User().Email &&
-                      (QueueStatus.Value = "Waiting" || QueueStatus.Value = "Offered"))),
+                  IfError(
+                      !IsEmpty(Filter(
+                          Filter(AdministrativeServiceRequests, RequestedBy = User().Email && ServiceSubcategory = "Parking Request"),
+                          ID in Filter('Waitlist Queue', QueueStatus.Value = "Waiting" || QueueStatus.Value = "Offered").TicketID
+                      )),
+                      false
+                  ),
                   Notify("You're already on the Civic Center waitlist.", NotificationType.Warning),
 
                   SubmitForm(FacilitiesRequestForm)
