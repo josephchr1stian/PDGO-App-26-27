@@ -86,6 +86,7 @@ Screens:
                               IconColor: =RGBA(0, 0, 0, 1)
                               LayoutMinHeight: =16
                               LayoutMinWidth: =16
+                              OnSelect: =Set(varHubHelpOpen, !Coalesce(varHubHelpOpen, false))
                               Width: =24
                         - IconShareWel1_1:
                             Control: ModernIcon
@@ -253,6 +254,16 @@ Screens:
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
                         Placeholder: ="Search your tickets"
+                        Visible: =false
+                        Width: =Min(Parent.Width - 2 * If(App.Width < 640, 16, 40), 520)
+                  - Button7:
+                      Control: ModernButton
+                      Properties:
+                        Height: =44
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        OnSelect: =Navigate(TicketRequestScreen, ScreenTransition.Fade)
+                        Text: ="Search your tickets"
                         Width: =Min(Parent.Width - 2 * If(App.Width < 640, 16, 40), 520)
             - Category Header:
                 Control: ModernText
@@ -363,8 +374,8 @@ Screens:
                     =Sort(
                         If(
                             varRole = "Admin" || varRole = "Supervisor",
-                            Filter(AdministrativeServiceRequests, AssignedTo = varEmail || RequestedBy = varEmail),
-                            Filter(AdministrativeServiceRequests, RequestedBy = varEmail)
+                            Filter(AdministrativeServiceRequests, AssignedTo = varEmail || RequestedBy = varEmail, StartsWith(Title, txtSearch.Text)),
+                            Filter(AdministrativeServiceRequests, RequestedBy = varEmail, StartsWith(Title, txtSearch.Text))
                         ),
                         If(Status.Value in ["Completed", "Closed", "Resolved", "Declined", "Released"], 10000000000000, 0) - Value(Created),
                         SortOrder.Ascending
@@ -502,3 +513,40 @@ Screens:
                   OnSelect: =Set(varMenu, false); Navigate(Login, ScreenTransition.Fade)
                   Text: ="Sign In"
                   Visible: =IsBlank(varRole)
+      - Container1:
+          Control: GroupContainer
+          Variant: ManualLayout
+          Properties:
+            Fill: =Color.White
+            Height: =Min(620, Parent.Height - 96)
+            Visible: =Coalesce(varHubHelpOpen, false)
+            Width: =Min(560, Parent.Width - 32)
+            X: =Parent.Width - Self.Width - 16
+            Y: =80
+          Children:
+            - HtmlText1:
+                Control: HtmlViewer
+                Properties:
+                  Height: =Parent.Height - 80
+                  HtmlText: ="<div style='font-family:Segoe UI;color:#243247;font-size:14px;line-height:1.45'><h2 style='color:#4a62a2;margin:0 0 6px'>PDGo Help</h2><p style='margin:0 0 16px'>A quick guide to requests and ticket updates.</p><h3 style='margin:12px 0 6px'>Choose a service</h3><p><b>Facilities</b> — Building repairs, maintenance and office moves.<br><b>Procurement</b> — Purchases, supplies, equipment and vendors.<br><b>Employee Safety</b> — Hazards, ergonomics, inspections and safety concerns.<br><b>Warehouse</b> — Deliveries, storage, surplus and supply requests.<br><b>Administrative Support</b> — General requests, access and workspace setup.</p><h3 style='margin:16px 0 6px'>Understand your ticket status</h3><p><b>Submitted</b> — Your request has been received.<br><b>Assigned</b> — A person or team has been assigned.<br><b>In Progress</b> — Work on the request is underway.<br><b>Waiting List</b> — Waiting for availability.<br><b>Completed / Resolved / Closed</b> — The ticket has reached a completion status.</p><h3 style='margin:16px 0 6px'>Find requests &amp; leave feedback</h3><p>Choose <b>Search your tickets</b> or <b>My Requests</b> on Home to see your submitted tickets. Select an active ticket to view its details and progress.</p><p>Select a <b>Completed, Closed or Resolved</b> ticket in My Requests to open the service feedback survey. <b>Skip for now</b> returns to your tickets.</p><p style='color:#59677b'>To start a request, close this panel and choose a service card on Home.</p></div>"
+                  Width: =Parent.Width - 32
+                  X: =16
+                  Y: =12
+            - Button9:
+                Control: ModernButton
+                Properties:
+                  Height: =36
+                  OnSelect: =Set(varHubHelpOpen, false)
+                  Text: ="Close help"
+                  Width: =(Parent.Width - 48) / 2
+                  X: =16
+                  Y: =Parent.Height - 52
+            - Button9_1:
+                Control: ModernButton
+                Properties:
+                  Height: =36
+                  OnSelect: =Set(varHubHelpOpen, false); Navigate(TicketRequestScreen, ScreenTransition.Fade)
+                  Text: ="My Requests"
+                  Width: =(Parent.Width - 48) / 2
+                  X: =Parent.Width / 2 + 8
+                  Y: =Parent.Height - 52

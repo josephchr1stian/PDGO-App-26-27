@@ -1258,6 +1258,8 @@ Screens:
       - ProcurementSubmitButton:
           Control: Classic/Button
           Properties:
+            Color: =App.Theme.Colors.Primary
+            Fill: =App.Theme.Colors.PrimaryForeground
             Height: |
               =44
             OnSelect: =Set(varShowSubmitErrors, true); If(IsBlank(ProcurementSubcategoryDropdown.Selected.Value), Notify("Please select a Procurement Subcategory.", NotificationType.Error), IsBlank(FacilitiesLocationInput_2.Text), Notify("Please enter a delivery location.", NotificationType.Error), ProcurementSubcategoryDropdown.Selected.Value = "Amazon Purchase" && IsBlank(DataCardValue2.Text), Notify("Please add a link to the item.", NotificationType.Error), SubmitForm(ProcurementRequestForm))

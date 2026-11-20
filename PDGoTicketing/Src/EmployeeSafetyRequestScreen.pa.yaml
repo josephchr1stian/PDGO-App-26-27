@@ -1072,6 +1072,8 @@ Screens:
       - EmployeeSafetySubmitRequestButton:
           Control: Classic/Button
           Properties:
+            Color: =App.Theme.Colors.Primary
+            Fill: =App.Theme.Colors.PrimaryForeground
             Height: |
               =44
             OnSelect: |-

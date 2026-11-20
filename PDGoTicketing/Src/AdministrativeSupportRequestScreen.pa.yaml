@@ -22,6 +22,7 @@ Screens:
           Properties:
             Align: =Align.Center
             AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
             Height: =64
             Size: =If(Parent.Width < 480, 18, Parent.Width < 768, 20, 24)
             Text: ="Submit an Administrative Support Request"
@@ -1063,6 +1064,8 @@ Screens:
       - AdministrativeSupportSubmitRequestButton:
           Control: Classic/Button
           Properties:
+            Color: =App.Theme.Colors.Primary
+            Fill: =App.Theme.Colors.PrimaryForeground
             Height: |
               =44
             OnSelect: |-

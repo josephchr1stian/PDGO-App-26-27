@@ -785,14 +785,17 @@ Screens:
             RadiusTopLeft: =0
             RadiusTopRight: =0
             Size: =18
-            Text: |-
-              =With({me: LookUp('Waitlist Queue', TicketID = selTicket.ID)},
-                  If(
-                      IsBlank(me), "Waitlist position unavailable",
-                      me.QueueStatus.Value = "Offered", "A Civic Center spot has been offered to you",
-                      "You're #" & (CountRows(Filter('Waitlist Queue',
-                          Title = me.Title && QueueStatus.Value = "Waiting" && Created < me.Created)) + 1)
-                      & " on the Civic Center waitlist."
+            Text: |
+              =With(
+                  {me: LookUp('Waitlist Queue', TicketID = selTicket.ID), isMine: Lower(selTicket.RequestedBy) = varEmail},
+                  With(
+                      {pos: CountRows(Filter('Waitlist Queue', Title = me.Title && QueueStatus.Value = "Waiting" && Created < me.Created)) + 1},
+                      If(
+                          IsBlank(me), "Waitlist position unavailable",
+                          me.QueueStatus.Value = "Offered",
+                              If(isMine, "A Civic Center spot has been offered to you", "Spot offered, waiting for the requester to accept"),
+                          If(isMine, "You're #" & pos & " on the Civic Center waitlist.", "#" & pos & " on the Civic Center waitlist")
+                      )
                   )
               )
             Visible: =!IsBlank(LookUp('Waitlist Queue', TicketID = selTicket.ID && (QueueStatus.Value = "Waiting" || QueueStatus.Value = "Offered")))
@@ -830,9 +833,9 @@ Screens:
             IconStyle: =IconStyle.Filled
             OnSelect: |-
               =Patch('Waitlist Queue', LookUp('Waitlist Queue', TicketID = selTicket.ID), {QueueStatus: {Value: "Done"}});
-              Patch(AdministrativeServiceRequests, selTicket, {Status: {Value: "Assigned"}});
+              Patch(AdministrativeServiceRequests, selTicket, {Status: {Value: "Resolved"}});
               Set(selTicket, LookUp(AdministrativeServiceRequests, ID = selTicket.ID));
-              Notify("Parking assigned.", NotificationType.Success)
+              Notify("Parking spot granted. Ticket resolved.", NotificationType.Success)
             Size: =12
             Text: ="Spot Accepted"
             Visible: =(varRole = "Admin" || varRole = "Supervisor") && Form1_1.Mode = FormMode.View && !IsBlank(LookUp('Waitlist Queue', TicketID = selTicket.ID && QueueStatus.Value = "Offered"))

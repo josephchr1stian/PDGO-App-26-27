@@ -101,7 +101,27 @@ Screens:
             Height: =Parent.Height - 128
             Items: |-
               =AddColumns(Filter(AdministrativeServiceRequests, !IsBlank(varEmail) && RequestedBy = varEmail), Key, "ADM-" & ID, Src, "Administrative", RecId, ID, Ticket, Coalesce(ServiceSubcategory, Title), Desc, Description, Category, Title, StatusText, Status.Value, Requester, RequestedBy, CreatedOn, Created, Cur, With({st: Lower(Trim(Coalesce(Status.Value, "submitted")))}, If(st in ["completed", "complete", "closed", "resolved", "done", "fulfilled"], 5, st in ["approved", "in progress", "assigned", "working", "scheduled"], 3, 2)))
-            OnSelect: =If(Coalesce(varOpenTicket.Key, "") = ThisItem.Key, Set(varOpenTicket, Blank()), Set(varOpenTicket, ThisItem))
+            OnSelect: |-
+              =If(
+                  Lower(Trim(Coalesce(ThisItem.Status.Value, ""))) in ["completed", "closed", "resolved"],
+                  Set(varPreviousScreen, TicketRequestScreen);
+                  Set(varSurveyTicket, {
+                      ID: ThisItem.ID,
+                      Service: Coalesce(ThisItem.ServiceSubcategory, ThisItem.'Request Type', "PD GO"),
+                      Category: ThisItem.Title,
+                      Location: ThisItem.Building & ", " & ThisItem.'Room / Area',
+                      HandledBy: ThisItem.AssignedTo,
+                      Submitted: Coalesce(ThisItem.RequestDate, ThisItem.Created),
+                      Completed: ThisItem.Modified,
+                      Resolution: Blank()
+                  });
+                  Set(varSurveyTicketID, Text(ThisItem.ID));
+                  Navigate(scrSurvey, ScreenTransition.Fade),
+                  If(Coalesce(varOpenTicket.Key, "") = ThisItem.Key,
+                      Set(varOpenTicket, Blank()),
+                      Set(varOpenTicket, ThisItem)
+                  )
+              )
             TemplatePadding: =6
             TemplateSize: =112
             Visible: =!(App.Width < 768 && !IsBlank(varOpenTicket))

@@ -114,19 +114,3 @@ Screens:
                         LayoutMinWidth: =16
                         Text: =varLoginError
                         Visible: =Not(IsBlank(varLoginError))
-      - btnBack:
-          Control: Classic/Button
-          Properties:
-            Color: =RGBA(255, 255, 255, 1)
-            Fill: =RGBA(0, 18, 105, 1)
-            Height: =44
-            HoverBorderColor: =RGBA(0, 69, 120, 1)
-            HoverColor: =RGBA(255, 255, 255, 1)
-            HoverFill: |
-              =RGBA(0, 69, 120, 1)
-            OnSelect: =Navigate('Pdgo Hub 10-30-26', ScreenTransition.UnCover)
-            PressedColor: =RGBA(255, 255, 255, 1)
-            PressedFill: =RGBA(0, 12, 75, 1)
-            Text: ="←"
-            Tooltip: ="Back"
-            Width: =44
